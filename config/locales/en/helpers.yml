@@ -49,5 +49,25 @@ en:
           youth_simple_caution: Youth Simple caution
           youth_conditional_caution: Youth Conditional caution
 
-
-
+    # Name of the input element (radio, checkbox, text, etc) where the
+    # errors summary should link to gain focus.
+    #
+    focus:
+      steps_check_kind_form:
+        kind: caution
+      steps_caution_caution_date_form:
+        caution_date: dd
+      steps_caution_under_age_form:
+        under_age: 'yes'
+      # Gotcha: `caution_type_form` is dynamic, shows different radios based on
+      # a previous question, so with this solution we can't know where to link.
+      # In order for this to work we could:
+      #   a) refactor this form into 2 separate forms
+      #   b) add logic (and thus complexity) to `error_helpers.rb`
+      #   c) handle the focus with javascript? (controversial)
+      steps_caution_caution_type_form:
+        caution_type: error
+      steps_caution_conditional_end_date_form:
+        conditional_end_date: dd
+      steps_caution_condition_complied_form:
+        condition_complied: 'yes'

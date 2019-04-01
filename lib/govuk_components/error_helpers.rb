@@ -48,8 +48,22 @@ module GovukComponents
         end
       end
 
+      # As stated in GOV.UK Design System, errors to questions that require a user
+      # to select one or more options from a list using radios or checkboxes,
+      # should link to the first radio or checkbox.
+      #
+      # In order to do this in the most decoupled way possible we make use of the
+      # locales to store the name of the input to link to from the error summary.
+      # If no locale is found, a default `error` one is used, which will link to
+      # the form element as a whole not a particular input.
+      #
       def self.link_to_error(object_prefixes, attribute)
-        [*object_prefixes, attribute, 'error'].join('_').prepend('#')
+        suffix = I18n.t(
+          [*object_prefixes, attribute].join('.'),
+          scope: 'helpers.focus', default: 'error'
+        )
+
+        [*object_prefixes, attribute, suffix].join('_').prepend('#')
       end
     end
     # rubocop:enable Metrics/BlockLength
