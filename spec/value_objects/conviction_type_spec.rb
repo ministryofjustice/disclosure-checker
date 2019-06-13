@@ -11,7 +11,7 @@ RSpec.describe ConvictionType do
         discharge
         financial
         motoring
-        hospital_order
+        hospital_guard_order
       ))
     end
   end
@@ -35,7 +35,10 @@ RSpec.describe ConvictionType do
           prohibition
           referral_order
           rehab_activity_requirement
+          reparation_order
           residence_requirement
+          sexual_harm_prevention_order
+          super_ord_breach_civil_injuc
           unpaid_work
         ))
       end
@@ -47,8 +50,7 @@ RSpec.describe ConvictionType do
       it 'returns subtypes of this conviction type' do
         expect(values).to eq(%w(
           detention_training_order
-          prison_sentence
-          suspended_prison_sentence
+          detention
         ))
       end
     end
@@ -59,7 +61,6 @@ RSpec.describe ConvictionType do
       it 'returns subtypes of this conviction type' do
         expect(values).to eq(%w(
           absolute_discharge
-          bind_over
           conditional_discharge
         ))
       end
@@ -88,12 +89,14 @@ RSpec.describe ConvictionType do
       end
     end
 
-    # TODO: To be decided if we have this in the top-level list or not
-    context 'Hospital order' do
-      let(:conviction_type) { :hospital_order }
+    context 'Hospital or guardianship order' do
+      let(:conviction_type) { :hospital_guard_order }
 
       it 'returns subtypes of this conviction type' do
-        expect(values).to eq([])
+        expect(values).to eq(%w(
+          hospital_order
+          guardianship_order
+        ))
       end
     end
   end

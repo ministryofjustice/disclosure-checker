@@ -38,7 +38,10 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
         prohibition
         referral_order
         rehab_activity_requirement
+        reparation_order
         residence_requirement
+        sexual_harm_prevention_order
+        super_ord_breach_civil_injuc
         unpaid_work
       ))
     end

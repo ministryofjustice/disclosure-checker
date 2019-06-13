@@ -54,15 +54,16 @@ en:
         prohibition: Prohibition
         referral_order: Referral order
         rehab_activity_requirement: Rehabilitation activity requirement
+        reparation_order: Reparation order
         residence_requirement: Residence requirement
+        sexual_harm_prevention_order: Sexual harm prevention order (sexual offence prevention order)
+        super_ord_breach_civil_injuc: Supervision order on breach of a civil injunction
         unpaid_work: Unpaid work
         # custodial_sentence
         detention_training_order: Detention and training order
-        prison_sentence: Prison sentence
-        suspended_prison_sentence: Suspended prison sentence
+        detention: Detention (4 years or over)
         # discharge
         absolute_discharge: Absolute discharge
-        bind_over: Bind over
         conditional_discharge: Conditional discharge
         # financial
         penalty_fine: A fine

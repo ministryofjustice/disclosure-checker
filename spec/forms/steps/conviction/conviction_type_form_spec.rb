@@ -7,21 +7,40 @@ RSpec.describe Steps::Conviction::ConvictionTypeForm do
       conviction_type: conviction_type
     }
   end
-  let(:disclosure_check) { instance_double(DisclosureCheck, conviction_type: conviction_type) }
+
+  let(:under_age) { true }
+  let(:disclosure_check) { instance_double(DisclosureCheck, conviction_type: conviction_type, under_age: under_age) }
   let(:conviction_type) { nil }
 
   subject { described_class.new(arguments) }
 
   describe '.choices' do
-    it 'returns the relevant choices' do
-      expect(described_class.choices).to eq(%w(
-        community_order
-        custodial_sentence
-        discharge
-        financial
-        motoring
-        hospital_order
-      ))
+    context 'under age conviction type' do
+      it 'returns the relevant choices' do
+        expect(subject.choices).to eq(%w(
+          community_order
+          custodial_sentence
+          discharge
+          financial
+          hospital_guard_order
+        ))
+      end
+    end
+
+
+    context 'All conviction type' do
+      let(:under_age) { false }
+
+      it 'returns the relevant choices' do
+        expect(subject.choices).to eq(%w(
+          community_order
+          custodial_sentence
+          discharge
+          financial
+          motoring
+          hospital_guard_order
+        ))
+      end
     end
   end
 
