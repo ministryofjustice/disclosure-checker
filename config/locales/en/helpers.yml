@@ -33,9 +33,7 @@ en:
         financial: What were you ordered to pay?
         motoring: What was your motoring conviction?
       steps_conviction_conviction_length_type_form:
-        conviction_length_type: Was the length of conviction given in weeks or months?
-      steps_conviction_conviction_length_form:
-        conviction_length: Enter length of conviction given in weeks or months?
+        conviction_length_type: Was the length of conviction given in weeks, months or years?
 
     hint:
       steps_caution_known_date_form:
@@ -45,7 +43,7 @@ en:
       steps_caution_conditional_end_date_form:
         conditional_end_date: This is the date you and the police agreed the conditions would end. For example, 23 9 2018.
       steps_conviction_known_date_form:
-        known_date: For example, 12 11 2017
+        known_date: For example, 23 9 2018
       steps_conviction_under_age_form:
         under_age: This is your age when you were given the conviction, not when you committed the offence
       radio_buttons:
@@ -102,6 +100,7 @@ en:
         conviction_length:
           weeks: ""
           months: ""
+          years: ""
 
     label:
       steps_check_kind_form:
@@ -181,5 +180,6 @@ en:
         conviction_length_type:
           weeks: Weeks
           months: Months
+          years: Years
       steps_conviction_conviction_length_form:
-        conviction_length: Length (number of weeks or months)
+        conviction_length: Length of conviction

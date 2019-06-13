@@ -11,7 +11,7 @@
 
         <!-- The header is part of the radios legend by default, but can be configured -->
         <%= step_form @form_object do |f| %>
-          <%= f.radio_button_fieldset :conviction_length_type, inline: true, choices: Steps::Conviction::ConvictionLengthTypeForm.choices %>
+          <%= f.radio_button_fieldset :conviction_length_type, inline: false, choices: Steps::Conviction::ConvictionLengthTypeForm.choices %>
           <%= f.continue_button %>
         <% end %>
       </div>

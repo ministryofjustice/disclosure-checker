@@ -15,6 +15,7 @@ RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
       expect(described_class.choices).to eq(%w(
         weeks
         months
+        years
       ))
     end
   end
