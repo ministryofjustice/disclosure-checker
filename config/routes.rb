@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       edit_step :conditional_end_date
       edit_step :condition_complied
       show_step :condition_exit
+
     end
 
     namespace :conviction do
@@ -52,6 +53,7 @@ Rails.application.routes.draw do
       edit_step :conviction_subtype
       edit_step :conviction_length
       edit_step :conviction_length_type
+      show_step :exit_over18
     end
   end
 

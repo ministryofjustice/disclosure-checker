@@ -10,7 +10,7 @@ Feature: Caution
     When I choose "Caution"
     Then I should see "How old were you when you got cautioned?"
     And I choose "18 or over"
-    Then I should see "Sorry, you can't use this service yet"
+    Then I should see "Sorry, you cannot use this service yet"
 
   @happy_path
   Scenario: Caution happy path - under 18, conditional caution

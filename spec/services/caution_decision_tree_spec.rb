@@ -37,7 +37,7 @@ RSpec.describe CautionDecisionTree do
    context 'when the step is `under_age` is equal to no' do
     let(:under_age)  { GenericYesNo::NO }
     let(:step_params) { { under_age: under_age } }
-    it { is_expected.to have_destination('/steps/conviction/exit', :show) }
+    it { is_expected.to have_destination('/steps/conviction/exit_over18', :show) }
   end
 
   context 'when the step is `caution_type` does not equal conditional' do

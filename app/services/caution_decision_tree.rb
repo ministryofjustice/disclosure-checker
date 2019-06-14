@@ -25,7 +25,7 @@ class CautionDecisionTree < BaseDecisionTree
   def after_under_age
     return edit(:caution_type) if GenericYesNo.new(disclosure_check.under_age).yes?
 
-    show('/steps/conviction/exit')
+    show('/steps/conviction/exit_over18')
   end
 
   def after_caution_type

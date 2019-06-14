@@ -28,7 +28,7 @@ RSpec.describe ConvictionDecisionTree do
   context 'when the step is `under_age_conviction` equal no' do
     let(:under_age)  { GenericYesNo::NO }
     let(:step_params) { { under_age: under_age } }
-    it { is_expected.to have_destination(:exit, :show) }
+    it { is_expected.to have_destination(:exit_over18, :show) }
   end
 
   context 'when the step is `known_date` ' do
