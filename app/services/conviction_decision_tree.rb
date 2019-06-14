@@ -16,8 +16,6 @@ class ConvictionDecisionTree < BaseDecisionTree
       edit(:conviction_length)
     when :conviction_length
       show('/steps/check/results')
-    when :exit
-      show(:exit)
     else
       raise InvalidStep, "Invalid step '#{as || step_params}'"
     end

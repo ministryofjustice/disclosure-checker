@@ -64,9 +64,4 @@ RSpec.describe ConvictionDecisionTree do
     let(:step_params) { { conviction_length: 'anything' } }
     it { is_expected.to have_destination('/steps/check/results', :show) }
   end
-
-  context 'when the step is `exit`' do
-    let(:step_params) { { exit: 'anything' } }
-    it { is_expected.to have_destination(:exit, :show) }
-  end
 end
