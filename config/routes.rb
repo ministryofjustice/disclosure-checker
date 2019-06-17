@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     namespace :check do
       edit_step :kind
       show_step :results
+      show_step :exit_over18
     end
 
     namespace :caution do
@@ -52,7 +53,6 @@ Rails.application.routes.draw do
       edit_step :conviction_subtype
       edit_step :conviction_length
       edit_step :conviction_length_type
-      show_step :exit_over18
     end
   end
 

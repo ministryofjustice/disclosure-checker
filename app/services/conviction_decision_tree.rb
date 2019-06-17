@@ -27,7 +27,7 @@ class ConvictionDecisionTree < BaseDecisionTree
   def after_under_age
     return edit(:conviction_type) if GenericYesNo.new(disclosure_check.under_age).yes?
 
-    show(:exit_over18)
+    show('/steps/check/exit_over18')
   end
 
   def after_conviction_type
