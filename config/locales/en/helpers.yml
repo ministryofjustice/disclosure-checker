@@ -34,6 +34,8 @@ en:
         motoring: What was your motoring conviction?
       steps_conviction_conviction_length_type_form:
         conviction_length_type: Was the length of conviction given in weeks, months or years?
+      steps_conviction_compensation_paid_form:
+        compensation_paid: Did you pay the compensation in full?
 
     hint:
       steps_caution_known_date_form:

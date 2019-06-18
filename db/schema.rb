@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_11_145300) do
+ActiveRecord::Schema.define(version: 2019_06_18_100314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_06_11_145300) do
     t.string "conviction_subtype"
     t.string "conviction_length_type"
     t.integer "conviction_length"
+    t.string "compensation_paid"
     t.index ["status"], name: "index_disclosure_checks_on_status"
   end
 

@@ -32,3 +32,6 @@ en:
         edit:
           page_title: conviction length
           heading: Enter length of conviction given in weeks or months?
+      compensation_paid:
+        edit:
+          page_title: compensation paid

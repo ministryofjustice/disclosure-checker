@@ -1,0 +1,22 @@
+<% title t('.page_title') %>
+
+<div class="govuk-width-container">
+  <%= step_header %>
+
+  <main id="main-content" class="govuk-main-wrapper">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <%= error_summary %>
+
+        <!-- The header is part of the radios legend by default, but can be configured -->
+
+        <%= step_form @form_object do |f| %>
+          <%= f.radio_button_fieldset :compensation_paid, inline: true, choices: GenericYesNo.values %>
+          <%= f.continue_button %>
+        <% end %>
+      </div>
+    </div>
+
+  </main>
+</div>

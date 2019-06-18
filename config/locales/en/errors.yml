@@ -49,6 +49,7 @@ en:
               greater_than: Conviction length value must be 1 or more
               not_a_number: Conviction length must be a number, like 3
 
+
   errors:
     format: "%{message}"
     page_title_prefix: 'Error: '
@@ -67,6 +68,8 @@ en:
         inclusion: Select caution type
       condition_complied:
         inclusion: Select yes if you stuck with the conditions of the caution
+      compensation_paid:
+        inclusion: Select yes or no
 
     check_completed:
       page_title: Check completed
