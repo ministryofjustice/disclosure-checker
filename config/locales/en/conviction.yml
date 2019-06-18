@@ -35,3 +35,6 @@ en:
       compensation_paid:
         edit:
           page_title: compensation paid
+      compensation_payment_date:
+        edit:
+          page_title: compensation payment date

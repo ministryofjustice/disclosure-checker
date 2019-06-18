@@ -1,0 +1,21 @@
+<% title t('.page_title') %>
+
+<div class="govuk-width-container">
+  <%= step_header %>
+
+  <main id="main-content" class="govuk-main-wrapper">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <%= error_summary %>
+
+        <%= step_form @form_object do |f| %>
+          <%= f.gov_uk_date_field :compensation_payment_date %>
+
+          <%= f.continue_button %>
+        <% end %>
+      </div>
+    </div>
+
+  </main>
+</div>

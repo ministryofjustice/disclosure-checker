@@ -48,6 +48,12 @@ en:
             conviction_length:
               greater_than: Conviction length value must be 1 or more
               not_a_number: Conviction length must be a number, like 3
+        steps/conviction/compensation_payment_date_form:
+          attributes:
+            compensation_payment_date:
+              blank: Enter the date of the compensation payment
+              invalid: The date of the compensation payment date is not valid
+              future: The date of the compensation payment date can’t be in the future
 
 
   errors:
