@@ -10,7 +10,6 @@ RSpec.describe ConvictionType do
         custodial_sentence
         discharge
         financial
-        motoring
         hospital_guard_order
       ))
     end
@@ -73,18 +72,6 @@ RSpec.describe ConvictionType do
         expect(values).to eq(%w(
           penalty_fine
           compensation_to_a_victim
-        ))
-      end
-    end
-
-    context 'Motoring endorsement' do
-      let(:conviction_type) { :motoring }
-
-      it 'returns subtypes of this conviction type' do
-        expect(values).to eq(%w(
-          disqualification
-          endorsement
-          penalty_points
         ))
       end
     end

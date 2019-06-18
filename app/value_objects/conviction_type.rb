@@ -1,20 +1,18 @@
 class ConvictionType < ValueObject
-  attr_reader :parent, :under_eighteen
+  attr_reader :parent
 
   def initialize(raw_value, params = {})
     @parent = params.fetch(:parent, nil)
-    @under_eighteen = params.fetch(:under_eighteen, true)
     super(raw_value)
   end
 
   VALUES = [
     PARENT_TYPES = [
-      COMMUNITY_ORDER       = new(:community_order,      under_eighteen: true),
-      CUSTODIAL_SENTENCE    = new(:custodial_sentence,   under_eighteen: true),
-      DISCHARGE             = new(:discharge,            under_eighteen: true),
-      FINANCIAL             = new(:financial,            under_eighteen: true),
-      MOTORING              = new(:motoring,             under_eighteen: false),
-      HOSPITAL_GUARD_ORDER  = new(:hospital_guard_order, under_eighteen: true),
+      COMMUNITY_ORDER       = new(:community_order),
+      CUSTODIAL_SENTENCE    = new(:custodial_sentence),
+      DISCHARGE             = new(:discharge),
+      FINANCIAL             = new(:financial),
+      HOSPITAL_GUARD_ORDER  = new(:hospital_guard_order),
     ].freeze,
 
     ALCOHOL_ABSTINENCE           = new(:alcohol_abstinence,           parent: COMMUNITY_ORDER),
@@ -42,10 +40,6 @@ class ConvictionType < ValueObject
 
     PENALTY_FINE                 = new(:penalty_fine,                 parent: FINANCIAL),
     COMPENSATION_TO_A_VICTIM     = new(:compensation_to_a_victim,     parent: FINANCIAL),
-
-    DISQUALIFICATION             = new(:disqualification,             parent: MOTORING),
-    ENDORSEMENT                  = new(:endorsement,                  parent: MOTORING),
-    PENALTY_POINTS               = new(:penalty_points,               parent: MOTORING),
 
     HOSPITAL_ORDER               = new(:hospital_order,               parent: HOSPITAL_GUARD_ORDER),
     GUARDIANSHIP_ORDER           = new(:guardianship_order,           parent: HOSPITAL_GUARD_ORDER),

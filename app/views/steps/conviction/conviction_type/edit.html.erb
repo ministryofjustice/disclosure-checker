@@ -8,9 +8,8 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <%= error_summary %>
-
         <%= step_form @form_object do |f| %>
-          <%= f.radio_button_fieldset :conviction_type, choices: @form_object.choices, radio_hint: true %>
+          <%= f.radio_button_fieldset :conviction_type, choices: Steps::Conviction::ConvictionTypeForm.choices, radio_hint: true %>
           <%= f.continue_button %>
         <% end %>
       </div>
