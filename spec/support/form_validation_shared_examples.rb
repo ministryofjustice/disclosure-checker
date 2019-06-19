@@ -112,3 +112,80 @@ RSpec.shared_examples 'a yes-no question form' do |options|
     end
   end
 end
+
+RSpec.shared_examples 'a date question form' do |options|
+  let(:question_attribute) { options[:attribute_name] }
+
+  let(:arguments) { {
+    disclosure_check: disclosure_check,
+    question_attribute => date_value
+  } }
+
+  let(:disclosure_check) { instance_double(DisclosureCheck) }
+  let(:date_value) { 3.months.ago.to_date }
+
+  subject { described_class.new(arguments) }
+
+  describe '#save' do
+    it { should validate_presence_of(question_attribute) }
+
+    context 'when no disclosure_check is associated with the form' do
+      let(:disclosure_check) { nil }
+
+      it 'raises an error' do
+        expect { subject.save }.to raise_error(BaseForm::DisclosureCheckNotFound)
+      end
+    end
+
+    context 'date validation' do
+      context 'when date is not given' do
+        let(:date_value) { nil }
+
+        it 'returns false' do
+          expect(subject.save).to be(false)
+        end
+
+        it 'has a validation error on the field' do
+          expect(subject).to_not be_valid
+          expect(subject.errors.added?(question_attribute, :blank)).to eq(true)
+        end
+      end
+
+      context 'when date is invalid' do
+        let(:date_value) { Date.new(18, 10, 31) } # 2-digits year (18)
+
+        it 'returns false' do
+          expect(subject.save).to be(false)
+        end
+
+        it 'has a validation error on the field' do
+          expect(subject).to_not be_valid
+          expect(subject.errors.added?(question_attribute, :invalid)).to eq(true)
+        end
+      end
+
+      context 'when date is in the future' do
+        let(:date_value) { Date.tomorrow }
+
+        it 'returns false' do
+          expect(subject.save).to be(false)
+        end
+
+        it 'has a validation error on the field' do
+          expect(subject).to_not be_valid
+          expect(subject.errors.added?(question_attribute, :future)).to eq(true)
+        end
+      end
+    end
+
+    context 'when form is valid' do
+      it 'saves the record' do
+        expect(disclosure_check).to receive(:update).with(
+          question_attribute => 3.months.ago.to_date
+        ).and_return(true)
+
+        expect(subject.save).to be(true)
+      end
+    end
+  end
+end
