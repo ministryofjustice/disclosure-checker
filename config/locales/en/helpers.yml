@@ -97,7 +97,7 @@ en:
           absolute_discharge: You were found guilty of a crime but did not get sentenced
           conditional_discharge: You were not sentenced, as long as you didn't commit another crime
           # financial
-          penalty_fine: ""
+          fine: ""
           compensation_to_a_victim: ""
           # motoring
           disqualification: You were banned from driving for a certain period of time
@@ -177,7 +177,7 @@ en:
           absolute_discharge: Absolute discharge
           conditional_discharge: Conditional discharge
           # financial
-          penalty_fine: A fine
+          fine: A fine
           compensation_to_a_victim: Compensation to a victim
           # motoring
           disqualification: Disqualification

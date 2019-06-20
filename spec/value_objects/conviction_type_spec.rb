@@ -70,7 +70,7 @@ RSpec.describe ConvictionType do
 
       it 'returns subtypes of this conviction type' do
         expect(values).to eq(%w(
-          penalty_fine
+          fine
           compensation_to_a_victim
         ))
       end
@@ -84,6 +84,33 @@ RSpec.describe ConvictionType do
           hospital_order
           guardianship_order
         ))
+      end
+    end
+
+    context 'ConvictionType attributes' do
+      let(:subtype) { 'curfew' }
+      let(:conviction_type) { described_class.find_constant(subtype) }
+
+      context 'skip_length?' do
+        context 'skip_length is false' do
+          it { expect(conviction_type.skip_length?).to eq(false) }
+        end
+
+        context 'skip_length is true' do
+          let(:subtype) { 'absolute_discharge' }
+          it { expect(conviction_type.skip_length?).to eq(true) }
+        end
+      end
+
+      context 'compensation?' do
+        context 'compensation is false' do
+          it { expect(conviction_type.compensation?).to eq(false) }
+        end
+
+        context 'compensation is true' do
+          let(:subtype) { 'compensation_to_a_victim' }
+          it { expect(conviction_type.compensation?).to eq(true) }
+        end
       end
     end
   end

@@ -40,12 +40,12 @@ RSpec.describe ConvictionDecisionTree do
     let(:step_params) { { known_date: 'anything' } }
     let(:conviction_subtype) { :detention_training_order }
 
-    context 'when subtype not equal penalty_fine' do
+    context 'when subtype not equal fine' do
       it { is_expected.to have_destination(:conviction_length_type, :edit) }
     end
 
-    context 'when subtype equal penalty_fine' do
-      let(:conviction_subtype) { :penalty_fine }
+    context 'when subtype equal fine' do
+      let(:conviction_subtype) { :fine }
       it { is_expected.to have_destination('/steps/check/results', :show) }
     end
   end

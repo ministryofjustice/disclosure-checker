@@ -48,7 +48,7 @@ class ConvictionType < ValueObject
     ABSOLUTE_DISCHARGE           = new(:absolute_discharge,           parent: DISCHARGE, skip_length: true),
     CONDITIONAL_DISCHARGE        = new(:conditional_discharge,        parent: DISCHARGE),
 
-    PENALTY_FINE                 = new(:penalty_fine,                 parent: FINANCIAL, skip_length: true),
+    FINE                         = new(:fine,                         parent: FINANCIAL, skip_length: true),
     COMPENSATION_TO_A_VICTIM     = new(:compensation_to_a_victim,     parent: FINANCIAL, compensation: true),
 
     HOSPITAL_ORDER               = new(:hospital_order,               parent: HOSPITAL_GUARD_ORDER),
