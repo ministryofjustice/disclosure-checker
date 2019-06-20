@@ -28,10 +28,7 @@ Feature: Caution
 
     Then I should see "When did the conditions end?"
 
-    And I fill in "Day" with "1"
-    And I fill in "Month" with "1"
-    And I fill in "Year" with "1999"
-    And I click the "Continue" button
+    When I enter a valid date
 
     Then I should see "Your caution expired on 01 January 1999"
 
@@ -47,10 +44,7 @@ Feature: Caution
 
     Then I should see "When did you get the caution?"
 
-    And I fill in "Day" with "1"
-    And I fill in "Month" with "1"
-    And I fill in "Year" with "1999"
-    And I click the "Continue" button
+    When I enter a valid date
 
     Then I should see "Your caution expired on 01 January 1999"
 

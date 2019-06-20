@@ -60,3 +60,10 @@ When(/^I am completing a basic under 18 "([^"]*)" conviction$/) do |value|
   step %[I should see "What type of conviction did you get?"]
   step %[I choose "#{value}"]
 end
+
+When(/^I enter a valid date$/) do
+  step %[I fill in "Day" with "1"]
+  step %[I fill in "Month" with "1"]
+  step %[I fill in "Year" with "1999"]
+  step %[I click the "Continue" button]
+end
