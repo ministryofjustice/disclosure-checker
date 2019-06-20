@@ -43,17 +43,17 @@ en:
       question: Name of conviction
       answers:
         # community_order
-        alcohol_abstinence_treatment: Alcohol abstinence or treatment
-        attendance_centre_order: Attendance centre order
+        alcohol_abstinence: Alcohol abstinence
+        alcohol_treatment: Alcohol treatment
         behavioural_change_prog: Behavioural change programme
         curfew: Curfew
-        drug_rehabilitation: Drug rehabilitation, treatment or testing
+        drug_rehabilitation: Drug rehabilitation
         exclusion_requirement: Exclusion requirement
-        intoxicating_substance_treatment: Intoxicating substance treatment requirement
+        foreign_travel_prohibition: Foreign travel prohibition
         mental_health_treatment: Mental health treatment
         prohibition: Prohibition
         referral_order: Referral order
-        rehab_activity_requirement: Rehabilitation activity requirement (RAR)
+        rehab_activity_requirement: Rehabilitation activity requirement
         reparation_order: Reparation order
         residence_requirement: Residence requirement
         sexual_harm_prevention_order: Sexual harm prevention order (sexual offence prevention order)
@@ -61,7 +61,7 @@ en:
         unpaid_work: Unpaid work
         # custodial_sentence
         detention_training_order: Detention and training order
-        detention: Detention
+        detention: Detention (4 years or over)
         # discharge
         absolute_discharge: Absolute discharge
         conditional_discharge: Conditional discharge

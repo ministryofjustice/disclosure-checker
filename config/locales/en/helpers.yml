@@ -32,7 +32,6 @@ en:
         discharge: What discharge were you given?
         financial: What were you ordered to pay?
         motoring: What was your motoring conviction?
-        hospital_guard_order: What type of order were you given?
       steps_conviction_conviction_length_type_form:
         conviction_length_type: Was the length of conviction given in weeks, months or years?
       steps_conviction_compensation_paid_form:
@@ -75,13 +74,13 @@ en:
           motoring: For example you were given penalty points or a disqualification at court
         conviction_subtype:
           # community_order
-          alcohol_abstinence_treatment: You were ordered not to drink, or were given help to stop you drinking
-          attendance_centre_order: You were ordered to go to an attendance centre for a set number of hours
+          alcohol_abstinence: You were ordered not to drink for a certain period of time
+          alcohol_treatment: You were given treatment to help you stop drinking
           behavioural_change_prog: You were helped to change any dangerous or unwanted behaviour
           curfew: You were ordered to remain in a specified place for a certain period of time
           drug_rehabilitation: You were ordered to receive to treatment during a specified time to reduce dependancy on drugs
           exclusion_requirement: You were ordered to stay away from a certain place or area
-          intoxicating_substance_treatment: You were given treatment to reduce dependency on substances such as solvents or prescription drugs
+          foreign_travel_prohibition: You were ordered not to travel to any other country
           mental_health_treatment: You were given treatment for a mental health issue (for example cognitive behavioural treatment)
           prohibition: You were banned from doing something, such as watching football or using the internet
           referral_order: You were refferred to trained community volunteers and a member of the youth offending team
@@ -155,13 +154,13 @@ en:
       steps_conviction_conviction_subtype_form:
         conviction_subtype:
           # community_order
-          alcohol_abstinence_treatment: Alcohol abstinence or treatment
-          attendance_centre_order: Attendance centre order
+          alcohol_abstinence: Alcohol abstinence
+          alcohol_treatment: Alcohol treatment
           behavioural_change_prog: Behavioural change programme
           curfew: Curfew
-          drug_rehabilitation: Drug rehabilitation, treatment or testing
+          drug_rehabilitation: Drug rehabilitation
           exclusion_requirement: Exclusion requirement
-          intoxicating_substance_treatment: Intoxicating substance treatment requirement
+          foreign_travel_prohibition: Foreign travel prohibition
           mental_health_treatment: Mental health treatment
           prohibition: Prohibition
           referral_order: Referral order
@@ -171,9 +170,9 @@ en:
           sexual_harm_prevention_order: Sexual harm prevention order (sexual offence prevention order)
           super_ord_breach_civil_injuc: Supervision order on breach of a civil injunction
           unpaid_work: Unpaid work
-        # custodial_sentence
+          # custodial_sentence
           detention_training_order: Detention and training order
-          detention: A Detention
+          detention: Detention (4 years or over)
           # discharge
           absolute_discharge: Absolute discharge
           conditional_discharge: Conditional discharge
