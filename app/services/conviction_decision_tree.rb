@@ -1,6 +1,5 @@
 class ConvictionDecisionTree < BaseDecisionTree
   # rubocop:disable Metrics/CyclomaticComplexity
-  # rubocop:disable Metrics/MethodLength
   def destination
     return next_step if next_step
 
@@ -15,18 +14,15 @@ class ConvictionDecisionTree < BaseDecisionTree
       after_known_date
     when :conviction_length_type
       edit(:conviction_length)
-    when :conviction_length
-      results
     when :compensation_paid
       after_compensation_paid
-    when :compensation_payment_date
+    when :conviction_length, :compensation_payment_date
       results
     else
       raise InvalidStep, "Invalid step '#{as || step_params}'"
     end
   end
   # rubocop:enable Metrics/CyclomaticComplexity
-  # rubocop:enable Metrics/MethodLength
 
   private
 
@@ -43,13 +39,13 @@ class ConvictionDecisionTree < BaseDecisionTree
   end
 
   def after_conviction_subtype
-    return edit(:compensation_paid) if ConvictionType.new(disclosure_check.conviction_subtype).subtype?(:compensation_to_a_victim)
+    return edit(:compensation_paid) if conviction_subtype.compensation?
 
     edit(:known_date)
   end
 
   def after_known_date
-    return results if ConvictionType.new(disclosure_check.conviction_subtype).subtypes?([:penalty_fine, :absolute_discharge])
+    return results if conviction_subtype.skip_length?
 
     edit(:conviction_length_type)
   end
@@ -66,6 +62,10 @@ class ConvictionDecisionTree < BaseDecisionTree
   end
 
   def conviction
-    ConvictionType.new(step_value(:conviction_type))
+    ConvictionType.find_constant(step_value(:conviction_type))
+  end
+
+  def conviction_subtype
+    ConvictionType.find_constant(disclosure_check.conviction_subtype)
   end
 end

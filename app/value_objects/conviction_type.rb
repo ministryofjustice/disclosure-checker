@@ -1,10 +1,20 @@
 class ConvictionType < ValueObject
-  attr_reader :parent
+  attr_reader :parent, :skip_length, :compensation
 
   def initialize(raw_value, params = {})
     @parent = params.fetch(:parent, nil)
+    @skip_length = params.fetch(:skip_length, false)
+    @compensation = params.fetch(:compensation, false)
+
     super(raw_value)
   end
+
+  def self.find_constant(raw_value)
+    const_get(raw_value.upcase)
+  end
+
+  alias skip_length? skip_length
+  alias compensation? compensation
 
   VALUES = [
     PARENT_TYPES = [
@@ -35,11 +45,11 @@ class ConvictionType < ValueObject
     DETENTION_TRAINING_ORDER     = new(:detention_training_order,     parent: CUSTODIAL_SENTENCE),
     DETENTION                    = new(:detention,                    parent: CUSTODIAL_SENTENCE),
 
-    ABSOLUTE_DISCHARGE           = new(:absolute_discharge,           parent: DISCHARGE),
+    ABSOLUTE_DISCHARGE           = new(:absolute_discharge,           parent: DISCHARGE, skip_length: true),
     CONDITIONAL_DISCHARGE        = new(:conditional_discharge,        parent: DISCHARGE),
 
-    PENALTY_FINE                 = new(:penalty_fine,                 parent: FINANCIAL),
-    COMPENSATION_TO_A_VICTIM     = new(:compensation_to_a_victim,     parent: FINANCIAL),
+    PENALTY_FINE                 = new(:penalty_fine,                 parent: FINANCIAL, skip_length: true),
+    COMPENSATION_TO_A_VICTIM     = new(:compensation_to_a_victim,     parent: FINANCIAL, compensation: true),
 
     HOSPITAL_ORDER               = new(:hospital_order,               parent: HOSPITAL_GUARD_ORDER),
     GUARDIANSHIP_ORDER           = new(:guardianship_order,           parent: HOSPITAL_GUARD_ORDER),
@@ -53,13 +63,5 @@ class ConvictionType < ValueObject
 
   def children
     VALUES.select { |value| value.parent.eql?(self) }
-  end
-
-  def subtype?(subtype)
-    value == subtype
-  end
-
-  def subtypes?(subtypes)
-    subtypes.include?(value)
   end
 end
