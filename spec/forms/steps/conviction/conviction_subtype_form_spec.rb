@@ -27,13 +27,13 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
   describe '#choices' do
     it 'returns the relevant choices (children of the conviction type)' do
       expect(subject.choices).to eq(%w(
-        alcohol_abstinence
-        alcohol_treatment
+        alcohol_abstinence_treatment
+        attendance_centre_order
         behavioural_change_prog
         curfew
         drug_rehabilitation
         exclusion_requirement
-        foreign_travel_prohibition
+        intoxicating_substance_treatment
         mental_health_treatment
         prohibition
         referral_order
@@ -51,7 +51,7 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
     it_behaves_like 'a value object form', attribute_name: :conviction_subtype, example_value: 'alcohol_abstinence'
 
     context 'when form is valid' do
-      let(:conviction_subtype) { 'alcohol_abstinence' }
+      let(:conviction_subtype) { 'alcohol_abstinence_treatment' }
 
       it 'saves the record' do
         expect(disclosure_check).to receive(:update).with(
