@@ -172,7 +172,7 @@ en:
           unpaid_work: Unpaid work
           # custodial_sentence
           detention_training_order: Detention and training order
-          detention: Detention (4 years or over)
+          detention: Detention
           # discharge
           absolute_discharge: Absolute discharge
           conditional_discharge: Conditional discharge
