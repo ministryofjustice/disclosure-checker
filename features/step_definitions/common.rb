@@ -48,29 +48,3 @@ And(/^I choose "([^"]*)" and fill in "([^"]*)" with "([^"]*)"$/) do |text, field
   step %[I fill in "#{field}" with "#{value}"]
   find('[name=commit]').click
 end
-
-When(/^I am completing a basic under 18 "([^"]*)" conviction$/) do |value|
-  step %[I visit "/"]
-  step %[I should see "Check if you need to disclose your criminal record"]
-  step %[I click the "Start now" link]
-  step %[I should see "Were you cautioned or convicted?"]
-  step %[I choose "Convicted"]
-  step %[I should see "How old were you when you got convicted?"]
-  step %[I choose "Under 18"]
-  step %[I should see "What type of conviction did you get?"]
-  step %[I choose "#{value}"]
-end
-
-When(/^I am completing YRO with "([^"]*)"$/) do |value|
-  step %[I should see "What was your community order?"]
-  step %[I choose "#{value}"]
-  step %[I should see "When did you get convicted?"]
-  step %[I fill in "Day" with "1"]
-  step %[I fill in "Month" with "1"]
-  step %[I fill in "Year" with "1999"]
-  step %[I click the "Continue" button]
-  step %[I should see "Was the length of conviction given in weeks, months or years?"]
-  step %[I choose "Weeks"]
-  step %[I should see "Enter length of conviction given in weeks or months?"]
-  step %[I fill in "Length of conviction" with "10"]
-end
