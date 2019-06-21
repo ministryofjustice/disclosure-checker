@@ -23,13 +23,13 @@ RSpec.describe ConvictionType do
 
       it 'returns subtypes of this conviction type' do
         expect(values).to eq(%w(
-          alcohol_abstinence
-          alcohol_treatment
+          alcohol_abstinence_treatment
+          attendance_centre_order
           behavioural_change_prog
           curfew
           drug_rehabilitation
           exclusion_requirement
-          foreign_travel_prohibition
+          intoxicating_substance_treatment
           mental_health_treatment
           prohibition
           referral_order

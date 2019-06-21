@@ -74,13 +74,13 @@ en:
           motoring: For example you were given penalty points or a disqualification at court
         conviction_subtype:
           # community_order
-          alcohol_abstinence: You were ordered not to drink for a certain period of time
-          alcohol_treatment: You were given treatment to help you stop drinking
+          alcohol_abstinence_treatment: You were ordered not to drink, or were given help to stop you drinking
+          attendance_centre_order: You were ordered to go to an attendance centre for a set number of hours
           behavioural_change_prog: You were helped to change any dangerous or unwanted behaviour
           curfew: You were ordered to remain in a specified place for a certain period of time
           drug_rehabilitation: You were ordered to receive to treatment during a specified time to reduce dependancy on drugs
           exclusion_requirement: You were ordered to stay away from a certain place or area
-          foreign_travel_prohibition: You were ordered not to travel to any other country
+          intoxicating_substance_treatment: You were given treatment to reduce dependency on substances such as solvents or prescription drugs
           mental_health_treatment: You were given treatment for a mental health issue (for example cognitive behavioural treatment)
           prohibition: You were banned from doing something, such as watching football or using the internet
           referral_order: You were refferred to trained community volunteers and a member of the youth offending team
@@ -154,13 +154,14 @@ en:
       steps_conviction_conviction_subtype_form:
         conviction_subtype:
           # community_order
-          alcohol_abstinence: Alcohol abstinence
-          alcohol_treatment: Alcohol treatment
+          alcohol_abstinence_treatment: Alcohol abstinence or treatment
+          attendance_centre_order: Attendance centre order
           behavioural_change_prog: Behavioural change programme
           curfew: Curfew
-          drug_rehabilitation: Drug rehabilitation
+          drug_rehabilitation: Drug rehabilitation, treatment or testing
           exclusion_requirement: Exclusion requirement
           foreign_travel_prohibition: Foreign travel prohibition
+          intoxicating_substance_treatment: Intoxicating substance treatment requirement
           mental_health_treatment: Mental health treatment
           prohibition: Prohibition
           referral_order: Referral order
