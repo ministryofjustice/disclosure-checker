@@ -68,3 +68,9 @@ When(/^I enter a valid date$/) do
   step %[I click the "Continue" button]
 end
 
+When(/^I enter a conviction length in "([^"]*)"$/) do |value|
+  step %[I should see "What was the length of the order?"]
+  step %[I should see "Number of #{value}"]
+  step %[I fill in "What was the length of the order?" with "10"]
+  step %[I click the "Continue" button]
+end
