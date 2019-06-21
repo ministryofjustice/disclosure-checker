@@ -77,4 +77,6 @@ When(/^I am completing YRO with "([^"]*)"$/) do |value|
   step %[I choose "Weeks"]
   step %[I should see "What was the length of the order?"]
   step %[I fill in "What was the length of the order?" with "10"]
+  step %[I click the "Continue" button]
+  step %[I should be on "/steps/check/results"]
 end
