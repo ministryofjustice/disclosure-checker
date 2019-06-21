@@ -68,14 +68,3 @@ When(/^I enter a valid date$/) do
   step %[I click the "Continue" button]
 end
 
-When(/^I am completing YRO with "([^"]*)"$/) do |value|
-  step %[I should see "What was your community order?"]
-  step %[I choose "#{value}"]
-  step %[I should see "When did you get convicted?"]
-  step %[I enter a valid date]
-  step %[I should see "Was the length of conviction given in weeks, months or years?"]
-  step %[I choose "Weeks"]
-  step %[I should see "What was the length of the order?"]
-  step %[I fill in "What was the length of the order?" with "10"]
-  step %[I click the "Continue" button]
-end
