@@ -32,6 +32,7 @@ en:
         discharge: What discharge were you given?
         financial: What were you ordered to pay?
         motoring: What was your motoring conviction?
+        hospital_guard_order: What type of order were you given?
       steps_conviction_conviction_length_type_form:
         conviction_length_type: Was the length of conviction given in weeks, months or years?
       steps_conviction_compensation_paid_form:
