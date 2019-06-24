@@ -61,18 +61,19 @@ module GovukComponents
       end
 
       def self.link_to_error(object_prefixes, attribute, suffix)
-        [*object_prefixes, attribute, suffix].join('_').prepend('#')
+        [*object_prefixes, attribute, suffix].reject(&:blank?).join('_').prepend('#')
       end
 
       def self.error_suffix(object)
         return choice_string(object) if choice?(object)
-        return 'dd' if date_type?(object)
+        return 'dd' if type?(object, 'date')
+        return if type?(object, 'integer')
 
         GenericYesNo.values.first.value.to_s
       end
 
-      def self.date_type?(object)
-        DisclosureCheck.columns_hash[object.class.attribute_names.first.to_s].type.to_s == 'date'
+      def self.type?(object, type)
+        DisclosureCheck.columns_hash[object.class.attribute_names.first.to_s].type.to_s == type
       end
 
       def self.choice?(object)

@@ -46,5 +46,22 @@ RSpec.describe GovukElementsErrorsHelper do
         )
       end
     end
+
+
+    context 'text box' do
+      let(:html_output) { GovukElementsErrorsHelper.error_summary(conviction_length_form, 'The length of conviction must be a number, like 3') }
+      let(:html_fixture) { file_fixture('error_summary_text_box.html').read }
+      let(:conviction_length_form) { Steps::Conviction::ConvictionLengthForm.build(disclosure_check) }
+
+
+      it 'choice outputs the expected markup' do
+        conviction_length_form.errors.add(:conviction_length, :not_a_number)
+        expect(
+          strip_text(html_output)
+        ).to eq(
+          strip_text(html_fixture)
+        )
+      end
+    end
   end
 end
