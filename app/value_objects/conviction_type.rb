@@ -38,7 +38,7 @@ class ConvictionType < ValueObject
     PROHIBITION                        = new(:prohibition,                      parent: COMMUNITY_ORDER, calculator_class: Calculators::YouthRehabilitationOrderCalculator),
     REFERRAL_ORDER                     = new(:referral_order,                   parent: COMMUNITY_ORDER, calculator_class: Calculators::YouthRehabilitationOrderCalculator),
     REHAB_ACTIVITY_REQUIREMENT         = new(:rehab_activity_requirement,       parent: COMMUNITY_ORDER, calculator_class: Calculators::YouthRehabilitationOrderCalculator),
-    REPARATION_ORDER                   = new(:reparation_order,                 parent: COMMUNITY_ORDER),
+    REPARATION_ORDER                   = new(:reparation_order,                 parent: COMMUNITY_ORDER, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
     RESIDENCE_REQUIREMENT              = new(:residence_requirement,            parent: COMMUNITY_ORDER, calculator_class: Calculators::ConvictionEndDateCalculator),
     SEXUAL_HARM_PREVENTION_ORDER       = new(:sexual_harm_prevention_order,     parent: COMMUNITY_ORDER, calculator_class: Calculators::YouthRehabilitationOrderCalculator),
     SUPER_ORD_BREACH_CIVIL_INJUC       = new(:super_ord_breach_civil_injuc,     parent: COMMUNITY_ORDER, calculator_class: Calculators::ConvictionEndDateCalculator),
@@ -47,7 +47,7 @@ class ConvictionType < ValueObject
     DETENTION_TRAINING_ORDER           = new(:detention_training_order,         parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::DetentionCalculator),
     DETENTION                          = new(:detention,                        parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::DetentionCalculator),
 
-    ABSOLUTE_DISCHARGE                 = new(:absolute_discharge,               parent: DISCHARGE, skip_length: true),
+    ABSOLUTE_DISCHARGE                 = new(:absolute_discharge,               parent: DISCHARGE, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
     CONDITIONAL_DISCHARGE              = new(:conditional_discharge,            parent: DISCHARGE, calculator_class: Calculators::ConvictionEndDateCalculator),
 
     FINE                               = new(:fine,                             parent: FINANCIAL, skip_length: true),

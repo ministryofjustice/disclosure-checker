@@ -16,9 +16,10 @@ RSpec.describe ConvictionExpiryCalculator do
     let(:conviction_length_type) { nil }
     let(:conviction_subtype) { nil }
 
-
+    # TODO: Once all calculator have been setup
+    # update spec to check the correct calculator has been called
     context 'TBD' do
-      let (:conviction_subtype) { 'absolute_discharge' }
+      let (:conviction_subtype) { 'fine' }
       it 'is not yet implemented' do
         expect(expiry_date).to eq('TBD')
       end
