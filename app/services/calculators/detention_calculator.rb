@@ -1,3 +1,8 @@
+# Calculator rules:
+# If conviction length is 6 months or less: conviction start date + conviction length + 18 months
+# If conviction length is over 6 months and less than or equal to 30 months: conviction start date + conviction length + 2 years
+# If conviction length is over 30 months and less than 4 years: conviction start date + conviction length + 3.5 years
+# If conviction length is 4 years or over: never spent
 module Calculators
   class DetentionCalculator < BaseCalculator
     NEVER_SPENT_DURATION = 48
@@ -29,14 +34,6 @@ module Calculators
       (conviction_start_date.beginning_of_month...conviction_end_date.beginning_of_month).select do |date|
         date.day == 1
       end.size
-    end
-
-    def conviction_start_date
-      @conviction_start_date ||= disclosure_check.known_date
-    end
-
-    def conviction_end_date
-      @conviction_end_date ||= disclosure_check.known_date.advance(conviction_length)
     end
   end
 end
