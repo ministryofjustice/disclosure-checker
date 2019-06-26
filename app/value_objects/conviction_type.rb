@@ -44,8 +44,8 @@ class ConvictionType < ValueObject
     SUPER_ORD_BREACH_CIVIL_INJUC       = new(:super_ord_breach_civil_injuc,     parent: COMMUNITY_ORDER, calculator_class: Calculators::ConvictionEndDateCalculator),
     UNPAID_WORK                        = new(:unpaid_work,                      parent: COMMUNITY_ORDER),
 
-    DETENTION_TRAINING_ORDER           = new(:detention_training_order,         parent: CUSTODIAL_SENTENCE),
-    DETENTION                          = new(:detention,                        parent: CUSTODIAL_SENTENCE),
+    DETENTION_TRAINING_ORDER           = new(:detention_training_order,         parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::DetentionCalculator),
+    DETENTION                          = new(:detention,                        parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::DetentionCalculator),
 
     ABSOLUTE_DISCHARGE                 = new(:absolute_discharge,               parent: DISCHARGE, skip_length: true),
     CONDITIONAL_DISCHARGE              = new(:conditional_discharge,            parent: DISCHARGE, calculator_class: Calculators::ConvictionEndDateCalculator),
