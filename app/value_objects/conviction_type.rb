@@ -50,7 +50,7 @@ class ConvictionType < ValueObject
     ABSOLUTE_DISCHARGE                 = new(:absolute_discharge,               parent: DISCHARGE, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
     CONDITIONAL_DISCHARGE              = new(:conditional_discharge,            parent: DISCHARGE, calculator_class: Calculators::ConvictionEndDateCalculator),
 
-    FINE                               = new(:fine,                             parent: FINANCIAL, skip_length: true),
+    FINE                               = new(:fine,                             parent: FINANCIAL, skip_length: true, calculator_class: Calculators::FineCalculator),
     COMPENSATION_TO_A_VICTIM           = new(:compensation_to_a_victim,         parent: FINANCIAL, compensation: true),
 
     HOSPITAL_ORDER                     = new(:hospital_order,                   parent: HOSPITAL_GUARD_ORDER, calculator_class: Calculators::ConvictionEndDateCalculator),
