@@ -5,7 +5,7 @@ class ConvictionType < ValueObject
     @parent = params.fetch(:parent, nil)
     @skip_length = params.fetch(:skip_length, false)
     @compensation = params.fetch(:compensation, false)
-    @calculator_class = params.fetch(:calculator_class, false)
+    @calculator_class = params.fetch(:calculator_class, nil)
 
     super(raw_value)
   end
@@ -16,7 +16,6 @@ class ConvictionType < ValueObject
 
   alias skip_length? skip_length
   alias compensation? compensation
-  alias calculator_class? calculator_class
 
   VALUES = [
     PARENT_TYPES = [
@@ -51,7 +50,7 @@ class ConvictionType < ValueObject
     CONDITIONAL_DISCHARGE              = new(:conditional_discharge,            parent: DISCHARGE, calculator_class: Calculators::ConvictionEndDateCalculator),
 
     FINE                               = new(:fine,                             parent: FINANCIAL, skip_length: true, calculator_class: Calculators::FineCalculator),
-    COMPENSATION_TO_A_VICTIM           = new(:compensation_to_a_victim,         parent: FINANCIAL, compensation: true),
+    COMPENSATION_TO_A_VICTIM           = new(:compensation_to_a_victim,         parent: FINANCIAL, compensation: true, calculator_class: Calculators::CompensationCalculator),
 
     HOSPITAL_ORDER                     = new(:hospital_order,                   parent: HOSPITAL_GUARD_ORDER, calculator_class: Calculators::ConvictionEndDateCalculator),
     GUARDIANSHIP_ORDER                 = new(:guardianship_order,               parent: HOSPITAL_GUARD_ORDER, calculator_class: Calculators::ConvictionEndDateCalculator),

@@ -1,4 +1,5 @@
 class ConvictionExpiryCalculator
+  include ValueObjectMethods
   attr_reader :disclosure_check
 
   def initialize(disclosure_check:)
@@ -6,14 +7,10 @@ class ConvictionExpiryCalculator
   end
 
   def expiry_date
-    return 'TBD' unless conviction_subtype.calculator_class?
-
-    conviction_subtype.calculator_class.new(disclosure_check).expiry_date
+    calculator.expiry_date
   end
 
-  private
-
-  def conviction_subtype
-    ConvictionType.find_constant(disclosure_check.conviction_subtype)
+  def calculator
+    conviction_subtype.calculator_class.new(disclosure_check)
   end
 end
