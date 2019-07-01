@@ -66,8 +66,8 @@ en:
 
   results/conviction:
     conviction_title:
-      past: Your conviction was spent on
-      present: Your conviction will be spent on
+      past: Your conviction was spent on %{date}
+      present: Your conviction will be spent on %{date}
       never: Your conviction will never be spent
     conviction_statement:
       past_html: |
