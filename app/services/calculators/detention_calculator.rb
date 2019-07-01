@@ -11,7 +11,7 @@ module Calculators
     FOUR_YEARS_LESS_SPENT_DURATION =  { months: 42 }.freeze
 
     def expiry_date
-      return 'never spent' if conviction_length_in_months >= NEVER_SPENT_DURATION
+      return false if conviction_length_in_months >= NEVER_SPENT_DURATION
 
       conviction_end_date.advance(spent_time)
     end

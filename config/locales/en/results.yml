@@ -63,7 +63,18 @@ en:
         youth_simple_caution: Youth Simple caution
         youth_conditional_caution: Youth Conditional caution
 
+
   results/conviction:
+    conviction_title:
+      past: Your conviction was spent on
+      present: Your conviction will be spent on
+      never: Your conviction will never be spent
+    conviction_statement:
+      past_html: |
+       You do not need to tell anyone about this conviction unless you're applying for a job that needs a full <a class="govuk-link" href="http://hub.unlock.org.uk/knowledgebase/eligibility-criminal-record-checks/">criminal record check</a>.
+      present_html: |
+        After this date you will not need to tell anyone about this conviction unless you're applying for a job that needs a <a class="govuk-link" href="http://hub.unlock.org.uk/knowledgebase/eligibility-criminal-record-checks/">criminal record check</a>.
+      never: If asked, you will always have to tell people about this conviction.
     kind:
       question: Criminal record type
       answers:

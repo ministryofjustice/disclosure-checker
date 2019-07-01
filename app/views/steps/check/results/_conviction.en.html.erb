@@ -1,10 +1,8 @@
 <div class="govuk-panel govuk-panel--confirmation">
   <h1 class="govuk-panel__title">
-    Your conviction expired on <%= display_result(expiry_date) %>
+    <%= conviction_title_string(expiry_date) %>
   </h1>
   <div class="govuk-panel__body">
-    You do not need to tell anyone about this conviction unless you're applying for a job that needs a full
-    <a class="govuk-link" href="http://hub.unlock.org.uk/knowledgebase/eligibility-criminal-record-checks/">criminal
-      record check</a>.
+    <%= conviction_statement_string(expiry_date) %>
   </div>
 </div>

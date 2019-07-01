@@ -13,7 +13,7 @@ RSpec.describe Calculators::DetentionCalculator do
     let(:conviction_length) { nil }
 
     context 'never spent for conviction length over 4 years' do
-      let(:result) { 'never spent' }
+      let(:result) { false }
       context 'conviction length in weeks' do
         let(:conviction_length_type) { 'weeks' }
         let(:conviction_length) { 208 }
