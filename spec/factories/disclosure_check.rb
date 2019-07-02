@@ -22,6 +22,7 @@ FactoryBot.define do
 
     trait :conditional_caution do
       caution_type { CautionType::CONDITIONAL_CAUTION }
+      conditional_end_date { Faker::Date.backward(8).strftime('%Y-%m-%d') }
     end
 
     trait :youth_simple_caution do

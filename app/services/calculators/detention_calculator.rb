@@ -29,11 +29,8 @@ module Calculators
       end
     end
 
-    # TODO: this needs more testing as it's a bit of a work around.
     def conviction_length_in_months
-      (conviction_start_date.beginning_of_month...conviction_end_date.beginning_of_month).select do |date|
-        date.day == 1
-      end.size
+      @conviction_length_in_months ||= length_in_months(conviction_start_date, conviction_end_date)
     end
   end
 end

@@ -24,7 +24,6 @@ class CautionCheckResult
   end
 
   def conditional_date
-    # TODO: update when we know what to do with a user who did not stick to there condition
-    disclosure_check.conditional_end_date
+    Calculators::ConditionalCautionCalculator.new(disclosure_check).expiry_date
   end
 end
