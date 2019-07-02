@@ -16,8 +16,8 @@ RSpec.describe CautionCheckResult do
       context 'unknown caution date' do
         let(:disclosure_check) { build(:disclosure_check, known_date: nil) }
 
-        it 'return a string' do
-          expect(expiry_date).to eql(I18n.t('caution_result'))
+        it 'return false' do
+          expect(expiry_date).to eql(false)
         end
       end
     end

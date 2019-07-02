@@ -8,7 +8,7 @@ module Steps
       acts_as_gov_uk_date :conditional_end_date
 
       validates_presence_of :conditional_end_date
-      validates :conditional_end_date, sensible_date: true
+      validates :conditional_end_date, sensible_date: { allow_future: true }
 
       private
 

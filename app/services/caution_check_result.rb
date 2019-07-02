@@ -18,9 +18,9 @@ class CautionCheckResult
   end
 
   def caution_result
-    return disclosure_check.known_date unless disclosure_check.known_date.nil?
+    return false if disclosure_check.known_date.nil?
 
-    I18n.t('caution_result')
+    disclosure_check.known_date
   end
 
   def conditional_date

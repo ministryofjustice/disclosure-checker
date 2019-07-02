@@ -44,6 +44,17 @@ en:
       guardianship_order: Guardianship order
 
   results/caution:
+    caution_title:
+      past: Your caution was spent on %{date}
+      present: Your caution will be spent on %{date}
+      caution_result: the day you were given it
+    caution_statement:
+      past_html: |
+       You do not need to tell anyone about this caution unless you're applying for a job that needs a full <a class="govuk-link" href="http://hub.unlock.org.uk/knowledgebase/eligibility-criminal-record-checks/">criminal record check</a>.
+      present_html: |
+       After this date you will not need to tell anyone about this caution unless you're applying for a job that needs a full <a class="govuk-link" href="http://hub.unlock.org.uk/knowledgebase/eligibility-criminal-record-checks/">criminal record check</a>.
+      caution_result_html: |
+       You do not need to tell anyone about this caution unless you're applying for a job that needs a full <a class="govuk-link" href="http://hub.unlock.org.uk/knowledgebase/eligibility-criminal-record-checks/">criminal record check</a>.
     kind:
       question: Criminal record type
       answers:

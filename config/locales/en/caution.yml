@@ -20,5 +20,3 @@ en:
       caution_type:
         edit:
           page_title: Caution types
-  # TODO: refactor this
-  caution_result: "the day you were given it"
