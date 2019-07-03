@@ -17,6 +17,7 @@ RSpec.describe Steps::Conviction::ConvictionTypeForm do
   describe '.choices' do
     it 'returns the relevant choices' do
       expect(described_class.choices).to eq(%w(
+        armed_forces
         community_order
         custodial_sentence
         discharge

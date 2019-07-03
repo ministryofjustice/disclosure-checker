@@ -6,6 +6,7 @@ RSpec.describe ConvictionType do
 
     it 'returns top level conviction' do
       expect(values).to eq(%w(
+        armed_forces
         community_order
         custodial_sentence
         discharge
@@ -15,8 +16,24 @@ RSpec.describe ConvictionType do
     end
   end
 
+
+
+
   describe 'Conviction subtypes' do
     let(:values) { described_class.new(conviction_type).children.map(&:to_s) }
+
+    context 'Armed forces' do
+      let(:conviction_type) { :armed_forces }
+
+      it 'returns subtypes of this conviction type' do
+        expect(values).to eq(%w(
+          dismissal
+          service_detention
+          service_community_order
+          overseas_community_order
+        ))
+      end
+    end
 
     context 'Community order' do
       let(:conviction_type) { :community_order }

@@ -19,12 +19,18 @@ class ConvictionType < ValueObject
 
   VALUES = [
     PARENT_TYPES = [
+      ARMED_FORCES          = new(:armed_forces),
       COMMUNITY_ORDER       = new(:community_order),
       CUSTODIAL_SENTENCE    = new(:custodial_sentence),
       DISCHARGE             = new(:discharge),
       FINANCIAL             = new(:financial),
       HOSPITAL_GUARD_ORDER  = new(:hospital_guard_order),
     ].freeze,
+
+    DISMISSAL                          = new(:dismissal,                        parent: ARMED_FORCES, skip_length: true, calculator_class: Calculators::ConvictionStartDatePlusAddedTimeCalculator),
+    SERVICE_DETENTION                  = new(:service_detention,                parent: ARMED_FORCES, skip_length: true, calculator_class: Calculators::ConvictionStartDatePlusAddedTimeCalculator),
+    SERVICE_COMMUNITY_ORDER            = new(:service_community_order,          parent: ARMED_FORCES, skip_length: true, calculator_class: Calculators::ConvictionStartDatePlusAddedTimeCalculator),
+    OVERSEAS_COMMUNITY_ORDER           = new(:overseas_community_order,         parent: ARMED_FORCES, skip_length: true, calculator_class: Calculators::ConvictionStartDatePlusAddedTimeCalculator),
 
     ALCOHOL_ABSTINENCE_TREATMENT       = new(:alcohol_abstinence_treatment,     parent: COMMUNITY_ORDER, calculator_class: Calculators::YouthRehabilitationOrderCalculator),
     ATTENDANCE_CENTRE_ORDER            = new(:attendance_centre_order,          parent: COMMUNITY_ORDER, calculator_class: Calculators::YouthRehabilitationOrderCalculator),

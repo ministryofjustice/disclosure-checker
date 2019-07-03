@@ -2,12 +2,18 @@
 en:
   dictionary:
     CONVICTION_TYPES: &CONVICTION_TYPES
+      armed_forces: Armed forces
       community_order: Community or youth rehabilitation order (YRO)
       custodial_sentence: Custodial sentence
       discharge: Discharge
       financial: Financial penalty
       hospital_guard_order: Hospital or guardianship order
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
+      # armed_forces
+      dismissal: Dismissal
+      service_detention: Service detention
+      service_community_order: Service community order
+      overseas_community_order: Overseas community order
       # community_order
       alcohol_abstinence_treatment: Alcohol abstinence or treatment
       attendance_centre_order: Attendance centre order
@@ -64,6 +70,8 @@ en:
         # default key
         known_date: When were you given the order?
         # alternative keys defined with `i18_attribute`
+        dismissal: When were you given the dismissal?
+        service_detention: When were you given the dismissal?
         detention_training_order: When were you given the detention and training order (DTO)?
         detention: When were you given the detention?
         absolute_discharge: When were you given the discharge?
@@ -127,12 +135,18 @@ en:
           youth_simple_caution: You did not have to agree to any conditions
           youth_conditional_caution: You agreed to certain conditions, such as paying a fine or learning about the effects of drugs
         conviction_type:
+          armed_forces: ""
           community_order: For example, curfew or unpaid work
           custodial_sentence: For example, a prison sentence, suspended sentence or detention
           discharge: For example, a conditional discharge order or bind over
           financial: For example, paying a fine or compensation
           hospital_guard_order: For example, if there were mental health concerns
         conviction_subtype:
+          # armed_forces
+          dismissal: ""
+          service_detention: ""
+          service_community_order: ""
+          overseas_community_order: ""
           # community_order
           alcohol_abstinence_treatment: You were ordered not to drink, or were given help to stop you drinking
           attendance_centre_order: You were ordered to go to an attendance centre for a set number of hours
