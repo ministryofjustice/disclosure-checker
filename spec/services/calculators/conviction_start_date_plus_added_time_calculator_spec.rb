@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Calculators::FineCalculator do
+RSpec.describe Calculators::ConvictionStartDatePlusAddedTimeCalculator do
   subject { described_class.new(disclosure_check) }
    context '#expiry_date' do
     let(:disclosure_check) { build(:disclosure_check,

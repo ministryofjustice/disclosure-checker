@@ -128,8 +128,8 @@ RSpec.describe ConvictionCheckResult do
       end
     end
 
-    context 'Calculators::ImmediatelyCalculator' do
-      let(:klass) { Calculators::FineCalculator }
+    context 'Calculators::ConvictionStartDatePlusAddedTimeCalculator' do
+      let(:klass) { Calculators::ConvictionStartDatePlusAddedTimeCalculator }
 
       context 'fine' do
         let(:conviction_subtype) { 'fine' }
