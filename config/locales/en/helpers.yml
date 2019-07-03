@@ -71,7 +71,7 @@ en:
         known_date: When were you given the order?
         # alternative keys defined with `i18_attribute`
         dismissal: When were you given the dismissal?
-        service_detention: When were you given the dismissal?
+        service_detention: When were you given the detention?
         detention_training_order: When were you given the detention and training order (DTO)?
         detention: When were you given the detention?
         absolute_discharge: When were you given the discharge?
