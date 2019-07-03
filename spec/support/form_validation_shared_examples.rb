@@ -164,7 +164,7 @@ RSpec.shared_examples 'a date question form' do |options|
         end
       end
 
-      if options[:future_date].nil?
+      if options[:allow_future].nil?
         context 'when date is in the future' do
           let(:date_value) { Date.tomorrow }
 

@@ -44,16 +44,16 @@ en:
       guardianship_order: Guardianship order
 
   results/caution:
-    caution_title:
+    title:
       past: Your caution was spent on %{date}
       present: Your caution will be spent on %{date}
-      caution_result: the day you were given it
-    caution_statement:
+      no_date: the day you were given it
+    statement:
       past_html: |
        You do not need to tell anyone about this caution unless you're applying for a job that needs a full <a class="govuk-link" href="http://hub.unlock.org.uk/knowledgebase/eligibility-criminal-record-checks/">criminal record check</a>.
       present_html: |
        After this date you will not need to tell anyone about this caution unless you're applying for a job that needs a full <a class="govuk-link" href="http://hub.unlock.org.uk/knowledgebase/eligibility-criminal-record-checks/">criminal record check</a>.
-      caution_result_html: |
+      no_date: |
        You do not need to tell anyone about this caution unless you're applying for a job that needs a full <a class="govuk-link" href="http://hub.unlock.org.uk/knowledgebase/eligibility-criminal-record-checks/">criminal record check</a>.
     kind:
       question: Criminal record type
@@ -76,16 +76,16 @@ en:
 
 
   results/conviction:
-    conviction_title:
+    title:
       past: Your conviction was spent on %{date}
       present: Your conviction will be spent on %{date}
-      never: Your conviction will never be spent
-    conviction_statement:
+      no_date: Your conviction will never be spent
+    statement:
       past_html: |
        You do not need to tell anyone about this conviction unless you're applying for a job that needs a full <a class="govuk-link" href="http://hub.unlock.org.uk/knowledgebase/eligibility-criminal-record-checks/">criminal record check</a>.
       present_html: |
         After this date you will not need to tell anyone about this conviction unless you're applying for a job that needs a <a class="govuk-link" href="http://hub.unlock.org.uk/knowledgebase/eligibility-criminal-record-checks/">criminal record check</a>.
-      never: If asked, you will always have to tell people about this conviction.
+      no_date: If asked, you will always have to tell people about this conviction.
     kind:
       question: Criminal record type
       answers:
