@@ -30,7 +30,7 @@ RSpec.describe ResultHelper, type: :helper do
       end
 
        it 'returns never spent title' do
-        expect(helper.title_string(nil, kind)).to include('the day you were given it')
+        expect(helper.title_string(nil, kind)).to include('The caution date was not provided')
       end
     end
   end

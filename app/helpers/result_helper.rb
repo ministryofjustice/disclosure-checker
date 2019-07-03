@@ -7,7 +7,7 @@ module ResultHelper
   end
 
   def statement_string(object, kind)
-    return t('statement.no_date', scope: "results/#{kind}") unless object.instance_of?(Date)
+    return t('statement.no_date_html', scope: "results/#{kind}") unless object.instance_of?(Date)
 
     statement_type = object < Date.today ? 'past_html' : 'present_html'
     t("statement.#{statement_type}", scope: "results/#{kind}")

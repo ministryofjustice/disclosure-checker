@@ -17,7 +17,7 @@ RSpec.describe CautionCheckResult do
         let(:disclosure_check) { build(:disclosure_check, known_date: nil) }
 
         it 'return false' do
-          expect(expiry_date).to eql(false)
+          expect(expiry_date).to eql(nil)
         end
       end
     end
