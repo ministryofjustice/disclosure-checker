@@ -13,6 +13,12 @@ en:
           attributes:
             under_age:
               inclusion: Select under 18 or over 18
+        steps/caution/conditional_end_date_form:
+          attributes:
+            conditional_end_date:
+              blank: Enter the conditional end date
+              invalid: The conditional end date is not valid
+              after_caution_date: The conditional end date must be after the caution date
         steps/conviction/known_date_form:
           attributes:
             known_date:
