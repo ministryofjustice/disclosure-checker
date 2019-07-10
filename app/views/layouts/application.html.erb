@@ -8,7 +8,8 @@
   <!--[if IE 8]>
   <%= stylesheet_link_tag '/assets/govuk-frontend/all-ie8.css', media: 'all', integrity: true, crossorigin: 'anonymous' %>
   <![endif]-->
-  <%= render partial: 'layouts/tag_manager' if google_tag_manager_id.present? %>
+
+  <%= render partial: 'layouts/analytics' if analytics_tracking_id.present? %>
 
 <% end %>
 
@@ -29,7 +30,6 @@
 <% end %>
 
 <% content_for(:body_end) do %>
-  <%= render partial: 'layouts/tag_manager_no_script' if google_tag_manager_id.present? %>
   <%= javascript_include_tag 'application', integrity: true, crossorigin: 'anonymous' %>
   <script>window.GOVUKFrontend.initAll();</script>
 <% end %>

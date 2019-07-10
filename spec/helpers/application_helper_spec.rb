@@ -98,10 +98,10 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
-  describe '#google_tag_manager_id' do
+  describe '#analytics_tracking_id' do
     it 'retrieves the environment variable' do
-      expect(ENV).to receive(:[]).with('GOOGLE_TAG_MANAGER_ID')
-      helper.google_tag_manager_id
+      expect(ENV).to receive(:[]).with('GA_TRACKING_ID')
+      helper.analytics_tracking_id
     end
   end
 

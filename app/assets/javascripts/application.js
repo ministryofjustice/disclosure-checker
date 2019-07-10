@@ -10,13 +10,21 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require_tree .
-
 //= require jquery
+//= require rails-ujs
 // GOV.UK Frontend
 // https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/installing-with-npm.md
 //
 //= require govuk-frontend/all
 
 //= require moj
+//= require_tree ./modules
+
+$(document).ready(function() {
+
+  // Initialize JS in /modules\
+  moj.init();
+});
+
+
+
