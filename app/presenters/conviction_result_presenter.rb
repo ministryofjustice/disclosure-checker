@@ -12,6 +12,7 @@ class ConvictionResultPresenter < ResultsPresenter
       :known_date,
       :conviction_length,
       :conviction_length_type,
+      :compensation_payment_date,
     ].freeze
   end
 

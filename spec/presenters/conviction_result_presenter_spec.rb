@@ -11,7 +11,7 @@ RSpec.describe ConvictionResultPresenter do
     it {
       expect(
         subject.question_attributes
-      ).to eq([:kind, :conviction_type, :conviction_subtype, :under_age, :known_date, :conviction_length, :conviction_length_type])
+      ).to eq([:kind, :conviction_type, :conviction_subtype, :under_age, :known_date, :conviction_length, :conviction_length_type, :compensation_payment_date])
     }
   end
 

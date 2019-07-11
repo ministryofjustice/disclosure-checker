@@ -123,3 +123,6 @@ en:
         months: Months
         years: Years
         no_length: No length was given
+    compensation_payment_date:
+      question: Compensation payment date
+
