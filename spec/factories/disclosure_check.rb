@@ -23,6 +23,13 @@ FactoryBot.define do
       conviction_length_type { ConvictionLengthType::WEEKS }
     end
 
+    trait :compensation do
+      kind { CheckKind::CONVICTION }
+      conviction_type { ConvictionType::FINANCIAL }
+      conviction_subtype { ConvictionType::COMPENSATION_TO_A_VICTIM }
+      compensation_payment_date { Date.new(2019, 10, 31) }
+    end
+
     trait :youth_conditional_caution do
       caution_type { CautionType::YOUTH_CONDITIONAL_CAUTION }
       conditional_end_date { Date.new(2018, 12, 25) }
