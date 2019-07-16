@@ -33,7 +33,7 @@ en:
       supervision_order: Supervision order
       unpaid_work: Unpaid work
       # custodial_sentence
-      detention_training_order: Detention and training order
+      detention_training_order: Detention and training order (DTO)
       detention: Detention
       hospital_order: Hospital order
       # discharge
@@ -160,9 +160,9 @@ en:
           supervision_order: You were ordered to be supervised by a youth offending team after loitering, soliciting or 'breaching a civil injunction'
           unpaid_work: You were ordered to do community work without being paid
           # custodial_sentence
-          detention_training_order: ""
-          detention: ""
-          hospital_order: ""
+          detention_training_order: "The first half of your sentence was spent in custody and the second half was spent in the community, supervised by the Youth Offending Team"
+          detention: "You were sentenced to custody in a young offender institution or secure training centre"
+          hospital_order: "You were given a hospital order instead of a prison sentence because of mental health concerns"
           # discharge
           absolute_discharge: You were found guilty of a crime but did not get sentenced
           conditional_discharge: You were not sentenced, as long as you didn't commit another crime

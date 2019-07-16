@@ -33,7 +33,7 @@ en:
       supervision_order: Supervision order
       unpaid_work: Unpaid work
       # custodial_sentence
-      detention_training_order: Detention and training order
+      detention_training_order: Detention and training order (DTO)
       detention: Detention
       hospital_order: Hospital order
       # discharge

@@ -4,8 +4,8 @@ Feature: Conviction
     Then I should see "What type of sentence were you given?"
 
   @happy_path
-  Scenario: Custodial sentence or hospital order - Detention and training order
-    And I choose "Detention and training order"
+  Scenario: Custodial sentence or hospital order - Detention and training order (DTO)
+    And I choose "Detention and training order (DTO)"
     Then I should see "When were you given the detention and training order (DTO)?"
 
     When I enter a valid date
