@@ -4,10 +4,9 @@ en:
     CONVICTION_TYPES: &CONVICTION_TYPES
       armed_forces: Armed forces
       community_order: Community or youth rehabilitation order (YRO)
-      custodial_sentence: Custodial sentence
+      custodial_sentence: Custodial sentence or hospital order
       discharge: Discharge
       financial: Financial penalty
-      hospital_guard_order: Hospital or guardianship order
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
       # armed_forces
       dismissal: Dismissal
@@ -36,15 +35,13 @@ en:
       # custodial_sentence
       detention_training_order: Detention and training order
       detention: Detention
+      hospital_order: Hospital order
       # discharge
       absolute_discharge: Absolute discharge
       conditional_discharge: Conditional discharge
       # financial
       fine: A fine
       compensation_to_a_victim: Compensation to a victim
-      # hospital_guard_order
-      hospital_order: Hospital order
-      guardianship_order: Guardianship order
 
   shared:
     back_link: Back
@@ -87,7 +84,7 @@ en:
         conviction_subtype: What type of order were you given?
         # alternative keys defined with `i18_attribute`
         community_order: What was your community or youth rehabilitation order (YRO)?
-        custodial_sentence: What was your custodial sentence?
+        custodial_sentence: What type of sentence were you given?
         discharge: What discharge were you given?
         financial: What were you ordered to pay?
       steps_conviction_conviction_length_type_form:
@@ -134,10 +131,9 @@ en:
         conviction_type:
           armed_forces: ""
           community_order: For example, curfew or unpaid work
-          custodial_sentence: For example, a prison sentence, suspended sentence or detention
+          custodial_sentence: For example, a detention and training order (DTO) or a hospital order given under the Mental Health Act
           discharge: For example, a conditional discharge order or bind over
           financial: For example, paying a fine or compensation
-          hospital_guard_order: For example, if there were mental health concerns
         conviction_subtype:
           # armed_forces
           dismissal: ""

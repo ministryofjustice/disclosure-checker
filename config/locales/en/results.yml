@@ -4,10 +4,9 @@ en:
     CONVICTION_TYPES: &CONVICTION_TYPES
       armed_forces: Armed forces
       community_order: Community or youth rehabilitation order (YRO)
-      custodial_sentence: Custodial sentence
+      custodial_sentence: Custodial sentence or hospital order
       discharge: Discharge
       financial: Financial penalty
-      hospital_guard_order: Hospital or guardianship order
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
       # armed_forces
       dismissal: Dismissal
@@ -36,6 +35,7 @@ en:
       # custodial_sentence
       detention_training_order: Detention and training order
       detention: Detention
+      hospital_order: Hospital order
       # discharge
       absolute_discharge: Absolute discharge
       conditional_discharge: Conditional discharge
@@ -46,9 +46,6 @@ en:
       disqualification: Disqualification
       endorsement: Endorsement
       penalty_points: Penalty points
-      # hospital_guard_order
-      hospital_order: Hospital order
-      guardianship_order: Guardianship order
 
   results/caution:
     title:

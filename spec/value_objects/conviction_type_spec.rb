@@ -10,7 +10,6 @@ RSpec.describe ConvictionType do
         custodial_sentence
         discharge
         financial
-        hospital_guard_order
       ))
     end
   end
@@ -75,6 +74,7 @@ RSpec.describe ConvictionType do
         expect(values).to eq(%w(
           detention_training_order
           detention
+          hospital_order
         ))
       end
     end
@@ -97,17 +97,6 @@ RSpec.describe ConvictionType do
         expect(values).to eq(%w(
           fine
           compensation_to_a_victim
-        ))
-      end
-    end
-
-    context 'Hospital or guardianship order' do
-      let(:conviction_type) { :hospital_guard_order }
-
-      it 'returns subtypes of this conviction type' do
-        expect(values).to eq(%w(
-          hospital_order
-          guardianship_order
         ))
       end
     end
@@ -327,6 +316,14 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.calculator_class).to eq(Calculators::DetentionCalculator) }
     end
 
+    context 'HOSPITAL_ORDER' do
+      let(:subtype) { 'hospital_order' }
+
+      it { expect(conviction_type.skip_length?).to eq(false) }
+      it { expect(conviction_type.compensation?).to eq(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
+    end
+
     context 'ABSOLUTE_DISCHARGE' do
       let(:subtype) { 'absolute_discharge' }
 
@@ -357,22 +354,6 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.compensation?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::CompensationCalculator) }
-    end
-
-    context 'HOSPITAL_ORDER' do
-      let(:subtype) { 'hospital_order' }
-
-      it { expect(conviction_type.skip_length?).to eq(false) }
-      it { expect(conviction_type.compensation?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
-    end
-
-    context 'GUARDIANSHIP_ORDER' do
-      let(:subtype) { 'guardianship_order' }
-
-      it { expect(conviction_type.skip_length?).to eq(false) }
-      it { expect(conviction_type.compensation?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
   end
 end

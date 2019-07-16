@@ -19,11 +19,10 @@ class ConvictionType < ValueObject
 
   VALUES = [
     PARENT_TYPES = [
-      COMMUNITY_ORDER       = new(:community_order),
-      CUSTODIAL_SENTENCE    = new(:custodial_sentence),
-      DISCHARGE             = new(:discharge),
-      FINANCIAL             = new(:financial),
-      HOSPITAL_GUARD_ORDER  = new(:hospital_guard_order),
+      COMMUNITY_ORDER     = new(:community_order),
+      CUSTODIAL_SENTENCE  = new(:custodial_sentence),
+      DISCHARGE           = new(:discharge),
+      FINANCIAL           = new(:financial),
     ].freeze,
 
     # Quick way of enabling/disabling convictions. These will not show in the interface to users.
@@ -59,6 +58,7 @@ class ConvictionType < ValueObject
 
     DETENTION_TRAINING_ORDER           = new(:detention_training_order,         parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::DetentionCalculator),
     DETENTION                          = new(:detention,                        parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::DetentionCalculator),
+    HOSPITAL_ORDER                     = new(:hospital_order,                   parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
 
     ABSOLUTE_DISCHARGE                 = new(:absolute_discharge,               parent: DISCHARGE, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
     CONDITIONAL_DISCHARGE              = new(:conditional_discharge,            parent: DISCHARGE, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
@@ -66,8 +66,6 @@ class ConvictionType < ValueObject
     FINE                               = new(:fine,                             parent: FINANCIAL, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusSixMonths),
     COMPENSATION_TO_A_VICTIM           = new(:compensation_to_a_victim,         parent: FINANCIAL, compensation: true, calculator_class: Calculators::CompensationCalculator),
 
-    HOSPITAL_ORDER                     = new(:hospital_order,                   parent: HOSPITAL_GUARD_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
-    GUARDIANSHIP_ORDER                 = new(:guardianship_order,               parent: HOSPITAL_GUARD_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
   ].flatten.freeze
 
   # :nocov:
