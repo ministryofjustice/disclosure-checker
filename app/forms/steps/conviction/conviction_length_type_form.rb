@@ -6,7 +6,7 @@ module Steps
       validates_inclusion_of :conviction_length_type, in: :choices, if: :disclosure_check
 
       def choices
-        if conviction_type.eql?(ConvictionType::COMMUNITY_ORDER)
+        if all_length_options?
           ConvictionLengthType.values
         else
           ConvictionLengthType.values - [ConvictionLengthType::NO_LENGTH]
@@ -28,6 +28,11 @@ module Steps
           # The following are dependent attributes that need to be reset if form changes
           conviction_length: nil
         )
+      end
+
+      def all_length_options?
+        conviction_type.eql?(ConvictionType::COMMUNITY_ORDER) ||
+          conviction_subtype.eql?(ConvictionType::HOSPITAL_ORDER)
       end
     end
   end

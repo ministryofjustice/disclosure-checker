@@ -6,14 +6,28 @@ RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
     conviction_length_type: conviction_length_type
   } }
 
-  let(:disclosure_check) { instance_double(DisclosureCheck, conviction_type: conviction_type, conviction_length_type: nil) }
+  let(:disclosure_check) { instance_double(DisclosureCheck, conviction_type: conviction_type, conviction_subtype: conviction_subtype, conviction_length_type: nil) }
   let(:conviction_type) { ConvictionType::COMMUNITY_ORDER.to_s }
+  let(:conviction_subtype) { ConvictionType::CONDITIONAL_DISCHARGE.to_s }
   let(:conviction_length_type) { 'weeks' }
 
   subject { described_class.new(arguments) }
 
   describe '#choices' do
     context 'for a community order' do
+      it 'the choices include `no_length`' do
+        expect(subject.choices).to eq(%w(
+          weeks
+          months
+          years
+          no_length
+        ))
+      end
+    end
+
+    context 'for a hospital order' do
+      let(:conviction_type) { ConvictionType::CUSTODIAL_SENTENCE.to_s }
+      let(:conviction_subtype) { ConvictionType::HOSPITAL_ORDER.to_s }
       it 'the choices include `no_length`' do
         expect(subject.choices).to eq(%w(
           weeks

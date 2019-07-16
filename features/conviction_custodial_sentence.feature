@@ -50,3 +50,15 @@ Feature: Conviction
 
     Then I click the "Continue" button
     And I should be on "/steps/check/results"
+
+  @happy_path
+  Scenario: Custodial sentence or hospital order - hospital order with no length
+    And I choose "Hospital order"
+    Then I should see "When were you given the order?"
+
+    When I enter a valid date
+
+    Then I should see "Was the length of the order given in weeks, months or years?"
+    And I choose "No length was given"
+
+    Then I should be on "/steps/check/results"
