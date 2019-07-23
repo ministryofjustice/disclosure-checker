@@ -19,28 +19,11 @@ en:
       conditional_end_date:
         edit:
           page_title: Caution conditional end date
+          conditions not ended_title: My conditions have not ended
           conditions_not_ended_html: |
-            <details class="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                  My conditions have not ended
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-
-                <p>
-                You can enter a future date if you know when your conditions will end. The date your caution becomes spent will be correct as long as you stick to the conditions of your caution.
-                </p>
-
-                <h2 class="govuk-heading-s">If the conditions last less than 3 months</h2>
-
-                <p>Your caution will be spent on the day the conditions end.</p>
-
-                <p>If one of the conditions is to pay a fine or compensation, your caution will be spent on the day that all the conditions end - including paying the financial penalty in full.</p>
-
-                <h2 class="govuk-heading-s">If the conditions last 3 months or more</h2>
-
-                <p>Your caution will be spent 3 months after the day the caution was given to you.</p>
-
-              </div>
-            </details>
+            <p>You can enter a future date if you know when your conditions will end. The date your caution becomes spent will be correct as long as you stick to the conditions of your caution.</p>
+            <h2 class="govuk-heading-s">If the conditions last less than 3 months</h2>
+            <p>Your caution will be spent on the day the conditions end.</p>
+            <p>If one of the conditions is to pay a fine or compensation, your caution will be spent on the day that all the conditions end - including paying the financial penalty in full.</p>
+            <h2 class="govuk-heading-s">If the conditions last 3 months or more</h2>
+            <p>Your caution will be spent 3 months after the day the caution was given to you.</p>
