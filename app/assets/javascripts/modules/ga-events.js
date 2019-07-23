@@ -4,7 +4,7 @@ moj.Modules.gaEvents = {
     radioFormClass: '.govuk-radios__item input[type="radio"]',
     linkClass: '.ga-pageLink',
     clickActionClass: '.ga-clickAction',
-    revealingLinkClass: 'summary span.summary',
+    revealingLinkClass: 'govuk-details__summary span.govuk-details__summary-text',
     submitFormClass: '.ga-submitForm',
     submitButtons: 'button[type="submit"], input[type="submit"]',
 
