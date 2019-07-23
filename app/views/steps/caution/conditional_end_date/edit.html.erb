@@ -11,6 +11,8 @@
 
         <%= step_form @form_object do |f| %>
           <%= f.gov_uk_date_field :conditional_end_date %>
+
+          <%= t ".conditions_not_ended_html" %>
           <%= f.continue_button %>
         <% end %>
       </div>
