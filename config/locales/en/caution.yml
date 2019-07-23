@@ -19,7 +19,7 @@ en:
       conditional_end_date:
         edit:
           page_title: Caution conditional end date
-          conditions not ended_title: My conditions have not ended
+          conditions_not_ended_title: My conditions have not ended
           conditions_not_ended_html: |
             <p>You can enter a future date if you know when your conditions will end. The date your caution becomes spent will be correct as long as you stick to the conditions of your caution.</p>
             <h2 class="govuk-heading-s">If the conditions last less than 3 months</h2>

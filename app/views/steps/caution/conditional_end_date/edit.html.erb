@@ -12,18 +12,17 @@
         <%= step_form @form_object do |f| %>
           <%= f.gov_uk_date_field :conditional_end_date %>
 
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text" data-ga-category="explanations" data-ga-label="conditions not ended">
+                <%= t ".conditions_not_ended_title" %>
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <%= t ".conditions_not_ended_html" %>
+            </div>
+          </details>
 
-
-            <details class="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text" data-ga-category="explanations" data-ga-label="conditions not ended">
-                  <%= t ".conditions not ended_title" %>
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-                <%= t ".conditions_not_ended_html" %>
-              </div>
-            </details>
           <%= f.continue_button %>
         <% end %>
       </div>
