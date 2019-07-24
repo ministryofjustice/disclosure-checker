@@ -6,11 +6,6 @@
       <div class="govuk-grid-column-full">
         <%= render partial: @presenter, locals: { expiry_date: @presenter.expiry_date } %>
 
-        <p class="govuk-body">
-          This table shows the information you provided, which was used to work out the spent date. If you entered any
-          incorrect information, the spent date will be incorrect.
-        </p>
-
         <dl class="govuk-summary-list">
           <%= render @presenter.summary %>
         </dl>
