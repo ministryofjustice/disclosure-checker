@@ -4,22 +4,22 @@ en:
     conviction:
       known_date:
         edit:
-          page_title: conviction date
+          page_title: Conviction date
       under_age:
         edit:
-          page_title: convicted age
+          page_title: Age when convicted
       conviction_type:
         edit:
-          page_title: conviction type
+          page_title: Conviction type
       conviction_subtype:
         edit:
-          page_title: conviction subtype
+          page_title: Name of conviction
       conviction_length_type:
         edit:
-          page_title: conviction length type
+          page_title: Weeks, months or years
       conviction_length:
         edit:
-          page_title: conviction length
+          page_title: Length of conviction
           heading:
             default: What was the length of the order?
             detention_training_order: What was the length of the detention and training order (DTO)?
@@ -51,9 +51,9 @@ en:
               </ul>
       compensation_paid:
         edit:
-          page_title: compensation paid
+          page_title: Compensation paid
       compensation_payment_date:
         edit:
-          page_title: compensation payment date
+          page_title: Compensation payment date
           heading: When did you pay the compensation in full?
           lead_text: If you paid the compensation in stages, enter the date you made the final payment.

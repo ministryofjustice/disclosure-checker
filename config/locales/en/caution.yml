@@ -6,19 +6,15 @@ en:
         edit:
           page_title: Caution date
           heading: When did you get the caution?
-      conditional_end_date:
-        edit:
-          page_title: Caution date
-          heading: When did the conditions end?
       under_age:
         edit:
-          page_title: How old were you when you got the caution?
+          page_title: Age when cautioned
       caution_type:
         edit:
-          page_title: Caution types
+          page_title: Caution type
       conditional_end_date:
         edit:
-          page_title: Caution conditional end date
+          page_title: End date of conditions
           conditions_not_ended_title: My conditions have not ended
           conditions_not_ended_html: |
             <p>You can enter a future date if you know when your conditions will end. The date your caution becomes spent will be correct as long as you stick to the conditions of your caution.</p>
