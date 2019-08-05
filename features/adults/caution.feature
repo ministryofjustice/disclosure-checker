@@ -6,7 +6,7 @@ Feature: Caution
     Then I should see "Were you cautioned or convicted?"
 
   @happy_path
-  Scenario: Caution happy path - over 18, conditional caution
+  Scenario: Caution happy path - over 18, Simple caution
     When I choose "Cautioned"
     Then I should see "How old were you when you got cautioned?"
 
