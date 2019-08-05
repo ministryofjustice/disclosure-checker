@@ -10,6 +10,7 @@ en:
       financial: Financial penalty
       # adults
       adult_community_order: Community order
+      adult_financial: Financial penalty
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
       # armed_forces
       dismissal: Dismissal
@@ -45,6 +46,10 @@ en:
       # financial
       fine: A fine
       compensation_to_a_victim: Compensation to a victim
+
+      # adult_financial
+      adult_fine: A fine
+      adult_compensation_to_a_victim: Compensation to a victim
 
   shared:
     back_link: Back
@@ -141,6 +146,7 @@ en:
           financial: For example, paying a fine or compensation
           # adults
           adult_community_order: For example, a curfew or referral order. You might have been asked to wear a tag as part of your order
+          adult_financial: For example, paying a fine or compensation
         conviction_subtype:
           # armed_forces
           dismissal: ""
@@ -176,6 +182,11 @@ en:
           # financial
           fine: ""
           compensation_to_a_victim: ""
+
+          # adult_financial
+          adult_fine: ""
+          adult_compensation_to_a_victim: ""
+
 
     label:
       steps_check_kind_form:

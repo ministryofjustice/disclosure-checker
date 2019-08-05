@@ -48,4 +48,10 @@ RSpec.describe Calculators::AdditionCalculator do
       it { expect(subject.expiry_date.to_s).to eq('2019-04-30') }
     end
   end
+
+  describe Calculators::AdditionCalculator::StartPlusTwelveMonths do
+    context '#expiry_date' do
+      it { expect(subject.expiry_date.to_s).to eq('2019-10-31') }
+    end
+  end
 end

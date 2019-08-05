@@ -27,6 +27,7 @@ class ConvictionType < ValueObject
 
     ADULT_PARENT_TYPES = [
       ADULT_COMMUNITY_ORDER = new(:adult_community_order),
+      ADULT_FINANCIAL       = new(:adult_financial),
     ].freeze,
 
     # Quick way of enabling/disabling convictions. These will not show in the interface to users.
@@ -77,7 +78,10 @@ class ConvictionType < ValueObject
     ######################
     # Adults convictions #
     ######################
-    #
+
+    ADULT_FINE                               = new(:adult_fine,                     parent: ADULT_FINANCIAL, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusTwelveMonths),
+    ADULT_COMPENSATION_TO_A_VICTIM           = new(:adult_compensation_to_a_victim, parent: ADULT_FINANCIAL, compensation: true, calculator_class: Calculators::CompensationCalculator),
+
   ].flatten.freeze
 
   # :nocov:

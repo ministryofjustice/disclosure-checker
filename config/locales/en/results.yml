@@ -10,6 +10,7 @@ en:
       financial: Financial penalty
       # adults
       adult_community_order: Community order
+      adult_financial: Financial penalty
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
       # armed_forces
       dismissal: Dismissal
@@ -49,6 +50,10 @@ en:
       disqualification: Disqualification
       endorsement: Endorsement
       penalty_points: Penalty points
+
+      # adult_financial
+      adult_fine: A fine
+      adult_compensation_to_a_victim: Compensation to a victim
 
   steps:
     check:

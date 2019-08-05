@@ -32,6 +32,18 @@ module Calculators
       end
     end
 
+    # Only a possibility: start date + 12 months
+    #
+    class StartPlusTwelveMonths < AdditionCalculator
+      def added_time
+        { months: 12 }
+      end
+
+      def expiry_date
+        conviction_start_date.advance(added_time)
+      end
+    end
+
     def expiry_date
       return conviction_end_date.advance(added_time) if disclosure_check.conviction_length?
 

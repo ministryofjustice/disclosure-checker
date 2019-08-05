@@ -60,6 +60,18 @@ When(/^I am completing a basic under 18 "([^"]*)" conviction$/) do |value|
   step %[I choose "#{value}"]
 end
 
+When(/^I am completing a basic 18 or over "([^"]*)" conviction$/) do |value|
+  step %[I visit "/enable_adults"]
+  step %[I visit "/"]
+  step %[I click the "Start now" link]
+  step %[I should see "Were you cautioned or convicted?"]
+  step %[I choose "Convicted"]
+  step %[I should see "How old were you when you got convicted?"]
+  step %[I choose "18 or over"]
+  step %[I should see "What type of conviction did you get?"]
+  step %[I choose "#{value}"]
+end
+
 When(/^I enter a valid date$/) do
   step %[I fill in "Day" with "1"]
   step %[I fill in "Month" with "1"]
