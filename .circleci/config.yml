@@ -13,6 +13,7 @@ references:
           RACK_ENV: test
           DATABASE_URL: "postgres://postgres@localhost/disclosure-checker-test"
           EXTERNAL_URL: mocked_in_tests
+          DEV_TOOLS_ENABLED: "1"
       - image: circleci/postgres:10.4
         environment:
           POSTGRES_USER: postgres
