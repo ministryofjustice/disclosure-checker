@@ -26,8 +26,9 @@ class ConvictionType < ValueObject
     ].freeze,
 
     ADULT_PARENT_TYPES = [
-      ADULT_COMMUNITY_ORDER = new(:adult_community_order),
-      ADULT_FINANCIAL       = new(:adult_financial),
+      ADULT_COMMUNITY_ORDER                  = new(:adult_community_order),
+      ADULT_FINANCIAL                        = new(:adult_financial),
+      ADULT_PREVENTION_AND_REPARATION_ORDER  = new(:adult_prevention_and_reparation_order),
     ].freeze,
 
     # Quick way of enabling/disabling convictions. These will not show in the interface to users.
@@ -79,9 +80,14 @@ class ConvictionType < ValueObject
     # Adults convictions #
     ######################
 
-    ADULT_FINE                               = new(:adult_fine,                     parent: ADULT_FINANCIAL, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusTwelveMonths),
-    ADULT_COMPENSATION_TO_A_VICTIM           = new(:adult_compensation_to_a_victim, parent: ADULT_FINANCIAL, compensation: true, calculator_class: Calculators::CompensationCalculator),
+    ADULT_FINE                        = new(:adult_fine,                          parent: ADULT_FINANCIAL, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusTwelveMonths),
+    ADULT_COMPENSATION_TO_A_VICTIM    = new(:adult_compensation_to_a_victim,      parent: ADULT_FINANCIAL, compensation: true, calculator_class: Calculators::CompensationCalculator),
 
+    ADULT_ATTENDANCE_CENTRE_ORDER      = new(:adult_attendance_centre_order,      parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+    ADULT_REPARATION_ORDER             = new(:adult_reparation_order,             parent: ADULT_PREVENTION_AND_REPARATION_ORDER, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
+    ADULT_RESTRAINING_ORDER            = new(:adult_restraining_order,            parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    ADULT_SEXUAL_HARM_PREVENTION_ORDER = new(:adult_sexual_harm_prevention_order, parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    ADULT_SUPERVISION_ORDER            = new(:adult_supervision_order,            parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
   ].flatten.freeze
 
   # :nocov:

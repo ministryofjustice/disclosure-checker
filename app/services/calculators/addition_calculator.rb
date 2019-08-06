@@ -20,6 +20,15 @@ module Calculators
       end
     end
 
+    # If length is given: conviction end date + 12 months
+    # If no length is given: conviction start date + 24 months
+    #
+    class PlusTwelveMonths < AdditionCalculator
+      def added_time
+        { months: 12 }
+      end
+    end
+
     # Only a possibility: start date + 6 months
     #
     class StartPlusSixMonths < AdditionCalculator

@@ -43,6 +43,21 @@ RSpec.describe Calculators::AdditionCalculator do
     end
   end
 
+  describe Calculators::AdditionCalculator::PlusTwelveMonths do
+    context '#expiry_date' do
+      context 'without a conviction length' do
+        it { expect(subject.expiry_date.to_s).to eq('2020-10-31') }
+      end
+
+      context 'with a conviction length' do
+        let(:conviction_length) { 5 }
+        let(:conviction_length_type) { 'years' }
+
+        it { expect(subject.expiry_date.to_s).to eq('2024-10-31') }
+      end
+    end
+  end
+
   describe Calculators::AdditionCalculator::StartPlusSixMonths do
     context '#expiry_date' do
       it { expect(subject.expiry_date.to_s).to eq('2019-04-30') }

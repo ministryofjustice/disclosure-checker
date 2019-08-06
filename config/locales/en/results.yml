@@ -11,6 +11,7 @@ en:
       # adults
       adult_community_order: Community order
       adult_financial: Financial penalty
+      adult_prevention_and_reparation_order: Prevention and reparation orders
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
       # armed_forces
       dismissal: Dismissal
@@ -50,6 +51,12 @@ en:
       disqualification: Disqualification
       endorsement: Endorsement
       penalty_points: Penalty points
+      # adult_prevention_and_reparation_order
+      adult_attendance_centre_order: Attendance centre order
+      adult_reparation_order: Reparation order
+      adult_restraining_order: Restraining order
+      adult_sexual_harm_prevention_order: Sexual harm prevention order (sexual offence prevention order)
+      adult_supervision_order: Supervision order
 
       # adult_financial
       adult_fine: A fine
