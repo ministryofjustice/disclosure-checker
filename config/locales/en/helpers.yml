@@ -48,7 +48,18 @@ en:
       # financial
       fine: A fine
       compensation_to_a_victim: Compensation to a victim
-
+      # adult_prevention_and_reparation_order
+      adult_alcohol_abstinence_treatment: Alcohol abstinence or treatment
+      adult_behavioural_change_prog: Behavioural change programme
+      adult_curfew: Curfew
+      adult_drug_rehabilitation: Drug rehabilitation, treatment or testing
+      adult_electronic_monitoring_req: Electronic monitoring requirement
+      adult_exclusion_requirement: Exclusion requirement
+      adult_mental_health_treatment: Mental health treatment
+      adult_prohibition: Prohibition
+      adult_rehab_activity_requirement: Rehabilitation activity requirement (RAR)
+      adult_residence_requirement: Residence requirement
+      adult_unpaid_work: Unpaid work
       # adult_prevention_and_reparation_order
       adult_attendance_centre_order: Attendance centre order
       adult_reparation_order: Reparation order
@@ -94,6 +105,9 @@ en:
         behavioural_change_prog: When were you given the programme?
         curfew: When were you given the curfew?
         exclusion_requirement: When were you given the exclusion requirement?
+        adult_behavioural_change_prog: When were you given the programme?
+        adult_curfew: When were you given the curfew?
+        adult_exclusion_requirement: When were you given the exclusion requirement?
       steps_conviction_conviction_type_form:
         conviction_type: What type of conviction did you get?
       steps_conviction_conviction_subtype_form:
@@ -115,6 +129,9 @@ en:
         behavioural_change_prog: Was the length of the programme given in weeks, months or years?
         curfew: Was the length of the curfew given in weeks, months or years?
         exclusion_requirement: Was the length of the exclusion requirement given in weeks, months or years?
+        adult_behavioural_change_prog: Was the length of the programme given in weeks, months or years?
+        adult_curfew: Was the length of the curfew given in weeks, months or years?
+        adult_exclusion_requirement: Was the length of the exclusion requirement given in weeks, months or years?
       steps_conviction_compensation_paid_form:
         compensation_paid: Did you pay the compensation in full?
       steps_conviction_compensation_payment_date_form:
@@ -192,6 +209,18 @@ en:
           # financial
           fine: ""
           compensation_to_a_victim: ""
+          #adult_prevention_and_reparation_order
+          adult_alcohol_abstinence_treatment: You were ordered not to drink, or were given help to stop you drinking
+          adult_behavioural_change_prog: You were helped to change any dangerous or unwanted behaviour
+          adult_curfew: You were ordered to stay indoors at certain times
+          adult_drug_rehabilitation: You were given help to stop taking drugs, or asked to give samples for drug tests
+          adult_electronic_monitoring_req: ""
+          adult_exclusion_requirement: You were ordered to stay away from a certain place
+          adult_mental_health_treatment: You were given treatment for a mental health issue
+          adult_prohibition: You were banned from doing something, such as going to football matches or travelling abroad
+          adult_rehab_activity_requirement: You were given activities to help with your rehabilitation
+          adult_residence_requirement: You were ordered to live somewhere for a certain length of time
+          adult_unpaid_work: You were ordered to do community work without being paid
           # adult_prevention_and_reparation_order
           adult_attendance_centre_order: You were ordered to go to an attendance centre for a set number of hours
           adult_reparation_order: You were given help understanding the effect your crime had on someone

@@ -80,14 +80,26 @@ class ConvictionType < ValueObject
     # Adults convictions #
     ######################
 
-    ADULT_FINE                        = new(:adult_fine,                          parent: ADULT_FINANCIAL, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusTwelveMonths),
-    ADULT_COMPENSATION_TO_A_VICTIM    = new(:adult_compensation_to_a_victim,      parent: ADULT_FINANCIAL, compensation: true, calculator_class: Calculators::CompensationCalculator),
+    ADULT_ALCOHOL_ABSTINENCE_TREATMENT  = new(:adult_alcohol_abstinence_treatment, parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+    ADULT_BEHAVIOURAL_CHANGE_PROG       = new(:adult_behavioural_change_prog,      parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+    ADULT_CURFEW                        = new(:adult_curfew,                       parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+    ADULT_DRUG_REHABILITATION           = new(:adult_drug_rehabilitation,          parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+    ADULT_ELECTRONIC_MONITORING_REQ     = new(:adult_electronic_monitoring_req,    parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+    ADULT_EXCLUSION_REQUIREMENT         = new(:adult_exclusion_requirement,        parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+    ADULT_MENTAL_HEALTH_TREATMENT       = new(:adult_mental_health_treatment,      parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+    ADULT_PROHIBITION                   = new(:adult_prohibition,                  parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+    ADULT_REHAB_ACTIVITY_REQUIREMENT    = new(:adult_rehab_activity_requirement,   parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+    ADULT_RESIDENCE_REQUIREMENT         = new(:adult_residence_requirement,        parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+    ADULT_UNPAID_WORK                   = new(:adult_unpaid_work,                  parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
 
-    ADULT_ATTENDANCE_CENTRE_ORDER      = new(:adult_attendance_centre_order,      parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
-    ADULT_REPARATION_ORDER             = new(:adult_reparation_order,             parent: ADULT_PREVENTION_AND_REPARATION_ORDER, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
-    ADULT_RESTRAINING_ORDER            = new(:adult_restraining_order,            parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
-    ADULT_SEXUAL_HARM_PREVENTION_ORDER = new(:adult_sexual_harm_prevention_order, parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
-    ADULT_SUPERVISION_ORDER            = new(:adult_supervision_order,            parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    ADULT_FINE                          = new(:adult_fine,                         parent: ADULT_FINANCIAL, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusTwelveMonths),
+    ADULT_COMPENSATION_TO_A_VICTIM      = new(:adult_compensation_to_a_victim,     parent: ADULT_FINANCIAL, compensation: true, calculator_class: Calculators::CompensationCalculator),
+
+    ADULT_ATTENDANCE_CENTRE_ORDER       = new(:adult_attendance_centre_order,      parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+    ADULT_REPARATION_ORDER              = new(:adult_reparation_order,             parent: ADULT_PREVENTION_AND_REPARATION_ORDER, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
+    ADULT_RESTRAINING_ORDER             = new(:adult_restraining_order,            parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    ADULT_SEXUAL_HARM_PREVENTION_ORDER  = new(:adult_sexual_harm_prevention_order, parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    ADULT_SUPERVISION_ORDER             = new(:adult_supervision_order,            parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
   ].flatten.freeze
 
   # :nocov:
