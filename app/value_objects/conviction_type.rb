@@ -28,6 +28,7 @@ class ConvictionType < ValueObject
     ADULT_PARENT_TYPES = [
       ADULT_COMMUNITY_ORDER                  = new(:adult_community_order),
       ADULT_FINANCIAL                        = new(:adult_financial),
+      ADULT_DISCHARGE                        = new(:adult_discharge),
       ADULT_PREVENTION_AND_REPARATION_ORDER  = new(:adult_prevention_and_reparation_order),
     ].freeze,
 
@@ -91,6 +92,10 @@ class ConvictionType < ValueObject
     ADULT_REHAB_ACTIVITY_REQUIREMENT    = new(:adult_rehab_activity_requirement,   parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
     ADULT_RESIDENCE_REQUIREMENT         = new(:adult_residence_requirement,        parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
     ADULT_UNPAID_WORK                   = new(:adult_unpaid_work,                  parent: ADULT_COMMUNITY_ORDER, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+
+    ADULT_BIND_OVER                     = new(:adult_bind_over,                    parent: ADULT_DISCHARGE, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    ADULT_ABSOLUTE_DISCHARGE            = new(:adult_absolute_discharge,           parent: ADULT_DISCHARGE, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
+    ADULT_CONDITIONAL_DISCHARGE         = new(:adult_conditional_discharge,        parent: ADULT_DISCHARGE, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
 
     ADULT_FINE                          = new(:adult_fine,                         parent: ADULT_FINANCIAL, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusTwelveMonths),
     ADULT_COMPENSATION_TO_A_VICTIM      = new(:adult_compensation_to_a_victim,     parent: ADULT_FINANCIAL, compensation: true, calculator_class: Calculators::CompensationCalculator),

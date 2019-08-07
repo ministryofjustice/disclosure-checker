@@ -10,6 +10,7 @@ en:
       financial: Financial penalty
       # adults
       adult_community_order: Community order
+      adult_discharge: Discharge
       adult_financial: Financial penalty
       adult_prevention_and_reparation_order: Prevention and reparation orders
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
@@ -72,6 +73,10 @@ en:
       # adult_financial
       adult_fine: A fine
       adult_compensation_to_a_victim: Compensation to a victim
+      # adult_discharge
+      adult_bind_over: Bind over
+      adult_absolute_discharge: Absolute discharge
+      adult_conditional_discharge: Conditional discharge
 
   steps:
     check:
