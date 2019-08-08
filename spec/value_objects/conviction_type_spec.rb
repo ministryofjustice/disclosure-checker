@@ -596,15 +596,6 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
-
-    context 'ADULT_CONDITIONAL_DISCHARGE' do
-      let(:subtype) { 'adult_conditional_discharge' }
-
-      it { expect(conviction_type.skip_length?).to eq(false) }
-      it { expect(conviction_type.compensation?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
-    end
-
     context 'ADULT_HOSPITAL_ORDER' do
       let(:subtype) { 'adult_hospital_order' }
 
