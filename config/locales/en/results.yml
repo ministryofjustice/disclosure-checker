@@ -13,6 +13,7 @@ en:
       adult_discharge: Discharge
       adult_financial: Financial penalty
       adult_prevention_and_reparation_order: Prevention and reparation orders
+      adult_custodial_sentence: Prison sentence or hospital order
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
       # armed_forces
       dismissal: Dismissal
@@ -77,6 +78,10 @@ en:
       adult_bind_over: Bind over
       adult_absolute_discharge: Absolute discharge
       adult_conditional_discharge: Conditional discharge
+      # adult_custodial_sentence
+      adult_hospital_order: Hospital order
+      adult_suspended_prison_sentence: Suspended prison sentence
+      adult_prison_sentence: Prison sentence
 
   steps:
     check:

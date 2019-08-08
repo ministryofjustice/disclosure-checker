@@ -13,6 +13,7 @@ en:
       adult_discharge: Discharge
       adult_financial: Financial penalty
       adult_prevention_and_reparation_order: Prevention and reparation orders
+      adult_custodial_sentence: Prison sentence or hospital order
 
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
       # armed_forces
@@ -74,8 +75,10 @@ en:
       adult_bind_over: Bind over
       adult_absolute_discharge: Absolute discharge
       adult_conditional_discharge: Conditional discharge
-
-
+      # adult_custodial_sentence
+      adult_hospital_order: Hospital order
+      adult_suspended_prison_sentence: Suspended prison sentence
+      adult_prison_sentence: Prison sentence
 
   shared:
     back_link: Back
@@ -115,6 +118,8 @@ en:
         adult_exclusion_requirement: When were you given the exclusion requirement?
         adult_absolute_discharge: When were you given the discharge?
         adult_conditional_discharge: When were you given the discharge?
+        adult_suspended_prison_sentence: When were you given the sentence?
+        adult_prison_sentence: When were you given the sentence?
       steps_conviction_conviction_type_form:
         conviction_type: What type of conviction did you get?
       steps_conviction_conviction_subtype_form:
@@ -127,6 +132,7 @@ en:
         financial: What were you ordered to pay?
         adult_community_order: What was your community order?
         adult_discharge: What discharge were you given?
+        adult_custodial_sentence: What sentence were you given?
       steps_conviction_conviction_length_type_form:
         # default key
         conviction_length_type: Was the length of the order given in weeks, months or years?
@@ -141,6 +147,8 @@ en:
         adult_curfew: Was the length of the curfew given in weeks, months or years?
         adult_exclusion_requirement: Was the length of the exclusion requirement given in weeks, months or years?
         adult_conditional_discharge: Was the length of the conditions given in weeks, months or years?
+        adult_suspended_prison_sentence: Was the length of the sentence given in weeks, months or years?
+        adult_prison_sentence: Was the length of the sentence given in weeks, months or years?
       steps_conviction_compensation_paid_form:
         compensation_paid: Did you pay the compensation in full?
       steps_conviction_compensation_payment_date_form:
@@ -179,6 +187,7 @@ en:
           adult_financial: For example, paying a fine or compensation
           adult_prevention_and_reparation_order: ""
           adult_discharge: For example, a conditional discharge order or bind over
+          adult_custodial_sentence: ""
 
         conviction_subtype:
           # armed_forces
@@ -240,7 +249,10 @@ en:
           adult_bind_over: Your sentence was postponed as long as you kept to certain conditions
           adult_absolute_discharge: You were found guilty of a crime but did not get sentenced
           adult_conditional_discharge: You were not sentenced, as long as you didn't commit
-
+          # adult_custodial_sentence
+          adult_hospital_order: ""
+          adult_suspended_prison_sentence: ""
+          adult_prison_sentence: ""
 
     label:
       steps_check_kind_form:

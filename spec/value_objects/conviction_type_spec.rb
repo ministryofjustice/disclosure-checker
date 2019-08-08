@@ -23,6 +23,7 @@ RSpec.describe ConvictionType do
         adult_financial
         adult_discharge
         adult_prevention_and_reparation_order
+        adult_custodial_sentence
       ))
     end
   end
@@ -593,6 +594,39 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.compensation?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
+    end
+
+
+    context 'ADULT_CONDITIONAL_DISCHARGE' do
+      let(:subtype) { 'adult_conditional_discharge' }
+
+      it { expect(conviction_type.skip_length?).to eq(false) }
+      it { expect(conviction_type.compensation?).to eq(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
+    end
+
+    context 'ADULT_HOSPITAL_ORDER' do
+      let(:subtype) { 'adult_hospital_order' }
+
+      it { expect(conviction_type.skip_length?).to eq(false) }
+      it { expect(conviction_type.compensation?).to eq(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
+    end
+
+    context 'ADULT_SUSPENDED_PRISON_SENTENCE' do
+      let(:subtype) { 'adult_suspended_prison_sentence' }
+
+      it { expect(conviction_type.skip_length?).to eq(false) }
+      it { expect(conviction_type.compensation?).to eq(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::PrisonSentenceCalculator) }
+    end
+
+    context 'ADULT_PRISON_SENTENCE' do
+      let(:subtype) { 'adult_prison_sentence' }
+
+      it { expect(conviction_type.skip_length?).to eq(false) }
+      it { expect(conviction_type.compensation?).to eq(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::PrisonSentenceCalculator) }
     end
   end
 end

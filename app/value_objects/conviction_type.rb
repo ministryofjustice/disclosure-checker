@@ -30,6 +30,7 @@ class ConvictionType < ValueObject
       ADULT_FINANCIAL                        = new(:adult_financial),
       ADULT_DISCHARGE                        = new(:adult_discharge),
       ADULT_PREVENTION_AND_REPARATION_ORDER  = new(:adult_prevention_and_reparation_order),
+      ADULT_CUSTODIAL_SENTENCE               = new(:adult_custodial_sentence),
     ].freeze,
 
     # Quick way of enabling/disabling convictions. These will not show in the interface to users.
@@ -105,6 +106,10 @@ class ConvictionType < ValueObject
     ADULT_RESTRAINING_ORDER             = new(:adult_restraining_order,            parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ADULT_SEXUAL_HARM_PREVENTION_ORDER  = new(:adult_sexual_harm_prevention_order, parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ADULT_SUPERVISION_ORDER             = new(:adult_supervision_order,            parent: ADULT_PREVENTION_AND_REPARATION_ORDER, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+
+    ADULT_HOSPITAL_ORDER                = new(:adult_hospital_order,               parent: ADULT_CUSTODIAL_SENTENCE, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    ADULT_SUSPENDED_PRISON_SENTENCE     = new(:adult_suspended_prison_sentence,    parent: ADULT_CUSTODIAL_SENTENCE, calculator_class: Calculators::PrisonSentenceCalculator),
+    ADULT_PRISON_SENTENCE               = new(:adult_prison_sentence,              parent: ADULT_CUSTODIAL_SENTENCE, calculator_class: Calculators::PrisonSentenceCalculator),
   ].flatten.freeze
 
   # :nocov:
