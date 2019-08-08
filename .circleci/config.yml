@@ -6,6 +6,7 @@ version: 2
 
 references:
   app_containers: &app_containers
+    working_directory: ~/circleci-disclosure-checker
     docker:
       - image: circleci/ruby:2.6.3-node-browsers
         environment:
@@ -30,6 +31,10 @@ jobs:
     <<: *app_containers
     steps:
       - checkout
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/circleci-disclosure-checker
 
       - run:
           name: bundle install
@@ -60,6 +65,9 @@ jobs:
     steps:
       - restore_cache:
           keys:
+            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
             - v1-bundle-{{ checksum "Gemfile.lock" }}
       - run: bundle --path vendor/bundle
       - run: bundle exec rake db:create db:schema:load
@@ -74,6 +82,9 @@ jobs:
     steps:
       - restore_cache:
           keys:
+            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
             - v1-bundle-{{ checksum "Gemfile.lock" }}
       - run: bundle --path vendor/bundle
       - run: bundle exec rake db:create db:schema:load
@@ -84,6 +95,9 @@ jobs:
   run_features1:
     <<: *app_containers
     steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           keys:
             - v1-bundle-{{ checksum "Gemfile.lock" }}
@@ -102,6 +116,9 @@ jobs:
   run_features2:
     <<: *app_containers
     steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           keys:
             - v1-bundle-{{ checksum "Gemfile.lock" }}
