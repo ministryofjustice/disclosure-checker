@@ -6,7 +6,7 @@ RSpec.describe Steps::Conviction::ConvictionLengthForm do
     conviction_length: conviction_length
   } }
   let(:disclosure_check) { instance_double(DisclosureCheck, conviction_length_type: 'months') }
-  let(:conviction_length) { 3 }
+  let(:conviction_length) { '3' }
 
   subject { described_class.new(arguments) }
 
