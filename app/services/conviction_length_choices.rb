@@ -4,6 +4,8 @@ class ConvictionLengthChoices
     ConvictionType::SERVICE_DETENTION,
     ConvictionType::DETENTION,
     ConvictionType::DETENTION_TRAINING_ORDER,
+    ConvictionType::ADULT_PRISON_SENTENCE,
+    ConvictionType::ADULT_SUSPENDED_PRISON_SENTENCE,
   ].freeze
 
   def self.choices(conviction_subtype:)
