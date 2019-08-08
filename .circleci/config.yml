@@ -12,6 +12,7 @@ references:
           RAILS_ENV: test
           RACK_ENV: test
           DATABASE_URL: "postgres://postgres@localhost/disclosure-checker-test"
+          SECRET_KEY_BASE: needed_for_assets_precompile
           EXTERNAL_URL: mocked_in_tests
           DEV_TOOLS_ENABLED: "1"
       - image: circleci/postgres:10.4
@@ -25,38 +26,96 @@ references:
           GITHUB_TEAM_NAME_SLUG: family-justice
 
 jobs:
-  test:
+  dependencies:
     <<: *app_containers
     steps:
       - checkout
 
-      # Download and cache dependencies
+      - run:
+          name: bundle install
+          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: yarn install
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: v1-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      - run:
+          name: precompile assets
+          command: bundle exec rake assets:precompile
+      - save_cache:
+          key: v1-assets-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - public/assets
+
+  run_linters:
+    <<: *app_containers
+    steps:
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
+            - v1-bundle-{{ checksum "Gemfile.lock" }}
+      - run: bundle --path vendor/bundle
+      - run: bundle exec rake db:create db:schema:load
       - run:
-          name: install dependencies
+          name: run linters
           command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+            bundle exec rake rubocop
+            bundle exec rake brakeman
 
-            yarn install --frozen-lockfile
-
-
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-      # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
-
+  run_specs:
+    <<: *app_containers
+    steps:
+      - restore_cache:
+          keys:
+            - v1-bundle-{{ checksum "Gemfile.lock" }}
+      - run: bundle --path vendor/bundle
+      - run: bundle exec rake db:create db:schema:load
       - run:
-          name: run tests
-          command: bundle exec rake
+          name: run specs
+          command: bundle exec rake spec
+
+  run_features1:
+    <<: *app_containers
+    steps:
+      - restore_cache:
+          keys:
+            - v1-bundle-{{ checksum "Gemfile.lock" }}
+      - restore_cache:
+          keys:
+            - v1-yarn-{{ checksum "yarn.lock" }}
+      - restore_cache:
+          keys:
+            - v1-assets-{{ .Environment.CIRCLE_SHA1 }}
+      - run: bundle --path vendor/bundle
+      - run: bundle exec rake db:create db:schema:load
+      - run:
+          name: run youth features
+          command: bundle exec cucumber features/youth
+
+  run_features2:
+    <<: *app_containers
+    steps:
+      - restore_cache:
+          keys:
+            - v1-bundle-{{ checksum "Gemfile.lock" }}
+      - restore_cache:
+          keys:
+            - v1-yarn-{{ checksum "yarn.lock" }}
+      - restore_cache:
+          keys:
+            - v1-assets-{{ .Environment.CIRCLE_SHA1 }}
+      - run: bundle --path vendor/bundle
+      - run: bundle exec rake db:create db:schema:load
+      - run:
+          name: run adult features
+          command: bundle exec cucumber features/adults
 
   build_staging:
     <<: *cloud_container
@@ -170,10 +229,27 @@ workflows:
 
   test-build-deploy:
     jobs:
-      - test
+      - dependencies
+
+      - run_linters:
+          requires:
+            - dependencies
+      - run_specs:
+          requires:
+            - dependencies
+      - run_features1:
+          requires:
+            - dependencies
+      - run_features2:
+          requires:
+            - dependencies
+
       - build_staging:
           requires:
-            - test
+            - run_linters
+            - run_specs
+            - run_features1
+            - run_features2
           filters:
             branches:
               only: master
