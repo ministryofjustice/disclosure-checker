@@ -44,7 +44,7 @@ RSpec.describe ConvictionLengthChoices do
       ConvictionType.values.size - described_class::SUBTYPES_HIDE_NO_LENGTH_CHOICE.size
     }
 
-    it { expect(total).to eq(63) }
+    it { expect(total).to eq(52) }
   end
 
   describe '.choices' do
@@ -99,7 +99,7 @@ RSpec.describe ConvictionLengthChoices do
     # just a few, no need to test all of them
     #
     context 'youth community order convictions' do
-      let(:conviction_subtype) { ConvictionType::DRUG_REHABILITATION }
+      let(:conviction_subtype) { ConvictionType::SEXUAL_HARM_PREVENTION_ORDER }
 
       it 'includes `no_length` in the choices' do
         expect(subject).to eq(all_choices)

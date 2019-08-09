@@ -23,20 +23,9 @@ en:
       service_detention: Service detention
       service_community_order: Service community order
       overseas_community_order: Overseas community order
-      # community_order
-      alcohol_abstinence_treatment: Alcohol abstinence or treatment
-      attendance_centre_order: Attendance centre order
-      behavioural_change_prog: Behavioural change programme
-      curfew: Curfew
-      drug_rehabilitation: Drug rehabilitation, treatment or testing
-      exclusion_requirement: Exclusion requirement
-      intoxicating_substance_treatment: Intoxicating substance treatment requirement
-      mental_health_treatment: Mental health treatment
-      prohibition: Prohibition
+    # community_order
       referral_order: Referral order
-      rehab_activity_requirement: Rehabilitation activity requirement (RAR)
       reparation_order: Reparation order
-      residence_requirement: Residence requirement
       restraining_order: Restraining order
       sexual_harm_prevention_order: Sexual harm prevention order (sexual offence prevention order)
       supervision_order: Supervision order
