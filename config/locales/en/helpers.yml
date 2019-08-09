@@ -25,9 +25,6 @@ en:
       overseas_community_order: Overseas community order
       # community_order
       referral_order: Referral order
-      reparation_order: Reparation order
-      restraining_order: Restraining order
-      sexual_harm_prevention_order: Sexual harm prevention order (sexual offence prevention order)
       supervision_order: Supervision order
       youth_rehabilitation_order: Youth rehabilitation order
       # custodial_sentence
@@ -41,6 +38,10 @@ en:
       # financial
       fine: A fine
       compensation_to_a_victim: Compensation to a victim
+      # prevention_and_reparation_order
+      reparation_order: Reparation order
+      restraining_order: Restraining order
+      sexual_harm_prevention_order: Sexual harm prevention order (sexual offence prevention order)
       # adult_prevention_and_reparation_order
       adult_alcohol_abstinence_treatment: Alcohol abstinence or treatment
       adult_behavioural_change_prog: Behavioural change programme
@@ -191,9 +192,6 @@ en:
           overseas_community_order: ""
           # community_order
           referral_order: You were referred to community volunteers and the youth offending team (YOT)
-          reparation_order: You were given help understanding the effect your crime had on someone
-          restraining_order: You were ordered not to do something, such as approach or contact a certain person
-          sexual_harm_prevention_order: A court ruled that you pose a risk of causing sexual harm
           supervision_order: You were ordered to be supervised by a youth offending team after loitering, soliciting or 'breaching a civil injunction'
           youth_rehabilitation_order: This may have included one or more requirements, such as electronic monitoring, education, attendance centres, activity or programme requirements
           # custodial_sentence
@@ -207,6 +205,10 @@ en:
           # financial
           fine: ""
           compensation_to_a_victim: ""
+          # prevention_and_reparation_order
+          reparation_order: You were given help understanding the effect your crime had on someone
+          restraining_order: You were ordered not to do something, such as approach or contact a certain person
+          sexual_harm_prevention_order: A court ruled that you pose a risk of causing sexual harm
           #adult_prevention_and_reparation_order
           adult_alcohol_abstinence_treatment: You were ordered not to drink, or were given help to stop you drinking
           adult_behavioural_change_prog: You were helped to change any dangerous or unwanted behaviour

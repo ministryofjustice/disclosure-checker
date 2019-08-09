@@ -19,18 +19,5 @@ Feature: Conviction
   Examples:
     | subtype                                                        | known_date_header                              | length_type_header                                                           | length_header                                     | result               |
     | Referral order                                                 | When were you given the order?                 | Was the length of the order given in weeks, months or years?                 | What was the length of the order?                 | /steps/check/results |
-    | Restraining order                                              | When were you given the order?                 | Was the length of the order given in weeks, months or years?                 | What was the length of the order?                 | /steps/check/results |
-    | Sexual harm prevention order (sexual offence prevention order) | When were you given the order?                 | Was the length of the order given in weeks, months or years?                 | What was the length of the order?                 | /steps/check/results |
     | Supervision order                                              | When were you given the order?                 | Was the length of the order given in weeks, months or years?                 | What was the length of the order?                 | /steps/check/results |
     | Youth rehabilitation order                                     | When were you given the order?                 | Was the length of the order given in weeks, months or years?                 | What was the length of the order?                 | /steps/check/results |
-
-
-  Scenario: Community or youth rehabilitation order - Reparation order
-  Given I am completing a basic under 18 "Community or youth rehabilitation order (YRO)" conviction
-  Then I should see "What was your community or youth rehabilitation order (YRO)?"
-
-  When I choose "Reparation order"
-  Then I should see "When were you given the order?"
-
-  And I enter a valid date
-  Then I should be on "/steps/check/results"

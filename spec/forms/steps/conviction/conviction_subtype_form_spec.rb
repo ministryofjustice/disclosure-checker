@@ -21,15 +21,15 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
   # in the value-object spec `spec/value_objects/conviction_type_spec.rb`
   describe '#choices' do
     it 'returns the relevant choices (children of the conviction type)' do
-      expect(subject.choices).to include('referral_order', 'sexual_harm_prevention_order', 'youth_rehabilitation_order')
+      expect(subject.choices).to include('referral_order', 'supervision_order', 'youth_rehabilitation_order')
     end
   end
 
   describe '#save' do
-    it_behaves_like 'a value object form', attribute_name: :conviction_subtype, example_value: 'sexual_harm_prevention_order'
+    it_behaves_like 'a value object form', attribute_name: :conviction_subtype, example_value: 'referral_order'
 
     context 'when form is valid' do
-      let(:conviction_subtype) { 'sexual_harm_prevention_order' }
+      let(:conviction_subtype) { 'referral_order' }
 
       it 'saves the record' do
         expect(disclosure_check).to receive(:update).with(
@@ -49,7 +49,7 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
         let(:disclosure_check) {
           instance_double(DisclosureCheck, conviction_type: conviction_type, conviction_subtype: conviction_subtype)
         }
-        let(:conviction_subtype) { 'sexual_harm_prevention_order' }
+        let(:conviction_subtype) { 'referral_order' }
 
         it 'does not save the record but returns true' do
           expect(disclosure_check).to_not receive(:update)
