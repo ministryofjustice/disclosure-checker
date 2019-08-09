@@ -6,7 +6,7 @@ version: 2
 
 references:
   app_containers: &app_containers
-    working_directory: ~/circleci-disclosure-checker
+    working_directory: ~/repo
     docker:
       - image: circleci/ruby:2.6.3-node-browsers
         environment:
@@ -31,44 +31,31 @@ jobs:
     <<: *app_containers
     steps:
       - checkout
-      - save_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - ~/circleci-disclosure-checker
-
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: bundle install
           command: bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - save_cache:
-          key: v1-bundle-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-
       - run:
           name: yarn install
           command: yarn install --frozen-lockfile
-      - save_cache:
-          key: v1-yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-
       - run:
           name: precompile assets
           command: bundle exec rake assets:precompile
-      - save_cache:
-          key: v1-assets-{{ .Environment.CIRCLE_SHA1 }}
+      - persist_to_workspace:
+          root: ~/
           paths:
+            - repo
             - public/assets
+            - vendor/bundle
+            - .cache/yarn
 
   run_linters:
     <<: *app_containers
     steps:
-      - restore_cache:
-          keys:
-            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
-            - v1-bundle-{{ checksum "Gemfile.lock" }}
+      - checkout
+      - attach_workspace:
+          at: ~/repo
       - run: bundle --path vendor/bundle
       - run: bundle exec rake db:create db:schema:load
       - run:
@@ -80,12 +67,9 @@ jobs:
   run_specs:
     <<: *app_containers
     steps:
-      - restore_cache:
-          keys:
-            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
-            - v1-bundle-{{ checksum "Gemfile.lock" }}
+      - checkout
+      - attach_workspace:
+          at: ~/repo
       - run: bundle --path vendor/bundle
       - run: bundle exec rake db:create db:schema:load
       - run:
@@ -95,18 +79,9 @@ jobs:
   run_features1:
     <<: *app_containers
     steps:
-      - restore_cache:
-          keys:
-            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
-            - v1-bundle-{{ checksum "Gemfile.lock" }}
-      - restore_cache:
-          keys:
-            - v1-yarn-{{ checksum "yarn.lock" }}
-      - restore_cache:
-          keys:
-            - v1-assets-{{ .Environment.CIRCLE_SHA1 }}
+      - checkout
+      - attach_workspace:
+          at: ~/repo
       - run: bundle --path vendor/bundle
       - run: bundle exec rake db:create db:schema:load
       - run:
@@ -116,18 +91,9 @@ jobs:
   run_features2:
     <<: *app_containers
     steps:
-      - restore_cache:
-          keys:
-            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
-            - v1-bundle-{{ checksum "Gemfile.lock" }}
-      - restore_cache:
-          keys:
-            - v1-yarn-{{ checksum "yarn.lock" }}
-      - restore_cache:
-          keys:
-            - v1-assets-{{ .Environment.CIRCLE_SHA1 }}
+      - checkout
+      - attach_workspace:
+          at: ~/repo
       - run: bundle --path vendor/bundle
       - run: bundle exec rake db:create db:schema:load
       - run:
