@@ -30,8 +30,8 @@ Feature: Conviction
     When I choose "<subtype>"
     Then I should see "<known_date_header>"
 
-    #And I enter a valid date
-    #Then I should be on "<result>"
+    And I enter a valid date
+    Then I should be on "<result>"
 
     Examples:
       | subtype        | known_date_header                       | result               |
