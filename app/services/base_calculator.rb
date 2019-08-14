@@ -19,10 +19,7 @@ class BaseCalculator
     @conviction_end_date ||= disclosure_check.known_date.advance(conviction_length)
   end
 
-  # TODO: this needs more testing as it's a bit of a work around.
   def length_in_months(start_date, end_date)
-    (start_date.beginning_of_month...end_date.beginning_of_month).select do |date|
-      date.day == 1
-    end.size
+    (end_date.year - start_date.year) * 12 + end_date.month - start_date.month - (end_date.day >= start_date.day ? 0 : 1)
   end
 end

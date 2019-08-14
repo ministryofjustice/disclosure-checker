@@ -16,7 +16,7 @@ RSpec.describe Calculators::PrisonSentenceCalculator do
       let(:result) { false }
       context 'conviction length in weeks' do
         let(:conviction_length_type) { 'weeks' }
-        let(:conviction_length) { 212 }
+        let(:conviction_length) { 214 }
         it { expect(subject.expiry_date).to eq(result) }
       end
 
@@ -56,8 +56,8 @@ RSpec.describe Calculators::PrisonSentenceCalculator do
     context 'Spent duration for conviction length of 7 to 30 months' do
       context 'conviction length in weeks' do
         let(:conviction_length_type) { 'weeks' }
-        let(:conviction_length) { 29 }
-        it { expect(subject.expiry_date.to_s).to eq('2021-05-11') }
+        let(:conviction_length) { 31 }
+        it { expect(subject.expiry_date.to_s).to eq('2021-05-25') }
       end
 
       context 'conviction length in months' do
