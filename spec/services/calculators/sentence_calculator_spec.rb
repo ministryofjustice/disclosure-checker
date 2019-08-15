@@ -15,17 +15,17 @@ RSpec.describe Calculators::SentenceCalculator do
     context '#expiry_date' do
       context 'conviction length of 6 months or less' do
         let(:conviction_months) { 5 }
-        it { expect(subject.expiry_date.to_s).to eq('2018-09-20') }
+        it { expect(subject.expiry_date.to_s).to eq('2018-09-21') }
       end
 
       context 'conviction length of 7 to 30 months' do
         let(:conviction_months) { 29 }
-        it { expect(subject.expiry_date.to_s).to eq('2021-03-20') }
+        it { expect(subject.expiry_date.to_s).to eq('2021-03-21') }
       end
 
       context 'conviction length of over 30 months and up to 4 years' do
         let(:conviction_months) { 48 }
-        it { expect(subject.expiry_date.to_s).to eq('2024-04-20') }
+        it { expect(subject.expiry_date.to_s).to eq('2024-04-21') }
       end
 
       context 'never spent for conviction length over 4 years' do
@@ -45,17 +45,17 @@ RSpec.describe Calculators::SentenceCalculator do
     context '#expiry_date' do
       context 'conviction length of 6 months or less' do
         let(:conviction_months) { 5 }
-        it { expect(subject.expiry_date.to_s).to eq('2019-03-20') }
+        it { expect(subject.expiry_date.to_s).to eq('2019-03-21') }
       end
 
       context 'conviction length of 7 to 30 months' do
         let(:conviction_months) { 29 }
-        it { expect(subject.expiry_date.to_s).to eq('2023-03-20') }
+        it { expect(subject.expiry_date.to_s).to eq('2023-03-21') }
       end
 
       context 'conviction length of over 30 months and up to 4 years' do
         let(:conviction_months) { 48 }
-        it { expect(subject.expiry_date.to_s).to eq('2027-10-20') }
+        it { expect(subject.expiry_date.to_s).to eq('2027-10-21') }
       end
 
       context 'never spent for conviction length over 4 years' do
@@ -75,12 +75,12 @@ RSpec.describe Calculators::SentenceCalculator do
     context '#expiry_date' do
       context 'conviction length of 6 months or less' do
         let(:conviction_months) { 5 }
-        it { expect(subject.expiry_date.to_s).to eq('2019-03-20') }
+        it { expect(subject.expiry_date.to_s).to eq('2019-03-21') }
       end
 
       context 'conviction length of 7 to 24 months' do
         let(:conviction_months) { 24 }
-        it { expect(subject.expiry_date.to_s).to eq('2022-10-20') }
+        it { expect(subject.expiry_date.to_s).to eq('2022-10-21') }
       end
 
       context 'there is an upper limit' do

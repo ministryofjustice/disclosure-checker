@@ -45,7 +45,7 @@ module Calculators
       if conviction_length_in_months > NEVER_SPENT_THRESHOLD
         false
       else
-        conviction_end_date.advance(spent_time)
+        day_after_conviction_end_date.advance(spent_time)
       end
     end
 
@@ -71,6 +71,10 @@ module Calculators
 
     def conviction_length_in_months
       @_conviction_length_in_months ||= length_in_months(conviction_start_date, conviction_end_date)
+    end
+
+    def day_after_conviction_end_date
+      conviction_end_date.advance(days: 1)
     end
   end
 end
