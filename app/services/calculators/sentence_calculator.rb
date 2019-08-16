@@ -81,7 +81,7 @@ module Calculators
     end
 
     def conviction_length_in_months
-      @_conviction_length_in_months ||= length_in_months(conviction_start_date, conviction_end_date)
+      @_conviction_length_in_months ||= sentence_length_in_months(disclosure_check.conviction_length, disclosure_check.conviction_length_type)
     end
 
     def conviction_end_date

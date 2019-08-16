@@ -6,7 +6,7 @@ module Calculators
     CAUTION_EXTRA_SPENT_DURATION = { months: 3 }.freeze
 
     def expiry_date
-      return conditional_end_date if length_in_months(caution_date, conditional_end_date) < 3
+      return conditional_end_date if distance_in_months(caution_date, conditional_end_date) < 3
 
       caution_date.advance(CAUTION_EXTRA_SPENT_DURATION)
     end
