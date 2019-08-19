@@ -5,17 +5,17 @@ en:
       # youth
       armed_forces: Armed forces
       community_order: Community or youth rehabilitation order (YRO)
-      custodial_sentence: Custodial sentence or hospital order
+      custodial_sentence: Custody or hospital order
       discharge: Discharge
       financial: Financial penalty
-      prevention_and_reparation_order: Prevention and reparation orders
+      prevention_and_reparation_order: Prevention and reparation order
       # adults
       adult_community_order: Community order
       adult_discharge: Discharge
       adult_financial: Financial penalty
       adult_military: Military convictions
       adult_motoring: Motoring
-      adult_prevention_and_reparation_order: Prevention and reparation orders
+      adult_prevention_and_reparation_order: Prevention and reparation order
       adult_custodial_sentence: Prison sentence or hospital order
 
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES

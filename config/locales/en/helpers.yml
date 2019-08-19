@@ -194,7 +194,7 @@ en:
           adult_financial: For example, paying a fine or compensation
           adult_military: (placeholder hint text)
           adult_motoring: (placeholder hint text)
-          adult_prevention_and_reparation_order: For example, a reparation or restraining order
+          adult_prevention_and_reparation_order: For example, a restraining order or sexual harm prevention order
           adult_custodial_sentence: (placeholder hint text)
         conviction_subtype:
           # armed_forces
