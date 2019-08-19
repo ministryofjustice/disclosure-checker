@@ -10,10 +10,10 @@ Feature: Conviction
 
     When I enter a valid date
 
-    Then I should see "Was the length of the detention and training order (DTO) given in weeks, months or years?"
+    Then I should see "Was the length of the DTO given in weeks, months or years?"
     And I choose "Weeks"
 
-    Then I should see "What was the length of the detention and training order (DTO)?"
+    Then I should see "What was the length of the DTO?"
     And I fill in "Number of weeks" with "10"
 
     Then I click the "Continue" button

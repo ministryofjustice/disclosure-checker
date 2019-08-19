@@ -19,7 +19,7 @@ en:
           page_title: Length of conviction
           heading:
             default: What was the length of the order?
-            detention_training_order: What was the length of the detention and training order (DTO)?
+            detention_training_order: What was the length of the DTO?
             detention: What was the length of the detention?
             conditional_discharge: What was the length of the discharge?
             adult_behavioural_change_prog: What was the length of the programme?

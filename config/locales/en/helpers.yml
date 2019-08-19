@@ -144,7 +144,7 @@ en:
         # default key
         conviction_length_type: Was the length of the order given in weeks, months or years?
         # alternative keys defined with `i18_attribute`
-        detention_training_order: Was the length of the detention and training order (DTO) given in weeks, months or years?
+        detention_training_order: Was the length of the DTO given in weeks, months or years?
         detention: Was the length of the detention given in weeks, months or years?
         conditional_discharge: Was the length of the conditions given in weeks, months or years?
         adult_behavioural_change_prog: Was the length of the programme given in weeks, months or years?
