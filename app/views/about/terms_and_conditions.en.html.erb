@@ -4,51 +4,61 @@
   <main class="govuk-main-wrapper" id="main-content">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-      
+
         <h1 class="govuk-heading-xl">Terms and conditions</h1>
         <p class="govuk-body">By using this service you agree to these terms and conditions.</p>
-        <p class="govuk-body">TODO: Add in appropriate content</p>
+
 
         <section class="moj-Section about-section">
-          <h2 class="govuk-heading-m">Responsibility for the service</h2>
+          <h2 class="govuk-heading-m">About the service</h2>
           <div class="Section__content govuk-govspeak gv-s-prose">
-            <p class="govuk-body">The Ministry of Justice (MOJ) runs this service.</p>
-            <p class="govuk-body">We try to make sure the information we provide is accurate and complete and the service is always available and virus free.</p>
-            <p class="govuk-body">The MoJ accepts no liability for:</p>
+            <p class="govuk-body">Check when a caution or conviction expires is a service provided by the Ministry of Justice (MoJ).</p>
+            <p class="govuk-body">Its purpose is to help users work out whether or not they need to tell organisations (such as employers, places of education or insurance companies) about a caution or conviction on their criminal record.</p>
+            <p class="govuk-body">The service gives users guidance on when a single caution or conviction expires (becomes ‘spent’) according to the current law in England and Wales.</p>
+            <div class="govuk-inset-text">
+              If you have more than one conviction, the guidance the service gives may not apply to you.
+            </div>
+            <p class="govuk-body">If you have been given another conviction during your rehabilitation period, or if you are applying for certain sensitive jobs, the guidance will not apply.</p>
+          </div
+        </section>
+
+        <section class="moj-Section about-section">
+          <h2 class="govuk-heading-m">How the service works</h2>
+          <div class="Section__content govuk-govspeak gv-s-prose">
+            <p class="govuk-body">The service asks users for:</p>
             <ul class="govuk-list govuk-list--bullet">
-              <li>you being unable to access the service (for example due to high demand or because we've taken it down for maintenance)</li>
-              <li>indirect damages arising from you using the service or relying on its content</li>
-              <li>the content and availability of external websites that link to the service or which link from it</li>
+              <li>the type of caution or conviction they were given</li>
+              <li>the date they were cautioned or convicted</li>
+              <li>their age when cautioned or convicted</li>
             </ul>
+            <p class="govuk-body">This information is checked against the current law and users are given the date the conviction expires.</p>
+            <p class="govuk-body">Some organisations will still need to know about cautions and convictions that have expired, depending on the application that’s being made.</p>
           </div>
         </section>
 
-        <section class="moj-Section about-section" data-block-name="terms-conditions-phase">
-          <h2 class="govuk-heading-m">Public alpha</h2>
+        <section class="moj-Section about-section1" id="using-guidance">
+          <h2 class="govuk-heading-m">Using the guidance the service gives you</h2>
           <div class="Section__content govuk-govspeak gv-s-prose">
-            <p class="govuk-body">This service is currently in ‘public alpha’. This means you’re looking at the first version of it.</p>
-            <p class="govuk-body">Something that's in ‘public alpha’ isn’t open to everyone or may not work for everyone. We do this so we can test and make improvements before releasing it to more people.</p>
-          </div>
+            <p class="govuk-body">As the service does not ask for specific details about users’ criminal records, it can only give general guidance on when cautions or convictions become spent in England and Wales.</p>
+
+            <div class="govuk-inset-text">
+               <p class="govuk-body">If you will be using the guidance given by this service to decide whether or not to disclose a caution or conviction on your criminal record, you are strongly advised to consider getting specific professional or legal advice before doing so.</p>
+            </div>
+          </div
         </section>
 
-        <section class="moj-Section about-section" data-block-name="terms-conditions-phase">
-          <h2 class="govuk-heading-m">Information about you and your visits</h2>
+        <section class="moj-Section about-section">
+          <h2 class="govuk-heading-m">Our responsibilities</h2>
           <div class="Section__content govuk-govspeak gv-s-prose">
-            <p class="govuk-body">We collect information about you in accordance with our <%= link_to 'privacy policy', about_privacy_path, class: 'govuk-link ga-pageLink', data: {ga_category: 'footer', ga_label: 'privacy'} %> and our <%= link_to 'cookie policy', about_cookies_path, class: 'govuk-link ga-pageLink', data: {ga_category: 'footer', ga_label: 'cookies'} %>. By using this service you agree to us collecting this information and confirm that any data you provide is accurate.</p>
-          </div>
+            <p class="govuk-body">The expiry date given at the end of the service is based solely on the information provided by the service user.</p>
+            <p class="govuk-body">If any of the information a user inputs is incorrect, the date given at the end might also be incorrect.</p>
+            <p class="govuk-body">MoJ is not responsible for:</p>
+             <ul class="govuk-list govuk-list--bullet">
+              <li>people disclosing their expired cautions or convictions when they weren’t required to</li>
+              <li>how and when employers ask for information about people’s criminal records</li>
+            </ul>
+          </div
         </section>
-
-        <section class="moj-Section about-section" data-block-name="terms-conditions-scope">
-          <h2 class="govuk-heading-m">Scotland and Northern Ireland</h2>
-          <div class="Section__content govuk-govspeak gv-s-prose">
-            <p class="govuk-body">Some parts of this service only apply to England and Wales.</p>
-            <p class="govuk-body">For example, if you want to go to court the process is different in
-              <a class="govuk-link" href="https://www.mygov.scot/crime-justice-and-the-law/courts-and-sentencing" rel="external" target="_blank">Scotland</a> and
-              <a class="govuk-link" href="https://www.nidirect.gov.uk/articles/solicitors-and-courts" rel="external" target="_blank">Northern Ireland</a>.
-            </p>
-          </div>
-        </section>
-
       </div>
     </div>
   </main>
