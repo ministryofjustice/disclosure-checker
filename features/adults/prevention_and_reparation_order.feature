@@ -1,6 +1,6 @@
 Feature: Conviction
-  Scenario Outline: Prevention and reparation orders
-  Given I am completing a basic 18 or over "Prevention and reparation orders" conviction
+  Scenario Outline: Prevention and reparation order
+  Given I am completing a basic 18 or over "Prevention and reparation order" conviction
   Then I should see "What type of order were you given?"
 
   When I choose "<subtype>"
@@ -24,8 +24,8 @@ Feature: Conviction
     | Supervision order                                              | When were you given the order?                 | Was the length of the order given in weeks, months or years?                 | What was the length of the order?                 | /steps/check/results |
 
 
-  Scenario: Prevention and reparation orders - Reparation order
-  Given I am completing a basic 18 or over "Prevention and reparation orders" conviction
+  Scenario: Prevention and reparation order - Reparation order
+  Given I am completing a basic 18 or over "Prevention and reparation order" conviction
   Then I should see "What type of order were you given?"
 
   When I choose "Reparation order"

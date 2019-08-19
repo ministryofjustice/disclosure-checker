@@ -5,17 +5,17 @@ en:
       # youth
       armed_forces: Armed forces
       community_order: Community or youth rehabilitation order (YRO)
-      custodial_sentence: Custodial sentence or hospital order
+      custodial_sentence: Custody or hospital order
       discharge: Discharge
       financial: Financial penalty
-      prevention_and_reparation_order: Prevention and reparation orders
+      prevention_and_reparation_order: Prevention and reparation order
       # adults
       adult_community_order: Community order
       adult_discharge: Discharge
       adult_financial: Financial penalty
       adult_military: Military convictions
       adult_motoring: Motoring
-      adult_prevention_and_reparation_order: Prevention and reparation orders
+      adult_prevention_and_reparation_order: Prevention and reparation order
       adult_custodial_sentence: Prison sentence or hospital order
 
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
@@ -187,7 +187,7 @@ en:
           custodial_sentence: For example, a detention and training order (DTO) or a hospital order given under the Mental Health Act
           discharge: For example, a conditional discharge order or bind over
           financial: For example, paying a fine or compensation
-          prevention_and_reparation_order: For example, a reparation or restraining order
+          prevention_and_reparation_order: For example, a restraining order or sexual harm prevention order
           # adults
           adult_community_order: For example, a curfew or unpaid work. You might have been asked to wear a tag as part of your order
           adult_discharge: For example, a conditional discharge order or bind over

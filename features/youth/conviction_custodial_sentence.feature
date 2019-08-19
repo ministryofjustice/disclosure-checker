@@ -1,6 +1,6 @@
 Feature: Conviction
   Background:
-    When I am completing a basic under 18 "Custodial sentence or hospital order" conviction
+    When I am completing a basic under 18 "Custody or hospital order" conviction
     Then I should see "What type of sentence were you given?"
 
   @happy_path
