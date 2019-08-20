@@ -8,14 +8,14 @@ en:
       custodial_sentence: Custody or hospital order
       discharge: Discharge
       financial: Financial penalty
-      prevention_and_reparation_order: Prevention and reparation order
+      prevention_and_reparation_order: Prevention or reparation order
       # adults
       adult_community_order: Community order
       adult_discharge: Discharge
       adult_financial: Financial penalty
       adult_military: Military convictions
       adult_motoring: Motoring
-      adult_prevention_and_reparation_order: Prevention and reparation order
+      adult_prevention_and_reparation_order: Prevention or reparation order
       adult_custodial_sentence: Prison sentence or hospital order
 
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES

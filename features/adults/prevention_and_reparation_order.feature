@@ -1,6 +1,6 @@
 Feature: Conviction
   Scenario Outline: Prevention and reparation order
-  Given I am completing a basic 18 or over "Prevention and reparation order" conviction
+  Given I am completing a basic 18 or over "Prevention or reparation order" conviction
   Then I should see "What type of order were you given?"
 
   When I choose "<subtype>"
@@ -25,7 +25,7 @@ Feature: Conviction
 
 
   Scenario: Prevention and reparation order - Reparation order
-  Given I am completing a basic 18 or over "Prevention and reparation order" conviction
+  Given I am completing a basic 18 or over "Prevention or reparation order" conviction
   Then I should see "What type of order were you given?"
 
   When I choose "Reparation order"
