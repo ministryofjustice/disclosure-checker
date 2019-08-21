@@ -18,7 +18,6 @@ en:
       adult_motoring: Motoring
       adult_prevention_reparation: Prevention or reparation order
 
-
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
       # armed_forces
       dismissal: Dismissal
@@ -83,14 +82,11 @@ en:
       adult_suspended_prison_sentence: Suspended prison sentence
       adult_prison_sentence: Prison sentence
 
-
-
   steps:
     check:
       results:
         show:
           page_title: When your caution or conviction is spent
-
 
   results/caution:
     title:
