@@ -1,6 +1,6 @@
 Feature: Conviction
   Scenario Outline: Prison sentence or hospital order
-  When I am completing a basic 18 or over "Prison sentence or hospital order" conviction
+  When I am completing a basic 18 or over "Custody or hospital order" conviction
   Then I should see "What sentence were you given?"
 
   When I choose "<subtype>"

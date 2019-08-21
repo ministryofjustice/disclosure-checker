@@ -13,10 +13,10 @@ en:
       adult_community_order: Community order
       adult_discharge: Discharge
       adult_financial: Financial penalty
-      adult_military: Military convictions
+      adult_military: Military
       adult_motoring: Motoring
       adult_prevention_reparation: Prevention or reparation order
-      adult_custodial_sentence: Prison sentence or hospital order
+      adult_custodial_sentence: Custody or hospital order
 
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
       # armed_forces
@@ -70,7 +70,7 @@ en:
       adult_service_community_order: Service community order
       adult_service_detention: Service detention
       # adult_motoring
-      adult_disqualification: Disqualification
+      adult_disqualification: Disqualification (driving ban)
       adult_endorsement: Endorsement
       adult_penalty_points: Penalty points
       # adult_discharge
@@ -192,10 +192,10 @@ en:
           adult_community_order: For example, a curfew or unpaid work. You might have been asked to wear a tag as part of your order
           adult_discharge: For example, a conditional discharge order or bind over
           adult_financial: For example, paying a fine or compensation
-          adult_military: (placeholder hint text)
-          adult_motoring: (placeholder hint text)
+          adult_military: For example, a dismissal or service detention
+          adult_motoring: For example, penalty points or a driving ban
           adult_prevention_reparation: For example, a restraining order or sexual harm prevention order
-          adult_custodial_sentence: (placeholder hint text)
+          adult_custodial_sentence: For example, a prison sentence or a hospital order given under the Mental Health Act
         conviction_subtype:
           # armed_forces
           dismissal: ""
@@ -243,12 +243,12 @@ en:
           adult_fine: ""
           adult_compensation_to_a_victim: ""
           # adult_military
-          adult_dismissal: (placeholder hint text)
-          adult_overseas_community_order: (placeholder hint text)
-          adult_service_community_order: (placeholder hint text)
-          adult_service_detention: (placeholder hint text)
+          adult_dismissal: ""
+          adult_overseas_community_order: ""
+          adult_service_community_order: ""
+          adult_service_detention: ""
           # adult_motoring
-          adult_disqualification: (placeholder hint text)
+          adult_disqualification: You were banned from driving for a certain period of time.
           adult_endorsement: (placeholder hint text)
           adult_penalty_points: (placeholder hint text)
           # adult_discharge
@@ -256,9 +256,9 @@ en:
           adult_absolute_discharge: You were found guilty of a crime but did not get sentenced
           adult_conditional_discharge: You were not sentenced, as long as you didn't commit
           # adult_custodial_sentence
-          adult_hospital_order: ""
-          adult_suspended_prison_sentence: ""
-          adult_prison_sentence: ""
+          adult_hospital_order: You were given a hospital order instead of a prison sentence because of mental health concerns
+          adult_suspended_prison_sentence: You were given a prison sentence that was suspended unless you breached the terms
+          adult_prison_sentence: You were sent to prison (also known as being taken into custody)
 
     label:
       steps_check_kind_form:

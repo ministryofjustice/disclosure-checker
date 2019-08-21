@@ -21,12 +21,12 @@ RSpec.describe ConvictionType do
     it 'returns top level adult convictions' do
       expect(values).to eq(%w(
         adult_community_order
+        adult_custodial_sentence
         adult_discharge
         adult_financial
         adult_military
         adult_motoring
         adult_prevention_reparation
-        adult_custodial_sentence
       ))
     end
   end

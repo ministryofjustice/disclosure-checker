@@ -2,7 +2,7 @@ Feature: Conviction
 
   @happy_path
   Scenario Outline: Adult military convictions with length
-    Given I am completing a basic 18 or over "Military convictions" conviction
+    Given I am completing a basic 18 or over "Military" conviction
     Then I should see "What was your military conviction?"
 
     When I choose "<subtype>"
@@ -25,7 +25,7 @@ Feature: Conviction
 
   @happy_path
   Scenario Outline: Adult military convictions without length
-    Given I am completing a basic 18 or over "Military convictions" conviction
+    Given I am completing a basic 18 or over "Military" conviction
     Then I should see "What was your military conviction?"
 
     When I choose "<subtype>"

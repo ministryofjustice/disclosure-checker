@@ -19,8 +19,8 @@ Feature: Conviction
     And I should be on "<result>"
 
     Examples:
-      | subtype          | known_date_header                         | length_type_header                                                      | length_header                                | result               |
-      | Disqualification | When were you given the disqualification? | Was the length of the disqualification given in weeks, months or years? | What was the length of the disqualification? | /steps/check/results |
+      | subtype                        | known_date_header                         | length_type_header                                                      | length_header                                | result               |
+      | Disqualification (driving ban) | When were you given the disqualification? | Was the length of the disqualification given in weeks, months or years? | What was the length of the disqualification? | /steps/check/results |
 
   @happy_path
   Scenario Outline: Motoring convictions without length

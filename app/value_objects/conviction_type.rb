@@ -28,12 +28,12 @@ class ConvictionType < ValueObject
 
     ADULT_PARENT_TYPES = [
       ADULT_COMMUNITY_ORDER       = new(:adult_community_order),
+      ADULT_CUSTODIAL_SENTENCE    = new(:adult_custodial_sentence),
       ADULT_DISCHARGE             = new(:adult_discharge),
       ADULT_FINANCIAL             = new(:adult_financial),
       ADULT_MILITARY              = new(:adult_military),
       ADULT_MOTORING              = new(:adult_motoring),
       ADULT_PREVENTION_REPARATION = new(:adult_prevention_reparation),
-      ADULT_CUSTODIAL_SENTENCE    = new(:adult_custodial_sentence),
     ].freeze,
 
     # Quick way of enabling/disabling convictions. These will not show in the interface to users.
