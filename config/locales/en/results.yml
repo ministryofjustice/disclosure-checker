@@ -11,12 +11,13 @@ en:
       prevention_reparation: Prevention or reparation order
       # adults
       adult_community_order: Community order
+      adult_custodial_sentence: Custody or hospital order
       adult_discharge: Discharge
       adult_financial: Financial penalty
-      adult_military: Military convictions
+      adult_military: Military
       adult_motoring: Motoring
       adult_prevention_reparation: Prevention or reparation order
-      adult_custodial_sentence: Prison sentence or hospital order
+
 
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
       # armed_forces
@@ -70,7 +71,7 @@ en:
       adult_service_community_order: Service community order
       adult_service_detention: Service detention
       # adult_motoring
-      adult_disqualification: Disqualification
+      adult_disqualification: Disqualification (driving ban)
       adult_endorsement: Endorsement
       adult_penalty_points: Penalty points
       # adult_discharge
@@ -81,6 +82,8 @@ en:
       adult_hospital_order: Hospital order
       adult_suspended_prison_sentence: Suspended prison sentence
       adult_prison_sentence: Prison sentence
+
+
 
   steps:
     check:

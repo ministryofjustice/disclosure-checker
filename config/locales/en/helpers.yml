@@ -248,7 +248,7 @@ en:
           adult_service_community_order: ""
           adult_service_detention: ""
           # adult_motoring
-          adult_disqualification: You were banned from driving for a certain period of time.
+          adult_disqualification: You were banned from driving for a certain period of time
           adult_endorsement: (placeholder hint text)
           adult_penalty_points: (placeholder hint text)
           # adult_discharge
