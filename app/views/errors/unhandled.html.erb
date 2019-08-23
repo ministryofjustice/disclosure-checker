@@ -11,10 +11,7 @@
 
         <p class="govuk-body"><%=t '.lead_text' %></p>
 
-        <div class="form-submit">
-          <%= link_to t('.start_again'), root_path, class: 'govuk-button' %>
-        </div>
-
+        <%= link_button :start_again, root_path %>
       </div>
     </div>
 

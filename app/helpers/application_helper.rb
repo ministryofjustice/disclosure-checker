@@ -74,6 +74,13 @@ module ApplicationHelper
     link_to text, url, class: 'govuk-link', rel: 'external', target: '_blank'
   end
 
+  def link_button(text, href, attributes = {})
+    link_to t("helpers.buttons.#{text}"), href, {
+      class: 'govuk-button',
+      data: { module: 'govuk-button' },
+    }.merge(attributes)
+  end
+
   # Use this to feature-flag code that should only run/show on test environments
   def dev_tools_enabled?
     Rails.env.development? || ENV.key?('DEV_TOOLS_ENABLED')

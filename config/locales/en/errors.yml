@@ -75,20 +75,16 @@ en:
       heading: You have already completed this check
       lead_text: If you want to make changes you will need to start a new check.
       results_page: Go to results page
-      start_again: New check
     invalid_session:
       page_title: Sorry, you'll have to start again
       heading: Sorry, you'll have to start again
       lead_text: Your session automatically ends if you don't use the service for %{session_timeout} minutes.
       more_text: We do this for your security. Any unsaved details will be deleted.
-      start_again: New check
     not_found:
       page_title: Page not found
       heading: Page not found
       lead_text: If you copied a web address, please check it’s correct.
-      start_again: New check
     unhandled:
       page_title: Unexpected error
       heading: Sorry, something went wrong with our service
       lead_text: You can go back and retry, or start again.
-      start_again: New check

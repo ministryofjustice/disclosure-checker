@@ -94,8 +94,11 @@ en:
       <<: *CONVICTION_SUBTYPES
 
   helpers:
-    submit:
+    buttons:
       continue: Continue
+      start_again: New check
+      resume_check: Resume check
+      restart_check: Start a new check
     fieldset:
       steps_check_kind_form:
         kind: Were you cautioned or convicted?

@@ -4,7 +4,7 @@ module GovukComponents
     delegate :t, :concat, to: :@template
 
     def continue_button(value: :continue, options: {})
-      button t("helpers.submit.#{value}"), {
+      button t("helpers.buttons.#{value}"), {
         name: nil,
         class: 'govuk-button',
         data: { module: 'govuk-button', 'prevent-double-click': true },

@@ -7,13 +7,11 @@
       <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
-        <div class="form-submit">
-          <%= link_to t('.resume_link'), previous_step_path, class: 'govuk-button govuk-!-margin-right-3 ga-pageLink',
-                      data: { ga_category: 'in progress warning', ga_label: 'resume check' } %>
+        <%= link_button :resume_check, previous_step_path, class: 'govuk-button govuk-!-margin-right-3 ga-pageLink',
+                        data: { ga_category: 'in progress warning', ga_label: 'resume check' } %>
 
-          <%= link_to t('.restart_link'), root_path(new: 'y'), class: 'govuk-button govuk-button--secondary ga-pageLink',
-                      data: { ga_category: 'in progress warning', ga_label: 'new check' } %>
-        </div>
+        <%= link_button :restart_check, root_path(new: 'y'), class: 'govuk-button govuk-button--secondary ga-pageLink',
+                        data: { ga_category: 'in progress warning', ga_label: 'new check' } %>
 
       </div>
     </div>

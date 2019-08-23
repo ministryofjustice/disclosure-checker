@@ -11,5 +11,3 @@ en:
     reset_session:
       page_title: Check in progress
       heading: It looks like you already have a check in progress
-      resume_link: Resume check
-      restart_link: Start a new check

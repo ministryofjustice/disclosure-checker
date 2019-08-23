@@ -170,6 +170,14 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
+  describe '#link_button' do
+    it 'builds the link markup styled as a button' do
+      expect(
+        helper.link_button(:start_again, root_path)
+      ).to eq('<a class="govuk-button" data-module="govuk-button" href="/">New check</a>')
+    end
+  end
+
   describe 'dev_tools_enabled?' do
     before do
       allow(Rails).to receive_message_chain(:env, :development?).and_return(development_env)
