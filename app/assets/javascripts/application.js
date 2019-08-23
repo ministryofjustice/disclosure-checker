@@ -12,19 +12,16 @@
 //
 //= require jquery
 //= require rails-ujs
+//
 // GOV.UK Frontend
 // https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/installing-with-npm.md
 //
-//= require govuk-frontend/all
+//= require govuk-frontend/govuk/all
 
 //= require moj
 //= require_tree ./modules
 
 $(document).ready(function() {
-
-  // Initialize JS in /modules\
+  // Initialize custom modules
   moj.init();
 });
-
-
-

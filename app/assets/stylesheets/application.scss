@@ -1,8 +1,8 @@
 // GOV.UK Frontend
 // https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/installing-with-npm.md
 //
-$govuk-assets-path: '/assets/govuk-frontend/assets/';
-@import 'govuk-frontend/all';
+$govuk-assets-path: '/assets/govuk-frontend/govuk/assets/';
+@import 'govuk-frontend/govuk/all';
 
 // Local CSS
 @import 'local/custom';
