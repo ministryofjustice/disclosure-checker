@@ -14,7 +14,7 @@ module GovukComponents
         attrs = {
           class: 'govuk-error-summary',
           aria: { labelledby: 'error-summary-title' },
-          data: { module: 'error-summary' },
+          data: { module: 'govuk-error-summary' },
           role: 'alert',
           tabindex: '-1',
         }.freeze
