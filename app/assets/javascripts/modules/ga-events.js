@@ -4,60 +4,30 @@ moj.Modules.gaEvents = {
     radioFormClass: '.govuk-radios__item input[type="radio"]',
     dateFormClass: '.govuk-date-input input[type="number"]',
     linkClass: '.ga-pageLink',
-    clickActionClass: '.ga-clickAction',
     revealingLinkClass: '.govuk-details__summary span.govuk-details__summary-text',
-    submitFormClass: '.ga-submitForm',
-    submitButtons: 'button[type="submit"], input[type="submit"]',
 
     init: function () {
         var self = this;
 
         // don't bind anything if the GA object isn't defined
         if (typeof window.ga !== 'undefined') {
-            // Some pesky side effect of unbinding/triggering the submit event in some of
-            // the following functions, is the submit button value is lost from the params.
-            // We use this value to know when the `Save and come back later` submit button
-            // was used, instead of the normal `Continue` button.
-            // Non-javascript browsers have no issues, will always send the submit value.
-            if ($(self.submitButtons).length) {
-                self.addSubmitValueParamOnClick();
-            }
-
             if ($(self.radioFormClass).length) {
                 self.trackRadioForms();
             }
-
             if ($(self.dateFormClass).length) {
                 self.trackDateForms();
             }
-
             if ($(self.linkClass).length) {
                 self.trackLinks();
             }
             if ($(self.revealingLinkClass).length) {
                 self.trackRevealingLinks();
             }
-            if ($(self.clickActionClass).length) {
-                self.trackClickActions();
-            }
-            if ($(self.submitFormClass).length) {
-                self.trackSubmitForms();
-            }
             // External links, tracked as GA outbound events
             if ($("a[rel^=external]").length) {
                 self.trackExternalLinks();
             }
         }
-    },
-
-    addSubmitValueParamOnClick: function() {
-        $(this.submitButtons).on('click', function() {
-            if ($(this).attr('name')) {
-                $('<input>',
-                    {type: 'hidden', name: $(this).attr('name'), value: $(this).attr('value')}
-                ).appendTo($(this).closest('form'));
-            }
-        });
     },
 
     trackRadioForms: function () {
@@ -169,24 +139,6 @@ moj.Modules.gaEvents = {
         });
     },
 
-    trackClickActions: function() {
-        var self = this,
-            $elements = $(self.clickActionClass);
-
-        $elements.on('click', function() {
-            var $el = $(this),
-                eventData;
-
-            eventData = {
-                eventCategory: $el.data('ga-category'),
-                eventAction: $el.data('ga-action'),
-                eventLabel: $el.data('ga-label')
-            };
-
-            self.sendAnalyticsEvent(eventData, {});
-        });
-    },
-
     // This function will not send to GA the query string, as frequently
     // this may contain personal identification or secure tokens.
     trackExternalLinks: function() {
@@ -199,28 +151,6 @@ moj.Modules.gaEvents = {
             ga('send', 'event', 'outbound', 'click', event_url, {});
 
             e.preventDefault();
-        });
-    },
-
-    trackSubmitForms: function () {
-        var self = this,
-            $form = $(self.submitFormClass);
-
-        // submitting GA tracked forms is intercepted[1] until the GA event has
-        // been sent, by sending target to make a callback[2]
-        $form.on('submit', function (e) {
-            var eventData,
-                options;
-
-            e.preventDefault(); // [1]
-
-            eventData = self.getFormData($form);
-            options = {
-                actionType: 'form',
-                actionValue: $form // [2]
-            };
-
-            self.sendAnalyticsEvent(eventData, options);
         });
     },
 
@@ -278,20 +208,6 @@ moj.Modules.gaEvents = {
         });
 
         return eventDataArray;
-    },
-
-    getFormData: function ($form) {
-        var category = $form.data('ga-category'),
-            label = $form.data('ga-label'),
-            eventData;
-
-        eventData = {
-            eventCategory: category,
-            eventAction: 'submit_form',
-            eventLabel: label
-        };
-
-        return eventData;
     },
 
     sendAnalyticsEvent: function (eventData, opts) {
