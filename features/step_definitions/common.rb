@@ -27,7 +27,7 @@ When(/^I click the "([^"]*)" link$/) do |text|
 end
 
 When(/^I click the "([^"]*)" button$/) do |text|
-  find("input[value='#{text}']").click
+  click_button(text)
 end
 
 When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
@@ -40,13 +40,13 @@ end
 
 When(/^I choose "([^"]*)"$/) do |text|
   step %[I click the radio button "#{text}"]
-  find('[name=commit]').click
+  step %[I click the "Continue" button]
 end
 
 And(/^I choose "([^"]*)" and fill in "([^"]*)" with "([^"]*)"$/) do |text, field, value|
   step %[I click the radio button "#{text}"]
   step %[I fill in "#{field}" with "#{value}"]
-  find('[name=commit]').click
+  step %[I click the "Continue" button]
 end
 
 When(/^I am completing a basic under 18 "([^"]*)" conviction$/) do |value|

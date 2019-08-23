@@ -20,7 +20,7 @@ RSpec.describe GovukComponents::FormBuilder do
     it 'outputs the continue button' do
       expect(
         html_output
-      ).to eq('<input type="submit" name="commit" value="Continue" class="govuk-button" data-disable-with="Continue" />')
+      ).to eq('<button type="submit" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true">Continue</button>')
     end
   end
 

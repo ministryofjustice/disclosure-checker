@@ -4,7 +4,11 @@ module GovukComponents
     delegate :t, :concat, to: :@template
 
     def continue_button(value: :continue, options: {})
-      submit t("helpers.submit.#{value}"), {class: 'govuk-button'}.merge(options)
+      button t("helpers.submit.#{value}"), {
+        name: nil,
+        class: 'govuk-button',
+        data: { module: 'govuk-button', 'prevent-double-click': true },
+      }.merge(options)
     end
 
     # Methods below overrides the one from the original gem, and reimplement them
