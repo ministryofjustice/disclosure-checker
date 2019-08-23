@@ -1,16 +1,7 @@
 <% content_for?(:page_title) ? yield(:page_title) : fallback_title %>
 
 <% content_for(:head) do %>
-  <!--[if !IE 8]><!-->
-  <%= stylesheet_link_tag 'application', media: 'all', integrity: true, crossorigin: 'anonymous' %>
-  <!--<![endif]-->
-
-  <!--[if IE 8]>
-  <%= stylesheet_link_tag '/assets/govuk-frontend/all-ie8.css', media: 'all', integrity: true, crossorigin: 'anonymous' %>
-  <![endif]-->
-
   <%= render partial: 'layouts/analytics' if analytics_tracking_id.present? %>
-
 <% end %>
 
 <% content_for(:service_name) do %>
@@ -27,11 +18,6 @@
 
 <% content_for(:footer_links) do %>
   <% render partial: 'layouts/footer_links' %>
-<% end %>
-
-<% content_for(:body_end) do %>
-  <%= javascript_include_tag 'application', integrity: true, crossorigin: 'anonymous' %>
-  <script>window.GOVUKFrontend.initAll();</script>
 <% end %>
 
 <%= render file: 'layouts/govuk_template' %>
