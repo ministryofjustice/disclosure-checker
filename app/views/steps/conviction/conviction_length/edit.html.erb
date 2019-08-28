@@ -19,7 +19,7 @@
         <%= step_form @form_object do |f| %>
           <%= f.text_field :conviction_length,
                            i18n_attribute: @form_object.conviction_length_type,
-                           input_options: { class: 'govuk-input--width-3', type: :number, pattern: '[0-9]*' },
+                           input_options: { class: 'govuk-input--width-3', inputmode: :numeric, pattern: '[0-9]*' },
                            label_options: { page_heading: false, size: 's' } %>
 
           <%= f.continue_button %>

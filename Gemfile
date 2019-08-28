@@ -6,7 +6,7 @@ ruby '2.6.3'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'govuk_elements_form_builder', '~> 1.3.0'
-gem 'gov_uk_date_fields', '~> 4.0.1'
+gem 'gov_uk_date_fields', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'pg', '~> 1.1.0'
 gem 'puma', '~> 3.0'

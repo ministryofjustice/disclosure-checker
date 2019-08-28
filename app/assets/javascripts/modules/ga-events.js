@@ -2,7 +2,7 @@
 
 moj.Modules.gaEvents = {
     radioFormClass: '.govuk-radios__item input[type="radio"]',
-    dateFormClass: '.govuk-date-input input[type="number"]',
+    dateFormClass: '.govuk-date-input input[type="text"]',
     linkClass: '.ga-pageLink',
     revealingLinkClass: '.govuk-details__summary span.govuk-details__summary-text',
 
@@ -188,7 +188,7 @@ moj.Modules.gaEvents = {
     },
 
     getDateYearData: function ($form) {
-        var $dateYears = $form.find('input[type="number"][id$="_yyyy"]'),
+        var $dateYears = $form.find('input[type="text"][id$="_yyyy"]'),
             eventDataArray = [];
 
         $dateYears.each(function (n, year) {
