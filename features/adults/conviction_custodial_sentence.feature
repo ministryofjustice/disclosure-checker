@@ -18,6 +18,6 @@ Feature: Conviction
 
   Examples:
     | subtype                   | known_date_header                   | length_type_header                                                   | length_header                          | result               |
-    | Prison sentence           | When were you given the sentence?   | Was the length of the sentence given in weeks, months or years?      | What was the length of the sentence?   | /steps/check/results |
-    | Suspended prison sentence | When were you given the sentence?   | Was the length of the sentence given in weeks, months or years?      | What was the length of the sentence?   | /steps/check/results |
+    | Prison sentence           | When did the sentence start?   | Was the length of the sentence given in weeks, months or years?      | What was the length of the sentence?   | /steps/check/results |
+    | Suspended prison sentence | When did the sentence start?   | Was the length of the sentence given in weeks, months or years?      | What was the length of the sentence?   | /steps/check/results |
     | Hospital order            | When were you given the order?      | Was the length of the order given in weeks, months or years?         | What was the length of the order?      | /steps/check/results |

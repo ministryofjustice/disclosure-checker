@@ -127,8 +127,8 @@ en:
         adult_exclusion_requirement: When were you given the exclusion requirement?
         adult_absolute_discharge: When were you given the discharge?
         adult_conditional_discharge: When were you given the discharge?
-        adult_suspended_prison_sentence: When were you given the sentence?
-        adult_prison_sentence: When were you given the sentence?
+        adult_suspended_prison_sentence: When did the sentence start?
+        adult_prison_sentence: When did the sentence start?
         adult_dismissal: When were you given the dismissal?
         adult_service_detention: When were you given the detention?
         adult_disqualification: When were you given the disqualification?
