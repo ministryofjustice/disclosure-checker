@@ -2,8 +2,6 @@ class ApplicationController < ActionController::Base
   include SecurityHandling
   include ErrorHandling
 
-  before_action :check_http_authenticate?
-
   # This is required to get request attributes in to the production logs.
   # See the various lograge configurations in `production.rb`.
   def append_info_to_payload(payload)
