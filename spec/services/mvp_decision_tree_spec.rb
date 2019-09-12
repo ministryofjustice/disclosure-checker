@@ -18,6 +18,6 @@ RSpec.describe MvpDecisionTree do
 
   context 'when the step is `info`' do
     let(:step_params) { { info: 'whatever' } }
-    it { is_expected.to have_destination('/home', :index) }
+    it { is_expected.to have_destination(:confirmation, :show) }
   end
 end

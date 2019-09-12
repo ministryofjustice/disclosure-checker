@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       edit_step :info do
         resources only: [:edit, :update], controller: :info
       end
+      show_step :confirmation
     end
     namespace :check do
       edit_step :kind
