@@ -4,7 +4,7 @@ class MvpDecisionTree < BaseDecisionTree
 
     case step_name
     when :info
-      { controller: '/home', action: :index }
+      show(:confirmation)
     else
       raise InvalidStep, "Invalid step '#{as || step_params}'"
     end
