@@ -1,4 +1,7 @@
 class Participant < ApplicationRecord
+  scope :opted_in, -> { where(opted_in: 'yes') }
+  scope :opted_out, -> { where(opted_in: 'no') }
+
   class << self
     def valid_reference?(reference)
       Rails.configuration.participants.include?(

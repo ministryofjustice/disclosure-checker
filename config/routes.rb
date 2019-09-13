@@ -26,6 +26,11 @@ Rails.application.routes.draw do
   get 'enable_adults',  controller: :experiments
   get 'disable_adults', controller: :experiments
 
+  # Back office
+  namespace :backoffice do
+    resources :participants, only: [:index]
+  end
+
   namespace :steps do
     namespace :mvp do
       edit_step :info do

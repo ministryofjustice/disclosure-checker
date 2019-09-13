@@ -1,0 +1,17 @@
+<% title 'Back office: dashboard' %>
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper" id="main-content">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">
+          Opted in/out participants
+        </h1>
+
+        <%= render partial: 'participant_table', locals: {results: @opted_in_participants, table_type: "Opted in participants #{@opted_in_participants.count}"} %>
+
+        <%= render partial: 'participant_table', locals: {results: @opted_out_participants, table_type: "Opted out participants #{@opted_out_participants.count}"} %>
+      </div>
+    </div>
+  </main>
+</div>
