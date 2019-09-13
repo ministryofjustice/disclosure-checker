@@ -55,4 +55,21 @@ RSpec.describe Participant, type: :model do
       expect(subject.increment_access_count).to eq(subject)
     end
   end
+
+  describe 'scopes' do
+    let!(:opted_out_participant) { create(:participant, :opted_out) }
+    let!(:opted_in_participant) { create(:participant) }
+
+    context ".opted_in" do
+      it "return all opted_in participant" do
+        expect(Participant.opted_in).to eq [opted_in_participant]
+      end
+    end
+
+    context ".opted_out" do
+      it "return all opted_ou participant" do
+        expect(Participant.opted_out).to eq [opted_out_participant]
+      end
+    end
+  end
 end

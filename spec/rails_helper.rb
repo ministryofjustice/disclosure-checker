@@ -25,6 +25,8 @@ RSpec.configure do |config|
   end
 
   config.include FactoryBot::Syntax::Methods
+
+  config.use_transactional_fixtures = true
 end
 
 RSpec::Matchers.define_negated_matcher :not_change, :change
