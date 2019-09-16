@@ -34,9 +34,10 @@ Rails.application.routes.draw do
   namespace :steps do
     namespace :mvp do
       edit_step :info do
-        resources only: [:show, :update], controller: :info
+        resources only: [:edit], controller: :info
       end
     end
+
     namespace :check do
       edit_step :kind
       edit_step :under_age
