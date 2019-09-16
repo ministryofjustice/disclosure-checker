@@ -1,4 +1,5 @@
 class PilotController < ApplicationController
+  skip_before_action :check_http_credentials
   before_action :validate_reference
 
   def show; end
