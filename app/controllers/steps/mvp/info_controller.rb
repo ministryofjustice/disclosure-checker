@@ -3,15 +3,8 @@ module Steps
     class InfoController < Steps::MvpStepController
       before_action :validate_reference
 
-      def edit
-        @form_object = InfoForm.build(participant_record)
-      end
-
-      def update
-        update_and_advance(
-          InfoForm, as: :info,
-          record: participant_record
-        )
+      def show
+        # @form_object = InfoForm.build(participant_record)
       end
 
       private
