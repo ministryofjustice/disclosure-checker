@@ -12,8 +12,7 @@
         </h1>
 
         <p class="govuk-body">
-          Over the past few months, the User-Centred Policy Design (UCPD) team at the Ministry of Justice has been
-          looking at ways to improve the information and guidance available to young offenders.
+          Over the past few months, the User-Centred Policy Design (UCPD) team at the Ministry of Justice has been looking at ways to improve the information and guidance available to young offenders.
         </p>
 
         <p class="govuk-body">
@@ -27,27 +26,27 @@
         </ul>
 
         <p class="govuk-body">
-          To help young offenders understand their criminal records, we’ve started working on an online service that
-          helps people check when their cautions or convictions become spent.
+         To help young offenders understand their criminal records, we’ve started working on an online service that helps people check when their cautions or convictions become spent.
         </p>
 
         <p class="govuk-body">
-          The aim is to help people find out whether they need to disclose cautions or convictions to organisations such
-          as employers, colleges or insurance companies.
+          The aim is to help people find out whether they need to disclose cautions or convictions to organisations such as employers, colleges or insurance companies.
         </p>
 
         <p class="govuk-body">
-          Some YOTs have already contributed towards this service and we’re really grateful for all the feedback and
-          advice we’ve been given. Much of it has already been used to make improvements.
+          Some YOTs have already contributed towards this service and we’re really grateful for all the feedback and advice we’ve been given. Much of it has been used to make improvements.
+        </p>
+
+        <p class="govuk-body">
+          We’ve also published <a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/guidance/telling-people-about-your-criminal-record">some detailed guidance about disclosing criminal records</a> on GOV.UK, which has received a lot of positive feedback.
         </p>
 
         <h2 class="govuk-heading-m">
-          About the service
+          About the service we’re piloting
         </h2>
 
         <p class="govuk-body">
-          '<%= service_name -%>' asks people what type of caution or conviction they were given and when they were given
-          it. It then gives the user the date on which it becomes spent.
+          '<%= service_name -%>' asks people what type of caution or conviction they were given and when they were given it. It then gives the user the date on which it becomes spent.
         </p>
 
         <p class="govuk-body">
@@ -63,8 +62,7 @@
         </ul>
 
         <div class="govuk-inset-text">
-          The service currently calculates only one caution or conviction at a time. We’re planning to add the ability
-          to calculate multiple convictions later.
+          The service currently calculates only one caution or conviction at a time. We’re planning to add the ability to calculate multiple convictions later.
         </div>
 
         <h2 class="govuk-heading-m">
@@ -72,24 +70,21 @@
         </h2>
 
         <p class="govuk-body">
-          We’re now at the stage where we’d like young people across the country to start interacting with the service,
-          with the support of their YOT worker.
+          We’re now at the stage where we’d like young people across the country to start interacting with the service, with the support of their YOT worker.
         </p>
 
         <p class="govuk-body">
           <strong>
-            We’d like to ask if you could take a few minutes to walk as many young people as possible through the
-            service to find out when their cautions or convictions become spent.
+            We’d like to ask if you could take a few minutes to walk as many young people as possible through the service to find out when their cautions or convictions become spent.
           </strong>
         </p>
 
         <p class="govuk-body">
-          This could be used as part of your existing process for when a young person is coming to the end of their time
-          with the YOT.
+          This could be used as part of your existing process for when a young person is coming to the end of their time with the YOT.
         </p>
 
         <p class="govuk-body">
-          The service can be used to help you explain:
+          We hope that the service can be used to help you explain:
         </p>
 
         <ul class="govuk-list govuk-list--bullet">
@@ -99,8 +94,11 @@
         </ul>
 
         <p class="govuk-body">
-          The fact that it’s run by MOJ should help people trust the information they’re given, and means that it will
-          be instantly updated whenever there are any changes in policy or law.
+          Everyone in your team is welcome to pilot the service with as many young people as they like. We really need YOT workers to sit alongside the young people in order to get a feel for how they use the service and any problems they encounter.
+        </p>
+
+        <p class=govuk-body">
+          Alternatively, YOT workers can test the service themselves to see how it works and make any suggestions if they think it can be improved.
         </p>
 
         <h2 class="govuk-heading-m">
@@ -118,11 +116,24 @@
         </ul>
 
         <p class="govuk-body">
-          We’re also really keen to get your feedback as a YOT worker with a lot of expertise in this field. We
-          especially need to know if the result given at the end of the service is incorrect.
+          We’re also really keen to get your feedback as a YOT worker with a lot of expertise in this field. We especially need to know if the result given at the end of the service is incorrect.
         </p>
 
+        <h2 class="govuk-heading-m">
+          What you need to know
+        </h2>
 
+        <p class="govuk-body">
+         As the service is currently being piloted, we cannot guarantee that the result given at the end of the service will be correct.
+        </p>
+
+         <p class="govuk-body">
+          If you choose to take part in our pilot, please let any young people know if the spent date that’s given at the end of the service is different to the date that you would have given them, and send us feedback that the result is incorrect
+        </p>
+
+        <%= link_to service_name, class: 'govuk-button govuk-button--start govuk-!-margin-top-2', data: { module: 'govuk-button' }, role: 'button', draggable: false do %>
+          Visit the pilot service
+        <% end %>
       </div>
     </div>
 

@@ -1,6 +1,6 @@
 class Participant < ApplicationRecord
-  scope :opted_in, -> { where(opted_in: 'yes') }
-  scope :opted_out, -> { where(opted_in: 'no') }
+  scope :opted_in, -> { where(opted_out: 'no') }
+  scope :opted_out, -> { where(opted_out: 'yes') }
 
   class << self
     def valid_reference?(reference)

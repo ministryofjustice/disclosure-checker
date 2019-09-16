@@ -10,7 +10,7 @@ RSpec.describe Steps::Mvp::InfoController, type: :controller do
     allow(participant).to receive(:save).and_return(true)
   end
 
-  describe '#show' do
+  describe '#edit' do
     let(:expected_params) { { id: reference } }
 
     it 'responds with HTTP success' do
