@@ -58,17 +58,18 @@ RSpec.describe Participant, type: :model do
 
   describe 'scopes' do
     let!(:opted_out_participant) { create(:participant, :opted_out) }
-    let!(:opted_in_participant) { create(:participant) }
+    let!(:opted_in_participant) { create(:participant, :opted_in) }
+    let!(:opted_in_nil_participant) { create(:participant) }
 
     context ".opted_in" do
       it "return all opted_in participant" do
-        expect(Participant.opted_in).to eq [opted_in_participant]
+        expect(Participant.opted_in_participant).to eq [opted_in_participant, opted_in_nil_participant]
       end
     end
 
-    context ".opted_out" do
+    context ".opted_out_participant" do
       it "return all opted_ou participant" do
-        expect(Participant.opted_out).to eq [opted_out_participant]
+        expect(Participant.opted_out_participant).to eq [opted_out_participant]
       end
     end
   end

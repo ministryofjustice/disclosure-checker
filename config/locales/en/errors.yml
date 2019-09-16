@@ -3,10 +3,6 @@ en:
   activemodel:
     errors:
       models:
-        steps/mvp/info_form:
-          attributes:
-            opted_in:
-              inclusion: Select if you want to take part in this trial
         steps/caution/known_date_form:
           attributes:
             known_date:

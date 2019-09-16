@@ -90,8 +90,6 @@ en:
       resume_check: Resume check
       restart_check: Start a new check
     fieldset:
-      steps_mvp_info_form:
-        opted_in: Would you like to help?
       steps_check_kind_form:
         kind: Were you cautioned or convicted?
       steps_check_under_age_form:
@@ -246,10 +244,6 @@ en:
           adult_prison_sentence: You were sent to prison (also known as being taken into custody)
 
     label:
-      steps_mvp_info_form:
-        opted_in:
-          'yes': Yes, we’d like to trial and help improve this service
-          'no': No, we don’t want to take part in this trial
       steps_check_kind_form:
         kind:
           caution: Cautioned
