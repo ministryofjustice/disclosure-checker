@@ -32,12 +32,6 @@ Rails.application.routes.draw do
   end
 
   namespace :steps do
-    namespace :mvp do
-      edit_step :info do
-        resources only: [:edit], controller: :info
-      end
-    end
-
     namespace :check do
       edit_step :kind
       edit_step :under_age
@@ -62,6 +56,8 @@ Rails.application.routes.draw do
       show_step :compensation_not_paid
     end
   end
+
+  resources :pilot, only: [:show]
 
   resource :errors, only: [] do
     get :invalid_session

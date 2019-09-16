@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Steps::Mvp::InfoController, type: :controller do
+RSpec.describe PilotController, type: :controller do
   let(:participant) { Participant.new }
   let(:reference) { 'test' }
 
@@ -10,23 +10,23 @@ RSpec.describe Steps::Mvp::InfoController, type: :controller do
     allow(participant).to receive(:save).and_return(true)
   end
 
-  describe '#edit' do
+  describe '#show' do
     let(:expected_params) { { id: reference } }
 
     it 'responds with HTTP success' do
-      get :edit, params: expected_params
+      get :show, params: expected_params
       expect(response).to be_successful
     end
 
     it 'raises an error if the reference is not present' do
       expect {
-        get :edit
+        get :show, params: { id: '' }
       }.to raise_error(RuntimeError, "Participant reference not found: ''")
     end
 
     it 'raises an error if the reference is invalid' do
       expect {
-        get :edit, params: { id: 'foobar' }
+        get :show, params: { id: 'foobar' }
       }.to raise_error(RuntimeError, "Participant reference not found: 'foobar'")
     end
   end
