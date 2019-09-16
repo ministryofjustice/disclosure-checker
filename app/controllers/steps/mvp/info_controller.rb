@@ -3,7 +3,7 @@ module Steps
     class InfoController < Steps::MvpStepController
       before_action :validate_reference
 
-      def show; end
+      def edit; end
 
       private
 
