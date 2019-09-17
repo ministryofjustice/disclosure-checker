@@ -17,8 +17,7 @@ en:
       unknown_date_details:
         title: I do not know this date
         body_html: |
-          <p>If you do not know the exact date you can enter an approximate one.</p>
-          <p>If you enter an approximate date, the result you’re given at the end of the service will not be correct.</p>
+          <p>If you enter an approximate date, you will not be given the exact date your caution or conviction is spent.</p>
         conditional_caution:
           title: My conditions have not ended or I do not know when they end
           body_html: |
