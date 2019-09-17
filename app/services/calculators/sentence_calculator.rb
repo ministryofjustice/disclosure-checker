@@ -85,7 +85,7 @@ module Calculators
     end
 
     def conviction_end_date
-      super.advance(days: 1)
+      super.advance(days: -1)
     end
   end
 end
