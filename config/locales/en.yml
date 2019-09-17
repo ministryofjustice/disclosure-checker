@@ -25,5 +25,4 @@ en:
             <p>You can enter a future date if you know when your conditions will end.</p>
             <p>The result you’re given at the end of the service will be correct as long as you stick to the conditions of your caution.</p>
             <h2 class="govuk-heading-s">If you do not know when your conditions end</h2>
-            <p>If you do not know the exact date you can enter an approximate one.</p>
-            <p>If you enter an approximate date, the result you’re given at the end of the service will not be correct.</p>
+            <p>If you enter an approximate date, you will not be given the exact date your caution is spent.</p>
