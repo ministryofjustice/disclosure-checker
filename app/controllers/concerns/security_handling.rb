@@ -55,14 +55,20 @@ module SecurityHandling
     @_current_participant = Participant.touch_or_create_by(reference: username)
   end
 
+  def authenticate_internal_user(username, password)
+    username == ENV.fetch('HTTP_AUTH_USER') && password == ENV.fetch('HTTP_AUTH_PASSWORD')
+  end
+
   def check_http_credentials
     return unless ENV.fetch('HTTP_AUTH_ENABLED', false)
 
     authenticate_or_request_with_http_basic do |username, password|
-      if username.eql?(password)
+      if request.fullpath.include?('backoffice')
+        authenticate_internal_user(username, password)
+      elsif username.eql?(password)
         authenticate_participant(username)
       else
-        username == ENV.fetch('HTTP_AUTH_USER') && password == ENV.fetch('HTTP_AUTH_PASSWORD')
+        authenticate_internal_user(username, password)
       end
     end
   end
