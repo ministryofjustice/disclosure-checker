@@ -6,6 +6,9 @@ Feature: Conviction
     Then I should see "What was your motoring conviction?"
 
     When I choose "<subtype>"
+    Then I should see "Did you get an endorsement?"
+
+    And I choose "Yes"
     Then I should see "<known_date_header>"
 
     And I enter a valid date
@@ -28,6 +31,9 @@ Feature: Conviction
     Then I should see "What was your motoring conviction?"
 
     When I choose "<subtype>"
+    Then I should see "Did you get an endorsement?"
+
+    And I choose "Yes"
     Then I should see "<known_date_header>"
 
     And I enter a valid date

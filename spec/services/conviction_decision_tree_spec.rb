@@ -51,7 +51,29 @@ RSpec.describe ConvictionDecisionTree do
       it { is_expected.to have_destination(:compensation_paid, :edit) }
     end
 
-    context 'when subtype is not equal to compensation_to_a_victim' do
+    context 'Motoring sub types' do
+      context 'when subtype equal adult_disqualification' do
+        let(:conviction_subtype) { :adult_disqualification }
+        it { is_expected.to have_destination(:motoring_endorsement, :edit) }
+      end
+
+      context 'when subtype equal adult_motoring_fine' do
+        let(:conviction_subtype) { :adult_motoring_fine }
+        it { is_expected.to have_destination(:motoring_endorsement, :edit) }
+      end
+
+      context 'when subtype equal adult_penalty_notice' do
+        let(:conviction_subtype) { :adult_penalty_notice }
+        it { is_expected.to have_destination(:motoring_endorsement, :edit) }
+      end
+
+      context 'when subtype equal adult_penalty_points' do
+        let(:conviction_subtype) { :adult_penalty_points }
+        it { is_expected.to have_destination(:motoring_endorsement, :edit) }
+      end
+    end
+
+    context 'when subtype is not equal to compensation_to_a_victim or any motoring sub types' do
       it { is_expected.to have_destination(:known_date, :edit) }
     end
   end
@@ -92,5 +114,10 @@ RSpec.describe ConvictionDecisionTree do
   context 'when the step is `compensation_payment_date`' do
     let(:step_params) { { compensation_payment_date: 'anything' } }
     it { is_expected.to have_destination('/steps/check/results', :show) }
+  end
+
+  context 'when the step is `motoring_endorsement`' do
+    let(:step_params) { { motoring_endorsement: 'anything' } }
+    it { is_expected.to have_destination(:known_date, :edit) }
   end
 end

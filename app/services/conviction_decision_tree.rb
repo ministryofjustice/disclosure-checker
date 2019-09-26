@@ -10,6 +10,8 @@ class ConvictionDecisionTree < BaseDecisionTree
       edit(:conviction_subtype)
     when :conviction_subtype
       after_conviction_subtype
+    when :motoring_endorsement
+      edit(:known_date)
     when :known_date
       after_known_date
     when :conviction_length_type
@@ -28,6 +30,7 @@ class ConvictionDecisionTree < BaseDecisionTree
 
   def after_conviction_subtype
     return edit(:compensation_paid) if conviction_subtype.compensation?
+    return edit(:motoring_endorsement) if conviction_subtype.motoring?
 
     edit(:known_date)
   end
