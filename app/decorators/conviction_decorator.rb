@@ -12,13 +12,4 @@ module ConvictionDecorator
       ConvictionType::ADULT_CUSTODIAL_SENTENCE,
     ].include?(self)
   end
-
-  def motoring?
-    [
-      ConvictionType::ADULT_DISQUALIFICATION,
-      ConvictionType::ADULT_MOTORING_FINE,
-      ConvictionType::ADULT_PENALTY_NOTICE,
-      ConvictionType::ADULT_PENALTY_POINTS
-    ].include?(self)
-  end
 end
