@@ -162,7 +162,8 @@ RSpec.describe ConvictionType do
       it 'returns subtypes of this conviction type' do
         expect(values).to eq(%w(
           adult_disqualification
-          adult_endorsement
+          adult_motoring_fine
+          adult_penalty_notice
           adult_penalty_points
         ))
       end
@@ -483,12 +484,20 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
-    context 'ADULT_ENDORSEMENT' do
-      let(:subtype) { 'adult_endorsement' }
+    context 'ADULT_MOTORING_FINE' do
+      let(:subtype) { 'adult_motoring_fine' }
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.compensation?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::MotoringCalculator::StartPlusFiveYears) }
+    end
+
+    context 'ADULT_PENALTY_NOTICE' do
+      let(:subtype) { 'adult_penalty_notice' }
+
+      it { expect(conviction_type.skip_length?).to eq(true) }
+      it { expect(conviction_type.compensation?).to eq(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::MotoringCalculator::StartPlusThreeYears) }
     end
 
     context 'ADULT_PENALTY_POINTS' do

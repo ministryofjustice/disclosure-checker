@@ -19,8 +19,8 @@ Feature: Conviction
     And I should be on "<result>"
 
     Examples:
-      | subtype                        | known_date_header                         | length_type_header                                                      | length_header                                | result               |
-      | Disqualification (driving ban) | When were you given the disqualification? | Was the length of the disqualification given in weeks, months or years? | What was the length of the disqualification? | /steps/check/results |
+      | subtype           | known_date_header                         | length_type_header                                                      | length_header                                | result               |
+      | Disqualification  | When were you given the disqualification? | Was the length of the disqualification given in weeks, months or years? | What was the length of the disqualification? | /steps/check/results |
 
   @happy_path
   Scenario Outline: Motoring convictions without length
@@ -34,6 +34,7 @@ Feature: Conviction
     Then I should be on "<result>"
 
     Examples:
-      | subtype        | known_date_header                       | result               |
-      | Endorsement    | When were you given the endorsement?    | /steps/check/results |
-      | Penalty points | When were you given the penalty points? | /steps/check/results |
+      | subtype                    | known_date_header                            | result               |
+      | Fine                       | When were you given the fine?                | /steps/check/results |
+      | Fixed Penalty notice (FPN) | When were you given the fixed notice points? | /steps/check/results |
+      | Penalty points             | When were you given the penalty points?      | /steps/check/results |

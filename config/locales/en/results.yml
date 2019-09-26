@@ -66,8 +66,9 @@ en:
       adult_service_community_order: Service community order
       adult_service_detention: Service detention
       # adult_motoring
-      adult_disqualification: Disqualification (driving ban)
-      adult_endorsement: Endorsement
+      adult_disqualification: Disqualification
+      adult_motoring_fine: Fine
+      adult_penalty_notice: Fixed Penalty notice (FPN)
       adult_penalty_points: Penalty points
       # adult_discharge
       adult_bind_over: Bind over

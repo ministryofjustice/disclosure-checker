@@ -66,8 +66,9 @@ en:
       adult_service_community_order: Service community order
       adult_service_detention: Service detention
       # adult_motoring
-      adult_disqualification: Disqualification (driving ban)
-      adult_endorsement: Endorsement
+      adult_disqualification: Disqualification
+      adult_motoring_fine: Fine
+      adult_penalty_notice: Fixed Penalty notice (FPN)
       adult_penalty_points: Penalty points
       # adult_discharge
       adult_bind_over: Bind over
@@ -120,7 +121,8 @@ en:
         adult_dismissal: When were you given the dismissal?
         adult_service_detention: When were you given the detention?
         adult_disqualification: When were you given the disqualification?
-        adult_endorsement: When were you given the endorsement?
+        adult_motoring_fine: When were you given the fine?
+        adult_penalty_notice: When were you given the fixed notice points?
         adult_penalty_points: When were you given the penalty points?
       steps_conviction_conviction_type_form:
         conviction_type: What type of conviction did you get?
@@ -232,9 +234,10 @@ en:
           adult_service_community_order: ""
           adult_service_detention: ""
           # adult_motoring
-          adult_disqualification: You were banned from driving for a certain period of time
-          adult_endorsement: (placeholder hint text)
-          adult_penalty_points: (placeholder hint text)
+          adult_disqualification: You were banned from driving
+          adult_motoring_fine: A court gave you a fine that was not a fixed penalty notice (FPN)
+          adult_penalty_notice: You were given a fine ‘on the spot’ or by post
+          adult_penalty_points: You were given a number of penalty points for a driving offence
           # adult_discharge
           adult_bind_over: Your sentence was postponed as long as you kept to certain conditions
           adult_absolute_discharge: You were found guilty of a crime but did not get sentenced
