@@ -64,3 +64,6 @@ en:
           page_title: Compensation payment date
           heading: When did you pay the compensation in full?
           lead_text: If you paid the compensation in stages, enter the date you made the final payment.
+      motoring_endorsement:
+        edit:
+          page_title: Motoring Endorsement

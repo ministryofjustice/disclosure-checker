@@ -154,6 +154,8 @@ en:
         compensation_paid: Have you paid the compensation in full?
       steps_conviction_compensation_payment_date_form:
         compensation_payment_date: When did you pay the compensation in full?
+      steps_conviction_motoring_endorsement_form:
+        motoring_endorsement: Did you get an endorsement?
 
     hint:
       steps_caution_known_date_form:
@@ -167,6 +169,8 @@ en:
         known_date_html: "Enter the date your sentence or order started. This might be the day you were sentenced in court or the first day you were held on remand. <span class='nowrap'>For example, 23 9 2018</span>"
       steps_conviction_compensation_payment_date_form:
         compensation_payment_date: For example, 23 9 2018
+      steps_conviction_motoring_endorsement_form:
+        motoring_endorsement: An endorsement means that your conviction is recorded on your driving licence. Endorsements are usually given by courts.
       radio_buttons:
         kind:
           caution: You were given an official warning by the police
