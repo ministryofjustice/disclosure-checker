@@ -67,3 +67,7 @@ en:
       motoring_endorsement:
         edit:
           page_title: Motoring Endorsement
+      motoring_disqualification_end_date:
+        edit:
+          page_title: Motoring disqualification end date
+          heading: When did your disqualification end?

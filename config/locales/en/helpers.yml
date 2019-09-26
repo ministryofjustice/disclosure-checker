@@ -156,6 +156,8 @@ en:
         compensation_payment_date: When did you pay the compensation in full?
       steps_conviction_motoring_endorsement_form:
         motoring_endorsement: Did you get an endorsement?
+      steps_conviction_motoring_disqualification_end_date_form:
+        motoring_disqualification_end_date: When did your disqualification end?
 
     hint:
       steps_caution_known_date_form:
@@ -171,6 +173,8 @@ en:
         compensation_payment_date: For example, 23 9 2018
       steps_conviction_motoring_endorsement_form:
         motoring_endorsement: An endorsement means that your conviction is recorded on your driving licence. Endorsements are usually given by courts.
+      steps_conviction_motoring_disqualification_end_date_form:
+        motoring_disqualification_end_date: For example, 23 9 2018
       radio_buttons:
         kind:
           caution: You were given an official warning by the police

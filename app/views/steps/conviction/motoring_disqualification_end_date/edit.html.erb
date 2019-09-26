@@ -1,0 +1,27 @@
+<% title t('.page_title') %>
+
+<div class="govuk-width-container">
+  <%= step_header %>
+
+  <main id="main-content" class="govuk-main-wrapper">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <%= error_summary %>
+        <%= step_subsection %>
+
+        <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
+
+        <%= step_form @form_object do |f| %>
+          <%= f.gov_uk_date_field :motoring_disqualification_end_date,
+                                  legend_options: { page_heading: false, visually_hidden: true } %>
+
+          <%= render partial: 'steps/shared/unknown_date_details', locals: { ga_label: 'compensation unknown date' } %>
+
+          <%= f.continue_button %>
+        <% end %>
+      </div>
+    </div>
+
+  </main>
+</div>
