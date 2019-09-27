@@ -12,18 +12,14 @@ Feature: Conviction
     Then I should see "<known_date_header>"
 
     And I enter a valid date
-    Then I should see "<length_type_header>"
+    Then I should see "<motoring_disqualification_end_date_header>"
 
-    And  I choose "Years"
-    Then I should see "<length_header>"
-    And I fill in "Number of years" with "5"
-
-    Then I click the "Continue" button
-    And I should be on "<result>"
+    And I enter a valid date
+    Then I should be on "<result>"
 
     Examples:
-      | subtype           | known_date_header                         | length_type_header                                                      | length_header                                | result               |
-      | Disqualification  | When were you given the disqualification? | Was the length of the disqualification given in weeks, months or years? | What was the length of the disqualification? | /steps/check/results |
+      | subtype           | known_date_header                         | motoring_disqualification_end_date_header | result               |
+      | Disqualification  | When were you given the disqualification? | When did your disqualification end?       | /steps/check/results |
 
   @happy_path
   Scenario Outline: Motoring convictions without length

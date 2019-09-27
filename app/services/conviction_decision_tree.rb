@@ -18,7 +18,7 @@ class ConvictionDecisionTree < BaseDecisionTree
       after_conviction_length_type
     when :compensation_paid
       after_compensation_paid
-    when :conviction_length, :compensation_payment_date
+    when :conviction_length, :compensation_payment_date, :motoring_disqualification_end_date
       results
     else
       raise InvalidStep, "Invalid step '#{as || step_params}'"
@@ -37,6 +37,7 @@ class ConvictionDecisionTree < BaseDecisionTree
 
   def after_known_date
     return results if conviction_subtype.skip_length?
+    return edit(:motoring_disqualification_end_date) if conviction_subtype.inquiry.adult_disqualification?
 
     edit(:conviction_length_type)
   end

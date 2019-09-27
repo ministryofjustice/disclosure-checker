@@ -26,13 +26,18 @@ RSpec.describe ConvictionDecisionTree do
     let(:step_params) { { known_date: 'anything' } }
     let(:conviction_subtype) { :detention_training_order }
 
-    context 'when subtype not equal fine' do
+    context 'when subtype not equal fine or adult_disqualification' do
       it { is_expected.to have_destination(:conviction_length_type, :edit) }
     end
 
     context 'when subtype equal fine' do
       let(:conviction_subtype) { :fine }
       it { is_expected.to have_destination('/steps/check/results', :show) }
+    end
+
+    context 'when subtype equal adult_disqualification' do
+      let(:conviction_subtype) { :adult_disqualification }
+      it { is_expected.to have_destination(:motoring_disqualification_end_date, :edit) }
     end
   end
 
@@ -113,6 +118,11 @@ RSpec.describe ConvictionDecisionTree do
 
   context 'when the step is `compensation_payment_date`' do
     let(:step_params) { { compensation_payment_date: 'anything' } }
+    it { is_expected.to have_destination('/steps/check/results', :show) }
+  end
+
+  context 'when the step is `motoring_disqualification_end_date`' do
+    let(:step_params) { { motoring_disqualification_end_date: 'anything' } }
     it { is_expected.to have_destination('/steps/check/results', :show) }
   end
 
