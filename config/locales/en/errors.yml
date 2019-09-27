@@ -55,7 +55,6 @@ en:
             motoring_disqualification_end_date:
               blank: Enter the end date of the motoring disqualification
               invalid: The end date of the motoring disqualification is not valid
-              future: The end date of the motoring disqualification can’t be in the future
 
   errors:
     format: "%{message}"
