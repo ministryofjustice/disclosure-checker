@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       show_step :compensation_not_paid
       edit_step :motoring_endorsement
       edit_step :motoring_disqualification_end_date
+      edit_step :motoring_lifetime_ban
     end
   end
 

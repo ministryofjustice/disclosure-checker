@@ -71,3 +71,6 @@ en:
         edit:
           page_title: Motoring disqualification end date
           heading: When did your disqualification end?
+      motoring_lifetime_ban:
+        edit:
+          page_title: Motoring lifetime ban
