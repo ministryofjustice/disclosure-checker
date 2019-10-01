@@ -1,6 +1,6 @@
 module Calculators
   class MotoringCalculator < BaseCalculator
-    NEVER_SPENT_THRESHOLD = 60
+    ENDORSEMENT_THRESHOLD = 60
 
     # If a lifetime ban was given:
     #  - never spent
@@ -24,7 +24,7 @@ module Calculators
       private
 
       def spent_time
-        if distance_in_months(conviction_start_date, motoring_disqualification_end_date) <= 60
+        if distance_in_months(conviction_start_date, motoring_disqualification_end_date) <= ENDORSEMENT_THRESHOLD
           conviction_start_date.advance(FIVE_YEARS_ADDED_TIME)
         else
           motoring_disqualification_end_date
