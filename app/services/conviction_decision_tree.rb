@@ -2,6 +2,7 @@ class ConvictionDecisionTree < BaseDecisionTree
   include ValueObjectMethods
 
   # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/MethodLength
   def destination
     return next_step if next_step
 
@@ -18,21 +19,36 @@ class ConvictionDecisionTree < BaseDecisionTree
       after_conviction_length_type
     when :compensation_paid
       after_compensation_paid
+    when :motoring_lifetime_ban
+      after_motoring_lifetime_ban
     when :conviction_length, :compensation_payment_date, :motoring_disqualification_end_date
       results
     else
       raise InvalidStep, "Invalid step '#{as || step_params}'"
     end
   end
+  # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/CyclomaticComplexity
 
   private
 
   def after_conviction_subtype
     return edit(:compensation_paid) if conviction_subtype.compensation?
-    return edit(:motoring_endorsement) if conviction_subtype.parent.inquiry.adult_motoring?
+    return after_adult_motoring if conviction_subtype.parent.inquiry.adult_motoring?
 
     edit(:known_date)
+  end
+
+  def after_adult_motoring
+    return edit(:motoring_lifetime_ban) if conviction_subtype.inquiry.adult_disqualification?
+
+    edit(:motoring_endorsement)
+  end
+
+  def after_motoring_lifetime_ban
+    return results if GenericYesNo.new(disclosure_check.motoring_lifetime_ban).yes?
+
+    edit(:motoring_endorsement)
   end
 
   def after_known_date

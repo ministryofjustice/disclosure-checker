@@ -1,11 +1,25 @@
 Feature: Conviction
 
   @happy_path
-  Scenario Outline: Motoring convictions with length
+  Scenario Outline: Lifetime Motoring convictions
+    Given I am completing a basic 18 or over "Motoring" conviction
+    Then I should see "What was your motoring conviction?"
+
+    When I choose "Disqualification"
+    Then I should see "Were you given a lifetime ban?"
+
+    And I choose "Yes"
+    Then I should be on "<result>"
+
+  @happy_path
+  Scenario Outline: Motoring convictions
     Given I am completing a basic 18 or over "Motoring" conviction
     Then I should see "What was your motoring conviction?"
 
     When I choose "<subtype>"
+    Then I should see "Were you given a lifetime ban?"
+
+    And I choose "No"
     Then I should see "Did you get an endorsement?"
 
     And I choose "Yes"

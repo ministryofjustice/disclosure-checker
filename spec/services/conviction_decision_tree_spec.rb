@@ -7,6 +7,7 @@ RSpec.describe ConvictionDecisionTree do
       conviction_type: conviction_type,
       conviction_subtype: conviction_subtype,
       compensation_paid: compensation_paid,
+      motoring_lifetime_ban: motoring_lifetime_ban
     )
   end
 
@@ -16,6 +17,7 @@ RSpec.describe ConvictionDecisionTree do
   let(:conviction_type)    { nil }
   let(:conviction_subtype) { nil }
   let(:compensation_paid)  { nil }
+  let(:motoring_lifetime_ban) { nil }
 
 
   subject { described_class.new(disclosure_check: disclosure_check, step_params: step_params, as: as, next_step: next_step) }
@@ -59,7 +61,7 @@ RSpec.describe ConvictionDecisionTree do
     context 'Motoring sub types' do
       context 'when subtype equal adult_disqualification' do
         let(:conviction_subtype) { :adult_disqualification }
-        it { is_expected.to have_destination(:motoring_endorsement, :edit) }
+        it { is_expected.to have_destination(:motoring_lifetime_ban, :edit) }
       end
 
       context 'when subtype equal adult_motoring_fine' do
@@ -129,5 +131,19 @@ RSpec.describe ConvictionDecisionTree do
   context 'when the step is `motoring_endorsement`' do
     let(:step_params) { { motoring_endorsement: 'anything' } }
     it { is_expected.to have_destination(:known_date, :edit) }
+  end
+
+  context 'when the step is `motoring_lifetime_ban`' do
+    context 'when the step is `motoring_lifetime_ban` equal yes' do
+      let(:motoring_lifetime_ban)  { GenericYesNo::YES }
+      let(:step_params) { { motoring_lifetime_ban: motoring_lifetime_ban } }
+      it { is_expected.to have_destination('/steps/check/results', :show) }
+    end
+
+    context 'when the step is `motoring_lifetime_ban` equal no' do
+      let(:motoring_lifetime_ban)  { GenericYesNo::NO }
+      let(:step_params) { { motoring_lifetime_ban: motoring_lifetime_ban } }
+      it { is_expected.to have_destination(:motoring_endorsement, :edit) }
+    end
   end
 end
