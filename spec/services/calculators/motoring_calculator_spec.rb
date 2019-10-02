@@ -76,7 +76,7 @@ RSpec.describe Calculators::MotoringCalculator do
       end
 
       context 'without a motoring endorsement ' do
-        it { expect(subject.expiry_date).to eq(false) }
+        it { expect(subject.expiry_date).to eq(true) }
       end
     end
   end

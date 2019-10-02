@@ -1,0 +1,26 @@
+<% title t('.page_title') %>
+<% track_transaction name: 'Conviction check completed', category: 'Completed checks', dimensions: { spent: 'no_date' } %>
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper" id="main-content">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+
+        <div class="govuk-panel govuk-panel--confirmation">
+          <h1 class="govuk-panel__title">
+            Your fixed penalty notice (FPN) was not a conviction
+          </h1>
+          <div class="govuk-panel__body">
+            You will never need to tell people about this when they ask about your criminal record.
+          </div>
+        </div>
+
+        <%= render partial: 'steps/check/results/shared/summary', locals: { result: @presenter } %>
+
+        <%= render partial: 'steps/check/results/shared/disclaimer' %>
+
+        <%= render partial: 'steps/check/results/shared/feedback' %>
+      </div>
+    </div>
+  </main>
+</div>

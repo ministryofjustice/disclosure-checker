@@ -46,7 +46,7 @@ module Calculators
       def expiry_date
         return conviction_start_date.advance(REHABILITATION_1) if motoring_endorsement?
 
-        false
+        true
       end
     end
 

@@ -12,7 +12,7 @@ class ConvictionDecisionTree < BaseDecisionTree
     when :conviction_subtype
       after_conviction_subtype
     when :motoring_endorsement
-      edit(:known_date)
+      after_motoring_endorsement
     when :known_date
       after_known_date
     when :conviction_length_type
@@ -68,5 +68,15 @@ class ConvictionDecisionTree < BaseDecisionTree
     return edit(:compensation_payment_date) if GenericYesNo.new(disclosure_check.compensation_paid).yes?
 
     show(:compensation_not_paid)
+  end
+
+  def after_motoring_endorsement
+    return results if penalty_notice_without_endorsement?
+
+    edit(:known_date)
+  end
+
+  def penalty_notice_without_endorsement?
+    conviction_subtype.inquiry.adult_penalty_notice? && GenericYesNo.new(disclosure_check.motoring_endorsement).no?
   end
 end

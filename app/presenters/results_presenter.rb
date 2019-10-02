@@ -34,7 +34,7 @@ class ResultsPresenter
     tense = if expiry_date.instance_of?(Date)
               expiry_date.past? ? :spent : :not_spent
             else
-              :never_spent
+              expiry_date ? :no_record : :never_spent
             end
 
     [disclosure_check.kind, tense].join('_')
