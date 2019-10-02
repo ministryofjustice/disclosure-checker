@@ -11,7 +11,6 @@ module Calculators
     # If an endorsement was not received
     #  - end date
     class Disqualification < MotoringCalculator
-      TWO_YEARS_ADDED_TIME = { months: 24 }.freeze
       FIVE_YEARS_ADDED_TIME = { months: 60 }.freeze
 
       def expiry_date
