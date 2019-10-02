@@ -120,9 +120,9 @@ en:
         adult_prison_sentence: When did the sentence start?
         adult_dismissal: When were you given the dismissal?
         adult_service_detention: When were you given the detention?
-        adult_disqualification: When were you given the disqualification?
+        adult_disqualification: When did the ban start?
         adult_motoring_fine: When were you given the fine?
-        adult_penalty_notice: When were you given the fixed notice points?
+        adult_penalty_notice: When was the endorsement given?
         adult_penalty_points: When were you given the penalty points?
       steps_conviction_conviction_type_form:
         conviction_type: What type of conviction did you get?
@@ -157,7 +157,7 @@ en:
       steps_conviction_motoring_endorsement_form:
         motoring_endorsement: Did you get an endorsement?
       steps_conviction_motoring_disqualification_end_date_form:
-        motoring_disqualification_end_date: When did your disqualification end?
+        motoring_disqualification_end_date: When did the ban end?
       steps_conviction_motoring_lifetime_ban_form:
         motoring_lifetime_ban: Were you given a lifetime ban?
 

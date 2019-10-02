@@ -123,7 +123,7 @@ en:
         'yes': Under 18
         'no': 18 or over
     known_date:
-      question: Date of conviction
+      question: Start date
     conviction_length:
       question: Length of conviction
       answers:
@@ -133,3 +133,10 @@ en:
         no_length: No length was given
     compensation_payment_date:
       question: Compensation payment date
+    motoring_endorsement:
+      question: Motoring endorsement
+    motoring_disqualification_end_date:
+      question: End date
+    motoring_lifetime_ban:
+      question: Motoring lifetime ban
+
