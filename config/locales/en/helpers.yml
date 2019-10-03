@@ -176,7 +176,7 @@ en:
       steps_conviction_motoring_endorsement_form:
         motoring_endorsement: An endorsement means that your conviction is recorded on your driving licence. Endorsements are usually given by courts.
       steps_conviction_motoring_disqualification_end_date_form:
-        motoring_disqualification_end_date: For example, 23 9 2018
+        motoring_disqualification_end_date_html: "Leave this blank if your ban had no end date. <p>For example, 23 9 2018</p>"
       radio_buttons:
         kind:
           caution: You were given an official warning by the police

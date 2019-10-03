@@ -12,7 +12,7 @@ RSpec.describe Calculators::MotoringCalculator do
   let(:known_date) { Date.new(2018, 10, 31) }
   let(:motoring_endorsement) { GenericYesNo::NO }
   let(:motoring_disqualification_end_date) { Date.new(2020, 10, 31) }
-  let(:motoring_lifetime_ban) { GenericYesNo::NO }
+  let(:motoring_lifetime_ban) { nil }
 
   describe Calculators::MotoringCalculator::Disqualification do
     context '#expiry_date' do
@@ -21,20 +21,37 @@ RSpec.describe Calculators::MotoringCalculator do
         it { expect(subject.expiry_date).to eq(false) }
       end
 
-      context 'with a motoring endorsement ' do
-        let(:motoring_endorsement) { GenericYesNo::YES }
-        context 'less than or equal 5 years' do
-          it { expect(subject.expiry_date.to_s).to eq('2023-10-31') }
+      context 'without a motoring lifetime ban' do
+        let(:motoring_lifetime_ban) { GenericYesNo::NO }
+        context 'with a motoring_disqualification_end_date' do
+          context 'with a motoring endorsement ' do
+            let(:motoring_endorsement) { GenericYesNo::YES }
+            context 'less than or equal 5 years' do
+              it { expect(subject.expiry_date.to_s).to eq('2023-10-31') }
+            end
+
+            context 'greater than 5 years' do
+              let(:motoring_disqualification_end_date) { Date.new(2025, 10, 31) }
+              it { expect(subject.expiry_date.to_s).to eq(motoring_disqualification_end_date.to_s) }
+            end
+          end
+
+          context 'without a motoring endorsement ' do
+            it { expect(subject.expiry_date.to_s).to eq(motoring_disqualification_end_date.to_s) }
+          end
         end
 
-        context 'greater than 5 years' do
-          let(:motoring_disqualification_end_date) { Date.new(2025, 10, 31) }
-          it { expect(subject.expiry_date.to_s).to eq(motoring_disqualification_end_date.to_s) }
-        end
-      end
+        context 'with a motoring_disqualification_end_date' do
+          let(:motoring_disqualification_end_date) { nil }
+          context 'with a motoring endorsement ' do
+            let(:motoring_endorsement) { GenericYesNo::YES }
+            it { expect(subject.expiry_date.to_s).to eq('2023-10-31') }
+          end
 
-      context 'without a motoring endorsement ' do
-        it { expect(subject.expiry_date.to_s).to eq(motoring_disqualification_end_date.to_s) }
+          context 'without a motoring endorsement ' do
+            it { expect(subject.expiry_date.to_s).to eq('2020-10-31') }
+          end
+        end
       end
     end
   end

@@ -7,7 +7,6 @@ module Steps
 
       acts_as_gov_uk_date :motoring_disqualification_end_date
 
-      validates_presence_of :motoring_disqualification_end_date
       validates :motoring_disqualification_end_date, sensible_date: { allow_future: true }
 
       private

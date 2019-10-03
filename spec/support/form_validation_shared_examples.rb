@@ -127,7 +127,9 @@ RSpec.shared_examples 'a date question form' do |options|
   subject { described_class.new(arguments) }
 
   describe '#save' do
-    it { should validate_presence_of(question_attribute) }
+    if options[:allow_empty_date].nil?
+      it { should validate_presence_of(question_attribute) }
+    end
 
     context 'when no disclosure_check is associated with the form' do
       let(:disclosure_check) { nil }
@@ -141,13 +143,15 @@ RSpec.shared_examples 'a date question form' do |options|
       context 'when date is not given' do
         let(:date_value) { nil }
 
-        it 'returns false' do
-          expect(subject.save).to be(false)
-        end
+        if options[:allow_empty_date].nil?
+          it 'returns false' do
+            expect(subject.save).to be(false)
+          end
 
-        it 'has a validation error on the field' do
-          expect(subject).to_not be_valid
-          expect(subject.errors.added?(question_attribute, :blank)).to eq(true)
+          it 'has a validation error on the field' do
+            expect(subject).to_not be_valid
+            expect(subject.errors.added?(question_attribute, :blank)).to eq(true)
+          end
         end
       end
 
