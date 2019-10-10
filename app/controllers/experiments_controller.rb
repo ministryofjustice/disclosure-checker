@@ -11,6 +11,16 @@ class ExperimentsController < ApplicationController
     cookies.delete :adults_enabled
     redirect_to root_path
   end
+
+  def enable_motoring
+    cookies.permanent[:motoring_enabled] = 1
+    redirect_to root_path
+  end
+
+  def disable_motoring
+    cookies.delete :motoring_enabled
+    redirect_to root_path
+  end
   # :nocov:
 
   private

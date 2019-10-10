@@ -9,7 +9,14 @@ module Steps
       end
 
       def update
-        update_and_advance(ConvictionTypeForm)
+        update_and_advance(ConvictionTypeForm, as: as_name)
+      end
+
+      private
+
+      # TODO: temporary feature-flag, to be removed when no needed
+      def as_name
+        cookies[:motoring_enabled].present? ? :conviction_type : :bypass_motoring_conviction_type
       end
     end
   end

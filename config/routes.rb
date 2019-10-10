@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   get 'enable_adults',  controller: :experiments
   get 'disable_adults', controller: :experiments
 
+  get 'enable_motoring',  controller: :experiments
+  get 'disable_motoring', controller: :experiments
+
   # Back office
   namespace :backoffice do
     resources :participants, only: [:index]
@@ -57,6 +60,7 @@ Rails.application.routes.draw do
       edit_step :motoring_endorsement
       edit_step :motoring_disqualification_end_date
       edit_step :motoring_lifetime_ban
+      show_step :exit_motoring
     end
   end
 

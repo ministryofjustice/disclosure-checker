@@ -62,6 +62,7 @@ end
 
 When(/^I am completing a basic 18 or over "([^"]*)" conviction$/) do |value|
   step %[I visit "/enable_adults"]
+  step %[I visit "/enable_motoring"]
   step %[I visit "/"]
   step %[I click the "Start now" link]
   step %[I should see "Were you cautioned or convicted?"]

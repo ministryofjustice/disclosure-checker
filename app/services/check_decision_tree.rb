@@ -25,7 +25,7 @@ class CheckDecisionTree < BaseDecisionTree
     end
   end
 
-  # TODO: temporary feature-flag, to be removed when no needed
+  # TODO: temporary feature-flag, to be removed when not needed
   def under_age_or_bypass?
     GenericYesNo.new(disclosure_check.under_age).yes? || step_name.eql?(:bypass_under_age)
   end
