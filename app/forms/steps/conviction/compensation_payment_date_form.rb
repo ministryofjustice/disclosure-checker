@@ -5,7 +5,7 @@ module Steps
 
       attribute :compensation_payment_date, Date
 
-      acts_as_gov_uk_date :compensation_payment_date
+      acts_as_gov_uk_date :compensation_payment_date, error_clash_behaviour: :omit_gov_uk_date_field_error
 
       validates_presence_of :compensation_payment_date
       validates :compensation_payment_date, sensible_date: true

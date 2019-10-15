@@ -6,7 +6,7 @@ en:
         steps/caution/known_date_form:
           attributes:
             known_date:
-              blank: Enter the date of the caution
+              blank: Enter the date of the caution in the format dd/mm/yyyy
               invalid: The date of the caution is not valid
               future: The date of the caution can’t be in the future
         steps/check/under_age_form:
@@ -16,13 +16,13 @@ en:
         steps/caution/conditional_end_date_form:
           attributes:
             conditional_end_date:
-              blank: Enter the date the conditions ended
+              blank: Enter the date the conditions ended in the format dd/mm/yyyy
               invalid: The date conditions ended is not valid
               after_caution_date: The date conditions ended must be after the caution date
         steps/conviction/known_date_form:
           attributes:
             known_date:
-              blank: Enter the date of the conviction
+              blank: Enter the date of the conviction in the format dd/mm/yyyy
               invalid: The date of the conviction is not valid
               future: The date of the conviction can’t be in the future
         steps/conviction/conviction_type_form:
@@ -47,13 +47,13 @@ en:
         steps/conviction/compensation_payment_date_form:
           attributes:
             compensation_payment_date:
-              blank: Enter the date of the compensation payment
+              blank: Enter the date of the compensation payment in the format dd/mm/yyyy
               invalid: The date of the compensation payment date is not valid
               future: The date of the compensation payment date can’t be in the future
         steps/conviction/motoring_disqualification_end_date_form:
           attributes:
             motoring_disqualification_end_date:
-              blank: Enter the end date of the motoring disqualification
+              blank: Enter the end date of the motoring disqualification in the format dd/mm/yyyy
               invalid: The end date of the motoring disqualification is not valid
 
   errors:
