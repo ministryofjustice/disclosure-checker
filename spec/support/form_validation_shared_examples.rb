@@ -155,6 +155,19 @@ RSpec.shared_examples 'a date question form' do |options|
         end
       end
 
+      context 'when year part of the date is missing' do
+        let(:date_value) { Date.new(0000, 10, 31) }
+
+        it 'returns false' do
+          expect(subject.save).to be(false)
+        end
+
+        it 'has a validation error on the field' do
+          expect(subject).to_not be_valid
+          expect(subject.errors.added?(question_attribute, :blank)).to eq(true)
+        end
+      end
+
       context 'when date is invalid' do
         let(:date_value) { Date.new(18, 10, 31) } # 2-digits year (18)
 
