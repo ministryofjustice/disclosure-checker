@@ -12,12 +12,17 @@ class SensibleDateValidator < ActiveModel::EachValidator
 
   def validate_each(record, attribute, value)
     return unless value.is_a?(Date)
+    return record.errors.add(attribute, :blank) unless positive_year?(value)
 
     record.errors.add(attribute, :invalid) unless valid_year?(value)
     record.errors.add(attribute, :future)  unless valid_future?(value)
   end
 
   private
+
+  def positive_year?(date)
+    date.year.to_i.positive?
+  end
 
   def valid_year?(date)
     date.year.to_i >= @_year
