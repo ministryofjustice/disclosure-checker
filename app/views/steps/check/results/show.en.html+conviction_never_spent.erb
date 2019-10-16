@@ -31,9 +31,7 @@
             record check</a>.
         </p>
 
-        <div class="govuk-inset-text">
-          If you entered any approximate dates, the result you’ve been given might not be correct.
-        </div>
+        <%= render partial: 'steps/check/results/shared/guidance' %>
 
         <%= render partial: 'steps/check/results/shared/summary', locals: { result: @presenter } %>
 

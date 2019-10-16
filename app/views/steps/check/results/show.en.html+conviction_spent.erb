@@ -32,9 +32,7 @@
           </p>
         <% end %>
 
-        <div class="govuk-inset-text">
-          The result you’ve been given is for guidance only. Find out <a class="govuk-link" href="#disclaimer">how to use this information</a> before deciding whether or not to tell people about your caution or conviction.
-        </div>
+        <%= render partial: 'steps/check/results/shared/guidance' %>
 
         <%= render partial: 'steps/check/results/shared/meaning' %>
 
