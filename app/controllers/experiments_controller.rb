@@ -21,6 +21,16 @@ class ExperimentsController < ApplicationController
     cookies.delete :motoring_enabled
     redirect_to root_path
   end
+
+  def enable_multiples
+    cookies.permanent[:multiples_enabled] = 1
+    redirect_to root_path
+  end
+
+  def disable_multiples
+    cookies.delete :multiples_enabled
+    redirect_to root_path
+  end
   # :nocov:
 
   private

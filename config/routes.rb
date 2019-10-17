@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   get 'enable_motoring',  controller: :experiments
   get 'disable_motoring', controller: :experiments
 
+  get 'enable_multiples',  controller: :experiments
+  get 'disable_multiples', controller: :experiments
+
   # Back office
   namespace :backoffice do
     resources :participants, only: [:index]
