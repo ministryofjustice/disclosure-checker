@@ -8,3 +8,6 @@ en:
       under_age:
         edit:
           page_title: Age when cautioned or convicted
+      check_your_answers:
+        show:
+          page_title: Check your answers
