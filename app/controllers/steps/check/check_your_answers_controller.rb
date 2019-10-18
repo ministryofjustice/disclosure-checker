@@ -2,7 +2,11 @@ module Steps
   module Check
     class CheckYourAnswersController < Steps::CheckStepController
       def show
-        @presenter = ResultsPresenter.build(current_disclosure_check)
+        @presenters = current_disclosure_report.check_groups.map do |check_group|
+          check_group.disclosure_checks.map do |disclosure_check|
+            ResultsPresenter.build(disclosure_check)
+          end
+        end.flatten
       end
     end
   end

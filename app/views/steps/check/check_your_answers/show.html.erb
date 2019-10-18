@@ -17,9 +17,7 @@
 
         <p class="govuk-heading-m">Your cautions or convictions</p>
 
-        <dl class="govuk-summary-list">
-           <%= render @presenter.summary %>
-        </dl>
+        <%= render partial: 'steps/check/check_your_answers/shared/checks', locals: { checks: @presenters } %>
 
         <h2 class="govuk-heading-m">Add a separate caution or conviction</h2>
 
