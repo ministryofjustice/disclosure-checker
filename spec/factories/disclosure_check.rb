@@ -3,6 +3,7 @@
 #
 FactoryBot.define do
   factory :disclosure_check do
+    check_group
     kind { CheckKind::CAUTION }
     known_date { Date.new(2018, 10, 31) }
     under_age { GenericYesNo::YES }

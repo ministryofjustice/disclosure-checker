@@ -1,9 +1,0 @@
-<% checks.each.with_index(1) do |check, i| %>
-  <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
-    <%= "#{i}. #{t("#{check.disclosure_check.kind}")}"%>
-  </h3>
-
-  <dl class="govuk-summary-list">
-    <%= render check.summary %>
-  </dl>
-<% end %>

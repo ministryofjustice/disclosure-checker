@@ -1,0 +1,7 @@
+<h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+  <%= "#{check.number}. #{t("kind.#{check.name}", scope: check.scope)}"%>
+</h3>
+
+<dl class="govuk-summary-list">
+  <%= render check.question_answer %>
+</dl>
