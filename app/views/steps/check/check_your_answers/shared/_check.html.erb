@@ -2,6 +2,15 @@
   <%= "#{check.number}. #{t("kind.#{check.name}", scope: check.scope)}"%>
 </h3>
 
-<dl class="govuk-summary-list">
-  <%= render check.question_answers %>
-</dl>
+<div class="govuk-inset-text govuk-!-margin-top-2">
+
+  <%= render check.summary %>
+
+  <% if check.add_another_sentence_button %>
+    <div class="govuk-!-margin-top-1">
+      <%= button_to 'Add another sentence to this conviction', checks_path(check_group_id: check.check_group.id),
+                          class: 'govuk-button govuk-button--secondary',
+                          data: { module: 'govuk-button', 'prevent-double-click': true } %>
+    </div>
+  <% end %>
+</div>

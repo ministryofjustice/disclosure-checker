@@ -46,5 +46,9 @@ FactoryBot.define do
       conviction_length_type { ConvictionLengthType::MONTHS }
       conviction_length { 15 }
     end
+
+    trait :completed do
+      status { :completed }
+    end
   end
 end
