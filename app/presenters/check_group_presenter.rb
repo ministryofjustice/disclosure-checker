@@ -1,11 +1,9 @@
 class CheckGroupPresenter
-  attr_reader :number, :name, :check_group, :scope, :add_another_sentence_button, :checks
+  attr_reader :number, :check_group, :scope
 
   def initialize(number, check_group, scope:)
     @number = number
     @check_group = check_group
-    @name = first_check_kind
-    @add_another_sentence_button = add_another_sentence_button?
     @scope = scope
   end
 
@@ -19,11 +17,15 @@ class CheckGroupPresenter
     'check_your_answers/shared/check'
   end
 
-  private
-
   def add_another_sentence_button?
     first_check_kind.inquiry.conviction?
   end
+
+  def check_group_name
+    first_check_kind
+  end
+
+  private
 
   def first_check_kind
     completed_checks.first.kind

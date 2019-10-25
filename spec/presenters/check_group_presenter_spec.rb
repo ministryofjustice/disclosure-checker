@@ -19,4 +19,28 @@ RSpec.describe CheckGroupPresenter do
       end
     end
   end
+
+  describe '#check_group_name' do
+    context 'caution' do
+      let!(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
+      it { expect(subject.check_group_name).to eq('caution') }
+    end
+    context 'conviction' do
+      let!(:disclosure_check) { create(:disclosure_check, :conviction,  :completed) }
+      it { expect(subject.check_group_name).to eq('conviction') }
+    end
+  end
+
+
+  describe '#add_another_sentence_button?' do
+    context 'caution' do
+      let!(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
+      it { expect(subject.add_another_sentence_button?).to eq(false) }
+    end
+    context 'conviction' do
+      let!(:disclosure_check) { create(:disclosure_check, :conviction,  :completed) }
+      it { expect(subject.add_another_sentence_button?).to eq(true) }
+    end
+  end
+
 end

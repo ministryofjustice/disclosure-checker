@@ -15,7 +15,6 @@ RSpec.describe CheckAnswersPresenter do
         expect(summary.size).to eq(1)
         expect(summary[0]).to be_an_instance_of(CheckGroupPresenter)
         expect(summary[0].number).to eql(1)
-        expect(summary[0].name).to eql('caution')
         expect(summary[0].check_group).to eql(disclosure_check.check_group)
       end
     end
