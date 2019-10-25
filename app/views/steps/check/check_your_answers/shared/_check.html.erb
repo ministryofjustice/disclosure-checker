@@ -8,7 +8,7 @@
 
   <% if check.add_another_sentence_button %>
     <div class="govuk-!-margin-top-1">
-      <%= button_to 'Add another sentence to this conviction', checks_path(check_group_id: check.check_group.id),
+      <%= button_to 'Add another sentence to this conviction', checks_path(check_group_id: check.check_group),
                           class: 'govuk-button govuk-button--secondary',
                           data: { module: 'govuk-button', 'prevent-double-click': true } %>
     </div>

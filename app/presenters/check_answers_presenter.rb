@@ -6,7 +6,7 @@ class CheckAnswersPresenter
   end
 
   def summary
-    completed_checks.map.with_index(1) do |check_group, i|
+    disclosure_report.check_groups.with_completed_checks.map.with_index(1) do |check_group, i|
       CheckGroupPresenter.new(
         i,
         check_group,
@@ -17,11 +17,5 @@ class CheckAnswersPresenter
 
   def to_partial_path
     'check_your_answers/check'
-  end
-
-  private
-
-  def completed_checks
-    disclosure_report.check_groups.with_completed_checks.group('check_groups.id')
   end
 end

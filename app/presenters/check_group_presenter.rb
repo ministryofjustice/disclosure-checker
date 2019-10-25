@@ -4,13 +4,13 @@ class CheckGroupPresenter
   def initialize(number, check_group, scope:)
     @number = number
     @check_group = check_group
-    @name = check_group_name
+    @name = first_check_kind
     @add_another_sentence_button = add_another_sentence_button?
     @scope = scope
   end
 
   def summary
-    check_group.completed_disclosure_checks.map do |disclosure_check|
+    completed_checks.map do |disclosure_check|
       CheckPresenter.new(disclosure_check)
     end
   end
@@ -21,13 +21,15 @@ class CheckGroupPresenter
 
   private
 
-  def check_group_name
-    check_group.completed_disclosure_checks.first.kind
+  def add_another_sentence_button?
+    first_check_kind.inquiry.conviction?
   end
 
-  def add_another_sentence_button?
-    return false unless check_group.completed_disclosure_checks.present?
+  def first_check_kind
+    completed_checks.first.kind
+  end
 
-    check_group.completed_disclosure_checks.first.kind == 'conviction'
+  def completed_checks
+    @_completed_checks ||= check_group.disclosure_checks.completed
   end
 end
