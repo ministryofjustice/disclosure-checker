@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'about/cookies'
   get 'about/privacy'
   get 'about/terms_and_conditions'
+  get 'about/accessibility'
 
   get 'warning/reset_session'
 
