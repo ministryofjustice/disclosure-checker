@@ -3,6 +3,10 @@ class ConvictionResultPresenter < ResultsPresenter
     'results/conviction'
   end
 
+  def motoring?
+    disclosure_check.conviction_type.inquiry.adult_motoring?
+  end
+
   private
 
   def question_attributes

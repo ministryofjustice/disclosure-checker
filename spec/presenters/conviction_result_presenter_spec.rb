@@ -107,4 +107,19 @@ RSpec.describe ConvictionResultPresenter do
       expect(subject.expiry_date).to eq('foobar')
     end
   end
+
+  describe '#motoring?' do
+    let(:conviction_type) { ConvictionType::ADULT_CUSTODIAL_SENTENCE }
+    let(:disclosure_check) { build(:disclosure_check, :dto_conviction, conviction_type: conviction_type) }
+
+    context 'Non motoring conviction' do
+      let(:conviction_type) { ConvictionType::ADULT_CUSTODIAL_SENTENCE }
+      it { expect(subject.motoring?).to eq(false) }
+    end
+
+    context 'Motoring conviction' do
+      let(:conviction_type) { ConvictionType::ADULT_MOTORING }
+      it { expect(subject.motoring?).to eq(true) }
+    end
+  end
 end

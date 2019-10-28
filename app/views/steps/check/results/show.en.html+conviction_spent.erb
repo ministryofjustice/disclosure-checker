@@ -36,6 +36,8 @@
 
         <%= render partial: 'steps/check/results/shared/meaning' %>
 
+        <%= render partial: 'steps/check/results/shared/motoring' if @presenter.motoring? %>
+
         <%= render partial: 'steps/check/results/shared/summary', locals: { result: @presenter } %>
 
         <%= render partial: 'steps/check/results/shared/disclaimer' %>
