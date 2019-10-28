@@ -12,4 +12,8 @@ module ConvictionDecorator
       ConvictionType::ADULT_CUSTODIAL_SENTENCE,
     ].include?(self)
   end
+
+  def motoring?
+    ConvictionType::ADULT_MOTORING.eql?(self)
+  end
 end

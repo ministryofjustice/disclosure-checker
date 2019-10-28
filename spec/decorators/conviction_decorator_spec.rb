@@ -29,4 +29,16 @@ RSpec.describe ConvictionDecorator do
       it { expect(subject.custodial_sentence?).to eq(false) }
     end
   end
+
+  describe '#motoring?' do
+    context 'for an adult `ADULT_CUSTODIAL_SENTENCE` conviction type' do
+      subject { ConvictionType::ADULT_CUSTODIAL_SENTENCE }
+      it { expect(subject.motoring?).to eq(false) }
+    end
+
+    context 'for an adult `ConvictionType::ADULT_MOTORING` conviction type' do
+      subject { ConvictionType::ADULT_MOTORING }
+      it { expect(subject.motoring?).to eq(true) }
+    end
+  end
 end
