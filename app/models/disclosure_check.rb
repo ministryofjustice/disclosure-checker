@@ -12,6 +12,6 @@ class DisclosureCheck < ApplicationRecord
   # able to remove this method and spec.
   #
   def self.purge!(date)
-    where('created_at <= :date', date: date).destroy_all
+    where('created_at <= :date', date: date).where(check_group_id: nil).destroy_all
   end
 end
