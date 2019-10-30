@@ -10,10 +10,21 @@
           <h1 class="govuk-panel__title">
             Your fixed penalty notice (FPN) was not a conviction
           </h1>
-          <div class="govuk-panel__body">
-            You will never need to tell people about this when they ask about your criminal record.
-          </div>
         </div>
+
+         <h2 class="govuk-heading-m govuk-!-margin-top-7">
+          What this result means
+        </h2>
+
+        <p class="govuk-body">
+          You will never need to tell people about this when they ask about your criminal record.
+        </p>
+
+        <div class="govuk-inset-text">
+          Your result is for guidance only. For more information, read <a class="govuk-link" href="#disclaimer">using your results</a>.
+        </div>
+
+        <%= render partial: 'steps/check/results/shared/motoring' if @presenter.conviction_type.motoring? %>
 
         <%= render partial: 'steps/check/results/shared/summary', locals: { result: @presenter } %>
 

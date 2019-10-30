@@ -20,12 +20,13 @@
         </h2>
 
         <p class="govuk-body">
-          Based on what you’ve told us, this caution will be spent on the given date.
+          Based on what you’ve told us, this caution and any
+          <a class="govuk-link" rel="external" href="https://www.gov.uk/guidance/rehabilitation-periods">rehabilitation period</a> will be spent on the given date.
         </p>
 
-        <%= render partial: 'steps/check/results/shared/guidance' %>
-
         <%= render partial: 'steps/check/results/shared/meaning' %>
+
+        <%= render partial: 'steps/check/results/shared/guidance' %>
 
         <%= render partial: 'steps/check/results/shared/summary', locals: { result: @presenter } %>
 

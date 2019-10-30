@@ -25,9 +25,9 @@
             period</a> will be spent on the given date.
         </p>
 
-        <%= render partial: 'steps/check/results/shared/guidance' %>
-
         <%= render partial: 'steps/check/results/shared/meaning' %>
+
+        <%= render partial: 'steps/check/results/shared/guidance' %>
 
         <%= render partial: 'steps/check/results/shared/motoring' if @presenter.conviction_type.motoring? %>
 
