@@ -24,7 +24,6 @@ namespace :purge do
     # incomplete disclosure checks
     log "Purging incomplete checks without a check group id older than #{expire_after} days"
 
-    byebug
     purged = DisclosureCheck.in_progress.purge!(expire_after.days.ago)
     log "Purged #{purged.size} incomplete checks"
 
