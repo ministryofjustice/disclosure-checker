@@ -40,7 +40,6 @@ Rails.application.routes.draw do
     namespace :check do
       edit_step :kind
       edit_step :under_age
-      show_step :exit_over18
       show_step :results
       show_step :check_your_answers
     end
