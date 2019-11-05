@@ -1,6 +1,5 @@
 Feature: Caution
   Background:
-    When I visit "/enable_adults"
     When I visit "/"
     And I click the "Start now" link
     Then I should see "Were you cautioned or convicted?"

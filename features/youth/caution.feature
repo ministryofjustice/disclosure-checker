@@ -5,14 +5,6 @@ Feature: Caution
     Then I should see "Were you cautioned or convicted?"
 
   @happy_path
-  Scenario: Over 18
-    When I choose "Cautioned"
-    Then I should see "How old were you when you got cautioned?"
-
-    And I choose "18 or over"
-    Then I should see "Sorry, you cannot use this service yet"
-
-  @happy_path
   Scenario: Caution happy path - under 18, conditional caution
     When I choose "Cautioned"
     Then I should see "How old were you when you got cautioned?"

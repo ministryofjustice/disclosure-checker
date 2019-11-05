@@ -2,16 +2,6 @@ class ExperimentsController < ApplicationController
   before_action :check_permissions, :reset_disclosure_check_session
 
   # :nocov:
-  def enable_adults
-    cookies.permanent[:adults_enabled] = 1
-    redirect_to root_path
-  end
-
-  def disable_adults
-    cookies.delete :adults_enabled
-    redirect_to root_path
-  end
-
   def enable_motoring
     cookies.permanent[:motoring_enabled] = 1
     redirect_to root_path

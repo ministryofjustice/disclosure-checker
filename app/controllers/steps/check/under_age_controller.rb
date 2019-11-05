@@ -6,14 +6,7 @@ module Steps
       end
 
       def update
-        update_and_advance(UnderAgeForm, as: as_name)
-      end
-
-      private
-
-      # TODO: temporary feature-flag, to be removed when no needed
-      def as_name
-        adults_enabled? ? :bypass_under_age : :under_age
+        update_and_advance(UnderAgeForm, as: :under_age)
       end
     end
   end

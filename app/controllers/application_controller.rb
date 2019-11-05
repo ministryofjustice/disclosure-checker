@@ -22,10 +22,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_disclosure_report
 
+  # :nocov:
   def current_participant
     @_current_participant
   end
   helper_method :current_participant
+  # :nocov:
 
   def previous_step_path
     # Second to last element in the array, will be nil for arrays of size 0 or 1

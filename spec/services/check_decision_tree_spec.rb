@@ -29,16 +29,15 @@ RSpec.describe CheckDecisionTree do
 
     context 'and answer is `no`' do
       let(:under_age) { GenericYesNo::NO }
-      it { is_expected.to have_destination(:exit_over18, :show) }
-    end
+      context 'for a caution check' do
+        let(:kind) { 'caution' }
+        it { is_expected.to have_destination('/steps/caution/caution_type', :edit) }
+      end
 
-    # TODO: temporary feature-flag, to be removed when no needed
-    context 'and answer is `no` but we are bypassing' do
-      let(:under_age) { GenericYesNo::NO }
-      let(:kind) { 'caution' }
-      let(:as) { :bypass_under_age }
-
-      it { is_expected.to have_destination('/steps/caution/caution_type', :edit) }
+      context 'for a conviction check' do
+        let(:kind) { 'conviction' }
+        it { is_expected.to have_destination('/steps/conviction/conviction_type', :edit) }
+      end
     end
 
     context 'and answer is `yes`' do
