@@ -172,6 +172,8 @@ en:
         adult_disqualification: Was the length of the disqualification given in weeks, months or years?
       steps_conviction_compensation_paid_form:
         compensation_paid: Have you paid the compensation in full?
+      steps_conviction_compensation_paid_amount_form:
+        compensation_payment_over_100: Was the compensation order amount over £100?
       steps_conviction_compensation_payment_date_form:
         compensation_payment_date: When did you pay the compensation in full?
       steps_conviction_motoring_endorsement_form:
