@@ -11,6 +11,13 @@ class CautionType < ValueObject
     ].freeze
   ].flatten.freeze
 
+  def simple?
+    [
+      YOUTH_SIMPLE_CAUTION,
+      ADULT_SIMPLE_CAUTION
+    ].include?(self)
+  end
+
   def conditional?
     [
       ADULT_CONDITIONAL_CAUTION,

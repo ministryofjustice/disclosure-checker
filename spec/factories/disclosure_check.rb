@@ -33,6 +33,11 @@ FactoryBot.define do
       compensation_payment_date { Date.new(2019, 10, 31) }
     end
 
+    trait :youth_simple_caution do
+      caution_type { CautionType::YOUTH_SIMPLE_CAUTION }
+      known_date { nil }
+    end
+
     trait :youth_conditional_caution do
       caution_type { CautionType::YOUTH_CONDITIONAL_CAUTION }
       conditional_end_date { Date.new(2018, 12, 25) }
