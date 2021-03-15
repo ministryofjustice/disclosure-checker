@@ -142,7 +142,7 @@ en:
     conviction_bail_days:
       question: Days on bail
     known_date:
-      question: Start date
+      question: Date of sentence
     conviction_length:
       question: Length of conviction
       answers:
