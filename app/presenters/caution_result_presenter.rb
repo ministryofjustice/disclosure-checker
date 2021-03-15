@@ -7,7 +7,6 @@ class CautionResultPresenter < ResultsPresenter
 
   def question_attributes
     [
-      :caution_type,
       :under_age,
       :known_date,
       :conditional_end_date,
