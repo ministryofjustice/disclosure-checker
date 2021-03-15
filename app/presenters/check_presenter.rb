@@ -12,6 +12,10 @@ class CheckPresenter
     )
   end
 
+  def type
+    CheckTypePresenter.new(disclosure_check).type
+  end
+
   def to_partial_path
     'check_your_answers/shared/check_row'
   end
