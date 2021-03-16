@@ -121,3 +121,19 @@ For more details on the ENV variables needed for CircleCI, refer to the [deploy 
 [c100-application]: https://github.com/ministryofjustice/c100-application
 [deploy-repo]: https://github.com/ministryofjustice/disclosure-checker-deploy
 [k8s-staging]: https://disclosure-checker-staging.apps.live-1.cloud-platform.service.justice.gov.uk
+
+
+## This version of ChromeDriver only supports Chrome version...
+
+When you are running your cucumber features and suddenly you are presented with failing features,
+where the error message is related with ChromeDriver, as such
+
+`This version of ChromeDriver only supports Chrome version 80`
+
+The solution on MacOS is to use [Homebrew](http://brew.sh) and upgrade ChromeDriver
+
+```
+brew upgrade chromedriver
+```
+
+This happens because Chrome updates it's version automatically, this may happen once in a while.
