@@ -13,7 +13,25 @@ RSpec.describe CheckPresenter do
     context 'for a single youth caution' do
       it 'returns CheckRow' do
         expect(summary).to be_an_instance_of(CheckRow)
-        expect(summary.question_answers.size).to eq(3)
+        expect(summary.question_answers.size).to eq(2)
+      end
+    end
+  end
+
+  describe '#type' do
+    let(:type) { subject.type }
+
+    context 'for a caution' do
+      it 'returns a caution type' do
+        expect(type).to eq('Youth simple caution')
+      end
+    end
+
+    context 'for a conviction' do
+      let(:disclosure_check) { create(:disclosure_check, :with_fine, :completed) }
+
+      it 'returns a caution type' do
+        expect(type).to eq('Fine')
       end
     end
   end
