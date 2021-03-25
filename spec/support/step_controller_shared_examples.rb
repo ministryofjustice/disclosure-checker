@@ -213,7 +213,7 @@ RSpec.shared_examples 'a completion step controller' do
       end
 
       it 'redirects to the invalid session error page' do
-        get :show
+        get :show, params: { show_results: true }
         expect(response).to redirect_to(invalid_session_errors_path)
       end
     end
@@ -227,14 +227,14 @@ RSpec.shared_examples 'a completion step controller' do
       context 'when the report is not already marked as `completed`' do
         it 'calls the `mark_report_completed` method' do
           expect(controller).to receive(:mark_report_completed)
-          get :show, session: { disclosure_check_id: '123' }
+          get :show, session: { disclosure_check_id: '123' }, params: { show_results: true }
         end
 
         it 'calls the `purge_incomplete_checks` method' do
           expect(controller).to receive(:mark_report_completed)
 
           expect(controller).to receive(:purge_incomplete_checks)
-          get :show, session: { disclosure_check_id: '123' }
+          get :show, session: { disclosure_check_id: '123' }, params: { show_results: true }
         end
       end
 
