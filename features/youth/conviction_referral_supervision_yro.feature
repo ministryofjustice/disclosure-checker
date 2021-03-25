@@ -14,10 +14,10 @@ Feature: Conviction
   And I fill in "Number of weeks" with "10"
 
   Then I click the "Continue" button
-  And I should be on "<result>"
+  And I check my "conviction" answers and go to the results page
 
   Examples:
-    | subtype                    | known_date_header                              | length_type_header                                                           | length_header                                     | result               |
-    | Referral order             | What was the date of your first panel meeting? | Was the length of the order given in weeks, months or years?                 | What was the length of the order?                 | /steps/check/results |
-    | Supervision order          | When were you given the order?                 | Was the length of the order given in weeks, months or years?                 | What was the length of the order?                 | /steps/check/results |
-    | Youth rehabilitation order | When were you given the order?                 | Was the length of the order given in weeks, months or years?                 | What was the length of the order?                 | /steps/check/results |
+    | subtype                    | known_date_header                              | length_type_header                                           | length_header                     |
+    | Referral order             | What was the date of your first panel meeting? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
+    | Supervision order          | When were you given the order?                 | Was the length of the order given in weeks, months or years? | What was the length of the order? |
+    | Youth rehabilitation order | When were you given the order?                 | Was the length of the order given in weeks, months or years? | What was the length of the order? |

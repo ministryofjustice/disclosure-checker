@@ -7,7 +7,7 @@ Feature: Conviction
     When I choose "A fine"
     Then I should see "When were you given the order?"
     When I enter a valid date
-    Then I should be on "/steps/check/results"
+    And I check my "conviction" answers and go to the results page
 
   @happy_path
   Scenario: Conviction Financial penalty - When compensation paid in full is over £100
@@ -21,7 +21,7 @@ Feature: Conviction
     Then I should see "Did you send the payment receipt to the Disclosure and Barring (DBS) service?"
     And I choose "Yes"
 
-    Then I should be on "/steps/check/results"
+    And I check my "conviction" answers and go to the results page
 
   @happy_path
   Scenario: Conviction Financial penalty - Compensation paid in full is under £100
@@ -35,7 +35,7 @@ Feature: Conviction
     Then I should see "When did you pay the compensation in full?"
     When I enter a valid date
 
-    Then I should be on "/steps/check/results"
+    And I check my "conviction" answers and go to the results page
 
   @happy_path
   Scenario: Conviction Financial penalty - Did not send payment receipt

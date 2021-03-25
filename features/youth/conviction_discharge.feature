@@ -17,7 +17,7 @@ Feature: Conviction
     And I fill in "Number of years" with "2"
 
     Then I click the "Continue" button
-    And I should be on "/steps/check/results"
+     And I check my "conviction" answers and go to the results page
 
   @happy_path
   Scenario: Conviction Discharge - Absolute discharge
@@ -26,7 +26,7 @@ Feature: Conviction
     And I should see "When were you given the discharge?"
 
     When I enter a valid date
-    Then I should be on "/steps/check/results"
+    And I check my "conviction" answers and go to the results page
 
   @happy_path
   Scenario: Conviction Discharge - Conditional discharge
@@ -42,4 +42,4 @@ Feature: Conviction
     And I fill in "Number of years" with "2"
 
     Then I click the "Continue" button
-    And I should be on "/steps/check/results"
+     And I check my "conviction" answers and go to the results page

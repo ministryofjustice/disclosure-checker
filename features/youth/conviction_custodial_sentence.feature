@@ -24,13 +24,13 @@ Feature: Conviction
     And I fill in "Number of months" with "24"
 
     Then I click the "Continue" button
-    And I should see "<result>"
+     And I check my "conviction" answers and go to the results page
+     And I should see "<result>"
 
     Examples:
       | subtype                            | known_date_header             | length_type_header                                               | length_header                         | result                                        |
       | Detention and training order (DTO) | When did the DTO start?       | Was the length of the DTO given in weeks, months or years?       | What was the length of the DTO?       | This conviction will be spent on 27 July 2023 |
       | Detention                          | When did the detention start? | Was the length of the detention given in weeks, months or years? | What was the length of the detention? | This conviction will be spent on 27 July 2023 |
-
 
   @happy_path
   Scenario Outline: Hospital orders (non-bailable)
@@ -48,11 +48,11 @@ Feature: Conviction
     And I fill in "Number of years" with "2"
 
     Then I click the "Continue" button
-    And I should be on "<result>"
+    And I check my "conviction" answers and go to the results page
 
     Examples:
-      | subtype        | known_date_header              | length_type_header                                           | length_header                     | result               |
-      | Hospital order | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order? | /steps/check/results |
+      | subtype        | known_date_header              | length_type_header                                           | length_header                     |
+      | Hospital order | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
 
   @happy_path @date_travel
   Scenario Outline: Hospital orders (with no length or indefinite length)
@@ -68,9 +68,10 @@ Feature: Conviction
     Then I should see "<length_type_header>"
 
     When I choose "<length_type>"
+     And I check my "conviction" answers and go to the results page
     Then I should see "<result>"
 
     Examples:
       | subtype        | known_date_header              | length_type_header                                           | length_type         | result                                                                             |
       | Hospital order | When were you given the order? | Was the length of the order given in weeks, months or years? | No length was given | This conviction will be spent on 1 January 2022                                    |
-      | Hospital order | When were you given the order? | Was the length of the order given in weeks, months or years? | Until further order | This conviction will stay in place until another order is made to change or end it |
+      | Hospital order | When were you given the order? | Was the length of the order given in weeks, months or years? | Until further order | This conviction is not spent and will stay in place until another order is made to change or end it |
