@@ -16,7 +16,7 @@ en:
       military: Military
       prevention_reparation: Prevention or reparation order
       # adults
-      adult_community_reparation: Community, prevention or reparation order
+      adult_community_reparation: Community, reparation or other order with requirements
       adult_custodial_sentence: Custody or hospital order
       adult_discharge: Discharge
       adult_financial: Financial penalty

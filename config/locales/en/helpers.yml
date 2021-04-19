@@ -40,7 +40,7 @@ en:
       financial: Financial penalty (not including motoring fines)
 
       # adults
-      adult_community_reparation: Community, prevention or reparation order
+      adult_community_reparation: Community, reparation or other order with requirements
       adult_discharge: Discharge
       adult_motoring: Motoring (including motoring fines)
       adult_military: Military
@@ -357,7 +357,7 @@ en:
         adult_military: What was your military conviction?
         adult_motoring: What was your motoring conviction?
         youth_motoring: What was your motoring conviction?
-        adult_community_reparation: What was your community, prevention or reparation order?
+        adult_community_reparation: What was your community, reparation or other order with requirements?
         adult_discharge: What discharge were you given?
         adult_custodial_sentence: What sentence were you given?
       steps_conviction_compensation_payment_date_form:
