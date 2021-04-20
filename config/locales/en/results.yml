@@ -1,6 +1,6 @@
 ---
 en:
-  dictionary:
+  results/dictionary:
     CAUTION_TYPES: &CAUTION_TYPES
       youth_simple_caution: Youth caution
       youth_conditional_caution: Youth conditional caution
@@ -56,6 +56,7 @@ en:
       adult_restraining_order: Restraining order
       adult_serious_crime_prevention: Serious crime prevention order
       adult_sexual_harm_prevention_order: Sexual harm prevention order
+      adult_other_requirement_order: Order with a requirement
       # adult_financial
       adult_fine: A fine
       adult_compensation_to_a_victim: Compensation to a victim

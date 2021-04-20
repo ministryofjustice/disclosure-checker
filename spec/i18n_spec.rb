@@ -11,21 +11,21 @@ RSpec.describe 'I18n' do
   end
 
   # Note: The following sanity checks will ensure we have the same keys and values in both places,
-  # so we don't inadvertently update just once place and not the other.
+  # so we don't inadvertently update just one place but not the other.
   # It doesn't matter the order of the keys in the locales, what matters is the content.
   #
   context 'shared dictionaries sanity checks' do
-    it 'caution types in `helpers.yml` matches caution types in `results.yml`' do
+    it 'caution types in `helpers.yml` match caution types in `results.yml`' do
       expect(
-        i18n.tree('en.helpers.label.steps_caution_caution_type_form.caution_type_options').to_hash
+        i18n.tree('en.helpers/dictionary.CAUTION_TYPES').to_hash
       ).to eq(
         i18n.tree('en.results/caution.caution_type.answers').to_hash
       )
     end
 
-    it 'convictions subtypes in `helpers.yml` matches convictions subtypes in `results.yml`' do
+    it 'convictions subtypes in `helpers.yml` match convictions subtypes in `results.yml`' do
       expect(
-        i18n.tree('en.helpers.label.steps_conviction_conviction_subtype_form.conviction_subtype_options').to_hash
+        i18n.tree('en.helpers/dictionary.CONVICTION_SUBTYPES').to_hash
       ).to eq(
         i18n.tree('en.results/conviction.conviction_subtype.answers').to_hash
       )

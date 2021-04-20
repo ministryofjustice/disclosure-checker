@@ -44,7 +44,7 @@ RSpec.describe ConvictionLengthChoices do
       ConvictionType.values.size - described_class::SUBTYPES_HIDE_NO_LENGTH_CHOICE.size
     }
 
-    it { expect(total).to eq(53) }
+    it { expect(total).to eq(54) }
   end
 
   describe '.choices' do

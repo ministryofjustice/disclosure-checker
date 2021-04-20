@@ -1,6 +1,6 @@
 ---
 en:
-  dictionary:
+  helpers/dictionary:
     date_hint_text: &date_hint_text |
       If you do not know the exact date, you can enter an approximate one. However, if you use an approximate date, your results will be approximate.
       <p>For example, 23 9 2018</p>
@@ -80,6 +80,7 @@ en:
       adult_restraining_order: Restraining order
       adult_serious_crime_prevention: Serious crime prevention order
       adult_sexual_harm_prevention_order: Sexual harm prevention order
+      adult_other_requirement_order: Order with a requirement
       # adult_financial
       adult_fine: A fine
       adult_compensation_to_a_victim: Compensation to a victim
@@ -223,6 +224,7 @@ en:
           adult_restraining_order: You were ordered not to do something, such as approach or contact a certain person
           adult_serious_crime_prevention: A court ruled that you had been involved in a serious crime, such as money laundering, drug trafficking or armed robbery
           adult_sexual_harm_prevention_order: A court ruled that you pose a risk of causing a sexual offence or sexual harm
+          adult_other_requirement_order: Includes all orders that disqualify you, prohibit certain things or impose a penalty of some kind
           # adult_motoring
           adult_disqualification: You were banned from driving
           adult_motoring_fine: A court gave you a fine that was not a fixed penalty notice (FPN)
@@ -272,6 +274,7 @@ en:
       steps_conviction_conviction_subtype_form:
         conviction_subtype_options:
           <<: *CONVICTION_SUBTYPES
+          adult_other_requirement_order: Any other order with a requirement
       steps_conviction_conviction_length_type_form:
         conviction_length_type_options:
           weeks: Weeks
