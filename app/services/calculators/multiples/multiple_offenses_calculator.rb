@@ -51,12 +51,10 @@ module Calculators
           next if other_spent_date.nil?
           next if spent_date_without_relevant_order.nil?
 
-          # the comparison to know if there's an overlap in conviction dates
+          # The comparison to know if there's an overlap in conviction dates
           # should be done without the relevant order
           # because relevant orders do not dictacte the spent_date of another conviction.
-          next unless spent_date_without_relevant_order.to_date.in?(
-            other_conviction_date..other_spent_date.to_date
-          )
+          next unless within_other_conviction_date_and_spent_date?(proceeding, spent_date, other_conviction_date, other_spent_date)
 
           next if conviction_date > other_conviction_date
 
@@ -82,6 +80,22 @@ module Calculators
       end
 
       private
+
+      def within_other_conviction_date_and_spent_date?(proceeding, spent_date, other_conviction_date, other_spent_date)
+        # We should first check wether the proceeding spent date has been affected
+        # by previous comparisons, if so, we should use the value assigned to _spent_date_
+        # otherwise we continue to compare spent dates with _spent_date_without_relevant_orders_
+
+        if spent_date == proceeding.spent_date
+          proceeding.spent_date_without_relevant_orders.to_date.in?(
+            other_conviction_date..other_spent_date.to_date
+          )
+        else
+          spent_date.to_date.in?(
+            other_conviction_date..other_spent_date.to_date
+          )
+        end
+      end
 
       def dates_memory
         @_dates_memory ||= {}
