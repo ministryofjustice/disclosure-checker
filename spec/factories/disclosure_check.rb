@@ -59,6 +59,20 @@ FactoryBot.define do
       conditional_end_date { Date.new(2018, 12, 25) }
     end
 
+    trait :with_youth_rehabilitation_order do
+      conviction_with_known_date
+      youth
+      conviction_type { ConvictionType::REFERRAL_SUPERVISION_YRO }
+      conviction_subtype { ConvictionType::YOUTH_REHABILITATION_ORDER }
+    end
+
+    trait :with_referral_order do
+      conviction_with_known_date
+      youth
+      conviction_type { ConvictionType::REFERRAL_SUPERVISION_YRO }
+      conviction_subtype { ConvictionType::REFERRAL_ORDER }
+    end
+
     trait :suspended_prison_sentence do
       conviction_with_known_date
       adult
