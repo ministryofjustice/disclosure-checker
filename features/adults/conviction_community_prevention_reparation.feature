@@ -1,8 +1,8 @@
 Feature: Conviction
 
-  Scenario Outline: Adult community, prevention or reparation order
-    Given I am completing a basic 18 or over "Community, prevention or reparation order" conviction
-    Then I should see "What was your community, prevention or reparation order?"
+  Scenario Outline: Adult community, reparation or other order with requirements
+    Given I am completing a basic 18 or over "Community, reparation or other order with requirements" conviction
+    Then I should see "What was your community, reparation or other order with requirements?"
 
     When I choose "<subtype>"
     Then I should see "<known_date_header>"
@@ -26,9 +26,9 @@ Feature: Conviction
       | Serious crime prevention order | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
       | Sexual harm prevention order   | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
 
-  Scenario: Adult community, prevention or reparation order - Reparation order
-    Given I am completing a basic 18 or over "Community, prevention or reparation order" conviction
-    Then I should see "What was your community, prevention or reparation order?"
+  Scenario: Adult community, reparation or other order with requirements - Reparation order
+    Given I am completing a basic 18 or over "Community, reparation or other order with requirements" conviction
+    Then I should see "What was your community, reparation or other order with requirements?"
 
     When I choose "Reparation order"
     Then I should see "When were you given the order?"
