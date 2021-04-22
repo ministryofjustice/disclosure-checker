@@ -593,4 +593,86 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       expect(subject.spent_date_for(second_proceedings)).to eq(Date.new(2022, 12, 31))
     end
   end
+
+  context 'scenario 9' do
+    # Under 18, 25 Feb 2011, convictioned to 6 months referral order
+    # Under 18, 12 Feb 2013, convicted to 12 months Youth Rehabilitation Order
+    # Over 18, 1 July 2014, convicted to 12 months Community Order
+    # Over 18, 30 June 2016, convicted to 12 months custody
+
+    let(:first_conviction_date) { Date.new(2011, 02, 25) }
+    let(:second_conviction_date) { Date.new(2013, 02, 12) }
+    let(:third_conviction_date) { Date.new(2014, 07, 1) }
+    let(:fourth_conviction_date) { Date.new(2016, 06, 30) }
+
+    let(:spent_date) { Date.new(2021, 6, 29) }
+
+    let(:third_proceeding_group) { disclosure_report.check_groups.build }
+    let(:fourth_proceeding_group) { disclosure_report.check_groups.build }
+
+    let(:third_proceedings) { subject.proceedings.third }
+    let(:fourth_proceedings) { subject.proceedings.fourth }
+
+    let(:referral_order) do
+      build(
+        :disclosure_check,
+        :with_referral_order,
+        :completed,
+        known_date: first_conviction_date,
+        conviction_date: first_conviction_date,
+        conviction_length: 6,
+        conviction_length_type: ConvictionLengthType::MONTHS
+      )
+    end
+
+    let(:youth_rehabilitation_order) do
+      build(
+        :disclosure_check,
+        :with_youth_rehabilitation_order,
+        :completed,
+        known_date: second_conviction_date,
+        conviction_date: second_conviction_date,
+        conviction_length: 12,
+        conviction_length_type: ConvictionLengthType::MONTHS
+      )
+    end
+
+    let(:community_order) do
+      build(
+        :disclosure_check,
+        :with_community_order,
+        :completed,
+        known_date: third_conviction_date,
+        conviction_date: third_conviction_date,
+        conviction_length: 12,
+        conviction_length_type: ConvictionLengthType::MONTHS
+      )
+    end
+
+    let(:custodial_sentence) do
+      build(
+        :disclosure_check,
+        :with_prison_sentence,
+        :completed,
+        known_date: fourth_conviction_date,
+        conviction_date: fourth_conviction_date,
+        conviction_length: 12,
+        conviction_length_type: ConvictionLengthType::MONTHS
+      )
+    end
+
+    before do
+      first_proceeding_group.disclosure_checks << referral_order
+      second_proceeding_group.disclosure_checks << youth_rehabilitation_order
+      third_proceeding_group.disclosure_checks << community_order
+      fourth_proceeding_group.disclosure_checks << custodial_sentence
+
+      save_report
+    end
+
+    it { expect(subject.spent_date_for(first_proceedings)).to eq(Date.new(2011, 8, 25)) }
+    it { expect(subject.spent_date_for(second_proceedings)).to eq(spent_date) }
+    it { expect(subject.spent_date_for(third_proceedings)).to eq(spent_date) }
+    it { expect(subject.spent_date_for(fourth_proceedings)).to eq(spent_date) }
+  end
 end

@@ -373,7 +373,7 @@ RSpec.describe ConvictionType do
       let(:subtype) { 'adult_community_order' }
 
       it { expect(conviction_type.skip_length?).to eq(false) }
-      it { expect(conviction_type.relevant_order?).to eq(true) }
+      it { expect(conviction_type.relevant_order?).to eq(false) }
       it { expect(conviction_type.drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusTwelveMonths) }
     end
