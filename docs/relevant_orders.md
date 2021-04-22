@@ -2,18 +2,19 @@
 
 ## Adults
 
-| Category                                  | Conviction                       | Subject to drag through? |
-|------------------------------------------ |--------------------------------- | ------------------------ |
-| Discharge                                 | Bind over                        | Yes                      |
-| Discharge                                 | Conditional discharge            | Yes                      |
-| Motoring                                  | Disqualification                 | No                       |
-| Financial penalty                         | Compensation to a victim         | Yes                      |
-| Custody or hospital order                 | Hospital order                   | Yes                      |
-| Community, Prevention or reparation order | Criminal behaviour order         | No                       |
-| Community, Prevention or reparation order | Reparation order                 | No                       |
-| Community, Prevention or reparation order | Restraining order                | No                       |
-| Community, Prevention or reparation order | Serious crime prevention order   | No                       |
-| Community, Prevention or reparation order | Sexual harm prevention order     | No                       |
+| Category                                               | Conviction                         | Subject to drag through? |
+|------------------------------------------------------- |----------------------------------- | ------------------------ |
+| Discharge                                              | Bind over                          | Yes                      |
+| Discharge                                              | Conditional discharge              | Yes                      |
+| Motoring                                               | Disqualification                   | No                       |
+| Financial penalty                                      | Compensation to a victim           | Yes                      |
+| Custody or hospital order                              | Hospital order                     | Yes                      |
+| Community, reparation or other order with requirements | Criminal behaviour order           | No                       |
+| Community, reparation or other order with requirements | Reparation order                   | No                       |
+| Community, reparation or other order with requirements | Restraining order                  | No                       |
+| Community, reparation or other order with requirements | Serious crime prevention order     | No                       |
+| Community, reparation or other order with requirements | Sexual harm prevention order       | No                       |
+| Community, reparation or other order with requirements | Any other order with a requirement | No                       |
 
 ## Youths
 
