@@ -19,14 +19,11 @@ RSpec.describe Steps::Check::CheckYourAnswersController, type: :controller do
       end
     end
 
-    context 'when the disclosure report is completed (and feature flag enabled)' do
+    context 'when the disclosure report is completed' do
       let(:disclosure_check) { DisclosureCheck.create(status: :in_progress) }
 
       before do
         disclosure_check.disclosure_report.completed!
-
-        # feature flag
-        allow(controller).to receive(:multiples_enabled?).and_return(true)
       end
 
       it 'redirects to the report completed error page' do

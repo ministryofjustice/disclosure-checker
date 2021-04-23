@@ -23,11 +23,11 @@ module Steps
       end
 
       def show_check_answers?
-        multiples_enabled? && continue_to_check_your_answers?
+        continue_to_check_your_answers?
       end
 
       def show_multiple_results?
-        multiples_enabled? && !continue_to_check_your_answers?
+        !continue_to_check_your_answers?
       end
 
       def continue_to_check_your_answers?

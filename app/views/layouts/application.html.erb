@@ -22,7 +22,7 @@
 <% end %>
 
 <% if dev_tools_enabled? %>
-  <%= render partial: 'layouts/developer_tools' if multiples_enabled? && current_disclosure_report.try(:completed?) %>
+  <%= render partial: 'layouts/developer_tools' if current_disclosure_report.try(:completed?) %>
 <% end %>
 
 <%= render template: 'layouts/govuk_template', layout: false %>

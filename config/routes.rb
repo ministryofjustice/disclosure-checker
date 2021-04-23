@@ -24,10 +24,6 @@ Rails.application.routes.draw do
 
   get 'warning/reset_session'
 
-  # Temporary routes to test WIP features or journeys
-  get 'enable_multiples',  controller: :experiments
-  get 'disable_multiples', controller: :experiments
-
   # Back office
   namespace :backoffice do
     resources :participants, only: [:index]

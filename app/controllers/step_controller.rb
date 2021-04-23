@@ -24,10 +24,7 @@ class StepController < ApplicationController
         # Used when the step name in the decision tree is not the same as the first
         # (and usually only) attribute in the form.
         as:            opts[:as],
-        next_step:     @next_step,
-        # TODO: following is only for the multiples MVP while it is behind a feature flag.
-        # We propagate this to the decision trees as they don't have access to the session.
-        multiples_enabled: multiples_enabled?
+        next_step:     @next_step
       ).destination
 
       redirect_to destination

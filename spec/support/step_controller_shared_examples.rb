@@ -19,14 +19,11 @@ RSpec.shared_examples 'a generic step controller' do |form_class, decision_tree_
       end
     end
 
-    context 'when the disclosure report is completed (and feature flag enabled)' do
+    context 'when the disclosure report is completed' do
       let(:existing_case) { DisclosureCheck.create(status: :in_progress) }
 
       before do
         existing_case.disclosure_report.completed!
-
-        # feature flag
-        allow(controller).to receive(:multiples_enabled?).and_return(true)
       end
 
       it 'redirects to the report completed error page' do
