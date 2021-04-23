@@ -1,4 +1,4 @@
-class CautionResultPresenter < ResultsPresenter
+class CautionResultPresenter < ResultsItemPresenter
   def to_partial_path
     'results/caution'
   end

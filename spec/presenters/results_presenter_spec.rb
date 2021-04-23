@@ -1,4 +1,4 @@
-RSpec.describe CheckAnswersPresenter do
+RSpec.describe ResultsPresenter do
   let(:disclosure_check) { create(:disclosure_check, :dto_conviction, :completed) }
   let(:disclosure_report) { disclosure_check.disclosure_report }
 
@@ -44,6 +44,18 @@ RSpec.describe CheckAnswersPresenter do
         expect(summary[0].check_group).to eql(disclosure_check.check_group)
         expect(summary[0].spent_date).to eq(nil)
       end
+    end
+  end
+
+  describe '#proceedings_size' do
+    it 'returns the calculator proceedings size' do
+      expect(subject.proceedings_size).to eq(1)
+    end
+  end
+
+  describe '#orders_size' do
+    it 'returns the sum of each proceedings size' do
+      expect(subject.orders_size).to eq(1)
     end
   end
 end
