@@ -25,7 +25,7 @@ RSpec.describe ResultsController, type: :controller do
 
       it 'redirects to the results page' do
         get :show, params: { report_id: disclosure_report.id }
-        expect(response).to redirect_to('/steps/check/results?show_results=true')
+        expect(response).to redirect_to('/steps/check/results')
       end
     end
   end

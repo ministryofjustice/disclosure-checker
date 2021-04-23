@@ -58,12 +58,12 @@ RSpec.describe CautionDecisionTree do
 
     context 'and type is not `conditional caution`' do
       let(:caution_type) { CautionType::ADULT_SIMPLE_CAUTION.value }
-      it { is_expected.to complete_the_check_and_show_results }
+      it { is_expected.to show_check_your_answers_page }
     end
   end
 
   context 'when the step is `conditional_end_date`' do
     let(:step_params) { { conditional_end_date: 'conditional' } }
-    it { is_expected.to complete_the_check_and_show_results }
+    it { is_expected.to show_check_your_answers_page }
   end
 end

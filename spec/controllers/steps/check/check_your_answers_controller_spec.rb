@@ -32,28 +32,9 @@ RSpec.describe Steps::Check::CheckYourAnswersController, type: :controller do
       end
     end
 
-    context 'for a caution' do
-      let(:kind) { 'caution' }
-
+    context 'when there is a valid disclosure check' do
       it 'render template' do
         get :show
-
-        expect(response).to render_template(:show)
-      end
-    end
-
-    context 'for a conviction' do
-      let(:kind) { 'conviction' }
-
-      before do
-        allow_any_instance_of(
-          ConvictionResultPresenter
-        ).to receive(:expiry_date).and_return(Date.yesterday)
-      end
-
-      it 'render template' do
-        get :show
-
         expect(response).to render_template(:show)
       end
     end

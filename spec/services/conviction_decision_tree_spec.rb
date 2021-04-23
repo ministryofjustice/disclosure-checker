@@ -105,7 +105,7 @@ RSpec.describe ConvictionDecisionTree do
 
     context 'when subtype does not have length' do
       let(:conviction_subtype) { :fine }
-      it { is_expected.to complete_the_check_and_show_results }
+      it { is_expected.to show_check_your_answers_page }
     end
   end
 
@@ -114,12 +114,12 @@ RSpec.describe ConvictionDecisionTree do
 
     context 'and the answer is `no_length`' do
       let(:conviction_length_type) { ConvictionLengthType::NO_LENGTH.to_s }
-      it { is_expected.to complete_the_check_and_show_results }
+      it { is_expected.to show_check_your_answers_page }
     end
 
     context 'and the answer is `indefinite`' do
       let(:conviction_length_type) { ConvictionLengthType::INDEFINITE.to_s }
-      it { is_expected.to complete_the_check_and_show_results }
+      it { is_expected.to show_check_your_answers_page }
     end
 
     context 'and the answer is other than `no_length`' do
@@ -130,7 +130,7 @@ RSpec.describe ConvictionDecisionTree do
 
   context 'when the step is `conviction_length`' do
     let(:step_params) { { conviction_length: 'anything' } }
-    it { is_expected.to complete_the_check_and_show_results }
+    it { is_expected.to show_check_your_answers_page }
   end
 
   context 'when the step is `compensation_paid`' do
@@ -175,7 +175,7 @@ RSpec.describe ConvictionDecisionTree do
     context 'and the compensation payment was under £100' do
       let(:compensation_payment_over_100) { GenericYesNo::NO }
 
-      it { is_expected.to complete_the_check_and_show_results }
+      it { is_expected.to show_check_your_answers_page }
     end
   end
 
@@ -184,7 +184,7 @@ RSpec.describe ConvictionDecisionTree do
 
     context 'and the receipt was sent' do
       let(:compensation_receipt_sent) { GenericYesNo::YES }
-      it { is_expected.to complete_the_check_and_show_results }
+      it { is_expected.to show_check_your_answers_page }
     end
 
     context 'and the receipt was not sent' do
@@ -205,7 +205,7 @@ RSpec.describe ConvictionDecisionTree do
 
       context ' without a endorsement' do
         let(:motoring_endorsement) {GenericYesNo::NO }
-        it { is_expected.to complete_the_check_and_show_results }
+        it { is_expected.to show_check_your_answers_page }
       end
     end
 

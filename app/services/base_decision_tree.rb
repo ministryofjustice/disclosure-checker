@@ -32,9 +32,9 @@ class BaseDecisionTree
     { controller: step_controller, action: :edit }.merge(params)
   end
 
-  def results
+  def check_your_answers
     disclosure_check.completed!
 
-    show('/steps/check/results')
+    show('/steps/check/check_your_answers')
   end
 end

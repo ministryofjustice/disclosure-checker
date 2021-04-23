@@ -10,7 +10,7 @@ class CautionDecisionTree < BaseDecisionTree
     when :known_date
       after_known_date
     when :conditional_end_date
-      results
+      check_your_answers
     else
       raise InvalidStep, "Invalid step '#{as || step_params}'"
     end
@@ -21,6 +21,6 @@ class CautionDecisionTree < BaseDecisionTree
   def after_known_date
     return edit(:conditional_end_date) if caution_type.conditional?
 
-    results
+    check_your_answers
   end
 end
