@@ -35,17 +35,6 @@ class ResultsItemPresenter
     disclosure_check.conviction_bail_days.to_i.positive?
   end
 
-  def variant
-    tense = if expiry_date.instance_of?(Date)
-              expiry_date.past? ? ResultsVariant::SPENT : ResultsVariant::NOT_SPENT
-            else
-              expiry_date
-            end
-
-    # The tense can be any of the values defined in `ResultsVariant`
-    [disclosure_check.kind, tense].join('_')
-  end
-
   private
 
   def result_service

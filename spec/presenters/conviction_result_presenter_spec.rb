@@ -7,32 +7,6 @@ RSpec.describe ConvictionResultPresenter do
     it { expect(subject.to_partial_path).to eq('results/conviction') }
   end
 
-  describe '#variant' do
-    before do
-      allow(subject).to receive(:expiry_date).and_return(expiry_date)
-    end
-
-    context 'spent conviction' do
-      let(:expiry_date) { Date.yesterday }
-      it { expect(subject.variant).to eq('conviction_spent') }
-    end
-
-    context 'not spent conviction' do
-      let(:expiry_date) { Date.tomorrow }
-      it { expect(subject.variant).to eq('conviction_not_spent') }
-    end
-
-    context 'never spent conviction' do
-      let(:expiry_date) { 'never_spent' }
-      it { expect(subject.variant).to eq('conviction_never_spent') }
-    end
-
-    context 'indefinite length conviction' do
-      let(:expiry_date) { 'indefinite' }
-      it { expect(subject.variant).to eq('conviction_indefinite') }
-    end
-  end
-
   describe '#summary' do
     let(:summary) { subject.summary }
 

@@ -20,7 +20,6 @@ class SpentDatePanel
 
   private
 
-  # TODO: we use this or similar method in other places. Unify them.
   def tense
     if spent_date.instance_of?(Date)
       spent_date.past? ? ResultsVariant::SPENT : ResultsVariant::NOT_SPENT
