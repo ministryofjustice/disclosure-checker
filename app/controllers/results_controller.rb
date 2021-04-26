@@ -2,7 +2,7 @@ class ResultsController < ApplicationController
   before_action :setup_session
 
   def show
-    redirect_to steps_check_results_path(show_results: true)
+    redirect_to steps_check_results_path
   end
 
   private

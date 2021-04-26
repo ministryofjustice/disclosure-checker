@@ -4,7 +4,7 @@ class BaseDecisionTree
   include ApplicationHelper
 
   attr_reader :disclosure_check, :record, :step_params,
-              :as, :next_step, :multiples_enabled
+              :as, :next_step
 
   def initialize(disclosure_check:, record: nil, step_params: {}, **options)
     @disclosure_check = disclosure_check
@@ -12,14 +12,9 @@ class BaseDecisionTree
     @step_params = step_params
     @as = options[:as]
     @next_step = options[:next_step]
-    @multiples_enabled = options[:multiples_enabled]
   end
 
   private
-
-  def multiples_enabled?
-    @multiples_enabled
-  end
 
   def step_value(attribute_name)
     step_params.fetch(attribute_name)
@@ -37,9 +32,9 @@ class BaseDecisionTree
     { controller: step_controller, action: :edit }.merge(params)
   end
 
-  def results
+  def check_your_answers
     disclosure_check.completed!
 
-    show('/steps/check/results')
+    show('/steps/check/check_your_answers')
   end
 end

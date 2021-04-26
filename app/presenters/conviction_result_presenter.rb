@@ -1,4 +1,4 @@
-class ConvictionResultPresenter < ResultsPresenter
+class ConvictionResultPresenter < ResultsItemPresenter
   def to_partial_path
     'results/conviction'
   end

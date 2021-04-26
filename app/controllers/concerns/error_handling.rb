@@ -25,8 +25,7 @@ module ErrorHandling
     raise Errors::InvalidSession unless current_disclosure_check
   end
 
-  # TODO: remove feature-flag condition once we finish the `multiples` work
   def check_disclosure_report_not_completed
-    raise Errors::ReportCompleted if current_disclosure_report.completed? && multiples_enabled?
+    raise Errors::ReportCompleted if current_disclosure_report.completed?
   end
 end

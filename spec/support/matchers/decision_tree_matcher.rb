@@ -12,15 +12,15 @@ RSpec::Matchers.define :have_destination do |controller, action, params = {}|
   end
 end
 
-RSpec::Matchers.define :complete_the_check_and_show_results do
+RSpec::Matchers.define :show_check_your_answers_page do
   match do |decision_tree|
     expect(decision_tree.disclosure_check).to receive(:completed!)
 
     destination = decision_tree.destination
-    destination[:controller] == '/steps/check/results' && destination[:action] == :show
+    destination[:controller] == '/steps/check/check_your_answers' && destination[:action] == :show
   end
 
   failure_message do |decision_tree|
-    "expected decision tree destination to be the results page, got '#{decision_tree.destination}'"
+    "expected decision tree destination to be Check Your Answers, got '#{decision_tree.destination}'"
   end
 end

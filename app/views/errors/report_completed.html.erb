@@ -5,7 +5,7 @@
     <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
     <p class="govuk-body"><%=t '.lead_text' %></p>
-    <p class="govuk-body"><%= link_to t('.results_page'), steps_check_results_path(show_results: true), class: 'govuk-link govuk-link--no-visited-state' %></p>
+    <p class="govuk-body"><%= link_to t('.results_page'), steps_check_results_path, class: 'govuk-link govuk-link--no-visited-state' %></p>
 
     <%= link_button :start_again, root_path %>
   </div>

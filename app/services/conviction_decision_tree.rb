@@ -33,7 +33,7 @@ class ConvictionDecisionTree < BaseDecisionTree
     when :compensation_receipt_sent
       after_compensation_receipt_sent
     when :conviction_length
-      results
+      check_your_answers
     else
       raise InvalidStep, "Invalid step '#{as || step_params}'"
     end
@@ -61,13 +61,13 @@ class ConvictionDecisionTree < BaseDecisionTree
   end
 
   def after_known_date
-    return results if conviction_subtype.skip_length?
+    return check_your_answers if conviction_subtype.skip_length?
 
     edit(:conviction_length_type)
   end
 
   def after_conviction_length_type
-    return results if ConvictionLengthType.new(step_value(:conviction_length_type)).without_length?
+    return check_your_answers if ConvictionLengthType.new(step_value(:conviction_length_type)).without_length?
 
     edit(:conviction_length)
   end
@@ -81,17 +81,17 @@ class ConvictionDecisionTree < BaseDecisionTree
   def after_compensation_payment_date
     return edit(:compensation_payment_receipt) if GenericYesNo.new(disclosure_check.compensation_payment_over_100).yes?
 
-    results
+    check_your_answers
   end
 
   def after_compensation_receipt_sent
     return show(:compensation_unable_to_tell) if GenericYesNo.new(disclosure_check.compensation_receipt_sent).no?
 
-    results
+    check_your_answers
   end
 
   def after_motoring_endorsement
-    return results if penalty_notice_without_endorsement?
+    return check_your_answers if penalty_notice_without_endorsement?
 
     known_date_question
   end

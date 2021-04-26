@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   include SecurityHandling
   include ErrorHandling
-  include ExperimentsHelper
 
   # This is required to get request attributes in to the production logs.
   # See the various lograge configurations in `production.rb`.

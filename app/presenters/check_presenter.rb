@@ -7,7 +7,7 @@ class CheckPresenter
 
   def summary
     CheckRow.new(
-      ResultsPresenter.build(disclosure_check).summary,
+      ResultsItemPresenter.build(disclosure_check).summary,
       scope: to_partial_path
     )
   end
