@@ -43,14 +43,14 @@ RSpec.describe CheckGroupPresenter do
     end
   end
 
-  describe '#check_group_name' do
+  describe '#check_group_kind' do
     context 'caution' do
       let!(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
-      it { expect(subject.check_group_name).to eq('caution') }
+      it { expect(subject.check_group_kind).to eq('caution') }
     end
     context 'conviction' do
       let!(:disclosure_check) { create(:disclosure_check, :conviction,  :completed) }
-      it { expect(subject.check_group_name).to eq('conviction') }
+      it { expect(subject.check_group_kind).to eq('conviction') }
     end
   end
 

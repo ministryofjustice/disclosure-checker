@@ -108,7 +108,7 @@ And(/^I check my "([^"]*)" answers and go to the results page$/) do |kind|
   step %[I should be on "/steps/check/check_your_answers"]
 
   if kind == 'conviction'
-    step %[I should see the button "Add another sentence to this conviction"]
+    step %[I should see the button "Add another sentence"]
   end
 
   step %[I should see the button "Add a new caution or conviction"]

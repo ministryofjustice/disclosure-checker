@@ -1,13 +1,17 @@
 <h2 class="govuk-heading-l">
-  <%= "#{check.number}. #{t("#{check.check_group_name}.kind", scope: check.scope)}"%>
+  <%=t "#{check.check_group_kind}.heading", scope: check.scope, index: check.number %>
 </h2>
 
 <%= render check.summary %>
 
 <% if check.add_another_sentence_button? %>
+  <p class="govuk-body">
+    If you were given more than one sentence as part of this conviction you must add it now.
+  </p>
+
   <div class="govuk-!-margin-top-1">
-    <%= button_to 'Add another sentence to this conviction', check_group_path(check.check_group),
-                        class: 'govuk-button govuk-button--secondary govuk-!-margin-bottom-8',
-                        data: { module: 'govuk-button', 'prevent-double-click': true } %>
+    <%= button_to 'Add another sentence', check_group_path(check.check_group),
+                  class: 'govuk-button govuk-button--secondary govuk-!-margin-bottom-8',
+                  data: {module: 'govuk-button', 'prevent-double-click': true } %>
   </div>
 <% end %>

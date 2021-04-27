@@ -69,7 +69,7 @@ en:
       adult_prison_sentence: Prison sentence
 
   CAUTION_ANSWERS: &CAUTION_ANSWERS
-    kind: Caution
+    heading: 'Caution %{index}'
     orders:
       <<: *CAUTION_TYPES
     known_date:
@@ -83,7 +83,7 @@ en:
         'no': 18 or over
 
   CONVICTION_ANSWERS: &CONVICTION_ANSWERS
-    kind: Conviction
+    heading: 'Conviction %{index}'
     orders:
       <<: *CONVICTION_SUBTYPES
     under_age:
