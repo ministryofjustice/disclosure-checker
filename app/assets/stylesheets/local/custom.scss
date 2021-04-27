@@ -10,6 +10,12 @@
   margin-bottom: 1em;
 }
 
+.app-proceeding-box {
+  border: 1px solid $govuk-border-colour;
+  margin-bottom: govuk-spacing(5);
+  padding: govuk-spacing(3);
+}
+
 dl.multiple-checks-summary:not(:only-child) {
   &:not(:last-of-type) { padding-bottom: 0.5em; }
 }
