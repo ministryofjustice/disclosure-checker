@@ -1,11 +1,12 @@
 RSpec.describe QuestionAnswerRow do
-  subject { described_class.new(question, answer, scope: 'path/to/locales') }
-
   let(:question) { 'question' }
   let(:answer) { 'answer' }
+  let(:scope) { %w(check_your_answers caution) }
+
+  subject { described_class.new(question, answer, scope: scope) }
 
   describe '#to_partial_path' do
-    it { expect(subject.to_partial_path).to eq('results/shared/row') }
+    it { expect(subject.to_partial_path).to eq('check_your_answers/shared/row') }
   end
 
   describe '#question' do

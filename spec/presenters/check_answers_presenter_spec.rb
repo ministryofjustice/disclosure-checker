@@ -10,8 +10,8 @@ RSpec.describe CheckAnswersPresenter do
     end
   end
 
-  describe '#to_partial_path' do
-    it { expect(subject.to_partial_path).to eq('check_your_answers/check') }
+  describe '#scope' do
+    it { expect(subject.scope).to eq(:check_your_answers) }
   end
 
   describe '#summary' do

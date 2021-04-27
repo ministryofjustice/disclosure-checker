@@ -11,3 +11,6 @@ en:
       check_your_answers:
         show:
           page_title: Check your answers
+      results:
+        show:
+          page_title: When your caution or conviction is spent

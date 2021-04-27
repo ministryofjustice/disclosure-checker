@@ -1,15 +1,15 @@
 class ConvictionResultPresenter < ResultsItemPresenter
-  def to_partial_path
-    'results/conviction'
-  end
-
   private
+
+  def type_attribute
+    :conviction_subtype
+  end
 
   def question_attributes
     [
-      :conviction_subtype,
       :under_age,
       :conviction_bail_days,
+      :conviction_date,
       :known_date,
       [:conviction_length, i18n_conviction_length],
       :compensation_payment_date,
@@ -24,7 +24,7 @@ class ConvictionResultPresenter < ResultsItemPresenter
     I18n.translate!(
       "conviction_length.answers.#{type}",
       length: disclosure_check.conviction_length,
-      scope: to_partial_path
+      scope: scope
     )
   end
 end

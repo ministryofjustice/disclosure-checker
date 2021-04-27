@@ -7,22 +7,6 @@ en:
       adult_simple_caution: Simple caution
       adult_conditional_caution: Conditional caution
 
-    CONVICTION_TYPES: &CONVICTION_TYPES
-      # youth
-      referral_supervision_yro: Referral or youth rehabilitation order (YRO)
-      custodial_sentence: Custody or hospital order
-      discharge: Discharge
-      financial: Financial penalty
-      military: Military
-      prevention_reparation: Prevention or reparation order
-      # adults
-      adult_community_reparation: Community, reparation or other order with requirements
-      adult_custodial_sentence: Custody or hospital order
-      adult_discharge: Discharge
-      adult_financial: Financial penalty
-      adult_military: Military
-      adult_motoring: Motoring
-
     CONVICTION_SUBTYPES: &CONVICTION_SUBTYPES
       # referral_supervision_yro
       referral_order: Referral order
@@ -84,18 +68,52 @@ en:
       adult_suspended_prison_sentence: Suspended prison sentence
       adult_prison_sentence: Prison sentence
 
-  check_your_answers/check:
-    kind:
-      caution: Caution
-      conviction: Conviction
+  CAUTION_ANSWERS: &CAUTION_ANSWERS
+    kind: Caution
+    orders:
+      <<: *CAUTION_TYPES
+    known_date:
+      question: Date caution was given
+    conditional_end_date:
+      question: Date conditions ended
+    under_age:
+      question: Age at time of caution
+      answers:
+        'yes': Under 18
+        'no': 18 or over
 
-  steps:
-    check:
-      results:
-        show:
-          page_title: When your caution or conviction is spent
+  CONVICTION_ANSWERS: &CONVICTION_ANSWERS
+    kind: Conviction
+    orders:
+      <<: *CONVICTION_SUBTYPES
+    under_age:
+      question: Age at time of conviction
+      answers:
+        'yes': Under 18
+        'no': 18 or over
+    conviction_bail_days:
+      question: Days on bail
+    conviction_date:
+      question: Date of conviction
+    known_date:
+      question: Start date
+    conviction_length:
+      question: Length of conviction
+      answers:
+        weeks: '%{length} weeks'
+        months: '%{length} months'
+        years: '%{length} years'
+        no_length: No length was given
+        indefinite: Until further order
+    compensation_payment_date:
+      question: Compensation payment date
+    motoring_endorsement:
+      question: Motoring endorsement
+      answers:
+        'yes': 'Yes'
+        'no': 'No'
 
-  # Multiple cautions or convictions (feature-flagged, still WIP)
+  # TODO: to be refactored for the new multiples results page design
   # Ensure all the values declared in `ResultsVariant` have their corresponding locale here.
   results/shared/spent_date_panel:
     spent:
@@ -115,47 +133,14 @@ en:
     exact: '%{date}'
     approximate: '%{date} (approximate)'
 
-  results/caution:
-    known_date:
-      question: Date caution was given
-    conditional_end_date:
-      question: Date conditions ended
-    under_age:
-      question: Age at time of caution
-      answers:
-        'yes': Under 18
-        'no': 18 or over
-    caution_type:
-      question: Type of caution
-      answers:
-        <<: *CAUTION_TYPES
+  check_your_answers:
+    caution:
+      <<: *CAUTION_ANSWERS
+    conviction:
+      <<: *CONVICTION_ANSWERS
 
-  results/conviction:
-    conviction_subtype:
-      question: Type of conviction
-      answers:
-        <<: *CONVICTION_SUBTYPES
-    under_age:
-      question: Age at time of conviction
-      answers:
-        'yes': Under 18
-        'no': 18 or over
-    conviction_bail_days:
-      question: Days on bail
-    known_date:
-      question: Start date
-    conviction_length:
-      question: Length of conviction
-      answers:
-        weeks: '%{length} weeks'
-        months: '%{length} months'
-        years: '%{length} years'
-        no_length: No length was given
-        indefinite: Until further order
-    compensation_payment_date:
-      question: Compensation payment date
-    motoring_endorsement:
-      question: Motoring endorsement
-      answers:
-        'yes': 'Yes'
-        'no': 'No'
+  results:
+    caution:
+      <<: *CAUTION_ANSWERS
+    conviction:
+      <<: *CONVICTION_ANSWERS

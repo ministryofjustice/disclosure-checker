@@ -1,20 +1,24 @@
 RSpec.describe CheckPresenter do
-  let(:disclosure_check) { create(:disclosure_check, :completed) }
+  let(:disclosure_check) { instance_double(DisclosureCheck) }
+  let(:scope) { 'foobar' }
 
-  subject { described_class.new(disclosure_check) }
+  subject { described_class.new(disclosure_check, scope: scope) }
 
   describe '#to_partial_path' do
-    it { expect(subject.to_partial_path).to eq('check_your_answers/shared/check_row') }
+    it { expect(subject.to_partial_path).to eq('foobar/shared/check_row') }
   end
 
   describe '#summary' do
-    let(:summary) { subject.summary }
+    let(:item_presenter) { instance_double(ResultsPresenter, summary: item_summary) }
+    let(:item_summary) { [1,2,3] }
 
-    context 'for a single youth caution' do
-      it 'returns CheckRow' do
-        expect(summary).to be_an_instance_of(CheckRow)
-        expect(summary.question_answers.size).to eq(3)
-      end
+    before do
+      allow(ResultsItemPresenter).to receive(:build).and_return(item_presenter)
+    end
+
+    it 'returns the items from the `ResultsItemPresenter`' do
+      expect(ResultsItemPresenter).to receive(:build).with(disclosure_check, scope: scope)
+      expect(subject.summary).to eq(item_summary)
     end
   end
 end

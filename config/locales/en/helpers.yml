@@ -12,18 +12,13 @@ en:
     approximate_date_legend: &approximate_date_legend "Approximate date"
     approximate_date_checkbox: &approximate_date_checkbox "This is not the exact date"
 
-    DATE_PARTS: &DATE_PARTS
-      day: Day
-      month: Month
-      year: Year
-
     CAUTION_TYPES: &CAUTION_TYPES
       youth_simple_caution: Youth caution
       youth_conditional_caution: Youth conditional caution
       adult_simple_caution: Simple caution
       adult_conditional_caution: Conditional caution
 
-    CAUTION_TYPE_HINTS: &CAUTION_TYPE_HINTS
+    CAUTION_TYPE_HINTS:
       simple_caution_hint: &simple_caution_hint |
         You did not have to agree to any conditions
       conditional_caution_hint: &conditional_caution_hint |

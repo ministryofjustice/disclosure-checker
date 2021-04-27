@@ -8,12 +8,12 @@ RSpec.describe CheckGroupPresenter do
       number,
       disclosure_check.check_group,
       spent_date: spent_date,
-      scope: 'some/path'
+      scope: 'foobar'
     )
   }
 
   describe '#to_partial_path' do
-    it { expect(subject.to_partial_path).to eq('check_your_answers/shared/check') }
+    it { expect(subject.to_partial_path).to eq('foobar/shared/check') }
   end
 
   describe '#summary' do

@@ -19,7 +19,7 @@ RSpec.describe 'I18n' do
       expect(
         i18n.tree('en.helpers/dictionary.CAUTION_TYPES').to_hash
       ).to eq(
-        i18n.tree('en.results/caution.caution_type.answers').to_hash
+        i18n.tree('en.results/dictionary.CAUTION_TYPES').to_hash
       )
     end
 
@@ -27,7 +27,7 @@ RSpec.describe 'I18n' do
       expect(
         i18n.tree('en.helpers/dictionary.CONVICTION_SUBTYPES').to_hash
       ).to eq(
-        i18n.tree('en.results/conviction.conviction_subtype.answers').to_hash
+        i18n.tree('en.results/dictionary.CONVICTION_SUBTYPES').to_hash
       )
     end
   end

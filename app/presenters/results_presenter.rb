@@ -1,4 +1,8 @@
 class ResultsPresenter < BasketPresenter
+  def scope
+    :results
+  end
+
   # This is how many cautions or convictions are in this report, meaning
   # 1 caution and 1 conviction with 3 sentences will return 2.
   def proceedings_size

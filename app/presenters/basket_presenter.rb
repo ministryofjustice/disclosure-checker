@@ -11,7 +11,7 @@ class BasketPresenter
         i,
         proceeding.check_group,
         spent_date: calculator.spent_date_for(proceeding),
-        scope: to_partial_path
+        scope: scope
       )
     end
   end
@@ -20,8 +20,9 @@ class BasketPresenter
     @_calculator ||= Calculators::Multiples::MultipleOffensesCalculator.new(disclosure_report)
   end
 
-  # TODO: this potentially will be different for CYA and for results page
-  def to_partial_path
-    'check_your_answers/check'
+  # :nocov:
+  def scope
+    raise NotImplementedError, 'implement in subclasses'
   end
+  # :nocov:
 end
