@@ -1,7 +1,8 @@
 RSpec.describe ResultsItemPresenter do
   let(:disclosure_check) { instance_double(DisclosureCheck, kind: kind) }
+  let(:scope) { 'foobar' }
 
-  subject { described_class.build(disclosure_check) }
+  subject { described_class.build(disclosure_check, scope: scope) }
 
   describe '.build' do
     context 'for a caution' do

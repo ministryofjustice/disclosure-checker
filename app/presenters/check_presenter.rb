@@ -1,18 +1,20 @@
 class CheckPresenter
-  attr_reader :disclosure_check
+  attr_reader :disclosure_check, :scope
 
-  def initialize(disclosure_check)
+  delegate :kind, :order_type, :summary, to: :results_item
+
+  def initialize(disclosure_check, scope:)
     @disclosure_check = disclosure_check
-  end
-
-  def summary
-    CheckRow.new(
-      ResultsItemPresenter.build(disclosure_check).summary,
-      scope: to_partial_path
-    )
+    @scope = scope
   end
 
   def to_partial_path
-    'check_your_answers/shared/check_row'
+    [scope, 'shared', 'check_row'].join('/')
+  end
+
+  private
+
+  def results_item
+    @_results_item ||= ResultsItemPresenter.build(disclosure_check, scope: scope)
   end
 end

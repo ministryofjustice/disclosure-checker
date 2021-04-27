@@ -1,20 +1,26 @@
 class ResultsItemPresenter
   include ValueObjectMethods
-  attr_reader :disclosure_check
+  attr_reader :disclosure_check, :kind, :scope
 
-  def self.build(disclosure_check)
+  def self.build(disclosure_check, scope:)
     case CheckKind.new(disclosure_check.kind)
     when CheckKind::CAUTION
-      CautionResultPresenter.new(disclosure_check)
+      CautionResultPresenter.new(disclosure_check, scope: scope)
     when CheckKind::CONVICTION
-      ConvictionResultPresenter.new(disclosure_check)
+      ConvictionResultPresenter.new(disclosure_check, scope: scope)
     else
       raise TypeError, 'unknown check kind'
     end
   end
 
-  def initialize(disclosure_check)
+  def initialize(disclosure_check, scope:)
     @disclosure_check = disclosure_check
+    @kind = disclosure_check.kind
+    @scope = [scope, kind]
+  end
+
+  def order_type
+    disclosure_check[type_attribute]
   end
 
   def summary
@@ -22,7 +28,7 @@ class ResultsItemPresenter
       QuestionAnswerRow.new(
         item,
         value || format_value(item),
-        scope: to_partial_path
+        scope: scope
       )
     end.select(&:show?)
   end
@@ -57,7 +63,7 @@ class ResultsItemPresenter
   end
 
   # :nocov:
-  def to_partial_path
+  def type_attribute
     raise NotImplementedError, 'implement in subclasses'
   end
 

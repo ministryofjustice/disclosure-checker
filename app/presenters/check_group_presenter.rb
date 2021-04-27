@@ -10,7 +10,7 @@ class CheckGroupPresenter
 
   def summary
     completed_checks.map do |disclosure_check|
-      CheckPresenter.new(disclosure_check)
+      CheckPresenter.new(disclosure_check, scope: scope)
     end
   end
 
@@ -22,7 +22,7 @@ class CheckGroupPresenter
   end
 
   def to_partial_path
-    'check_your_answers/shared/check'
+    [scope, 'shared', 'check'].join('/')
   end
 
   def add_another_sentence_button?

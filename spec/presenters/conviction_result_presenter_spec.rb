@@ -1,10 +1,19 @@
 RSpec.describe ConvictionResultPresenter do
-  subject { described_class.new(disclosure_check) }
+  subject { described_class.new(disclosure_check, scope: scope) }
 
   let(:disclosure_check) { build(:disclosure_check, :dto_conviction) }
+  let(:scope) { 'results' }
 
-  describe '#to_partial_path' do
-    it { expect(subject.to_partial_path).to eq('results/conviction') }
+  describe '#scope' do
+    it { expect(subject.scope).to eq([scope, 'conviction']) }
+  end
+
+  describe '#kind' do
+    it { expect(subject.kind).to eq('conviction') }
+  end
+
+  describe '#order_type' do
+    it { expect(subject.order_type).to eq('detention_training_order') }
   end
 
   describe '#summary' do
@@ -13,11 +22,11 @@ RSpec.describe ConvictionResultPresenter do
     it 'returns the correct question-answer pairs' do
       expect(summary.size).to eq(4)
 
-      expect(summary[0].question).to eql(:conviction_subtype)
-      expect(summary[0].answer).to eql('detention_training_order')
+      expect(summary[0].question).to eql(:under_age)
+      expect(summary[0].answer).to eql('yes')
 
-      expect(summary[1].question).to eql(:under_age)
-      expect(summary[1].answer).to eql('yes')
+      expect(summary[1].question).to eql(:conviction_date)
+      expect(summary[1].answer).to eq('1 January 2018')
 
       expect(summary[2].question).to eql(:known_date)
       expect(summary[2].answer).to eq('31 October 2018')
@@ -45,11 +54,11 @@ RSpec.describe ConvictionResultPresenter do
       it 'returns the correct question-answer pairs' do
         expect(summary.size).to eq(4)
 
-        expect(summary[0].question).to eql(:conviction_subtype)
-        expect(summary[0].answer).to eql('compensation_to_a_victim')
+        expect(summary[0].question).to eql(:under_age)
+        expect(summary[0].answer).to eql('yes')
 
-        expect(summary[1].question).to eql(:under_age)
-        expect(summary[1].answer).to eql('yes')
+        expect(summary[1].question).to eql(:conviction_date)
+        expect(summary[1].answer).to eq('1 January 2018')
 
         expect(summary[2].question).to eql(:known_date)
         expect(summary[2].answer).to eq('31 October 2018')
@@ -77,14 +86,14 @@ RSpec.describe ConvictionResultPresenter do
       it 'returns the correct question-answer pairs' do
         expect(summary.size).to eq(5)
 
-        expect(summary[0].question).to eql(:conviction_subtype)
-        expect(summary[0].answer).to eql('detention_training_order')
+        expect(summary[0].question).to eql(:under_age)
+        expect(summary[0].answer).to eql('yes')
 
-        expect(summary[1].question).to eql(:under_age)
-        expect(summary[1].answer).to eql('yes')
+        expect(summary[1].question).to eql(:conviction_bail_days)
+        expect(summary[1].answer).to eq(15)
 
-        expect(summary[2].question).to eql(:conviction_bail_days)
-        expect(summary[2].answer).to eq(15)
+        expect(summary[2].question).to eql(:conviction_date)
+        expect(summary[2].answer).to eq('1 January 2018')
 
         expect(summary[3].question).to eql(:known_date)
         expect(summary[3].answer).to eq('31 October 2018')
