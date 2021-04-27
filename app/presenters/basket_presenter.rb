@@ -6,9 +6,9 @@ class BasketPresenter
   end
 
   def summary
-    calculator.proceedings.map.with_index(1) do |proceeding, i|
+    calculator.proceedings.map do |proceeding|
       CheckGroupPresenter.new(
-        i,
+        index(proceeding),
         proceeding.check_group,
         spent_date: calculator.spent_date_for(proceeding),
         scope: scope
@@ -18,6 +18,12 @@ class BasketPresenter
 
   def calculator
     @_calculator ||= Calculators::Multiples::MultipleOffensesCalculator.new(disclosure_report)
+  end
+
+  private
+
+  def index(proceeding)
+    (@_proceeding_index ||= Hash.new(0))[proceeding.kind] += 1
   end
 
   # :nocov:

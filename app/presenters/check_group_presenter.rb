@@ -30,7 +30,7 @@ class CheckGroupPresenter
       first_check_kind.inquiry.conviction?
   end
 
-  def check_group_name
+  def check_group_kind
     first_check_kind
   end
 
