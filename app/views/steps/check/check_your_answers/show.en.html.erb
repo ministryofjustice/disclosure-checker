@@ -1,6 +1,8 @@
 <% title t('.page_title') %>
 <% track_transaction category: 'CYA Basket' %>
 
+<%# TODO: extract strings to locals once design is finalised %>
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">Check your answers</h1>
@@ -11,9 +13,13 @@
 
     <h2 class="govuk-heading-l govuk-!-margin-top-8">Next steps</h2>
 
-    <%= button_to 'Add a new caution or conviction', checks_path,
+    <%= button_to 'Add a caution or conviction', checks_path,
                   class: 'govuk-button govuk-button--secondary',
                   data: { module: 'govuk-button', 'prevent-double-click': true } %>
+
+    <p class="govuk-body">
+      Continue to your results if you’ve finished adding your cautions or convictions.
+    </p>
 
     <%= link_button :results_page, steps_check_results_path %>
   </div>
