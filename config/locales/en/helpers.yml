@@ -117,7 +117,7 @@ en:
       resume_check: Resume check
       restart_check: Start a new check
       cancel_check: Go back to check your answers
-      results_page: Go to results page
+      results_page: Continue to your results
 
     caption:
       steps_conviction_known_date_form:
