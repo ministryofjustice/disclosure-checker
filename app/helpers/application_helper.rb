@@ -60,7 +60,7 @@ module ApplicationHelper
     }.merge(attributes)
   end
 
-  def allow_to_cancel_check?
+  def any_completed_checks?
     current_disclosure_report.disclosure_checks.completed.any?
   end
 

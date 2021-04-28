@@ -148,7 +148,7 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
-  describe '#allow_to_cancel_check?' do
+  describe '#any_completed_checks?' do
     let(:disclosure_report) { instance_double(DisclosureReport) }
     let(:disclosure_checks) { double('result_set', completed: checks) }
 
@@ -159,12 +159,12 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     context 'for no checks completed' do
       let(:checks) { [] }
-      it { expect(helper.allow_to_cancel_check?).to eq(false) }
+      it { expect(helper.any_completed_checks?).to eq(false) }
     end
 
     context 'for at least one check completed' do
       let(:checks) { [1] }
-      it { expect(helper.allow_to_cancel_check?).to eq(true) }
+      it { expect(helper.any_completed_checks?).to eq(true) }
     end
   end
 

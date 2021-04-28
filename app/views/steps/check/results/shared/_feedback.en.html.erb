@@ -9,7 +9,7 @@
 </p>
 
 <%
-  survey_file = if current_disclosure_check.under_age.inquiry.yes?
+  survey_file = if current_disclosure_check.under_age.to_s.inquiry.yes?
                   'tRaiETqnLgj758hTBazgd_2Bo7LRXsbd1AcAFHQu4ukGzukG3bvIXELhbfUTio3i90'
                 else
                   'tRaiETqnLgj758hTBazgd6NBO_2By7HeCVIjOSkE2u6sDH2S6srYblwb6DaI4Zc9w5'
