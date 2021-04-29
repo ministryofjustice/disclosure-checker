@@ -6,8 +6,11 @@ module CompletionStep
   extend ActiveSupport::Concern
 
   included do
-    before_action :mark_report_completed,
-                  :purge_incomplete_checks, unless: :report_completed?
+    before_action :check_disclosure_check_presence
+
+    before_action :purge_incomplete_checks,
+                  :allow_ga_transactions,
+                  :mark_report_completed, unless: :report_completed?
   end
 
   private
@@ -23,5 +26,16 @@ module CompletionStep
   # remove any incomplete checks as they don't serve any purpose now
   def purge_incomplete_checks
     current_disclosure_report.disclosure_checks.in_progress.destroy_all
+  end
+
+  # Because transactions can be triggered more than once for the same report,
+  # we try to limit this by only triggering GA transactions for the report
+  # just completed, but not on reloads, etc.
+  #
+  # This is specially important in the results page as it can be reloaded
+  # multiple times or accessed to "replay" the results at a later date.
+  #
+  def allow_ga_transactions
+    flash[:ga_track_completion] = true
   end
 end

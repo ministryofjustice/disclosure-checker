@@ -10,48 +10,9 @@ RSpec.describe AnalyticsHelper, type: :helper do
   end
 
   describe '#analytics_tracking_id' do
-    before do
-      allow(helper).to receive(:current_disclosure_report).and_return(disclosure_report)
-    end
-
-    context 'when the report is not yet completed' do
-      let(:disclosure_report) { instance_double(DisclosureReport, completed?: false) }
-
-      it 'retrieves the environment variable' do
-        expect(ENV).to receive(:[]).with('GA_TRACKING_ID')
-        helper.analytics_tracking_id
-      end
-    end
-
-    context 'when the report is completed' do
-      let(:disclosure_report) { instance_double(DisclosureReport, completed?: true, completed_at: completed_at) }
-
-      context 'and there is a `completed_at` date and is not older than 15 minutes ago' do
-        let(:completed_at) { 5.minutes.ago }
-
-        it 'retrieves the environment variable' do
-          expect(ENV).to receive(:[]).with('GA_TRACKING_ID')
-          helper.analytics_tracking_id
-        end
-      end
-
-      context 'and there is a `completed_at` date and is older than 15 minutes ago' do
-        let(:completed_at) { 20.minutes.ago }
-
-        it 'returns nil' do
-          expect(ENV).not_to receive(:[]).with('GA_TRACKING_ID')
-          expect(helper.analytics_tracking_id).to be_nil
-        end
-      end
-
-      context 'and there is no `completed_at` date' do
-        let(:completed_at) { nil }
-
-        it 'returns nil' do
-          expect(ENV).not_to receive(:[]).with('GA_TRACKING_ID')
-          expect(helper.analytics_tracking_id).to be_nil
-        end
-      end
+    it 'retrieves the environment variable' do
+      expect(ENV).to receive(:[]).with('GA_TRACKING_ID')
+      helper.analytics_tracking_id
     end
   end
 

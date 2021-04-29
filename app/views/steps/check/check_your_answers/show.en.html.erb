@@ -21,6 +21,8 @@
       Continue to your results if you’ve finished adding your cautions or convictions.
     </p>
 
-    <%= link_button :results_page, steps_check_results_path %>
+    <%= button_to 'Continue to your results', report_finish_path(:current),
+                  class: 'govuk-button', method: :put,
+                  data: { module: 'govuk-button', 'prevent-double-click': true } %>
   </div>
 </div>
