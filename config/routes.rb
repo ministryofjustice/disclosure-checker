@@ -66,6 +66,10 @@ Rails.application.routes.draw do
     post '', action: :create, as: :group
   end
 
+  resources :reports, only: [] do
+    put :finish
+  end
+
   resources :results, only: [:show], param: :report_id
 
   resources :pilot, only: [:show]

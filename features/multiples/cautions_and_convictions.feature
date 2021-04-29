@@ -38,7 +38,6 @@ Feature: A person with cautions and convictions
       And I should see "Conditional discharge"
       And I should see the button "Add another sentence"
       And I should see the button "Add a caution or conviction"
-      And I should see a "Continue to your results" link to "/steps/check/results"
 
       And I click the "Add a caution or conviction" button
 
@@ -53,7 +52,7 @@ Feature: A person with cautions and convictions
      Then I click the "Continue" button
 
       And I should see "Check your answers"
-     Then I click the "Continue to your results" link
+     Then I click the "Continue to your results" button
 
       And I should see "Caution 1"
       And I should see "This caution is spent on the day you receive it"

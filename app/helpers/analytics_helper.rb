@@ -5,21 +5,7 @@ module AnalyticsHelper
     orders: :dimension3,
   }.freeze
 
-  # Because transactions can be triggered more than once for the same report,
-  # we try to limit this by only triggering GA events and transactions for
-  # reports not completed, or completed recently. But not old ones.
-  #
-  # This is specially important in the results page as it can be reloaded
-  # multiple times or accessed to "replay" the results at a later date.
-  #
   def analytics_tracking_id
-    if current_disclosure_report.try(:completed?)
-      # legacy reports do not have the `completed_at` date
-      return if current_disclosure_report.completed_at.nil?
-
-      return if current_disclosure_report.completed_at <= 15.minutes.ago
-    end
-
     ENV['GA_TRACKING_ID']
   end
 
