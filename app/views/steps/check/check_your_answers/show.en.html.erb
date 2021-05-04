@@ -13,12 +13,16 @@
 
     <h2 class="govuk-heading-l govuk-!-margin-top-8">Next steps</h2>
 
+    <p class="govuk-body">
+      If you need to check additional cautions or convictions add them now.
+    </p>
+
     <%= button_to 'Add a caution or conviction', checks_path,
                   class: 'govuk-button govuk-button--secondary',
                   data: { module: 'govuk-button', 'prevent-double-click': true } %>
 
     <p class="govuk-body">
-      Continue to your results if you’ve finished adding your cautions or convictions.
+      If you have finished adding cautions and convictions, get your results.
     </p>
 
     <%= button_to 'Continue to your results', report_finish_path(:current),
