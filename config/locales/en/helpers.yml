@@ -116,7 +116,7 @@ en:
       start_again: New check
       resume_check: Resume check
       restart_check: Start a new check
-      cancel_check: Go back to check your answers
+      check_your_answers: Go back to check your answers
       results_page: Continue to your results
 
     caption:

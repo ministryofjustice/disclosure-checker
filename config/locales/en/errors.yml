@@ -100,6 +100,10 @@ en:
       heading: You have already completed this report
       lead_text: If you want to make changes you will need to start again.
       results_page: Go to results page
+    report_not_completed:
+      page_title: Report not completed
+      heading: You have not completed this report
+      lead_text: You need to add cautions or convictions to check their spent dates.
     invalid_session:
       page_title: Sorry, you'll have to start again
       heading: Sorry, you'll have to start again

@@ -19,23 +19,25 @@ RSpec.describe Steps::Check::ResultsController, type: :controller do
       end
     end
 
-    context 'when the disclosure report is completed' do
+    context 'when there is a disclosure report in the session' do
       let(:disclosure_check) { DisclosureCheck.create(status: :in_progress) }
 
-      before do
-        disclosure_check.disclosure_report.completed!
+      context 'when the disclosure report is completed' do
+        before do
+          disclosure_check.disclosure_report.completed!
+        end
+
+        it 'does not return an error, and renders the template' do
+          get :show, session: { disclosure_check_id: disclosure_check.id }
+          expect(response).to render_template(:show)
+        end
       end
 
-      it 'does not return an error, and renders the template' do
-        get :show, session: { disclosure_check_id: disclosure_check.id }
-        expect(response).to render_template(:show)
-      end
-    end
-
-    context 'when there is a valid disclosure check' do
-      it 'render template' do
-        get :show
-        expect(response).to render_template(:show)
+      context 'when the disclosure report is not yet completed' do
+        it 'does redirects to the error page' do
+          get :show, session: { disclosure_check_id: disclosure_check.id }
+          expect(response).to redirect_to(report_not_completed_errors_path)
+        end
       end
     end
   end

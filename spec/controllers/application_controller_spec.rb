@@ -6,6 +6,7 @@ RSpec.describe ApplicationController do
     def invalid_session; raise Errors::InvalidSession; end
     def results_not_found; raise Errors::ResultsNotFound; end
     def report_completed; raise Errors::ReportCompleted; end
+    def report_not_completed; raise Errors::ReportNotCompleted; end
     def another_exception; raise Exception; end
   end
 
@@ -45,6 +46,17 @@ RSpec.describe ApplicationController do
 
         get :report_completed
         expect(response).to redirect_to(report_completed_errors_path)
+      end
+    end
+
+    context 'Errors::ReportNotCompleted' do
+      it 'should not report the exception, and redirect to the error page' do
+        routes.draw { get 'report_not_completed' => 'anonymous#report_not_completed' }
+
+        expect(Raven).not_to receive(:capture_exception)
+
+        get :report_not_completed
+        expect(response).to redirect_to(report_not_completed_errors_path)
       end
     end
 
