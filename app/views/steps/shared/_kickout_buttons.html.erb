@@ -1,6 +1,6 @@
 <div class="govuk-button-group govuk-!-margin-top-6">
   <% if any_completed_checks? %>
-    <%= link_button :cancel_check, steps_check_check_your_answers_path %>
+    <%= link_button :check_your_answers, steps_check_check_your_answers_path %>
   <% else %>
     <%= link_button :restart_check, root_path(new: 'y') %>
   <% end %>

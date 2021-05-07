@@ -10,6 +10,8 @@ module ErrorHandling
         redirect_to results_not_found_errors_path
       when Errors::ReportCompleted
         redirect_to report_completed_errors_path
+      when Errors::ReportNotCompleted
+        redirect_to report_not_completed_errors_path
       else
         raise if Rails.application.config.consider_all_requests_local
 
@@ -27,5 +29,9 @@ module ErrorHandling
 
   def check_disclosure_report_not_completed
     raise Errors::ReportCompleted if current_disclosure_report.completed?
+  end
+
+  def check_disclosure_report_completed
+    raise Errors::ReportNotCompleted unless current_disclosure_report.completed?
   end
 end
