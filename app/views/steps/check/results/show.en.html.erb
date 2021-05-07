@@ -9,7 +9,6 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
     <h1 class="govuk-heading-xl">
       <% if @presenter.calculator.all_spent? %>
         Your cautions or convictions are spent
@@ -18,83 +17,60 @@
       <% end %>
     </h1>
 
-    <div class="govuk-inset-text">
-      The result you’ve been given is for guidance only. Find out
-      <a class="govuk-link govuk-link--no-visited-state" href="#next-steps-section">how to use this information</a>
-      before deciding whether or not to tell people about your caution or conviction.
-    </div>
-
-    <h2 class="govuk-heading-l">Contents</h2>
-
-    <ol class="govuk-list govuk-list--number">
-      <li><a class="govuk-link govuk-link--no-visited-state" href="#spent-section">When your cautions or convictions become spent</a></li>
-      <li><a class="govuk-link govuk-link--no-visited-state" href="#telling-people-section">Telling people about your cautions or convictions</a></li>
-      <li><a class="govuk-link govuk-link--no-visited-state" href="#next-steps-section">How to use this information</a></li>
-    </ol>
-
-    <h2 class="govuk-heading-l" id="spent-section">
-      1. When your cautions or convictions become spent
-    </h2>
-
-    <p class="govuk-body">The spent dates you’ve been given are based on:</p>
-
-    <ul class="govuk-list govuk-list--bullet">
-      <li>what you’ve told us about your cautions or convictions</li>
-      <li>the current law on <a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/guidance/rehabilitation-periods">rehabilitation periods</a></li>
-    </ul>
+    <p class="govuk-body">
+      Your results are calculated using the information you have given and the current law.
+      Read more about
+      <a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/tell-employer-or-college-about-criminal-record/what-information-you-need-to-give">
+        what a spent caution or conviction is</a>
+      on GOV.UK.
+    </p>
 
     <%= render @presenter.summary %>
 
+    <h2 class="govuk-heading-l">Using your results</h2>
+
     <p class="govuk-body">
-      If you need to change any information, or if you have another caution or conviction you’d like to
-      check, <%= link_to 'start a new check', root_path(new: 'y'), class: 'govuk-link govuk-link--no-visited-state ga-pageLink', data: { ga_category: 'results', ga_label: 'new check' } %>.
+      Your results are correct if you served your sentence in full as the court ordered you to.
+      The conviction might not be spent if you did not stick to the terms of your sentence.
     </p>
 
-    <h2 class="govuk-heading-l" id="telling-people-section">
-      2. Telling people about your cautions or convictions
-    </h2>
-
-    <h3 class="govuk-heading-s">If a basic criminal record check is requested</h3>
-
     <p class="govuk-body">
-      When a caution or conviction is spent you do not need to tell people about it, or the offence that led to it,
-      if they’re carrying out a
-      <a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/guidance/telling-people-about-your-criminal-record#basic-dbs-checks">basic
-        criminal record check</a>.
+      You do not have to tell anyone about spent cautions or convictions unless you are asked.
+      And employers and other organisations can only ask if they have a good reason.
+      <a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/tell-employer-or-college-about-criminal-record/what-information-you-need-to-give">
+        Read more about this on GOV.UK</a>.
     </p>
 
-    <h3 class="govuk-heading-s">If a standard or enhanced criminal record check is requested</h3>
+    <h3 class="govuk-heading-m">Disclosure and Barring Service (DBS) checks</h3>
 
     <p class="govuk-body">
-      You will usually need to tell people about spent cautions or convictions if they’re carrying out a
-      <a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/guidance/telling-people-about-your-criminal-record#standard-dbs">standard or
-        enhanced criminal record check</a>.
+      DBS checks are criminal record checks.
+      If you’re applying for a job, university, college or insurance, you may be told a DBS check is needed.
+      You should also be told what type of check will be done.
     </p>
 
-    <h2 class="govuk-heading-l" id="next-steps-section">
-      3. How to use this information
-    </h2>
+    <p class="govuk-body">
+      Criminal record checks are usually done through the Disclosure and Barring Service (DBS).
+    </p>
 
     <p class="govuk-body">
-      As you’ve not given specific details about your caution or conviction, this service can only give you
-      general guidance about when it becomes spent.
-    <p>
+      Some spent cautions and convictions are
+      ‘<a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/government/publications/dbs-filtering-guidance">protected</a>’
+      and will not show on a DBS certificate.
+    </p>
 
     <p class="govuk-body">
-      The result you’ve been given might be wrong if you:
+      Criminal record checks are usually done through the
+      <a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/government/publications/dbs-filtering-guidance">Disclosure and Barring Service (DBS)</a>.
+      The 4 types of DBS checks are:
     </p>
 
     <ul class="govuk-list govuk-list--bullet">
-      <li>entered any incorrect information, such as approximate dates</li>
-      <li>did not serve your sentence in full as the court ordered you to, or</li>
-      <li>did not stick to the conditions of your sentence</li>
+      <li>Basic - shows only cautions and convictions that are not spent.</li>
+      <li>Standard - shows all convictions, cautions, reprimands and final warnings, even if they’re spent</li>
+      <li>Enhanced - shows the same information as a standard check but also includes any information held by the police that they think is relevant to your application.</li>
+      <li>Enhanced with barred list - shows the same information as an enhanced check but also tells employers if you’ve been barred from doing the role you’re applying for.</li>
     </ul>
-
-    <div class="govuk-inset-text">
-      Some spent cautions and convictions are
-      <a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/government/publications/dbs-filtering-guidance">’protected’ or ‘filtered’</a> and
-      will not show up on a standard or enhanced criminal record check.
-    </div>
 
     <%= render partial: 'steps/check/results/shared/feedback' %>
   </div>
