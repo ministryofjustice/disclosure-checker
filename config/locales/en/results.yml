@@ -117,15 +117,15 @@ en:
   # Ensure all the values declared in `ResultsVariant` have their corresponding locale here.
   results/shared/spent_date_panel:
     spent:
-      title_html: This %{kind} was spent on <span class="nowrap">%{date}</span>
+      title_html: This %{kind} was given on %{given_date} and was spent on <span class="nowrap">%{date}</span>
     not_spent:
-      title_html: This %{kind} will be spent on <span class="nowrap">%{date}</span>
+      title_html: This %{kind} was given on %{given_date} and will be spent on <span class="nowrap">%{date}</span>
     never_spent:
-      title_html: This %{kind} will never be spent
+      title_html: This %{kind} was given on %{given_date} and will never be spent
     spent_simple:
-      title_html: This %{kind} is spent on the day you receive it
+      title_html: This %{kind} was given on %{given_date} and is spent on the day you receive it
     indefinite:
-      title_html: This %{kind} is not spent and will stay in place until another order is made to change or end it
+      title_html: This %{kind} was given on %{given_date} and is not spent and will stay in place until another order is made to change or end it
 
   results/shared/date_format:
     exact: '%{date}'

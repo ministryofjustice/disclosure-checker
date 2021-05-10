@@ -1,9 +1,10 @@
 class SpentDatePanel
-  attr_reader :spent_date, :kind
+  attr_reader :kind, :spent_date, :conviction_date
 
-  def initialize(spent_date:, kind:)
-    @spent_date = spent_date
+  def initialize(kind:, spent_date:, conviction_date:)
     @kind = kind
+    @spent_date = spent_date
+    @conviction_date = conviction_date
   end
 
   def to_partial_path
@@ -16,6 +17,10 @@ class SpentDatePanel
 
   def date
     I18n.l(spent_date) if spent_date.instance_of?(Date)
+  end
+
+  def given_date
+    I18n.l(conviction_date) if conviction_date.instance_of?(Date)
   end
 
   private

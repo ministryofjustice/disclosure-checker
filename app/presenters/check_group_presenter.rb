@@ -16,8 +16,9 @@ class CheckGroupPresenter
 
   def spent_date_panel
     SpentDatePanel.new(
+      kind: first_check_kind,
       spent_date: spent_date,
-      kind: first_check_kind
+      conviction_date: conviction_date
     )
   end
 
@@ -35,6 +36,10 @@ class CheckGroupPresenter
   end
 
   private
+
+  def conviction_date
+    @_conviction_date ||= completed_checks.first.conviction_date
+  end
 
   def first_check_kind
     @_first_check_kind ||= completed_checks.first.kind

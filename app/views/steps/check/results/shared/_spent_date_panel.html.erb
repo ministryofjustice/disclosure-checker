@@ -1,6 +1,8 @@
-<div class="govuk-panel govuk-panel--confirmation">
-  <h3 class="govuk-panel__title govuk-!-font-size-27">
-    <%=t('title_html', scope: spent_date_panel.scope,
-         kind: spent_date_panel.kind, date: spent_date_panel.date) %>
-  </h3>
-</div>
+<p class="govuk-body">
+  <%= t(
+        'title_html',
+        scope: spent_date_panel.scope,
+        kind: spent_date_panel.kind,
+        date: spent_date_panel.date,
+        given_date: spent_date_panel.given_date) %>
+</p>

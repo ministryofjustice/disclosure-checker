@@ -1,7 +1,8 @@
 RSpec.describe SpentDatePanel do
-  subject { described_class.new(spent_date: spent_date, kind: 'caution') }
+  subject { described_class.new(kind: 'caution', spent_date: spent_date, conviction_date: conviction_date) }
 
   let(:spent_date) { nil }
+  let(:conviction_date) { nil }
   let(:partial_path) { 'results/shared/spent_date_panel' }
 
   describe '#to_partial_path' do
@@ -34,6 +35,18 @@ RSpec.describe SpentDatePanel do
     context 'it is not a date instance' do
       let(:spent_date) { :foobar }
       it { expect(subject.date).to be_nil }
+    end
+  end
+
+  describe '#given_date' do
+    context 'it is a date instance' do
+      let(:conviction_date) { Date.new(2018, 10, 31) }
+      it { expect(subject.given_date).to eq('31 October 2018') }
+    end
+
+    context 'it is not a date instance' do
+      let(:conviction_date) { :foobar }
+      it { expect(subject.given_date).to be_nil }
     end
   end
 end
