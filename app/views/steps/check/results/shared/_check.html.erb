@@ -1,8 +1,12 @@
 <div class="app-proceeding-box">
   <h2 class="govuk-heading-l">
     <%=t "#{check.check_group_kind}.heading", scope: check.scope, index: check.number %>
+
+    <strong class="govuk-tag govuk-tag--<%= check.spent_tag.color %> govuk-!-margin-left-3 app-tag-middle">
+      <%= t check.spent_tag.variant, scope: check.spent_tag.scope %>
+    </strong>
   </h2>
 
-  <%= render check.spent_date_panel if check.spent_date %>
+  <%= render check.spent_date_panel %>
   <%= render check.summary %>
 </div>

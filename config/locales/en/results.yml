@@ -127,6 +127,13 @@ en:
     indefinite:
       title_html: This %{kind} is not spent and will stay in place until another order is made to change or end it
 
+  results/spent_tag:
+    spent: Spent
+    not_spent: Unspent
+    never_spent: Never Spent
+    spent_simple: Spent
+    indefinite: Indefinite
+
   results/shared/date_format:
     exact: '%{date}'
     approximate: '%{date} (approximate)'

@@ -16,6 +16,10 @@
   padding: govuk-spacing(3);
 }
 
+.app-tag-middle {
+  vertical-align: middle;
+}
+
 dl.multiple-checks-summary:not(:only-child) {
   &:not(:last-of-type) { padding-bottom: 0.5em; }
 }
