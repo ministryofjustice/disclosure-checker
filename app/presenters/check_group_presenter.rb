@@ -14,6 +14,12 @@ class CheckGroupPresenter
     end
   end
 
+  def spent_tag
+    SpentTag.new(
+      spent_date: spent_date
+    )
+  end
+
   def spent_date_panel
     SpentDatePanel.new(
       kind: first_check_kind,
