@@ -47,6 +47,55 @@ RSpec.describe ResultsPresenter do
     end
   end
 
+  describe 'APPROXIMATE_DATE_ATTRS' do
+    it 'returns the expected attributes' do
+      expect(described_class::APPROXIMATE_DATE_ATTRS).to eq([
+        :approximate_known_date,
+        :approximate_conviction_date,
+        :approximate_conditional_end_date,
+        :approximate_compensation_payment_date,
+      ])
+    end
+  end
+
+  describe '#approximate_dates?' do
+    it { expect(subject.approximate_dates?).to be(false) }
+
+    context 'when there is an approximate date' do
+      described_class::APPROXIMATE_DATE_ATTRS.each do |approximate_date_attr|
+        before { disclosure_check.update(approximate_date_attr => true) }
+
+        it { expect(subject.approximate_dates?).to be(true) }
+      end
+    end
+  end
+
+  describe '#motoring?' do
+    it { expect(subject.motoring?).to be(false) }
+
+    context 'when conviction type is adult motoring' do
+      before { disclosure_check.update(conviction_type: ConvictionType::ADULT_MOTORING) }
+
+      it { expect(subject.motoring?).to be(true) }
+    end
+
+    context 'when conviction type is youth motoring' do
+      before { disclosure_check.update(conviction_type: ConvictionType::YOUTH_MOTORING) }
+
+      it { expect(subject.motoring?).to be(true) }
+    end
+  end
+
+  describe '#time_on_bail?' do
+    it { expect(subject.time_on_bail?).to be(false) }
+
+    context 'when conviction_bail_days is a positive number' do
+      before { disclosure_check.update(conviction_bail_days: 1) }
+
+      it { expect(subject.time_on_bail?).to be(true) }
+    end
+  end
+
   describe '#proceedings_size' do
     it 'returns the calculator proceedings size' do
       expect(subject.proceedings_size).to eq(1)

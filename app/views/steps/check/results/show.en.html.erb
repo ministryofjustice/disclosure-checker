@@ -17,6 +17,12 @@
       <% end %>
     </h1>
 
+    <% if @presenter.approximate_dates? %>
+      <p class="govuk-body">
+        You entered an approximate date so your results will be approximate.
+      </p>
+    <% end %>
+
     <p class="govuk-body">
       Your results are calculated using the information you have given and the current law.
       Read more about
@@ -40,6 +46,36 @@
       <a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/tell-employer-or-college-about-criminal-record/what-information-you-need-to-give">
         Read more about this on GOV.UK</a>.
     </p>
+
+    <% if @presenter.motoring? %>
+      <h3 class="govuk-heading-m">Your driving record</h3>
+
+      <p class="govuk-body">
+        This checker tells you whether cautions or convictions are spent.
+        However, some motoring endorsements stay on your driving record after the caution or conviction is spent.
+      </p>
+
+      <p class="govuk-body">
+        Your driving record is maintained by the Driver and Vehicle Licensing Agency (DVLA).
+        You can <a href="https://www.gov.uk/view-driving-licence" class="govuk-link" rel="external" target="_blank">view your driving licence information</a>, including your driving record, on GOV.UK.
+      </p>
+
+      <p class="govuk-body">
+        You can find out more about <a href="https://www.gov.uk/penalty-points-endorsements" class="govuk-link" rel="external" target="_blank">penalty points</a> on GOV.UK.
+      </p>
+    <% end %>
+
+    <% if @presenter.time_on_bail? %>
+      <h3 class="govuk-heading-m">
+        Time spent on bail with an electronic tag
+      </h3>
+
+      <p class="govuk-body">
+        Your result and spent date include the number of days you said you spent
+        on bail with an electronic tag that counted towards your sentence.
+        Each full day offsets a day from the total length of your sentence.
+      </p>
+    <% end %>
 
     <h3 class="govuk-heading-m" id="disclosure-and-barring-service">Disclosure and Barring Service (DBS) checks</h3>
 
