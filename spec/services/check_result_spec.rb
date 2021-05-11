@@ -8,7 +8,7 @@ RSpec.describe CheckResult do
 
   context '#expiry_date' do
     context 'for a caution' do
-      let(:kind) { :caution }
+      let(:kind) { :adult_caution }
 
       it 'will call a calculator' do
         expect(subject).to receive(:calculator).and_call_original
