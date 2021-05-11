@@ -4,10 +4,8 @@
 FactoryBot.define do
   factory :disclosure_check do
     check_group
-    kind { CheckKind::CAUTION }
     known_date { Date.new(2018, 10, 31) }
     under_age { GenericYesNo::YES }
-    caution_type { CautionType::YOUTH_SIMPLE_CAUTION }
 
     trait :youth do
       under_age { GenericYesNo::YES }
@@ -17,7 +15,9 @@ FactoryBot.define do
       under_age { GenericYesNo::NO }
     end
 
-    trait :caution
+    trait :caution do
+      kind { CheckKind::CAUTION }
+    end
 
     trait :conviction do
       kind { CheckKind::CONVICTION }
@@ -50,11 +50,21 @@ FactoryBot.define do
       compensation_payment_date { Date.new(2019, 10, 31) }
     end
 
+    trait :adult_caution do
+      adult
+      kind { CheckKind::CAUTION }
+      caution_type { CautionType::ADULT_SIMPLE_CAUTION }
+    end
+
     trait :youth_simple_caution do
+      youth
+      kind { CheckKind::CAUTION }
       caution_type { CautionType::YOUTH_SIMPLE_CAUTION }
     end
 
     trait :youth_conditional_caution do
+      youth
+      kind { CheckKind::CAUTION }
       caution_type { CautionType::YOUTH_CONDITIONAL_CAUTION }
       conditional_end_date { Date.new(2018, 12, 25) }
     end

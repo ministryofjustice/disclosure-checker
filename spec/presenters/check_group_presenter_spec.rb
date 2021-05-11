@@ -1,5 +1,5 @@
 RSpec.describe CheckGroupPresenter do
-  let!(:disclosure_check) { create(:disclosure_check, :completed) }
+  let!(:disclosure_check) { create(:disclosure_check, :conviction, :completed) }
   let(:number) { 1 }
   let(:spent_date) { nil }
 
@@ -29,10 +29,6 @@ RSpec.describe CheckGroupPresenter do
 
   describe '#spent_tag' do
     let(:spent_date) { Date.yesterday }
-
-    before do
-      allow(subject).to receive(:first_check_kind).and_return('caution')
-    end
 
     it 'builds a SpentTag instance with the correct attributes' do
       tag = subject.spent_tag
@@ -72,26 +68,14 @@ RSpec.describe CheckGroupPresenter do
   end
 
   describe '#add_another_sentence_button?' do
-    context 'when the disclosure report is already completed' do
-      before do
-        disclosure_check.disclosure_report.completed!
-      end
-
-      it 'always returns false' do
-        expect(subject.add_another_sentence_button?).to eq(false)
-      end
+    context 'for a caution' do
+      let!(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
+      it { expect(subject.add_another_sentence_button?).to eq(false) }
     end
 
-    context 'when the disclosure report is still in progress' do
-      context 'caution' do
-        let!(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
-        it { expect(subject.add_another_sentence_button?).to eq(false) }
-      end
-
-      context 'conviction' do
-        let!(:disclosure_check) { create(:disclosure_check, :conviction,  :completed) }
-        it { expect(subject.add_another_sentence_button?).to eq(true) }
-      end
+    context 'for a conviction' do
+      let!(:disclosure_check) { create(:disclosure_check, :conviction,  :completed) }
+      it { expect(subject.add_another_sentence_button?).to eq(true) }
     end
   end
 end

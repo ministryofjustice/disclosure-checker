@@ -1,8 +1,9 @@
 class SpentDatePanel
-  attr_reader :kind, :spent_date
+  attr_reader :kind, :variant, :spent_date
 
-  def initialize(kind:, spent_date:)
+  def initialize(kind:, variant:, spent_date:)
     @kind = kind
+    @variant = variant
     @spent_date = spent_date
   end
 
@@ -11,20 +12,10 @@ class SpentDatePanel
   end
 
   def scope
-    [to_partial_path, tense]
+    [to_partial_path, variant]
   end
 
   def date
     I18n.l(spent_date) if spent_date.instance_of?(Date)
-  end
-
-  private
-
-  def tense
-    if spent_date.instance_of?(Date)
-      spent_date.past? ? ResultsVariant::SPENT : ResultsVariant::NOT_SPENT
-    else
-      spent_date
-    end
   end
 end

@@ -16,13 +16,14 @@ class CheckGroupPresenter
 
   def spent_tag
     SpentTag.new(
-      spent_date: spent_date
+      variant: variant
     )
   end
 
   def spent_date_panel
     SpentDatePanel.new(
       kind: first_check_kind,
+      variant: variant,
       spent_date: spent_date
     )
   end
@@ -32,8 +33,7 @@ class CheckGroupPresenter
   end
 
   def add_another_sentence_button?
-    check_group.disclosure_report.in_progress? &&
-      first_check_kind.inquiry.conviction?
+    first_check_kind.inquiry.conviction?
   end
 
   def check_group_kind
@@ -48,5 +48,13 @@ class CheckGroupPresenter
 
   def completed_checks
     @_completed_checks ||= check_group.disclosure_checks.completed
+  end
+
+  def variant
+    if spent_date.instance_of?(Date)
+      spent_date.past? ? ResultsVariant::SPENT : ResultsVariant::NOT_SPENT
+    else
+      spent_date
+    end
   end
 end
