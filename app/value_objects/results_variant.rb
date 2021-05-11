@@ -18,6 +18,13 @@ class ResultsVariant < ValueObject
     end
   end
 
+  def spent?
+    [
+      ResultsVariant::SPENT,
+      ResultsVariant::SPENT_SIMPLE,
+    ].include?(self)
+  end
+
   def self.values
     VALUES
   end

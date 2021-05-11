@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ResultsVariant do
+  subject { described_class.new(value) }
+
   describe '.values' do
     it 'returns all possible values' do
       expect(described_class.values.map(&:to_s)).to eq(%w(
@@ -14,8 +16,6 @@ RSpec.describe ResultsVariant do
   end
 
   describe '#to_date' do
-    subject { described_class.new(value) }
-
     context 'when the variant is `never_spent`' do
       let(:value) { 'never_spent' }
 
@@ -40,6 +40,33 @@ RSpec.describe ResultsVariant do
       it 'fails if the `indefinite` date is no longer in the future' do
         expect(subject.to_date.future?).to be(true)
       end
+    end
+  end
+
+  describe '#spent?' do
+    context 'for a SPENT variant' do
+      let(:value) { 'spent' }
+      it { expect(subject.spent?).to eq(true) }
+    end
+
+    context 'for a SPENT_SIMPLE variant' do
+      let(:value) { 'spent_simple' }
+      it { expect(subject.spent?).to eq(true) }
+    end
+
+    context 'for a NOT_SPENT variant' do
+      let(:value) { 'not_spent' }
+      it { expect(subject.spent?).to eq(false) }
+    end
+
+    context 'for a NEVER_SPENT variant' do
+      let(:value) { 'never_spent' }
+      it { expect(subject.spent?).to eq(false) }
+    end
+
+    context 'for a INDEFINITE variant' do
+      let(:value) { 'indefinite' }
+      it { expect(subject.spent?).to eq(false) }
     end
   end
 end
