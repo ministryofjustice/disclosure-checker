@@ -1,5 +1,5 @@
 RSpec.describe SpentDatePanel do
-  subject { described_class.new(spent_date: spent_date, kind: 'caution') }
+  subject { described_class.new(kind: 'caution', spent_date: spent_date) }
 
   let(:spent_date) { nil }
   let(:partial_path) { 'results/shared/spent_date_panel' }

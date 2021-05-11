@@ -1,9 +1,9 @@
 class SpentDatePanel
-  attr_reader :spent_date, :kind
+  attr_reader :kind, :spent_date
 
-  def initialize(spent_date:, kind:)
-    @spent_date = spent_date
+  def initialize(kind:, spent_date:)
     @kind = kind
+    @spent_date = spent_date
   end
 
   def to_partial_path

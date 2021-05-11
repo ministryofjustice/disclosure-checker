@@ -27,6 +27,22 @@ RSpec.describe CheckGroupPresenter do
     end
   end
 
+  describe '#spent_tag' do
+    let(:spent_date) { Date.yesterday }
+
+    before do
+      allow(subject).to receive(:first_check_kind).and_return('caution')
+    end
+
+    it 'builds a SpentTag instance with the correct attributes' do
+      tag = subject.spent_tag
+
+      expect(tag).to be_an_instance_of(SpentTag)
+      expect(tag.color).to eq(SpentTag::GREEN)
+      expect(tag.variant).to eq(ResultsVariant::SPENT)
+    end
+  end
+
   describe '#spent_date_panel' do
     let(:spent_date) { 'date' }
 
@@ -48,6 +64,7 @@ RSpec.describe CheckGroupPresenter do
       let!(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
       it { expect(subject.check_group_kind).to eq('caution') }
     end
+
     context 'conviction' do
       let!(:disclosure_check) { create(:disclosure_check, :conviction,  :completed) }
       it { expect(subject.check_group_kind).to eq('conviction') }
