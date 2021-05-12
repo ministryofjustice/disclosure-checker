@@ -127,6 +127,16 @@ en:
     indefinite:
       title_html: This %{kind} is not spent and will stay in place until another order is made to change or end it
 
+  results/shared/dbs_visibility:
+    basic_dbs:
+      will_html: This %{kind} <strong>will</strong> appear on a <a class="govuk-link" href="#disclosure-and-barring-service">basic DBS check</a>.
+      will_not_html: This %{kind} <strong>will not</strong> appear on a <a class="govuk-link" href="#disclosure-and-barring-service">basic DBS check</a>.
+      maybe_html: This %{kind} <strong>may</strong> appear on a <a class="govuk-link" href="#disclosure-and-barring-service">basic DBS check</a>.
+    enhanced_dbs:
+      will_html: This %{kind} <strong>will</strong> appear on a <a class="govuk-link" href="#disclosure-and-barring-service">standard or enhanced DBS check</a>.
+      will_not_html: This %{kind} <strong>will not</strong> appear on a <a class="govuk-link" href="#disclosure-and-barring-service">standard or enhanced DBS check</a>.
+      maybe_html: This %{kind} <strong>may</strong> appear on a <a class="govuk-link" href="#disclosure-and-barring-service">standard or enhanced DBS check</a>.
+
   results/spent_tag:
     spent: Spent
     not_spent: Unspent

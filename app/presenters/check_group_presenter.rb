@@ -28,6 +28,14 @@ class CheckGroupPresenter
     )
   end
 
+  def dbs_visibility
+    DbsVisibility.new(
+      kind: first_check_kind,
+      variant: variant,
+      completed_checks: completed_checks
+    )
+  end
+
   def to_partial_path
     [scope, 'shared', 'check'].join('/')
   end
