@@ -55,6 +55,22 @@ RSpec.describe CheckGroupPresenter do
     end
   end
 
+  describe '#dbs_visibility' do
+    let(:spent_date) { Date.yesterday }
+
+    before do
+      allow(subject).to receive(:first_check_kind).and_return('caution')
+    end
+
+    it 'builds a DbsVisibility instance with the correct attributes' do
+      panel = subject.dbs_visibility
+
+      expect(panel).to be_an_instance_of(DbsVisibility)
+      expect(panel.kind).to eq('caution')
+      expect(panel.variant).to eq(ResultsVariant::SPENT)
+    end
+  end
+
   describe '#check_group_kind' do
     context 'caution' do
       let!(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
