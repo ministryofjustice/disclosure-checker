@@ -17,12 +17,6 @@
       <% end %>
     </h1>
 
-    <% if @presenter.approximate_dates? %>
-      <p class="govuk-body">
-        You entered an approximate date so your results will be approximate.
-      </p>
-    <% end %>
-
     <p class="govuk-body">
       Your results are calculated using the information you have given and the current law.
       Read more about
@@ -31,14 +25,21 @@
       on GOV.UK.
     </p>
 
+    <% if @presenter.approximate_dates? %>
+      <p class="govuk-body">As you entered an approximate date, your results will be approximate.
+      </p>
+    <% end %>
+
     <%= render @presenter.summary %>
 
     <h2 class="govuk-heading-l">Using your results</h2>
 
-    <p class="govuk-body">
-      Your results are correct if you served your sentence in full as the court ordered you to.
-      The conviction might not be spent if you did not stick to the terms of your sentence.
-    </p>
+    <% if @presenter.convictions? %>
+      <p class="govuk-body">
+        Your results are correct if you served your sentence in full as the court ordered you to.
+        The conviction might not be spent if you did not stick to the terms of your sentence.
+      </p>
+    <% end %>
 
     <p class="govuk-body">
       You do not have to tell anyone about spent cautions or convictions unless you are asked.

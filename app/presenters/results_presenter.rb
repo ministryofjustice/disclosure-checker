@@ -11,6 +11,10 @@ class ResultsPresenter < BasketPresenter
     ConvictionType::ADULT_MOTORING
   ].map(&:to_s).freeze
 
+  def convictions?
+    calculator.proceedings.any?(&:conviction?)
+  end
+
   def approximate_dates?
     APPROXIMATE_DATE_ATTRS.any? do |attr|
       disclosure_report.disclosure_checks.any? do |disclosure_check|
