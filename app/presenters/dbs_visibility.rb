@@ -22,13 +22,13 @@ class DbsVisibility
 
   # Enhanced check rules:
   #
-  #   - Youth cautions will not appear on enhanced checks regardless spent/unspent.
   #   - Unspent cautions/convictions: will appear on enhanced checks.
+  #   - Spent youth cautions: will not appear on enhanced checks.
   #   - TODO: Spent cautions/convictions: TBD, for now we say 'may appear'.
   #
   def enhanced
-    return :will_not if youth_caution?
     return :will unless spent?
+    return :will_not if youth_caution?
 
     :maybe
   end

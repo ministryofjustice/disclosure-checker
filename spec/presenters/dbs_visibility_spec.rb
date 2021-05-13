@@ -38,7 +38,7 @@ RSpec.describe DbsVisibility do
 
         context 'for a not spent variant' do
           let(:variant) { ResultsVariant::NOT_SPENT }
-          it { expect(subject.enhanced).to eq(:will_not) }
+          it { expect(subject.enhanced).to eq(:will) }
         end
       end
 
