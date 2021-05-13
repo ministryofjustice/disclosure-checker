@@ -58,6 +58,16 @@ RSpec.describe ResultsPresenter do
     end
   end
 
+  describe '#convictions?' do
+    it { expect(subject.convictions?).to be(true) }
+
+    context 'when there are no convictions' do
+      let(:disclosure_check) { create(:disclosure_check, :adult_caution, :completed) }
+
+      it { expect(subject.convictions?).to be(false) }
+    end
+  end
+
   describe '#approximate_dates?' do
     it { expect(subject.approximate_dates?).to be(false) }
 
