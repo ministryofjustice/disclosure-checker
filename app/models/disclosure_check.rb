@@ -2,22 +2,16 @@ class DisclosureCheck < ApplicationRecord
   belongs_to :check_group, default: -> { create_check_group }
   has_one :disclosure_report, through: :check_group
 
+  delegate :drag_through?, to: :conviction, allow_nil: true
+
   enum status: {
     in_progress: 0,
     completed: 10,
   }
 
-  def relevant_order?
-    # conviction subtype will be nil if it's a caution
-    return false if conviction_subtype.nil?
+  composed_of :conviction, allow_nil: true, constructor: :find_constant,
+              mapping: [[:conviction_subtype, :value]], class_name: 'ConvictionType'
 
-    ConvictionType.find_constant(conviction_subtype).relevant_order?
-  end
-
-  def drag_through?
-    # conviction subtype will be nil if it's a caution
-    return false if conviction_subtype.nil?
-
-    ConvictionType.find_constant(conviction_subtype).drag_through?
-  end
+  composed_of :caution, allow_nil: true, constructor: :find_constant,
+              mapping: [[:caution_type, :value]], class_name: 'CautionType'
 end

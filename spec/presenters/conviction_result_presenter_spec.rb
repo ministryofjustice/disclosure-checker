@@ -112,23 +112,4 @@ RSpec.describe ConvictionResultPresenter do
       expect(subject.expiry_date).to eq('foobar')
     end
   end
-
-  describe '#time_on_bail?' do
-    let(:disclosure_check) { build(:disclosure_check, :dto_conviction, conviction_bail_days: bail_days) }
-
-    context 'when there is time on bail' do
-      let(:bail_days) { 5 }
-      it { expect(subject.time_on_bail?).to eq(true) }
-    end
-
-    context 'when there is no time on bail' do
-      let(:bail_days) { nil }
-      it { expect(subject.time_on_bail?).to eq(false) }
-    end
-
-    context 'when time on bail is zero' do
-      let(:bail_days) { 0 }
-      it { expect(subject.time_on_bail?).to eq(false) }
-    end
-  end
 end

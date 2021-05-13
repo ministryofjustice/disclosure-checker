@@ -1,5 +1,4 @@
 class ResultsItemPresenter
-  include ValueObjectMethods
   attr_reader :disclosure_check, :kind, :scope
 
   def self.build(disclosure_check, scope:)
@@ -35,10 +34,6 @@ class ResultsItemPresenter
 
   def expiry_date
     result_service.expiry_date
-  end
-
-  def time_on_bail?
-    disclosure_check.conviction_bail_days.to_i.positive?
   end
 
   private

@@ -1,6 +1,4 @@
 class ConvictionDecisionTree < BaseDecisionTree
-  include ValueObjectMethods
-
   # rubocop:disable Metrics/CyclomaticComplexity
   # rubocop:disable Metrics/MethodLength
   # rubocop:disable Metrics/AbcSize
@@ -45,15 +43,15 @@ class ConvictionDecisionTree < BaseDecisionTree
   private
 
   def after_conviction_subtype
-    return edit(:conviction_bail)    if conviction_subtype.bailable_offense?
-    return edit(:compensation_paid)  if conviction_subtype.compensation?
-    return after_motoring_conviction if conviction_type.motoring?
+    return edit(:conviction_bail)    if conviction.bailable_offense?
+    return edit(:compensation_paid)  if conviction.compensation?
+    return after_motoring_conviction if conviction.motoring?
 
     known_date_question
   end
 
   def after_motoring_conviction
-    if conviction_subtype.motoring_penalty_points? || conviction_subtype.motoring_penalty_notice?
+    if conviction.motoring_penalty_points? || conviction.motoring_penalty_notice?
       known_date_question
     else
       edit(:motoring_endorsement)
@@ -61,7 +59,7 @@ class ConvictionDecisionTree < BaseDecisionTree
   end
 
   def after_known_date
-    return check_your_answers if conviction_subtype.skip_length?
+    return check_your_answers if conviction.skip_length?
 
     edit(:conviction_length_type)
   end
@@ -103,7 +101,7 @@ class ConvictionDecisionTree < BaseDecisionTree
   end
 
   def penalty_notice_without_endorsement?
-    conviction_subtype.motoring_penalty_notice? && GenericYesNo.new(disclosure_check.motoring_endorsement).no?
+    conviction.motoring_penalty_notice? && GenericYesNo.new(disclosure_check.motoring_endorsement).no?
   end
 
   def known_date_question

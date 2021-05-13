@@ -53,12 +53,6 @@ RSpec.describe BaseForm do
       allow(subject).to receive(:disclosure_check).and_return(disclosure_check)
     end
 
-    describe '#conviction_type' do
-      it 'returns the value object constant' do
-        expect(subject.conviction_type).to eq(ConvictionType::REFERRAL_SUPERVISION_YRO)
-      end
-    end
-
     describe '#conviction_subtype' do
       it 'returns the value object constant' do
         expect(subject.conviction_subtype).to eq(ConvictionType::REFERRAL_ORDER)

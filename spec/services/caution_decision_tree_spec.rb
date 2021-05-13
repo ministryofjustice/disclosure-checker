@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CautionDecisionTree do
   let(:disclosure_check) do
-    instance_double(
-      DisclosureCheck,
+    DisclosureCheck.new(
       kind: CheckKind::CAUTION,
       caution_type: caution_type,
       under_age: under_age,

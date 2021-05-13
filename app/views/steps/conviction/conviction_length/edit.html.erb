@@ -6,10 +6,10 @@
     <%= govuk_error_summary %>
 
     <%= step_form @form_object do |f| %>
-      <%= f.govuk_fieldset legend: { text: t(".heading.#{@form_object.conviction_subtype}", default: t('.heading.default')) },
+      <%= f.govuk_fieldset legend: { text: t(".heading.#{@form_object.conviction}", default: t('.heading.default')) },
                            caption: { text: f.i18n_caption } do %>
 
-        <% if @form_object.conviction_type.custodial_sentence? %>
+        <% if @form_object.conviction.custodial_sentence? %>
           <details class="govuk-details" data-module="govuk-details">
             <summary class="govuk-details__summary">
               <span class="govuk-details__summary-text" data-ga-category="explanations" data-ga-label="consecutive sentences">

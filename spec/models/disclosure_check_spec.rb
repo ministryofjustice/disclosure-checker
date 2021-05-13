@@ -5,39 +5,34 @@ RSpec.describe DisclosureCheck, type: :model do
 
   let(:attributes) { {} }
 
-  describe '#relevant_order?' do
-    context 'when conviction_subtype is nil' do
-      it { expect(subject.relevant_order?).to be false }
+  describe '#conviction' do
+    let(:attributes) { { conviction_subtype: 'adult_criminal_behaviour' } }
+
+    it 'returns the ConvictionType value-object' do
+      expect(subject.conviction).to eq(ConvictionType::ADULT_CRIMINAL_BEHAVIOUR)
     end
 
-    context 'when conviction_subtype is not a relevant order' do
-      let(:attributes) { super().merge(conviction_subtype: 'absolute_discharge') }
+    it 'returns nil for caution' do
+      expect(subject.caution).to be_nil
+    end
+  end
 
-      it { expect(subject.relevant_order?).to be false }
+  describe '#caution' do
+    let(:attributes) { { caution_type: 'adult_simple_caution' } }
+
+    it 'returns the CautionType value-object' do
+      expect(subject.caution).to eq(CautionType::ADULT_SIMPLE_CAUTION)
     end
 
-    context 'when conviction_subtype is a relevant order' do
-      let(:attributes) { super().merge(conviction_subtype: 'conditional_discharge') }
-
-      it { expect(subject.relevant_order?).to be true }
+    it 'returns nil for conviction' do
+      expect(subject.conviction).to be_nil
     end
   end
 
   describe '#drag_through?' do
-    context 'when conviction_subtype is nil' do
-      it { expect(subject.drag_through?).to be false }
-    end
-
-    context 'when conviction_subtype is a relevant order that does not drag_through' do
-      let(:attributes) { super().merge(conviction_subtype: 'bind_over') }
-
-      it { expect(subject.drag_through?).to be false }
-    end
-
-    context 'when conviction_subtype is a relevant order that drags through' do
-      let(:attributes) { super().merge(conviction_subtype: 'restraining_order') }
-
-      it { expect(subject.drag_through?).to be true }
+    it 'delegates to the conviction' do
+      expect(subject).to receive(:conviction)
+      subject.drag_through?
     end
   end
 end
