@@ -14,36 +14,36 @@ RSpec.describe ConvictionDecorator do
   end
 
   describe '#custodial_sentence?' do
-    context 'for a youth `CUSTODIAL_SENTENCE` conviction type' do
-      subject { ConvictionType::CUSTODIAL_SENTENCE }
+    context 'for a youth custodial conviction type' do
+      subject { ConvictionType::DETENTION_TRAINING_ORDER }
       it { expect(subject.custodial_sentence?).to eq(true) }
     end
 
-    context 'for an adult `ADULT_CUSTODIAL_SENTENCE` conviction type' do
-      subject { ConvictionType::ADULT_CUSTODIAL_SENTENCE }
+    context 'for an adult custodial conviction type' do
+      subject { ConvictionType::ADULT_PRISON_SENTENCE }
       it { expect(subject.custodial_sentence?).to eq(true) }
     end
 
-    context 'for a `DISCHARGE` conviction type' do
-      subject { ConvictionType::DISCHARGE }
+    context 'for a non-custodial type' do
+      subject { ConvictionType::ABSOLUTE_DISCHARGE }
       it { expect(subject.custodial_sentence?).to eq(false) }
     end
   end
 
   describe '#motoring?' do
-    context 'for an adult `ADULT_CUSTODIAL_SENTENCE` conviction type' do
-      subject { ConvictionType::ADULT_CUSTODIAL_SENTENCE }
+    context 'for an adult motoring conviction type' do
+      subject { ConvictionType::ADULT_DISQUALIFICATION }
+      it { expect(subject.motoring?).to eq(true) }
+    end
+
+    context 'for a youth motoring conviction type' do
+      subject { ConvictionType::YOUTH_DISQUALIFICATION }
+      it { expect(subject.motoring?).to eq(true) }
+    end
+
+    context 'for a non-motoring conviction type' do
+      subject { ConvictionType::ADULT_COMMUNITY_ORDER }
       it { expect(subject.motoring?).to eq(false) }
-    end
-
-    context 'for a youth `ConvictionType::YOUTH_MOTORING` conviction type' do
-      subject { ConvictionType::YOUTH_MOTORING }
-      it { expect(subject.motoring?).to eq(true) }
-    end
-
-    context 'for an adult `ConvictionType::ADULT_MOTORING` conviction type' do
-      subject { ConvictionType::ADULT_MOTORING }
-      it { expect(subject.motoring?).to eq(true) }
     end
   end
 

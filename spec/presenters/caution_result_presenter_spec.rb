@@ -70,13 +70,4 @@ RSpec.describe CautionResultPresenter do
       expect(subject.expiry_date).to eq('foobar')
     end
   end
-
-  describe '#time_on_bail?' do
-    let(:disclosure_check) { build(:disclosure_check, conviction_bail_days: bail_days) }
-
-    context 'it is always false for cautions, as there is no bail question' do
-      let(:bail_days) { nil }
-      it { expect(subject.time_on_bail?).to eq(false) }
-    end
-  end
 end

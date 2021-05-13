@@ -4,12 +4,13 @@ class BaseForm
   include Virtus.model
   include ActiveModel::Validations
   include FormAttributeMethods
-  include ValueObjectMethods
 
   extend ActiveModel::Callbacks
 
   attr_accessor :disclosure_check,
                 :record
+
+  delegate :caution, :conviction, to: :disclosure_check
 
   # This will allow subclasses to define after_initialize callbacks
   # and is needed for some functionality to work, i.e. acts_as_gov_uk_date
@@ -53,6 +54,10 @@ class BaseForm
 
   def new_record?
     true
+  end
+
+  def conviction_subtype
+    ConvictionType.find_constant(disclosure_check.conviction_subtype)
   end
 
   private

@@ -6,6 +6,8 @@ class BaseDecisionTree
   attr_reader :disclosure_check, :record, :step_params,
               :as, :next_step
 
+  delegate :caution, :conviction, to: :disclosure_check
+
   def initialize(disclosure_check:, record: nil, step_params: {}, **options)
     @disclosure_check = disclosure_check
     @record = record

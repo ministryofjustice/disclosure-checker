@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ConvictionDecisionTree do
   let(:disclosure_check) do
-    instance_double(
-      DisclosureCheck,
+    DisclosureCheck.new(
       conviction_type: conviction_type,
       conviction_subtype: conviction_subtype,
       compensation_paid: compensation_paid,
