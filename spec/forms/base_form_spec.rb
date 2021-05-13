@@ -65,46 +65,4 @@ RSpec.describe BaseForm do
       end
     end
   end
-
-  describe 'APPROXIMATE_DATE_ATTRS' do
-    it 'returns the expected attributes' do
-      expect(described_class::APPROXIMATE_DATE_ATTRS).to eq([
-        :approximate_known_date,
-        :approximate_conviction_date,
-        :approximate_conditional_end_date,
-        :approximate_compensation_payment_date,
-      ])
-    end
-  end
-
-  describe '#approximate_dates?' do
-    let(:disclosure_check) {
-      instance_double(
-        DisclosureCheck,
-        approximate_conviction_date: approximate_conviction_date,
-        approximate_known_date: approximate_known_date
-      )
-    }
-
-    let(:approximate_conviction_date) { false }
-    let(:approximate_known_date) { false }
-
-    before do
-      allow(subject).to receive(:disclosure_check).and_return(disclosure_check)
-    end
-
-    context 'there is at least one approximate date' do
-      let(:approximate_known_date) { true }
-      it { expect(subject.approximate_dates?).to eq(true) }
-    end
-
-    context 'there are no approximate dates' do
-      it { expect(subject.approximate_dates?).to eq(false) }
-    end
-
-    context 'there are nil values' do
-      let(:approximate_known_date) { nil }
-      it { expect(subject.approximate_dates?).to eq(false) }
-    end
-  end
 end
