@@ -6,13 +6,8 @@ class ResultsPresenter < BasketPresenter
     :approximate_compensation_payment_date,
   ].freeze
 
-  MOTORING_CONVICTION_TYPES = [
-    ConvictionType::YOUTH_MOTORING,
-    ConvictionType::ADULT_MOTORING
-  ].map(&:to_s).freeze
-
   def convictions?
-    calculator.proceedings.any?(&:conviction?)
+    conviction_checks.any?
   end
 
   def approximate_dates?
@@ -24,13 +19,11 @@ class ResultsPresenter < BasketPresenter
   end
 
   def motoring?
-    disclosure_report.disclosure_checks.any? do |disclosure_check|
-      MOTORING_CONVICTION_TYPES.include?(disclosure_check.conviction_type)
-    end
+    conviction_checks.map(&:conviction).any?(&:motoring?)
   end
 
   def time_on_bail?
-    disclosure_report.disclosure_checks.any? do |disclosure_check|
+    conviction_checks.any? do |disclosure_check|
       disclosure_check.conviction_bail_days.to_i.positive?
     end
   end
@@ -49,5 +42,11 @@ class ResultsPresenter < BasketPresenter
   # 1 caution and 1 conviction with 3 sentences will return 4.
   def orders_size
     calculator.proceedings.sum(&:size)
+  end
+
+  private
+
+  def conviction_checks
+    @_conviction_checks ||= disclosure_report.conviction_checks
   end
 end

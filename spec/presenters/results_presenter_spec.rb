@@ -84,13 +84,13 @@ RSpec.describe ResultsPresenter do
     it { expect(subject.motoring?).to be(false) }
 
     context 'when conviction type is adult motoring' do
-      before { disclosure_check.update(conviction_type: ConvictionType::ADULT_MOTORING) }
+      before { disclosure_check.update(conviction_subtype: ConvictionType::ADULT_MOTORING_FINE) }
 
       it { expect(subject.motoring?).to be(true) }
     end
 
     context 'when conviction type is youth motoring' do
-      before { disclosure_check.update(conviction_type: ConvictionType::YOUTH_MOTORING) }
+      before { disclosure_check.update(conviction_subtype: ConvictionType::YOUTH_MOTORING_FINE) }
 
       it { expect(subject.motoring?).to be(true) }
     end

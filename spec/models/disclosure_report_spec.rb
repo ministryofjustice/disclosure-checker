@@ -43,4 +43,26 @@ RSpec.describe DisclosureReport, type: :model do
       subject.completed!
     end
   end
+
+  context 'convenience query methods' do
+    let(:collection_scope) { double('collection') }
+
+    before do
+      allow(subject).to receive(:disclosure_checks).and_return(collection_scope)
+    end
+
+    describe '#caution_checks' do
+      it 'filters by kind caution' do
+        expect(collection_scope).to receive(:where).with(kind: 'caution')
+        subject.caution_checks
+      end
+    end
+
+    describe '#conviction_checks' do
+      it 'filters by kind conviction' do
+        expect(collection_scope).to receive(:where).with(kind: 'conviction')
+        subject.conviction_checks
+      end
+    end
+  end
 end
