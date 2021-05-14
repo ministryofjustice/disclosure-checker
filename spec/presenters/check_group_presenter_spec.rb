@@ -68,6 +68,7 @@ RSpec.describe CheckGroupPresenter do
       expect(panel).to be_an_instance_of(DbsVisibility)
       expect(panel.kind).to eq('caution')
       expect(panel.variant).to eq(ResultsVariant::SPENT)
+      expect(panel.completed_checks).to eq([disclosure_check])
     end
   end
 

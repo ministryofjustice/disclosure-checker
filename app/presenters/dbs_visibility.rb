@@ -23,11 +23,14 @@ class DbsVisibility
   # Enhanced check rules:
   #
   #   - Unspent cautions/convictions: will appear on enhanced checks.
+  #   - Spent custodial convictions: will appear on enhanced checks.
   #   - Spent youth cautions: will not appear on enhanced checks.
-  #   - TODO: Spent cautions/convictions: TBD, for now we say 'may appear'.
+  #   - TODO: other spent convictions: TBD, for now we say 'may appear'.
   #
   def enhanced
     return :will unless spent?
+    return :will if custodial_conviction?
+
     return :will_not if youth_caution?
 
     :maybe
@@ -40,12 +43,10 @@ class DbsVisibility
   private
 
   def youth_caution?
-    return false unless CheckKind.new(kind).inquiry.caution?
+    completed_checks.filter_map(&:caution).any?(&:youth?)
+  end
 
-    # `completed_checks` refers to this caution or conviction orders or sentences.
-    # For cautions, we always have just one thing, so we pick the first one.
-    caution = completed_checks.first
-
-    CautionType.new(caution.caution_type).youth?
+  def custodial_conviction?
+    completed_checks.filter_map(&:conviction).any?(&:custodial_sentence?)
   end
 end
