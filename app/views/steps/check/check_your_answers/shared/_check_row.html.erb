@@ -1,6 +1,24 @@
-<h3 class="govuk-heading-m govuk-!-margin-bottom-2">
-  <%=t "#{check_row.kind}.orders.#{check_row.order_type}", scope: check_row.scope %>
-</h3>
+<% translated_name = t("#{check_row.kind}.orders.#{check_row.order_type}", scope: check_row.scope) %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+      <%= translated_name %>
+    </h3>
+  </div>
+
+  <div class="govuk-grid-column-one-half app-text-align-right">
+
+
+    <%= link_to(edit_steps_check_path(check_row.disclosure_check), class: 'govuk-link govuk-link--no-visited-state app-link-red govuk-!-font-size-19') do %>
+      Remove
+      <span class="govuk-visually-hidden"><%= translated_name %></span>
+    <% end %>
+
+
+  </div>
+</div>
+
 
 <dl class="govuk-summary-list multiple-checks-summary">
   <%= render check_row.summary %>

@@ -23,3 +23,15 @@
 dl.multiple-checks-summary:not(:only-child) {
   &:not(:last-of-type) { padding-bottom: 0.5em; }
 }
+
+.app-link-red {
+  color: $govuk-error-colour !important;
+}
+
+.app-link-red:hover {
+  color: darken($govuk-error-colour, 10%) !important;
+}
+
+.app-text-align-right {
+  text-align: right;
+}

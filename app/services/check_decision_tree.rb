@@ -7,6 +7,8 @@ class CheckDecisionTree < BaseDecisionTree
       edit(:under_age)
     when :under_age
       after_under_age
+    when :remove_check
+      after_remove_check
     else
       raise InvalidStep, "Invalid step '#{as || step_params}'"
     end
@@ -21,5 +23,13 @@ class CheckDecisionTree < BaseDecisionTree
     when CheckKind::CONVICTION
       edit('/steps/conviction/conviction_date')
     end
+  end
+
+  def after_remove_check
+    return check_your_answers if GenericYesNo.new(step_params[:remove_check]).no?
+    return check_your_answers if disclosure_check.disclosure_report.disclosure_checks.completed.any?
+
+    # restart fresh
+    edit('/steps/check/kind', {new: 'y'})
   end
 end

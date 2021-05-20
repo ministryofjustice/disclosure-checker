@@ -248,6 +248,9 @@ en:
         under_age_options:
           'yes': Under 18
           'no': 18 or over
+      steps_check_remove_check_form:
+        remove_check_options: *YESNO
+
       steps_caution_known_date_form:
         approximate_known_date_options:
           'true': *approximate_date_checkbox
@@ -300,6 +303,8 @@ en:
     legend:
       steps_check_kind_form:
         kind: Were you cautioned or convicted?
+      steps_check_remove_check_form:
+        remove_check_html: Are you sure you want to remove this check?
       steps_caution_caution_type_form:
         caution_type: What type of caution did you get?
       steps_check_under_age_form:
@@ -387,6 +392,7 @@ en:
         weeks: Number of weeks
         months: Number of months
         years: Number of years
+
 
     lead_text:
       steps_conviction_known_date_form:
