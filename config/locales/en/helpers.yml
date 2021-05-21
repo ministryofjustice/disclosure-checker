@@ -183,7 +183,7 @@ en:
       steps_conviction_compensation_payment_date_form:
         compensation_payment_date_html: *date_hint_text
       steps_conviction_compensation_payment_receipt_form:
-        compensation_receipt_sent: You must send the compensation payment receipt to the Disclosure and Barring service for the convition to be spent.
+        compensation_receipt_sent: You must send the compensation payment receipt to the Disclosure and Barring service for the conviction to be spent.
       steps_conviction_motoring_endorsement_form:
         motoring_endorsement: An endorsement means that your conviction is recorded on your driving licence. Endorsements are usually given by courts.
       steps_conviction_conviction_bail_form:
