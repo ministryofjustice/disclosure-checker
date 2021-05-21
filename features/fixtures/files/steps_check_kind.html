@@ -1,9 +1,12 @@
 <div class="govuk-form-group">
-  <fieldset class="govuk-fieldset">
+  <fieldset class="govuk-fieldset" aria-describedby="steps-check-kind-form-kind-supplemental">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
       <h1 class="govuk-fieldset__heading">Were you cautioned or convicted?</h1>
     </legend>
     <input value="" type="hidden" name="steps_check_kind_form[kind]" id="steps_check_kind_form_kind">
+    <div id="steps-check-kind-form-kind-supplemental">
+      <p class="govuk-body-l">You will be able to enter more than one caution or conviction if you need to check more than one.</p>
+    </div>
     <div class="govuk-radios" data-module="govuk-radios">
       <div class="govuk-radios__item">
         <input id="steps-check-kind-form-kind-caution-field" aria-describedby="steps-check-kind-form-kind-caution-hint" class="govuk-radios__input" type="radio" value="caution" name="steps_check_kind_form[kind]">
