@@ -6,6 +6,7 @@ module Steps
 
       validates_presence_of :known_date
       validates :known_date, sensible_date: true
+      validate :before_conditional_date?
 
       private
 
@@ -16,6 +17,12 @@ module Steps
           known_date: known_date,
           approximate_known_date: approximate_known_date
         )
+      end
+
+      def before_conditional_date?
+        return if known_date.blank? || disclosure_check.conditional_end_date.blank?
+
+        errors.add(:known_date, :before_conditional_date) if known_date > disclosure_check.conditional_end_date
       end
     end
   end
