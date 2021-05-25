@@ -17,6 +17,11 @@ class ConvictionResultPresenter < ResultsItemPresenter
     ].freeze
   end
 
+  # TODO: add attributes that makes sense to be editable
+  def editable_attributes
+    {}
+  end
+
   def i18n_conviction_length
     type = disclosure_check.conviction_length_type
     return unless type

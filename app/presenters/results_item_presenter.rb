@@ -1,4 +1,6 @@
 class ResultsItemPresenter
+  include Rails.application.routes.url_helpers
+
   attr_reader :disclosure_check, :kind, :scope
 
   def self.build(disclosure_check, scope:)
@@ -27,7 +29,8 @@ class ResultsItemPresenter
       QuestionAnswerRow.new(
         item,
         value || format_value(item),
-        scope: scope
+        scope: scope,
+        change_path: change_path(item)
       )
     end.select(&:show?)
   end
@@ -57,12 +60,20 @@ class ResultsItemPresenter
     )
   end
 
+  def change_path(attr)
+    editable_attributes[attr].try(:call, disclosure_check)
+  end
+
   # :nocov:
   def type_attribute
     raise NotImplementedError, 'implement in subclasses'
   end
 
   def question_attributes
+    raise NotImplementedError, 'implement in subclasses'
+  end
+
+  def editable_attributes
     raise NotImplementedError, 'implement in subclasses'
   end
   # :nocov:

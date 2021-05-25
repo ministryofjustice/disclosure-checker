@@ -35,6 +35,13 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def swap_disclosure_check_session(other_check_id)
+    session[:disclosure_check_id] = current_disclosure_report.disclosure_checks.find_by!(id: other_check_id).id
+
+    # ensure we don't have a memoized record anymore
+    @_current_disclosure_check = nil
+  end
+
   def reset_disclosure_check_session
     session.delete(:disclosure_check_id)
     session.delete(:last_seen)

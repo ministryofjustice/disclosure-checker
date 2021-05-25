@@ -3,6 +3,8 @@ class StepController < ApplicationController
 
   before_action :check_disclosure_report_not_completed, except: [:show]
 
+  before_action { swap_disclosure_check_session(params[:check_id]) if params[:check_id] }
+
   before_action :update_navigation_stack, only: [:show, :edit]
 
   private
@@ -88,11 +90,15 @@ class StepController < ApplicationController
   def update_navigation_stack
     return unless current_disclosure_check
 
-    stack_until_current_page = current_disclosure_check.navigation_stack.take_while do |path|
-      path != request.fullpath
-    end
+    stack_until_current_page = if params[:check_id]
+                                 # When coming from the CYA page to edit a step, we initialise the stack
+                                 # with the CYA so the user can click the `back` link and return to CYA.
+                                 [steps_check_check_your_answers_path]
+                               else
+                                 current_disclosure_check.navigation_stack.take_while { |path| path != request.path }
+                               end
 
-    current_disclosure_check.navigation_stack = stack_until_current_page + [request.fullpath]
+    current_disclosure_check.navigation_stack = stack_until_current_page + [request.path]
     current_disclosure_check.save!
   end
 end

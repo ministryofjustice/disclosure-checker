@@ -1,10 +1,11 @@
 class QuestionAnswerRow
-  attr_reader :question, :answer, :scope
+  attr_reader :question, :answer, :scope, :change_path
 
-  def initialize(question, answer, scope:)
+  def initialize(question, answer, scope:, change_path:)
     @question = question
     @answer = answer
     @scope = scope
+    @change_path = change_path
   end
 
   def show?
