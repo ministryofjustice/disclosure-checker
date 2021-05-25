@@ -71,6 +71,10 @@ en:
           attributes:
             motoring_endorsement:
               inclusion: Select yes if you have received an endorsement
+        steps/check/remove_check_form:
+          attributes:
+            remove_check:
+              inclusion: Select yes if you want to remove this check
 
   errors:
     format: "%{message}"

@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   end
 
   namespace :steps do
+    resources :checks, only: [:edit, :update]
+
     namespace :check do
       edit_step :kind
       edit_step :under_age

@@ -15,3 +15,6 @@ en:
       results:
         show:
           page_title: When your caution or conviction is spent
+    checks:
+      edit:
+        page_title: Are you sure you want to remove this check?

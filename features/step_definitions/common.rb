@@ -30,6 +30,10 @@ When(/^I click the "([^"]*)" link$/) do |text|
   click_link(text)
 end
 
+When(/^I click to remove the first sentence$/) do
+  click_link('Remove', match: :first)
+end
+
 When(/^I click the "([^"]*)" button$/) do |text|
   click_button(text)
 end

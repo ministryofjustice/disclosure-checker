@@ -35,7 +35,7 @@ class BaseDecisionTree
   end
 
   def check_your_answers
-    disclosure_check.completed!
+    disclosure_check.completed! unless disclosure_check.completed?
 
     show('/steps/check/check_your_answers')
   end
