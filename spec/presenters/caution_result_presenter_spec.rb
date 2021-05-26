@@ -33,7 +33,7 @@ RSpec.describe CautionResultPresenter do
 
         expect(summary[1].question).to eql(:known_date)
         expect(summary[1].answer).to eq('31 October 2018')
-        expect(summary[1].change_path).to eq('/steps/caution/known_date?check_id=12345')
+        expect(summary[1].change_path).to eq('/steps/caution/known_date?check_id=12345&next_step=cya')
       end
     end
 
@@ -49,7 +49,7 @@ RSpec.describe CautionResultPresenter do
 
         expect(summary[1].question).to eql(:known_date)
         expect(summary[1].answer).to eq('31 October 2018')
-        expect(summary[1].change_path).to eq('/steps/caution/known_date?check_id=12345')
+        expect(summary[1].change_path).to eq('/steps/caution/known_date?check_id=12345&next_step=cya')
 
         expect(summary[2].question).to eql(:conditional_end_date)
         expect(summary[2].answer).to eq('25 December 2018')
