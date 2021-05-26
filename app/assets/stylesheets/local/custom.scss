@@ -25,11 +25,7 @@ dl.multiple-checks-summary:not(:only-child) {
 }
 
 .app-link-red {
-  color: $govuk-error-colour !important;
-}
-
-.app-link-red:hover {
-  color: darken($govuk-error-colour, 10%) !important;
+  @include govuk-link-style-error;
 }
 
 .app-text-align-right {
