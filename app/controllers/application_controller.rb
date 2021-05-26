@@ -11,14 +11,8 @@ class ApplicationController < ActionController::Base
     payload[:user_agent] = request&.user_agent
   end
 
-  # With the ability to remove disclosure_check records we now look for
-  # a disclosure_report when we can't find the last created disclosure_check.
-  # This guarantees that any other disclosure_check records added by the user,
-  # will be available to that user.
   def current_disclosure_check
-    @_current_disclosure_check ||=
-      DisclosureCheck.find_by_id(session[:disclosure_check_id]) ||
-      DisclosureReport.find_by_id(session[:disclosure_report_id])&.disclosure_checks&.last
+    @_current_disclosure_check ||= DisclosureCheck.find_by_id(session[:disclosure_check_id])
   end
   helper_method :current_disclosure_check
 
@@ -43,7 +37,6 @@ class ApplicationController < ActionController::Base
   end
 
   def reset_disclosure_check_session
-    session.delete(:disclosure_report_id)
     session.delete(:disclosure_check_id)
     session.delete(:last_seen)
 
@@ -54,7 +47,6 @@ class ApplicationController < ActionController::Base
   def initialize_disclosure_check(attributes = {})
     DisclosureCheck.create(attributes).tap do |disclosure_check|
       session[:disclosure_check_id] = disclosure_check.id
-      session[:disclosure_report_id] = disclosure_check.disclosure_report.id
     end
   end
 end
