@@ -21,7 +21,7 @@ en:
       absolute_discharge: Absolute discharge
       conditional_discharge: Conditional discharge
       # financial
-      fine: A fine
+      fine: Fine
       compensation_to_a_victim: Compensation to a victim
       # military
       dismissal: Dismissal
@@ -42,7 +42,7 @@ en:
       adult_sexual_harm_prevention_order: Sexual harm prevention order
       adult_other_requirement_order: Order with a requirement
       # adult_financial
-      adult_fine: A fine
+      adult_fine: Fine
       adult_compensation_to_a_victim: Compensation to a victim
       # adult_military
       adult_dismissal: Dismissal
@@ -106,7 +106,7 @@ en:
         no_length: No length was given
         indefinite: Until further order
     compensation_payment_date:
-      question: Compensation payment date
+      question: Payment date
     motoring_endorsement:
       question: Motoring endorsement
       answers:

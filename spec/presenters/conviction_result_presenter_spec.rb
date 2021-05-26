@@ -4,6 +4,10 @@ RSpec.describe ConvictionResultPresenter do
   let(:disclosure_check) { build(:disclosure_check, :dto_conviction) }
   let(:scope) { 'results' }
 
+  before do
+    allow(disclosure_check).to receive(:id).and_return('12345')
+  end
+
   describe '#scope' do
     it { expect(subject.scope).to eq([scope, 'conviction']) }
   end
@@ -24,15 +28,19 @@ RSpec.describe ConvictionResultPresenter do
 
       expect(summary[0].question).to eql(:under_age)
       expect(summary[0].answer).to eql('yes')
+      expect(summary[0].change_path).to be_nil
 
       expect(summary[1].question).to eql(:conviction_date)
       expect(summary[1].answer).to eq('1 January 2018')
+      expect(summary[1].change_path).to be_nil
 
       expect(summary[2].question).to eql(:known_date)
       expect(summary[2].answer).to eq('31 October 2018')
+      expect(summary[2].change_path).to eq('/steps/conviction/known_date?check_id=12345&next_step=cya')
 
       expect(summary[3].question).to eql(:conviction_length)
       expect(summary[3].answer).to eq('9 weeks')
+      expect(summary[3].change_path).to eq('/steps/conviction/conviction_length_type?check_id=12345')
     end
 
     context 'when no length given' do
@@ -45,6 +53,7 @@ RSpec.describe ConvictionResultPresenter do
 
         expect(summary[3].question).to eql(:conviction_length)
         expect(summary[3].answer).to eq('No length was given')
+        expect(summary[3].change_path).to eq('/steps/conviction/conviction_length_type?check_id=12345')
       end
     end
 
@@ -54,17 +63,9 @@ RSpec.describe ConvictionResultPresenter do
       it 'returns the correct question-answer pairs' do
         expect(summary.size).to eq(4)
 
-        expect(summary[0].question).to eql(:under_age)
-        expect(summary[0].answer).to eql('yes')
-
-        expect(summary[1].question).to eql(:conviction_date)
-        expect(summary[1].answer).to eq('1 January 2018')
-
-        expect(summary[2].question).to eql(:known_date)
-        expect(summary[2].answer).to eq('31 October 2018')
-
         expect(summary[3].question).to eql(:compensation_payment_date)
         expect(summary[3].answer).to eq('31 October 2019')
+        expect(summary[3].change_path).to eq('/steps/conviction/compensation_payment_date?check_id=12345&next_step=cya')
       end
     end
 
@@ -86,19 +87,9 @@ RSpec.describe ConvictionResultPresenter do
       it 'returns the correct question-answer pairs' do
         expect(summary.size).to eq(5)
 
-        expect(summary[0].question).to eql(:under_age)
-        expect(summary[0].answer).to eql('yes')
-
-        expect(summary[1].question).to eql(:conviction_bail_days)
-        expect(summary[1].answer).to eq(15)
-
-        expect(summary[2].question).to eql(:conviction_date)
-        expect(summary[2].answer).to eq('1 January 2018')
-
-        expect(summary[3].question).to eql(:known_date)
-        expect(summary[3].answer).to eq('31 October 2018')
-
-        # ignoring following rows as they are the same as in other tests
+        expect(summary[4].question).to eql(:conviction_bail_days)
+        expect(summary[4].answer).to eq(15)
+        expect(summary[4].change_path).to eq('/steps/conviction/conviction_bail_days?check_id=12345&next_step=cya')
       end
     end
   end

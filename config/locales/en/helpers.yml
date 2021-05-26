@@ -56,7 +56,7 @@ en:
       absolute_discharge: Absolute discharge
       conditional_discharge: Conditional discharge
       # financial
-      fine: A fine
+      fine: Fine
       compensation_to_a_victim: Compensation to a victim
       # military
       dismissal: Dismissal
@@ -77,7 +77,7 @@ en:
       adult_sexual_harm_prevention_order: Sexual harm prevention order
       adult_other_requirement_order: Order with a requirement
       # adult_financial
-      adult_fine: A fine
+      adult_fine: Fine
       adult_compensation_to_a_victim: Compensation to a victim
       # adult_military
       adult_dismissal: Dismissal
@@ -272,6 +272,9 @@ en:
       steps_conviction_conviction_subtype_form:
         conviction_subtype_options:
           <<: *CONVICTION_SUBTYPES
+          # Following convictions have minor variations between the radio options and the results page
+          fine: A fine
+          adult_fine: A fine
           adult_other_requirement_order: Any other order with a requirement
       steps_conviction_conviction_length_type_form:
         conviction_length_type_options:
