@@ -19,6 +19,7 @@ RSpec.describe HomeController, type: :controller do
           end
 
           it 'resets the disclosure_check session data' do
+            expect(session).to receive(:delete).with(:disclosure_report_id).ordered
             expect(session).to receive(:delete).with(:disclosure_check_id).ordered
             expect(session).to receive(:delete).with(:last_seen).ordered
             expect(session).to receive(:delete) # any other deletes
@@ -59,6 +60,7 @@ RSpec.describe HomeController, type: :controller do
         end
 
         it 'resets the disclosure check session data' do
+          expect(session).to receive(:delete).with(:disclosure_report_id).ordered
           expect(session).to receive(:delete).with(:disclosure_check_id).ordered
           expect(session).to receive(:delete).with(:last_seen).ordered
           expect(session).to receive(:delete) # any other deletes
@@ -77,6 +79,7 @@ RSpec.describe HomeController, type: :controller do
       end
 
       it 'resets the disclosure_checker session data' do
+        expect(session).to receive(:delete).with(:disclosure_report_id).ordered
         expect(session).to receive(:delete).with(:disclosure_check_id).ordered
         expect(session).to receive(:delete).with(:last_seen).ordered
         expect(session).to receive(:delete) # any other deletes

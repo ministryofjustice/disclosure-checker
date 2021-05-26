@@ -43,6 +43,7 @@ class ApplicationController < ActionController::Base
   end
 
   def reset_disclosure_check_session
+    session.delete(:disclosure_report_id)
     session.delete(:disclosure_check_id)
     session.delete(:last_seen)
 
