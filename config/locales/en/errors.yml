@@ -9,6 +9,7 @@ en:
               blank: Enter the date of the caution in the format dd/mm/yyyy
               invalid: The date is too far in the past. Enter a date after 01/01/1940
               future: The date of the caution can’t be in the future
+              before_conditional_date: The date of the caution can’t be after the date conditions ended
         steps/check/under_age_form:
           attributes:
             under_age:
