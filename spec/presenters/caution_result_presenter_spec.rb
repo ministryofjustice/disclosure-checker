@@ -4,6 +4,10 @@ RSpec.describe CautionResultPresenter do
   let(:disclosure_check) { build(:disclosure_check, :youth_simple_caution) }
   let(:scope) { 'results' }
 
+  before do
+    allow(disclosure_check).to receive(:id).and_return('12345')
+  end
+
   describe '#scope' do
     it { expect(subject.scope).to eq([scope, 'caution']) }
   end
@@ -25,9 +29,11 @@ RSpec.describe CautionResultPresenter do
 
         expect(summary[0].question).to eql(:under_age)
         expect(summary[0].answer).to eql('yes')
+        expect(summary[0].change_path).to be_nil
 
         expect(summary[1].question).to eql(:known_date)
         expect(summary[1].answer).to eq('31 October 2018')
+        expect(summary[1].change_path).to eq('/steps/caution/known_date?check_id=12345')
       end
     end
 
@@ -39,12 +45,15 @@ RSpec.describe CautionResultPresenter do
 
         expect(summary[0].question).to eql(:under_age)
         expect(summary[0].answer).to eql('yes')
+        expect(summary[0].change_path).to be_nil
 
         expect(summary[1].question).to eql(:known_date)
         expect(summary[1].answer).to eq('31 October 2018')
+        expect(summary[1].change_path).to eq('/steps/caution/known_date?check_id=12345')
 
         expect(summary[2].question).to eql(:conditional_end_date)
         expect(summary[2].answer).to eq('25 December 2018')
+        expect(summary[2].change_path).to eq('/steps/caution/conditional_end_date?check_id=12345')
       end
     end
 

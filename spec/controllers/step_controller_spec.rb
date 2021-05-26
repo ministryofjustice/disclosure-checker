@@ -4,6 +4,10 @@ class DummyStepController < StepController
   def show
     head(:ok)
   end
+
+  def steps_check_check_your_answers_path
+    '/steps/cya'
+  end
 end
 
 RSpec.describe DummyStepController, type: :controller do
@@ -20,9 +24,10 @@ RSpec.describe DummyStepController, type: :controller do
 
   describe 'navigation stack' do
     let!(:disclosure_check) { DisclosureCheck.create(navigation_stack: navigation_stack) }
+    let(:params) { {} }
 
     before do
-      get :show, session: { disclosure_check_id: disclosure_check.id }
+      get :show, session: { disclosure_check_id: disclosure_check.id }, params: params
       disclosure_check.reload
     end
 
@@ -47,6 +52,16 @@ RSpec.describe DummyStepController, type: :controller do
 
       it 'adds it to the end of the stack' do
         expect(disclosure_check.navigation_stack).to eq(['/foo', '/bar', '/baz', '/dummy_step'])
+      end
+    end
+
+    context 'when coming from the check your answer page' do
+      # Note: for the sake of this test we reuse the same record ID
+      let(:params) { { check_id: disclosure_check.id } }
+      let(:navigation_stack) { ['/foo', '/bar', '/baz'] }
+
+      it 'resets the stack starting in the CYA page and append the new page' do
+        expect(disclosure_check.navigation_stack).to eq(['/steps/cya', '/dummy_step'])
       end
     end
   end

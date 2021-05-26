@@ -139,6 +139,29 @@ RSpec.shared_examples 'an intermediate step controller' do |form_class, decision
         get :edit, session: { disclosure_check_id: existing_case.id }
         expect(response).to be_successful
       end
+
+      context 'when editing a different disclosure_check record' do
+        context 'and the other record belongs to this same report' do
+          let!(:another_case) { DisclosureCheck.create(status: :completed, check_group_id: existing_case.check_group_id) }
+
+          it 'swaps the session with the new record and responds with HTTP success' do
+            get :edit, session: { disclosure_check_id: existing_case.id }, params: { check_id: another_case.id }
+
+            expect(response).to be_successful
+            expect(session[:disclosure_check_id]).to eq(another_case.id)
+          end
+        end
+
+        context 'and the other record belongs to a different report' do
+          let!(:another_case) { DisclosureCheck.create(status: :completed) }
+
+          it 'raises a not found exception' do
+            expect {
+              get :edit, session: { disclosure_check_id: existing_case.id }, params: { check_id: another_case.id }
+            }.to raise_error(ActiveRecord::RecordNotFound)
+          end
+        end
+      end
     end
   end
 end

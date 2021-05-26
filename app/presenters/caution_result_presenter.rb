@@ -12,4 +12,11 @@ class CautionResultPresenter < ResultsItemPresenter
       :conditional_end_date,
     ].freeze
   end
+
+  def editable_attributes
+    {
+      known_date: ->(id) { edit_steps_caution_known_date_path(check_id: id) },
+      conditional_end_date: ->(id) { edit_steps_caution_conditional_end_date_path(check_id: id) },
+    }
+  end
 end
