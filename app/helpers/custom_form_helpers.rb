@@ -1,4 +1,6 @@
 module CustomFormHelpers
+  delegate :params, :hidden_field_tag, to: :template
+
   def continue_button(continue: :continue)
     submit_button(continue)
   end
@@ -35,10 +37,32 @@ module CustomFormHelpers
   private
 
   def submit_button(i18n_key, opts = {}, &block)
-    govuk_submit I18n.t("helpers.buttons.#{i18n_key}"), **opts, &block
+    safe_join(
+      [
+        next_step_if_present,
+        govuk_submit(I18n.t("helpers.buttons.#{i18n_key}"), **opts, &block)
+      ]
+    )
+  end
+
+  # Do not blindly trust the param, always whitelist
+  def next_step_if_present
+    next_step = case params[:next_step]
+                when 'cya'
+                  '/steps/check/check_your_answers'
+                end
+
+    hidden_field_tag(:next_step, next_step) if next_step
   end
 
   def scope_for_locale(context)
     [:helpers, context, object_name]
   end
+
+  # This method is just to aid with testing
+  # :nocov:
+  def template
+    @template
+  end
+  # :nocov:
 end

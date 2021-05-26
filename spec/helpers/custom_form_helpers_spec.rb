@@ -13,10 +13,47 @@ RSpec.describe CustomFormHelpers, type: :helper do
   end
 
   describe '#continue_button' do
-    it 'outputs the govuk continue button' do
-      expect(
-        builder.continue_button
-      ).to eq('<input type="submit" name="commit" value="Continue" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Continue" />')
+    let(:expected_markup) { '<input type="submit" name="commit" value="Continue" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Continue" />' }
+    let(:template) { double('template', params: params) }
+
+    before do
+      allow(builder).to receive(:template).and_return(template)
+    end
+
+    context 'when there is no next step param' do
+      let(:params) { {} }
+
+      it 'outputs the govuk continue button without the next step hidden tag' do
+        expect(
+          builder.continue_button
+        ).to eq(expected_markup)
+      end
+    end
+
+    context 'when the next step param is not recognised' do
+      let(:params) { {next_step: 'foobar'} }
+
+      it 'outputs the govuk continue button without the next step hidden tag' do
+        expect(
+          builder.continue_button
+        ).to eq(expected_markup)
+      end
+    end
+
+    context 'where there is a valid next step param' do
+      let(:params) { {next_step: 'cya'} }
+
+      it 'outputs the govuk continue button with the next step hidden tag' do
+        expect(
+          template
+        ).to receive(:hidden_field_tag).with(
+          :next_step, '/steps/check/check_your_answers'
+        ).and_return('<hidden_tag_here>'.html_safe)
+
+        expect(
+          builder.continue_button
+        ).to eq('<hidden_tag_here>' + expected_markup)
+      end
     end
   end
 
