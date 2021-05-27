@@ -150,6 +150,7 @@ en:
 
   check_your_answers:
     change_link_html: Change <span class="govuk-visually-hidden">%{a11y_question}</span>
+    remove_link_html: Remove <span class="govuk-visually-hidden">%{a11y_proceeding}</span>
     caution:
       <<: *CAUTION_ANSWERS
     conviction:

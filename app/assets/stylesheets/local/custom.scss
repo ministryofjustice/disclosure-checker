@@ -16,6 +16,20 @@
   padding: govuk-spacing(3);
 }
 
+.app-proceeding-heading {
+  dt, dd {
+    border: none;
+  }
+
+  .govuk-summary-list__row {
+    border: none;
+
+    @include govuk-media-query($until: tablet) {
+      margin-bottom: govuk-spacing(5);
+    }
+  }
+}
+
 .app-tag-middle {
   vertical-align: middle;
 }
@@ -24,10 +38,8 @@ dl.multiple-checks-summary:not(:only-child) {
   &:not(:last-of-type) { padding-bottom: 0.5em; }
 }
 
-.app-link-red {
+.app-link--remove {
+  @include govuk-link-common;
   @include govuk-link-style-error;
-}
-
-.app-text-align-right {
-  text-align: right;
+  @include govuk-font(19);
 }
