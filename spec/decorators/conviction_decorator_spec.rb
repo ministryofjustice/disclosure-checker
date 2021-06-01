@@ -47,15 +47,15 @@ RSpec.describe ConvictionDecorator do
     end
   end
 
-  describe '#motoring_penalty_notice?' do
-    context 'for an adult `ADULT_PENALTY_NOTICE` conviction type' do
-      subject { ConvictionType::ADULT_PENALTY_NOTICE }
-      it { expect(subject.motoring_penalty_notice?).to eq(true) }
+  describe '#motoring_fine?' do
+    context 'for an adult `ADULT_MOTORING_FINE` conviction type' do
+      subject { ConvictionType::ADULT_MOTORING_FINE }
+      it { expect(subject.motoring_fine?).to eq(true) }
     end
 
-    context 'for a youth `YOUTH_PENALTY_NOTICE` conviction type' do
-      subject { ConvictionType::YOUTH_PENALTY_NOTICE }
-      it { expect(subject.motoring_penalty_notice?).to eq(true) }
+    context 'for a youth `YOUTH_MOTORING_FINE` conviction type' do
+      subject { ConvictionType::YOUTH_MOTORING_FINE }
+      it { expect(subject.motoring_fine?).to eq(true) }
     end
   end
 

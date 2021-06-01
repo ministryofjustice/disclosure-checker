@@ -12,10 +12,8 @@ class ConvictionDecisionTree < BaseDecisionTree
       edit(:conviction_subtype)
     when :conviction_subtype
       after_conviction_subtype
-    when :conviction_bail_days
+    when :conviction_bail_days, :motoring_endorsement
       known_date_question
-    when :motoring_endorsement
-      after_motoring_endorsement
     when :conviction_bail
       after_conviction_bail
     when :known_date
@@ -43,19 +41,11 @@ class ConvictionDecisionTree < BaseDecisionTree
   private
 
   def after_conviction_subtype
-    return edit(:conviction_bail)    if conviction.bailable_offense?
-    return edit(:compensation_paid)  if conviction.compensation?
-    return after_motoring_conviction if conviction.motoring?
+    return edit(:conviction_bail)      if conviction.bailable_offense?
+    return edit(:compensation_paid)    if conviction.compensation?
+    return edit(:motoring_endorsement) if conviction.motoring_fine?
 
     known_date_question
-  end
-
-  def after_motoring_conviction
-    if conviction.motoring_penalty_points? || conviction.motoring_penalty_notice?
-      known_date_question
-    else
-      edit(:motoring_endorsement)
-    end
   end
 
   def after_known_date
@@ -88,20 +78,10 @@ class ConvictionDecisionTree < BaseDecisionTree
     check_your_answers
   end
 
-  def after_motoring_endorsement
-    return check_your_answers if penalty_notice_without_endorsement?
-
-    known_date_question
-  end
-
   def after_conviction_bail
     return edit(:conviction_bail_days) if step_value(:conviction_bail).inquiry.yes?
 
     known_date_question
-  end
-
-  def penalty_notice_without_endorsement?
-    conviction.motoring_penalty_notice? && GenericYesNo.new(disclosure_check.motoring_endorsement).no?
   end
 
   def known_date_question

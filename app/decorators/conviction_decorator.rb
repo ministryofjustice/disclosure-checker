@@ -26,14 +26,11 @@ module ConvictionDecorator
     ].include?(self)
   end
 
-  def motoring_penalty_notice?
-    ConvictionType::YOUTH_PENALTY_NOTICE.eql?(self) ||
-      ConvictionType::ADULT_PENALTY_NOTICE.eql?(self)
-  end
-
-  def motoring_penalty_points?
-    ConvictionType::YOUTH_PENALTY_POINTS.eql?(self) ||
-      ConvictionType::ADULT_PENALTY_POINTS.eql?(self)
+  def motoring_fine?
+    [
+      ConvictionType::YOUTH_MOTORING_FINE,
+      ConvictionType::ADULT_MOTORING_FINE,
+    ].include?(self)
   end
 
   def bailable_offense?

@@ -73,13 +73,13 @@ RSpec.describe ConvictionDecisionTree do
         it { is_expected.to have_destination(:motoring_endorsement, :edit) }
       end
 
-      context 'when subtype equal adult_penalty_notice' do
-        let(:conviction_subtype) { :adult_penalty_notice }
-        it { is_expected.to have_destination(:known_date, :edit) }
+      context 'when subtype equal youth_motoring_fine' do
+        let(:conviction_subtype) { :youth_motoring_fine }
+        it { is_expected.to have_destination(:motoring_endorsement, :edit) }
       end
 
-      context 'when subtype equal adult_penalty_points' do
-        let(:conviction_subtype) { :adult_penalty_points }
+      context 'when subtype is any other motoring conviction' do
+        let(:conviction_subtype) { :adult_disqualification }
         it { is_expected.to have_destination(:known_date, :edit) }
       end
     end
@@ -193,33 +193,8 @@ RSpec.describe ConvictionDecisionTree do
   end
 
   context 'when the step is `motoring_endorsement`' do
-    let(:motoring_endorsement) {GenericYesNo::YES }
-    let(:step_params) { { motoring_endorsement:  motoring_endorsement } }
-
-    context 'when subtype is equal adult_penalty_notice' do
-      let(:conviction_subtype) { :adult_penalty_notice }
-      context 'with a endorsement' do
-        it { is_expected.to have_destination(:known_date, :edit) }
-      end
-
-      context ' without a endorsement' do
-        let(:motoring_endorsement) {GenericYesNo::NO }
-        it { is_expected.to show_check_your_answers_page }
-      end
-    end
-
-    context 'when subtype is not equal to adult_penalty_notice sub types' do
-      let(:conviction_subtype) { :adult_disqualification }
-
-      context 'with a endorsement' do
-        it { is_expected.to have_destination(:known_date, :edit) }
-      end
-
-      context 'without a endorsement' do
-        let(:motoring_endorsement) {GenericYesNo::NO }
-        it { is_expected.to have_destination(:known_date, :edit) }
-      end
-    end
+    let(:step_params) { { motoring_endorsement:  GenericYesNo::YES } }
+    it { is_expected.to have_destination(:known_date, :edit) }
   end
 
   context 'when the step is `conviction_bail`' do
