@@ -27,19 +27,6 @@ module Steps
         disclosure_check.conviction_subtype != conviction_subtype
       end
 
-      def motoring_endorsement
-        return GenericYesNo::YES if motoring_penalty_notice?
-
-        nil
-      end
-
-      def motoring_penalty_notice?
-        [
-          ConvictionType::ADULT_PENALTY_NOTICE,
-          ConvictionType::YOUTH_PENALTY_NOTICE,
-        ].map(&:to_s).include?(conviction_subtype)
-      end
-
       def persist!
         raise DisclosureCheckNotFound unless disclosure_check
         return true unless changed?
@@ -54,7 +41,7 @@ module Steps
           conviction_length_type: nil,
           compensation_paid: nil,
           compensation_payment_date: nil,
-          motoring_endorsement: motoring_endorsement
+          motoring_endorsement: nil
         )
       end
     end
