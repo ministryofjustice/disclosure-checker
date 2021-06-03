@@ -1,5 +1,7 @@
 <% a11y_question = t("#{row.question}.question", scope: row.scope).downcase %>
 
-<%= link_to row.change_path, class: 'govuk-link govuk-link--no-visited-state' do %>
+<%= link_to row.change_path,
+            class: 'govuk-link govuk-link--no-visited-state ga-pageLink',
+            data: { ga_category: 'check your answers', ga_label: "change #{row.question}" } do %>
   <%= t('change_link_html', scope: :check_your_answers, a11y_question: a11y_question) %>
 <% end %>

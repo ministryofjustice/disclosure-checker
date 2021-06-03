@@ -6,6 +6,6 @@
     <%=t "#{row.question}.answers.#{row.answer}", scope: row.scope, default: row.answer %>
   </dd>
   <dd class="govuk-summary-list__actions">
-    <%= render partial: 'steps/check/check_your_answers/shared/change_link', locals: { row: row } if row.change_path && dev_tools_enabled? %>
+    <%= render partial: 'steps/check/check_your_answers/shared/change_link', locals: { row: row } if row.change_path %>
   </dd>
 </div>
