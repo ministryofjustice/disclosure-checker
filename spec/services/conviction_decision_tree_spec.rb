@@ -7,8 +7,6 @@ RSpec.describe ConvictionDecisionTree do
       conviction_subtype: conviction_subtype,
       compensation_paid: compensation_paid,
       motoring_endorsement: motoring_endorsement,
-      compensation_payment_over_100: compensation_payment_over_100,
-      compensation_receipt_sent: compensation_receipt_sent,
     )
   end
 
@@ -19,8 +17,6 @@ RSpec.describe ConvictionDecisionTree do
   let(:conviction_subtype) { nil }
   let(:compensation_paid)  { nil }
   let(:motoring_endorsement) { nil }
-  let(:compensation_payment_over_100) { nil }
-  let(:compensation_receipt_sent) { nil }
 
   subject { described_class.new(disclosure_check: disclosure_check, step_params: step_params, as: as, next_step: next_step) }
 
@@ -136,7 +132,7 @@ RSpec.describe ConvictionDecisionTree do
     context 'when the step is `compensation_paid` equal yes' do
       let(:compensation_paid)  { GenericYesNo::YES }
       let(:step_params) { { compensation_paid:  compensation_paid } }
-      it { is_expected.to have_destination(:compensation_paid_amount, :edit) }
+      it { is_expected.to have_destination(:compensation_payment_date, :edit) }
     end
 
     context 'when the step is `compensation_paid` equal no' do
@@ -146,50 +142,9 @@ RSpec.describe ConvictionDecisionTree do
     end
   end
 
-  context 'when the step is `compensation_paid_amount`' do
-    context 'when the step is `compensation_payment_over_100` equal yes' do
-      let(:compensation_payment_over_100)  { GenericYesNo::YES }
-      let(:step_params) { { compensation_payment_over_100:  compensation_payment_over_100 } }
-
-      it { is_expected.to have_destination(:compensation_payment_date, :edit) }
-    end
-
-    context 'when the step is `compensation_payment_over_100` equal no' do
-      let(:compensation_payment_over_100)  { GenericYesNo::NO }
-      let(:step_params) { { compensation_payment_over_100:  compensation_payment_over_100 } }
-
-      it { is_expected.to have_destination(:compensation_payment_date, :edit) }
-    end
-  end
-
   context 'when the step is `compensation_payment_date`' do
     let(:step_params) { { compensation_payment_date: 'anything' } }
-
-    context 'and the compensation payment was over £100' do
-      let(:compensation_payment_over_100) { GenericYesNo::YES }
-
-      it { is_expected.to have_destination(:compensation_payment_receipt, :edit) }
-    end
-
-    context 'and the compensation payment was under £100' do
-      let(:compensation_payment_over_100) { GenericYesNo::NO }
-
-      it { is_expected.to show_check_your_answers_page }
-    end
-  end
-
-  context 'when the step is `compensation_receipt_sent`' do
-    let(:step_params) { { compensation_receipt_sent: 'anything' } }
-
-    context 'and the receipt was sent' do
-      let(:compensation_receipt_sent) { GenericYesNo::YES }
-      it { is_expected.to show_check_your_answers_page }
-    end
-
-    context 'and the receipt was not sent' do
-      let(:compensation_receipt_sent) { GenericYesNo::NO }
-      it { is_expected.to have_destination(:compensation_unable_to_tell, :show) }
-    end
+    it { is_expected.to show_check_your_answers_page }
   end
 
   context 'when the step is `motoring_endorsement`' do
