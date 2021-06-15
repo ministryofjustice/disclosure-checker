@@ -98,7 +98,7 @@ en:
     known_date:
       question: Start date
     conviction_length:
-      question: Length of conviction
+      question: Length of sentence
       answers:
         weeks: '%{length} weeks'
         months: '%{length} months'

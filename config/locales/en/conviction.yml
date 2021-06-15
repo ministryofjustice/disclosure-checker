@@ -20,7 +20,7 @@ en:
           page_title: Weeks, months or years
       conviction_length:
         edit:
-          page_title: Length of conviction
+          page_title: Length of sentence
           heading:
             default: What was the length of the order?
             detention_training_order: What was the length of the DTO?
