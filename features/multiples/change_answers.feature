@@ -19,7 +19,7 @@ Feature: A person who made a mistake and wants to change their answers
     Then I should see "Check your answers"
      And I should see "5 August 2001"
 
-    When I click the "Change length of conviction" link
+    When I click the "Change length of sentence" link
     Then I should see "Was the length of the order given in weeks, months or years?"
      And I choose "Months"
      And I fill in "Number of months" with "15"
