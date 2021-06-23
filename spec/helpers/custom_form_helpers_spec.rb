@@ -13,7 +13,7 @@ RSpec.describe CustomFormHelpers, type: :helper do
   end
 
   describe '#continue_button' do
-    let(:expected_markup) { '<input type="submit" name="commit" value="Continue" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Continue" />' }
+    let(:expected_markup) { '<button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true">Continue</button>' }
     let(:template) { double('template', params: params) }
 
     before do

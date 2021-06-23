@@ -10,8 +10,8 @@
       If you were given more than one sentence as part of this conviction you must add it now.
     </p>
 
-    <%= button_to 'Add another sentence', check_group_path(check.check_group),
+    <%= button_to check_group_path(check.check_group),
                   class: 'govuk-button govuk-button--secondary govuk-!-margin-bottom-3',
-                  data: { module: 'govuk-button', 'prevent-double-click': true } %>
+                  data: { module: 'govuk-button', 'prevent-double-click': true } do; 'Add another sentence'; end %>
   <% end %>
 </div>
