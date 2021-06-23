@@ -11,7 +11,7 @@ Then(/^I should see "([^"]*)"$/) do |text|
 end
 
 Then(/^I should see the button "([^"]*)"$/) do |text|
-  expect(page).to have_button(value: text, match: :first)
+  expect(page).to have_button(text, match: :first)
 end
 
 Then(/^I should not see "([^"]*)"$/) do |text|

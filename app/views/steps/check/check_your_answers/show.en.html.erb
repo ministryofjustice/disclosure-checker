@@ -17,16 +17,16 @@
       If you need to check additional cautions or convictions add them now.
     </p>
 
-    <%= button_to 'Add a caution or conviction', checks_path,
+    <%= button_to checks_path,
                   class: 'govuk-button govuk-button--secondary',
-                  data: { module: 'govuk-button', 'prevent-double-click': true } %>
+                  data: { module: 'govuk-button', 'prevent-double-click': true } do; 'Add a caution or conviction'; end  %>
 
     <p class="govuk-body">
       If you have finished adding cautions and convictions, get your results.
     </p>
 
-    <%= button_to 'Continue to your results', report_finish_path(:current),
+    <%= button_to report_finish_path(:current),
                   class: 'govuk-button', method: :put,
-                  data: { module: 'govuk-button', 'prevent-double-click': true } %>
+                  data: { module: 'govuk-button', 'prevent-double-click': true } do; 'Continue to your results'; end %>
   </div>
 </div>
