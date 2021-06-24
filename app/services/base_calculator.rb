@@ -1,10 +1,6 @@
 class BaseCalculator
   class InvalidCalculation < RuntimeError; end
 
-  SECONDS_IN_A_MONTH = ActiveSupport::Duration::SECONDS_PER_MONTH
-  WEEKS_IN_A_MONTH = 52 / 12.0
-  MONTHS_IN_A_YEAR = 12
-
   attr_reader :disclosure_check
 
   def initialize(disclosure_check)
@@ -46,10 +42,12 @@ class BaseCalculator
 
   def sentence_length_in_months(length, length_unit)
     case length_unit
+    when 'days'
+      length.days.in_months
     when 'weeks'
-      length / WEEKS_IN_A_MONTH
+      length.weeks.in_months
     when 'years'
-      length * MONTHS_IN_A_YEAR
+      length.years.in_months
     when 'months'
       length
     end

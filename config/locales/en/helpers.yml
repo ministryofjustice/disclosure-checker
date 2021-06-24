@@ -272,12 +272,14 @@ en:
           adult_other_requirement_order: Any other order with a requirement
       steps_conviction_conviction_length_type_form:
         conviction_length_type_options:
+          days: Days
           weeks: Weeks
           months: Months
           years: Years
           no_length: No length was given
           indefinite: Until further order
       steps_conviction_conviction_length_form:
+        days: Number of days
         weeks: Number of weeks
         months: Number of months
         years: Number of years
@@ -365,19 +367,20 @@ en:
         conviction_bail: Did you spend any time on bail with an electronic tag?
       steps_conviction_conviction_length_type_form:
         # default key
-        default: Was the length of the order given in weeks, months or years?
+        default: Was the length of the order given in days, weeks, months or years?
         # alternative keys defined with `i18_attribute`
-        detention_training_order: Was the length of the DTO given in weeks, months or years?
-        detention: Was the length of the detention given in weeks, months or years?
-        conditional_discharge: Was the length of the conditions given in weeks, months or years?
-        adult_conditional_discharge: Was the length of the conditions given in weeks, months or years?
-        adult_suspended_prison_sentence: Was the length of the sentence given in weeks, months or years?
-        adult_prison_sentence: Was the length of the sentence given in weeks, months or years?
-        adult_disqualification: Was the length of the disqualification given in weeks, months or years?
-        youth_disqualification: Was the length of the disqualification given in weeks, months or years?
-        adult_service_detention: Was the length of the detention given in weeks, months or years?
-        service_detention: Was the length of the detention given in weeks, months or years?
+        detention_training_order: Was the length of the DTO given in days, weeks, months or years?
+        detention: Was the length of the detention given in days, weeks, months or years?
+        conditional_discharge: Was the length of the conditions given in days, weeks, months or years?
+        adult_conditional_discharge: Was the length of the conditions given in days, weeks, months or years?
+        adult_suspended_prison_sentence: Was the length of the sentence given in days, weeks, months or years?
+        adult_prison_sentence: Was the length of the sentence given in days, weeks, months or years?
+        adult_disqualification: Was the length of the disqualification given in days, weeks, months or years?
+        youth_disqualification: Was the length of the disqualification given in days, weeks, months or years?
+        adult_service_detention: Was the length of the detention given in days, weeks, months or years?
+        service_detention: Was the length of the detention given in days, weeks, months or years?
       steps_conviction_conviction_length_form:
+        days: Number of days
         weeks: Number of weeks
         months: Number of months
         years: Number of years

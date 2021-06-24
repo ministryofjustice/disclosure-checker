@@ -100,6 +100,7 @@ en:
     conviction_length:
       question: Length of sentence
       answers:
+        days: '%{length} days'
         weeks: '%{length} weeks'
         months: '%{length} months'
         years: '%{length} years'

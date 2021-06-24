@@ -5,6 +5,7 @@ RSpec.describe ConvictionLengthChoices do
 
   let(:all_choices) {
     [
+      ConvictionLengthType::DAYS,
       ConvictionLengthType::WEEKS,
       ConvictionLengthType::MONTHS,
       ConvictionLengthType::YEARS,
@@ -15,6 +16,7 @@ RSpec.describe ConvictionLengthChoices do
 
   let(:all_choices_except_no_length) {
     [
+      ConvictionLengthType::DAYS,
       ConvictionLengthType::WEEKS,
       ConvictionLengthType::MONTHS,
       ConvictionLengthType::YEARS,

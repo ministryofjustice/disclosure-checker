@@ -31,6 +31,7 @@ RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
 
         expect(subject.values).to eq(
           [
+            ConvictionLengthType.new(:days),
             ConvictionLengthType.new(:weeks),
             ConvictionLengthType.new(:months),
             ConvictionLengthType.new(:years),
@@ -50,6 +51,8 @@ RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
 
         expect(subject.values).to eq(
           [
+
+            ConvictionLengthType.new(:days),
             ConvictionLengthType.new(:weeks),
             ConvictionLengthType.new(:months),
             ConvictionLengthType.new(:years),
