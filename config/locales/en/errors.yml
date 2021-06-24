@@ -97,8 +97,6 @@ en:
         inclusion: Select yes or no
       compensation_payment_over_100:
         inclusion: Select yes or no
-      compensation_receipt_sent:
-        inclusion: Select yes or no
 
     report_completed:
       page_title: Report completed

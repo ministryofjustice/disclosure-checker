@@ -57,9 +57,7 @@ Rails.application.routes.draw do
       edit_step :compensation_paid
       edit_step :compensation_paid_amount
       edit_step :compensation_payment_date
-      edit_step :compensation_payment_receipt
       show_step :compensation_not_paid
-      show_step :compensation_unable_to_tell
       edit_step :motoring_endorsement
     end
   end
