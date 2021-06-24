@@ -20,9 +20,9 @@ Feature: Conviction
 
     Examples:
       | subtype                  | length_type_header                                               | known_date_header                  | length_header                         |
-      | Overseas community order | Was the length of the order given in weeks, months or years?     | When were you given the order?     | What was the length of the order?     |
-      | Service community order  | Was the length of the order given in weeks, months or years?     | When were you given the order?     | What was the length of the order?     |
-      | Service detention        | Was the length of the detention given in weeks, months or years? | When were you given the detention? | What was the length of the detention? |
+      | Overseas community order | Was the length of the order given in days, weeks, months or years?     | When were you given the order?     | What was the length of the order?     |
+      | Service community order  | Was the length of the order given in days, weeks, months or years?     | When were you given the order?     | What was the length of the order?     |
+      | Service detention        | Was the length of the detention given in days, weeks, months or years? | When were you given the detention? | What was the length of the detention? |
 
   @happy_path
   Scenario Outline: Military convictions without length

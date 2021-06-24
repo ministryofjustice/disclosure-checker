@@ -20,7 +20,7 @@ Feature: A person who made a mistake and wants to change their answers
      And I should see "5 August 2001"
 
     When I click the "Change length of sentence" link
-    Then I should see "Was the length of the order given in weeks, months or years?"
+    Then I should see "Was the length of the order given in days, weeks, months or years?"
      And I choose "Months"
      And I fill in "Number of months" with "15"
      And I click the "Continue" button

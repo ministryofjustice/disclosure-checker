@@ -10,7 +10,7 @@ Feature: Conviction
     And I should see "When were you given the order?"
 
     When I enter a valid date
-    Then I should see "Was the length of the order given in weeks, months or years?"
+    Then I should see "Was the length of the order given in days, weeks, months or years?"
     And I choose "Years"
 
     Then I should see "What was the length of the order?"
@@ -35,7 +35,7 @@ Feature: Conviction
     And I should see "When were you given the discharge?"
 
     When I enter a valid date
-    Then I should see "Was the length of the conditions given in weeks, months or years?"
+    Then I should see "Was the length of the conditions given in days, weeks, months or years?"
     And I choose "Years"
 
     Then I should see "What was the length of the discharge?"

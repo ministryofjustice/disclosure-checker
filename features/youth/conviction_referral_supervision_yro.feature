@@ -18,6 +18,6 @@ Feature: Conviction
 
   Examples:
     | subtype                    | known_date_header                              | length_type_header                                           | length_header                     |
-    | Referral order             | What was the date of your first panel meeting? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
-    | Supervision order          | When were you given the order?                 | Was the length of the order given in weeks, months or years? | What was the length of the order? |
-    | Youth rehabilitation order | When were you given the order?                 | Was the length of the order given in weeks, months or years? | What was the length of the order? |
+    | Referral order             | What was the date of your first panel meeting? | Was the length of the order given in days, weeks, months or years? | What was the length of the order? |
+    | Supervision order          | When were you given the order?                 | Was the length of the order given in days, weeks, months or years? | What was the length of the order? |
+    | Youth rehabilitation order | When were you given the order?                 | Was the length of the order given in days, weeks, months or years? | What was the length of the order? |

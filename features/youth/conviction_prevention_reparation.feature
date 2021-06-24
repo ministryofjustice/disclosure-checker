@@ -19,8 +19,8 @@ Feature: Conviction
 
     Examples:
       | subtype                 | known_date_header              | length_type_header                                           | length_header                          |
-      | Restraining order       | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order?      |
-      | Sexual harm prevention order | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
+      | Restraining order       | When were you given the order? | Was the length of the order given in days, weeks, months or years? | What was the length of the order?      |
+      | Sexual harm prevention order | When were you given the order? | Was the length of the order given in days, weeks, months or years? | What was the length of the order? |
 
 
   Scenario: Prevention or reparation order - Reparation order
