@@ -49,15 +49,6 @@ en:
         edit:
           page_title: Compensation payment date
           lead_text: If you paid the compensation in stages, enter the date you made the final payment.
-      compensation_payment_receipt:
-        edit:
-          page_title: Compensation receipt sent to DBS
-      compensation_unable_to_tell:
-        show:
-          page_title: We cannot tell you when your conviction is spent
-          heading: Sorry, we cannot tell you when your conviction is spent
-          paragraph1: You’ve said that you have not sent the compensation order payment receipt to the Disclosure and Barring Service (DBS).
-          paragraph2: Your conviction will not be considered spent until you have sent the receipt. You should be able to get a copy of the receipt from the court.
       compensation_not_paid:
         show:
           page_title: We cannot tell you when your conviction is spent
