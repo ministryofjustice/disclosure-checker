@@ -42,9 +42,6 @@ en:
       compensation_paid:
         edit:
           page_title: Compensation paid
-      compensation_paid_amount:
-        edit:
-          page_title: Compensation order amount
       compensation_payment_date:
         edit:
           page_title: Compensation payment date
