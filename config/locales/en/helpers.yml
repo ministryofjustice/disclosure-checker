@@ -136,8 +136,6 @@ en:
         <<: *CONVICTION_SUBTYPES
       steps_conviction_motoring_endorsement_form:
         <<: *CONVICTION_SUBTYPES
-      steps_conviction_compensation_paid_amount_form:
-        <<: *CONVICTION_SUBTYPES
 
     hint:
       steps_conviction_conviction_type_form:
@@ -286,8 +284,6 @@ en:
       steps_conviction_compensation_payment_date_form:
         approximate_compensation_payment_date_options:
           'true': *approximate_date_checkbox
-      steps_conviction_compensation_paid_amount_form:
-        compensation_payment_over_100_options: *YESNO
       steps_conviction_conviction_bail_form:
         conviction_bail_options: *YESNO
       steps_conviction_conviction_bail_days_form:
@@ -363,8 +359,6 @@ en:
       steps_conviction_compensation_payment_date_form:
         compensation_payment_date: When did you pay the compensation in full?
         approximate_compensation_payment_date: *approximate_date_legend
-      steps_conviction_compensation_paid_amount_form:
-        compensation_payment_over_100: Was the compensation order amount over £100?
       steps_conviction_compensation_paid_form:
         compensation_paid: Have you paid the compensation in full?
       steps_conviction_conviction_bail_form:
