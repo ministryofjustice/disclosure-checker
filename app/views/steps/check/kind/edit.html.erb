@@ -1,5 +1,8 @@
 <% title t('.page_title') %>
-<% step_header(path: ExternalUrl.govuk_check_your_conviction_caution_url) %>
+<%
+  back_path = any_completed_checks? ? steps_check_check_your_answers_path : ExternalUrl.govuk_service_start_page
+  step_header(path: back_path)
+%>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
