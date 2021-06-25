@@ -19,13 +19,13 @@ Feature: Conviction
 
     Examples:
       | subtype                        | known_date_header              | length_type_header                                           | length_header                     |
-      | Attendance centre order        | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
-      | Community order                | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
-      | Criminal behaviour order       | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
-      | Restraining order              | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
-      | Serious crime prevention order | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
-      | Sexual harm prevention order   | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
-      | Any other order with a requirement | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
+      | Attendance centre order        | When were you given the order? | Was the length of the order given in days, weeks, months or years? | What was the length of the order? |
+      | Community order                | When were you given the order? | Was the length of the order given in days, weeks, months or years? | What was the length of the order? |
+      | Criminal behaviour order       | When were you given the order? | Was the length of the order given in days, weeks, months or years? | What was the length of the order? |
+      | Restraining order              | When were you given the order? | Was the length of the order given in days, weeks, months or years? | What was the length of the order? |
+      | Serious crime prevention order | When were you given the order? | Was the length of the order given in days, weeks, months or years? | What was the length of the order? |
+      | Sexual harm prevention order   | When were you given the order? | Was the length of the order given in days, weeks, months or years? | What was the length of the order? |
+      | Any other order with a requirement | When were you given the order? | Was the length of the order given in days, weeks, months or years? | What was the length of the order? |
 
   Scenario: Adult community, reparation or other order with requirements - Reparation order
     Given I am completing a basic 18 or over "Community, reparation or other order with requirements" conviction

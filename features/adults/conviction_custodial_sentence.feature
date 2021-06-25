@@ -30,8 +30,8 @@ Feature: Conviction
 
     Examples:
       | subtype                   | known_date_header            | length_type_header                                              | length_header                        | result                                           |
-      | Prison sentence           | When did the sentence start? | Was the length of the sentence given in weeks, months or years? | What was the length of the sentence? | This conviction will be spent on 21 October 2025 |
-      | Suspended prison sentence | When did the sentence start? | Was the length of the sentence given in weeks, months or years? | What was the length of the sentence? | This conviction will be spent on 21 October 2025 |
+      | Prison sentence           | When did the sentence start? | Was the length of the sentence given in days, weeks, months or years? | What was the length of the sentence? | This conviction will be spent on 21 October 2025 |
+      | Suspended prison sentence | When did the sentence start? | Was the length of the sentence given in days, weeks, months or years? | What was the length of the sentence? | This conviction will be spent on 21 October 2025 |
 
 
   @happy_path
@@ -55,7 +55,7 @@ Feature: Conviction
 
     Examples:
       | subtype        | known_date_header              | length_type_header                                           | length_header                     |
-      | Hospital order | When were you given the order? | Was the length of the order given in weeks, months or years? | What was the length of the order? |
+      | Hospital order | When were you given the order? | Was the length of the order given in days, weeks, months or years? | What was the length of the order? |
 
   @happy_path @date_travel
   Scenario Outline: Hospital orders (with no length or indefinite length)
@@ -76,5 +76,5 @@ Feature: Conviction
 
     Examples:
       | subtype        | known_date_header              | length_type_header                                           | length_type         | result                                                                             |
-      | Hospital order | When were you given the order? | Was the length of the order given in weeks, months or years? | No length was given | This conviction will be spent on 1 January 2022                                    |
-      | Hospital order | When were you given the order? | Was the length of the order given in weeks, months or years? | Until further order | This conviction is not spent and will stay in place until another order is made to change or end it |
+      | Hospital order | When were you given the order? | Was the length of the order given in days, weeks, months or years? | No length was given | This conviction will be spent on 1 January 2022                                    |
+      | Hospital order | When were you given the order? | Was the length of the order given in days, weeks, months or years? | Until further order | This conviction is not spent and will stay in place until another order is made to change or end it |

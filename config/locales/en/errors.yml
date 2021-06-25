@@ -49,6 +49,7 @@ en:
           attributes:
             conviction_length:
               greater_than: The length must be greater than zero
+              less_than: The length seems to be too long
               not_a_number: The length must be a number, like 3
               not_an_integer: The length must be a whole number, like 4
               invalid_sentence: The length of the sentence is invalid for this conviction

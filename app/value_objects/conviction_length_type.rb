@@ -1,5 +1,6 @@
 class ConvictionLengthType < ValueObject
   VALUES = [
+    DAYS = new(:days),
     WEEKS = new(:weeks),
     MONTHS = new(:months),
     YEARS = new(:years),

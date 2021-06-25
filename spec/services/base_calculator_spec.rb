@@ -41,27 +41,54 @@ RSpec.describe BaseCalculator do
   end
 
   context '#sentence_distance_in_months' do
+    it 'in days' do
+      expect(subject.sentence_length_in_months(30, 'days')).to be < 1
+      expect(subject.sentence_length_in_months(31, 'days')).to be >= 1
+
+      # 2 months
+      expect(subject.sentence_length_in_months(60, 'days')).to be < 2
+      expect(subject.sentence_length_in_months(61, 'days')).to be >= 2
+
+      # 3 months
+      expect(subject.sentence_length_in_months(91, 'days')).to be < 3
+      expect(subject.sentence_length_in_months(92, 'days')).to be >= 3
+
+      # 6 months
+      expect(subject.sentence_length_in_months(182, 'days')).to be < 6
+      expect(subject.sentence_length_in_months(183, 'days')).to be >= 6
+
+      # 25 months
+      expect(subject.sentence_length_in_months(760, 'days')).to be < 25
+      expect(subject.sentence_length_in_months(761, 'days')).to be >= 25
+
+      # 30 months
+      expect(subject.sentence_length_in_months(913, 'days')).to be < 30
+      expect(subject.sentence_length_in_months(914, 'days')).to be >= 30
+    end
+
     it 'in weeks' do
       expect(subject.sentence_length_in_months(4, 'weeks')).to be < 1
       expect(subject.sentence_length_in_months(5, 'weeks')).to be >= 1
+
+      # 2 months
       expect(subject.sentence_length_in_months(8, 'weeks')).to be < 2
       expect(subject.sentence_length_in_months(9, 'weeks')).to be >= 2
 
       # 3 months
-      expect(subject.sentence_length_in_months(12, 'weeks')).to be < 3
-      expect(subject.sentence_length_in_months(13, 'weeks')).to be >= 3
+      expect(subject.sentence_length_in_months(13, 'weeks')).to be < 3
+      expect(subject.sentence_length_in_months(14, 'weeks')).to be >= 3
 
       # 6 months
-      expect(subject.sentence_length_in_months(25, 'weeks')).to be < 6
-      expect(subject.sentence_length_in_months(26, 'weeks')).to be >= 6
+      expect(subject.sentence_length_in_months(26, 'weeks')).to be < 6
+      expect(subject.sentence_length_in_months(27, 'weeks')).to be >= 6
 
       # 25 months
       expect(subject.sentence_length_in_months(108, 'weeks')).to be < 25
       expect(subject.sentence_length_in_months(109, 'weeks')).to be >= 25
 
       # 30 months
-      expect(subject.sentence_length_in_months(129, 'weeks')).to be < 30
-      expect(subject.sentence_length_in_months(130, 'weeks')).to be >= 30
+      expect(subject.sentence_length_in_months(130, 'weeks')).to be < 30
+      expect(subject.sentence_length_in_months(131, 'weeks')).to be >= 30
     end
 
     it 'in months' do

@@ -70,6 +70,19 @@ RSpec.describe Steps::Conviction::ConvictionLengthForm do
           end
         end
 
+        context 'when length is too long' do
+          let(:conviction_length) { described_class::HUNDRED_YEARS_IN_DAYS + 1 }
+
+          it 'returns false' do
+            expect(subject.save).to be(false)
+          end
+
+          it 'has a validation error on the field' do
+            expect(subject).to_not be_valid
+            expect(subject.errors.details[:conviction_length][0][:error]).to eq(:less_than)
+          end
+        end
+
         context 'length is not an whole number' do
           let(:conviction_length) { 1.5 }
 

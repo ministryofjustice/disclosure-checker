@@ -18,8 +18,8 @@ Feature: Conviction
 
   Examples:
     | subtype                | known_date_header                   | length_type_header                                                | length_header                         |
-    | Conditional discharge  | When were you given the discharge?  | Was the length of the conditions given in weeks, months or years? | What was the length of the discharge? |
-    | Bind over              | When were you given the order?      | Was the length of the order given in weeks, months or years?      | What was the length of the order?     |
+    | Conditional discharge  | When were you given the discharge?  | Was the length of the conditions given in days, weeks, months or years? | What was the length of the discharge? |
+    | Bind over              | When were you given the order?      | Was the length of the order given in days, weeks, months or years?      | What was the length of the order?     |
 
 
   @happy_path

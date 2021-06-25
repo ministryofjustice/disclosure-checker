@@ -4,6 +4,12 @@ RSpec.describe ConvictionLengthType do
   describe '#without_length?' do
     subject { described_class.new(value).without_length? }
 
+    context 'days' do
+      let(:value) { :days }
+
+      it { expect(subject).to eq(false) }
+    end
+
     context 'weeks' do
       let(:value) { :weeks }
       it { expect(subject).to eq(false) }
@@ -33,6 +39,7 @@ RSpec.describe ConvictionLengthType do
   describe '.values' do
     it 'returns all possible values' do
       expect(described_class.values.map(&:to_s)).to eq(%w(
+        days
         weeks
         months
         years
