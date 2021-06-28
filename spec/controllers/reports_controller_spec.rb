@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ReportsController, type: :controller do
   describe '#finish' do
-    let(:current_disclosure_check) { build(:disclosure_check, status: status) }
-    let(:current_disclosure_report) { DisclosureReport.new(status: status) }
-    let(:status) { :in_progress }
+    let(:current_disclosure_check)  { create(:disclosure_check, status: :completed) }
+    let(:current_disclosure_report) { current_disclosure_check.disclosure_report }
 
     def perform_call
       put :finish, params: { report_id: :current }, session: { disclosure_check_id: '123' }
@@ -37,6 +36,16 @@ RSpec.describe ReportsController, type: :controller do
           perform_call
         end
 
+        it 'ensures there is a disclosure check in the session' do
+          expect(
+            controller
+          ).to receive(:swap_disclosure_check_session).with(
+            current_disclosure_check.id
+          )
+
+          perform_call
+        end
+
         it 'sets the flash to track transactions' do
           perform_call
           expect(controller.request.flash[:ga_track_completion]).to eq(true)
@@ -49,7 +58,9 @@ RSpec.describe ReportsController, type: :controller do
       end
 
       context 'when the report is already marked as `completed`' do
-        let(:status) { :completed }
+        before do
+          current_disclosure_report.completed!
+        end
 
         it 'does not call the `purge_incomplete_checks` method' do
           expect(controller).not_to receive(:purge_incomplete_checks)

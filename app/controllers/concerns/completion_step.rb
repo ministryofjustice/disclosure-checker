@@ -26,6 +26,12 @@ module CompletionStep
   # remove any incomplete checks as they don't serve any purpose now
   def purge_incomplete_checks
     current_disclosure_report.disclosure_checks.in_progress.destroy_all
+
+    # It could happen the current session was one of the purged
+    # incomplete checks, so this ensures we have a valid one again.
+    swap_disclosure_check_session(
+      current_disclosure_report.disclosure_checks.last.id
+    )
   end
 
   # Because transactions can be triggered more than once for the same report,
