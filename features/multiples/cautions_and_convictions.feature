@@ -50,8 +50,16 @@ Feature: A person with cautions and convictions
       And I choose "Months"
       And I fill in "Number of months" with "12"
      Then I click the "Continue" button
-
       And I should see "Check your answers"
+
+     # Check in progress warning quick smoke test
+     When I click the "header-service-name" link
+     Then I should see "It looks like you already have a check in progress"
+      And I should see a "Resume check" link to "/steps/check/check_your_answers"
+      And I should see a "Start a new check" link to "/?new=y"
+     When I click the "Resume check" link
+     Then I should see "Check your answers"
+
      Then I click the "Continue to your results" button
 
       And I should see "Caution 1"

@@ -168,6 +168,30 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
+  describe '#resume_check_path' do
+    let(:current_disclosure_check) { instance_double(DisclosureCheck, navigation_stack: navigation_stack) }
+
+    before do
+      allow(helper).to receive(:current_disclosure_check).and_return(current_disclosure_check)
+    end
+
+    context 'when the stack is empty' do
+      let(:navigation_stack) { [] }
+
+      it 'returns the root path' do
+        expect(helper.resume_check_path).to eq('/')
+      end
+    end
+
+    context 'when the stack has elements' do
+      let(:navigation_stack) { ['/somewhere', '/over', '/the', '/rainbow'] }
+
+      it 'returns the last element' do
+        expect(helper.resume_check_path).to eq('/rainbow')
+      end
+    end
+  end
+
   describe 'dev_tools_enabled?' do
     before do
       allow(Rails).to receive_message_chain(:env, :development?).and_return(development_env)

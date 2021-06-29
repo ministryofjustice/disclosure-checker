@@ -64,6 +64,10 @@ module ApplicationHelper
     current_disclosure_report.disclosure_checks.completed.any?
   end
 
+  def resume_check_path
+    current_disclosure_check.navigation_stack.last || root_path
+  end
+
   # Use this to feature-flag code that should only run/show on test environments
   def dev_tools_enabled?
     Rails.env.development? || ENV.key?('DEV_TOOLS_ENABLED')
