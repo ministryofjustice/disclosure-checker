@@ -8,10 +8,27 @@ RSpec.describe HomeController, type: :controller do
   describe '#index' do
     context 'when an existing disclosure check in progress exists' do
       let(:status) { :in_progress }
+      let(:navigation_stack) { %w(/1 /2 /3) }
+
+      context 'but the report is already completed' do
+        before do
+          existing_disclosure_check.disclosure_report.completed!
+        end
+
+        it 'redirects to /steps/check/kind' do
+          get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+          expect(response).to redirect_to('/steps/check/kind')
+        end
+
+        it 'resets the disclosure_check session data' do
+          expect(session).to receive(:delete).with(:disclosure_check_id).ordered
+          expect(session).to receive(:delete).with(:last_seen).ordered
+          expect(session).to receive(:delete) # any other deletes
+          get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+        end
+      end
 
       context 'with enough steps advanced' do
-        let(:navigation_stack) { %w(/1 /2 /3) }
-
         context 'and user bypass the warning' do
           it 'redirects to /steps/check/kind' do
             get :index, session: { disclosure_check_id: existing_disclosure_check.id }, params: {new: 'y'}
@@ -53,16 +70,39 @@ RSpec.describe HomeController, type: :controller do
       context 'with not enough steps advanced' do
         let(:navigation_stack) { %w(/1) }
 
-        it 'redirects to /steps/check/kind' do
-          get :index, session: { disclosure_check_id: existing_disclosure_check.id }
-          expect(response).to redirect_to('/steps/check/kind')
+        before do
+          allow(controller.helpers).to receive(:any_completed_checks?).and_return(any_completed_checks)
         end
 
-        it 'resets the disclosure check session data' do
-          expect(session).to receive(:delete).with(:disclosure_check_id).ordered
-          expect(session).to receive(:delete).with(:last_seen).ordered
-          expect(session).to receive(:delete) # any other deletes
-          get :index
+        context 'but at least one completed caution/conviction in the basket' do
+          let(:any_completed_checks) { true }
+
+          it 'redirects to the warning page' do
+            get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+            expect(response).to redirect_to(warning_reset_session_path)
+          end
+
+          it 'does not reset any application session data' do
+            expect(session).not_to receive(:delete).with(:disclosure_check_id).ordered
+            expect(session).not_to receive(:delete).with(:last_seen).ordered
+            get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+          end
+        end
+
+        context 'without any completed caution/conviction in the basket' do
+          let(:any_completed_checks) { false }
+
+          it 'redirects to /steps/check/kind' do
+            get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+            expect(response).to redirect_to('/steps/check/kind')
+          end
+
+          it 'resets the disclosure check session data' do
+            expect(session).to receive(:delete).with(:disclosure_check_id).ordered
+            expect(session).to receive(:delete).with(:last_seen).ordered
+            expect(session).to receive(:delete) # any other deletes
+            get :index
+          end
         end
       end
     end

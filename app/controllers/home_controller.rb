@@ -8,8 +8,8 @@ class HomeController < ApplicationController
   private
 
   def in_progress_enough?
-    current_disclosure_check&.in_progress? &&
-      current_disclosure_check.navigation_stack.size > 1
+    current_disclosure_report&.in_progress? &&
+      (current_disclosure_check.navigation_stack.size > 1 || helpers.any_completed_checks?)
   end
 
   def existing_disclosure_check_warning
