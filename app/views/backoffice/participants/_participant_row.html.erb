@@ -1,7 +1,0 @@
-<tr class="govuk-table__row">
-  <th scope="row" class="govuk-table__header"><%= participant.reference %></th>
-  <td class="govuk-table__cell"><%= participant.opted_out.presence || GenericYesNo::NO %></td>
-  <td class="govuk-table__cell"><%= participant.access_count %></td>
-  <td class="govuk-table__cell"><%= I18n.l(participant.created_at, format: :short) %></td>
-  <td class="govuk-table__cell"><%= I18n.l(participant.updated_at, format: :short) %></td>
-</tr>
