@@ -26,7 +26,8 @@ Rails.application.routes.draw do
 
   # Back office
   namespace :backoffice do
-    resources :participants, only: [:index]
+    get '/', to: 'home#index'
+    resources :reports, only: [:index]
   end
 
   namespace :steps do

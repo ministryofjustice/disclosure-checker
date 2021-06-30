@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_24_131926) do
+ActiveRecord::Schema.define(version: 2021_06_30_094211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -58,16 +58,6 @@ ActiveRecord::Schema.define(version: 2021_06_24_131926) do
     t.datetime "updated_at", null: false
     t.datetime "completed_at"
     t.index ["status"], name: "index_disclosure_reports_on_status"
-  end
-
-  create_table "participants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "reference", null: false
-    t.integer "access_count", default: 0
-    t.string "opted_out"
-    t.text "details"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["reference"], name: "index_participants_on_reference", unique: true
   end
 
   add_foreign_key "check_groups", "disclosure_reports"

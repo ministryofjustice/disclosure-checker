@@ -44,8 +44,5 @@ module Disclosure
 
     # Maintain `completed` checks for this number of days
     config.x.checks.complete_purge_after_days = 60
-
-    # Load the list of participants in the MVP (refer to `config/participants.yml`)
-    config.participants = config_for(:participants)
   end
 end
