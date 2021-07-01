@@ -1,0 +1,17 @@
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    <%= I18n.l(report.completed_at, format: :short) %>
+  </td>
+  <td class="govuk-table__cell">
+    <%= distance_of_time_in_words(report.created_at, report.completed_at) %>
+  </td>
+  <td class="govuk-table__cell">
+    <%= report.caution_checks.count %>
+  </td>
+  <td class="govuk-table__cell">
+    <%= report.conviction_checks.count %>
+  </td>
+  <td class="govuk-table__cell">
+    <%= link_to 'show ›', result_url(report), class: 'govuk-link', target: '_blank' %>
+  </td>
+</tr>

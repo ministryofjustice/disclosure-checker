@@ -1,3 +1,27 @@
 <% title 'Backoffice: Reports' %>
 
-<!-- TODO -->
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l">
+      Recent completed checks
+    </h1>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Completed at</th>
+          <th scope="col" class="govuk-table__header">Duration</th>
+          <th scope="col" class="govuk-table__header">Cautions</th>
+          <th scope="col" class="govuk-table__header">Convictions</th>
+          <th scope="col" class="govuk-table__header">Results page</th>
+        </tr>
+      </thead>
+
+      <tbody class="govuk-table__body">
+        <% @reports.each do |report| %>
+          <%= render partial: 'report_row', locals: { report: report } %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
