@@ -45,7 +45,7 @@ module CustomFormHelpers
     )
   end
 
-  # Do not blindly trust the param, always whitelist
+  # Do not blindly trust the param, always check
   def next_step_if_present
     next_step = case params[:next_step]
                 when 'cya'
