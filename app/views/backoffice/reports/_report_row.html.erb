@@ -9,7 +9,10 @@
     <%= report.caution_checks.count %>
   </td>
   <td class="govuk-table__cell">
-    <%= report.conviction_checks.count %>
+    <%= report.conviction_checks.group_by(&:check_group_id).count %>
+  </td>
+  <td class="govuk-table__cell">
+    <%= report.disclosure_checks_count %>
   </td>
   <td class="govuk-table__cell">
     <%= link_to 'show ›', result_url(report), class: 'govuk-link', target: '_blank' %>

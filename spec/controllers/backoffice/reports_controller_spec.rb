@@ -15,6 +15,11 @@ RSpec.describe Backoffice::ReportsController, type: :controller do
     expect(response).to render_template(:index)
   end
 
+  it 'sorts by sentences' do
+    get :index, params: { sentences: 1 }
+    expect(response).to render_template(:index)
+  end
+
   context 'when using credentials' do
     before do
       allow(controller).to receive(:check_http_credentials).and_call_original
