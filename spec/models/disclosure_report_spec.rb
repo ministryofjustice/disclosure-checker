@@ -44,6 +44,19 @@ RSpec.describe DisclosureReport, type: :model do
     end
   end
 
+  describe '#disclosure_checks_count' do
+    let(:collection_scope) { double('collection') }
+
+    before do
+      allow(subject).to receive(:disclosure_checks).and_return(collection_scope)
+    end
+
+    it 'returns the count of records' do
+      expect(collection_scope).to receive(:count)
+      subject.disclosure_checks_count
+    end
+  end
+
   context 'convenience query methods' do
     let(:collection_scope) { double('collection') }
 

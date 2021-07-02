@@ -15,6 +15,10 @@ class DisclosureReport < ApplicationRecord
     update!(status: :completed, completed_at: Time.current)
   end
 
+  def disclosure_checks_count
+    disclosure_checks.count
+  end
+
   # Convenience methods to return collections of just one kind
   #
   def caution_checks
