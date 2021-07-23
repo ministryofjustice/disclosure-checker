@@ -16,6 +16,14 @@ module ConvictionDecorator
     ].include?(parent)
   end
 
+  def youth?
+    ConvictionType::YOUTH_PARENT_TYPES.include?(parent)
+  end
+
+  def adult?
+    ConvictionType::ADULT_PARENT_TYPES.include?(parent)
+  end
+
   #
   # Children conviction types
   #

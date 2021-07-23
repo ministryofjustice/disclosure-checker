@@ -1,6 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe ConvictionDecorator do
+  context 'youth?' do
+    context 'for a youth conviction' do
+      subject { ConvictionType::YOUTH_REHABILITATION_ORDER }
+      it { expect(subject.youth?).to eq(true) }
+    end
+
+    context 'for an adult conviction' do
+      subject { ConvictionType::ADULT_ABSOLUTE_DISCHARGE }
+      it { expect(subject.youth?).to eq(false) }
+    end
+  end
+
+  context 'adult?' do
+    context 'for a youth conviction' do
+      subject { ConvictionType::YOUTH_REHABILITATION_ORDER }
+      it { expect(subject.adult?).to eq(false) }
+    end
+
+    context 'for an adult conviction' do
+      subject { ConvictionType::ADULT_ABSOLUTE_DISCHARGE }
+      it { expect(subject.adult?).to eq(true) }
+    end
+  end
+
   context 'compensation?' do
     context 'for a conviction without compensation' do
       subject { ConvictionType::HOSPITAL_ORDER }
