@@ -18,17 +18,18 @@
     </h1>
 
     <p class="govuk-body">
-      Your results are calculated using the information you have given and the current law.
-      Read more about
-      <a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/tell-employer-or-college-about-criminal-record/what-information-you-need-to-give">
-        what a spent caution or conviction is</a>
-      on GOV.UK.
+      These results and their accuracy are based on the current law, the information you have entered and the date of this check.
     </p>
 
     <% if @presenter.approximate_dates? %>
-      <p class="govuk-body">As you entered an approximate date, your results will be approximate.
+      <p class="govuk-body">Your results may not be accurate because you did not enter an exact date.
       </p>
     <% end %>
+
+    <p class="govuk-body govuk-!-margin-bottom-8">
+      <a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/tell-employer-or-college-about-criminal-record/what-information-you-need-to-give">Read
+        more about spent cautions and convictions</a>.
+    </p>
 
     <%= render @presenter.summary %>
 
