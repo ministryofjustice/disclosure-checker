@@ -38,11 +38,21 @@ RSpec.describe DbsVisibility do
       end
 
       context 'for an adult caution' do
-        let(:disclosure_check) { build(:disclosure_check, :adult_caution) }
+        let(:disclosure_check) { build(:disclosure_check, :adult_caution, known_date: known_date) }
+        let(:known_date) { nil }
 
         context 'for a spent variant' do
           let(:variant) { ResultsVariant::SPENT }
-          it { expect(subject.enhanced).to eq(:maybe) }
+
+          context 'given less than 6 years ago' do
+            let(:known_date) { 5.years.ago }
+            it { expect(subject.enhanced).to eq(:will) }
+          end
+
+          context 'given more than 6 years ago' do
+            let(:known_date) { 7.years.ago }
+            it { expect(subject.enhanced).to eq(:maybe) }
+          end
         end
 
         context 'for a not spent variant' do
@@ -56,16 +66,41 @@ RSpec.describe DbsVisibility do
       let(:disclosure_check) { build(:disclosure_check, :compensation) }
 
       context 'for a spent variant' do
+        let(:variant) { ResultsVariant::SPENT }
+
         context 'for custodial convictions' do
           let(:disclosure_check) { build(:disclosure_check, :dto_conviction) }
-          let(:variant) { ResultsVariant::SPENT }
-
           it { expect(subject.enhanced).to eq(:will) }
         end
 
         context 'for non-custodial convictions' do
-          let(:variant) { ResultsVariant::SPENT }
-          it { expect(subject.enhanced).to eq(:maybe) }
+          context 'for a youth conviction' do
+            let(:disclosure_check) { build(:disclosure_check, :with_youth_rehabilitation_order, conviction_date: conviction_date) }
+
+            context 'given less than 5.5 years ago' do
+              let(:conviction_date) { 5.years.ago }
+              it { expect(subject.enhanced).to eq(:will) }
+            end
+
+            context 'given more than 5.5 years ago' do
+              let(:conviction_date) { 6.years.ago }
+              it { expect(subject.enhanced).to eq(:maybe) }
+            end
+          end
+
+          context 'for an adult conviction' do
+            let(:disclosure_check) { build(:disclosure_check, :with_community_order, conviction_date: conviction_date) }
+
+            context 'given less than 11 years ago' do
+              let(:conviction_date) { 10.years.ago }
+              it { expect(subject.enhanced).to eq(:will) }
+            end
+
+            context 'given more than 11 years ago' do
+              let(:conviction_date) { 12.years.ago }
+              it { expect(subject.enhanced).to eq(:maybe) }
+            end
+          end
         end
       end
 
