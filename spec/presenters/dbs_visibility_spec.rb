@@ -51,7 +51,7 @@ RSpec.describe DbsVisibility do
 
           context 'given more than 6 years ago' do
             let(:known_date) { 7.years.ago }
-            it { expect(subject.enhanced).to eq(:maybe) }
+            it { expect(subject.enhanced).to eq(:will_not) }
           end
         end
 
