@@ -5,7 +5,7 @@ en:
       kind:
         edit:
           page_title: Caution or conviction
-          lead_text: You will be able to enter more than one caution or conviction if you need to check more than one.
+          lead_text: You must enter all cautions and convictions to get accurate results. You can add more cautions and convictions later.
       under_age:
         edit:
           page_title: Age when cautioned or convicted
