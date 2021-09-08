@@ -162,3 +162,9 @@ en:
       <<: *CAUTION_ANSWERS
     conviction:
       <<: *CONVICTION_ANSWERS
+    dbs_maybe_explanation_html: |
+      <p class="govuk-body">
+        Your results say your caution or conviction <strong>may appear</strong> on a DBS check.
+        We can’t give you a definite result, because we don’t know the details of what led to the caution or conviction.
+        Some sentences will always appear on a check, even if they are spent.
+      </p>

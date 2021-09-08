@@ -35,6 +35,8 @@
 
     <h2 class="govuk-heading-l">Using your results</h2>
 
+    <%= content_for(:dbs_maybe_explanation) %>
+
     <% if @presenter.convictions? %>
       <p class="govuk-body">
         Your results are correct if you served your sentence in full as the court ordered you to.

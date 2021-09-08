@@ -35,3 +35,5 @@ Feature: Caution
 
      And I should see "This caution will not appear on a basic DBS check."
      And I should see "This caution will not appear on a standard or enhanced DBS check."
+
+     And I should not see "Your results say your caution or conviction may appear on a DBS check."
