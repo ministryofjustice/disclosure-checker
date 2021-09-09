@@ -1,5 +1,14 @@
+<%
+  basic_result = dbs_visibility.basic
+  enhanced_result = dbs_visibility.enhanced
+
+  content_for(
+    :dbs_maybe_explanation, t('dbs_maybe_explanation_html', scope: :results)
+  ) if enhanced_result.eql?(:maybe)
+%>
+
 <div class="govuk-inset-text govuk-!-padding-top-1 govuk-!-padding-bottom-1">
-  <%= t([dbs_visibility.basic, 'html'].join('_'), scope: [dbs_visibility.to_partial_path, :basic_dbs], kind: dbs_visibility.kind) %>
+  <%= t([basic_result, 'html'].join('_'), scope: [dbs_visibility.to_partial_path, :basic_dbs], kind: dbs_visibility.kind) %>
   <br/>
-  <%= t([dbs_visibility.enhanced, 'html'].join('_'), scope: [dbs_visibility.to_partial_path, :enhanced_dbs], kind: dbs_visibility.kind) %>
+  <%= t([enhanced_result, 'html'].join('_'), scope: [dbs_visibility.to_partial_path, :enhanced_dbs], kind: dbs_visibility.kind) %>
 </div>
