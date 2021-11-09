@@ -2,7 +2,6 @@ logs/
 log/
 tmp/
 Dockerfile
-Dockerfile.nginx
 docker-compose.yml
 README.md
 .env*

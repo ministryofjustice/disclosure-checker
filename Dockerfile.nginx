@@ -1,3 +1,0 @@
-FROM bitnami/nginx:latest
-
-COPY config/nginx.conf /opt/bitnami/nginx/conf/server_blocks/nginx_server_block.conf
