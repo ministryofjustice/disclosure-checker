@@ -1,0 +1,175 @@
+name: CI and CD
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      RAILS_ENV: test
+      RACK_ENV: test
+      DATABASE_URL: "postgresql://postgres@127.0.0.1/disclosure-checker-test"
+      EXTERNAL_URL: mocked_in_tests
+      DEV_TOOLS_ENABLED: "1"
+
+    services:
+      postgres:
+        image: postgres:10.8-alpine
+        env:
+          POSTGRES_DB: disclosure-checker-test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ""
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.17.5
+
+      - name: Find yarn cache location
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: JS package cache
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install packages
+        run: |
+          yarn install --pure-lockfile
+
+      - name: Setup test database
+        run: bin/rails db:prepare
+
+      - name: Run linters and tests
+        run: bundle exec rake
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Store current date
+        run: echo "BUILD_DATE=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
+
+      - name: Build
+        run: |
+          docker build \
+            --label build.git.sha=${{ github.sha }} \
+            --label build.git.branch=${{ github.ref }} \
+            --label build.date=${{ env.BUILD_DATE }} \
+            --build-arg APP_BUILD_DATE=${{ env.BUILD_DATE }} \
+            --build-arg APP_BUILD_TAG=${{ github.ref }} \
+            --build-arg APP_GIT_COMMIT=${{ github.sha }} \
+            -t app .
+
+      - name: Push to ECR
+        id: ecr
+        uses: jwalton/gh-ecr-push@dc79198ca45d6a64d3b0ed48d29ef93dc4adf77c
+        with:
+          access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
+          region: eu-west-2
+          local-image: app
+          image: ${{ secrets.ECR_NAME }}:${{ github.sha }}, ${{ secrets.ECR_NAME }}:staging.latest
+
+  deploy-staging:
+    runs-on: ubuntu-latest
+    needs: build
+
+    env:
+      KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+
+    steps:
+      - name: Authenticate to the cluster
+        env:
+          KUBE_CERT: ${{ secrets.KUBE_CERT }}
+          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
+        run: |
+          echo "${KUBE_CERT}" > ca.crt
+          kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
+          kubectl config set-credentials deploy-user --token=${KUBE_TOKEN}
+          kubectl config set-context ${KUBE_CLUSTER} --cluster=${KUBE_CLUSTER} --user=deploy-user --namespace=${KUBE_NAMESPACE}
+          kubectl config use-context ${KUBE_CLUSTER}
+
+      - name: Rollout restart deployment
+        run: |
+          kubectl set image -n ${KUBE_NAMESPACE} \
+          deployment/disclosure-checker-deployment-staging \
+          webapp="${{ secrets.ECR_URL }}:${{ github.sha }}"
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    environment: production
+
+    env:
+      KUBE_NAMESPACE: ${{ secrets.KUBE_PROD_NAMESPACE }}
+
+    steps:
+      - name: Pull from ECR
+        id: ecr-pull
+        uses: jwalton/gh-ecr-push@v1
+        with:
+          access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
+          region: eu-west-2
+          direction: pull
+          local-image: app
+          image: ${{ secrets.ECR_NAME }}:${{ github.sha }}
+
+      - name: Push to ECR
+        id: ecr-push
+        uses: jwalton/gh-ecr-push@v1
+        with:
+          access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
+          region: eu-west-2
+          local-image: app
+          image: ${{ secrets.ECR_NAME }}:production.latest
+
+      - name: Authenticate to the cluster
+        env:
+          KUBE_CERT: ${{ secrets.KUBE_PROD_CERT }}
+          KUBE_TOKEN: ${{ secrets.KUBE_PROD_TOKEN }}
+          KUBE_CLUSTER: ${{ secrets.KUBE_PROD_CLUSTER }}
+        run: |
+          echo "${KUBE_CERT}" > ca.crt
+          kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://api.${KUBE_CLUSTER}
+          kubectl config set-credentials deploy-user --token=${KUBE_TOKEN}
+          kubectl config set-context ${KUBE_CLUSTER} --cluster=${KUBE_CLUSTER} --user=deploy-user --namespace=${KUBE_NAMESPACE}
+          kubectl config use-context ${KUBE_CLUSTER}
+
+      - name: Rollout restart deployment
+        run: |
+          kubectl set image -n ${KUBE_NAMESPACE} \
+          deployment/disclosure-checker-deployment-production \
+          webapp="${{ secrets.ECR_URL }}:${{ github.sha }}"
