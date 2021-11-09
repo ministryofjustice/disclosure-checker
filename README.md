@@ -1,6 +1,6 @@
 # Check when to disclose cautions or convictions
 
-[![CircleCI](https://circleci.com/gh/ministryofjustice/disclosure-checker.svg?style=svg)](https://circleci.com/gh/ministryofjustice/disclosure-checker)
+[![CI and CD](https://github.com/ministryofjustice/disclosure-checker/actions/workflows/test-build-deploy.yml/badge.svg)](https://github.com/ministryofjustice/disclosure-checker/actions/workflows/test-build-deploy.yml)
 
 This is a Rails application to enable citizens to check when their convictions are spent.
 It is based on software patterns developed for the [C100 Application][c100-application].
@@ -106,15 +106,15 @@ Do not use production for tests as this will have an impact on metrics and will 
 There is a [deploy repo][deploy-repo] for this staging environment.
 It contains the k8s configuration files and also the required ENV variables.
 
-## CircleCI and continuous deployment
+## Continuous integration and deployment
 
-CircleCI is used for CI and CD and you can find the configuration in `.circleci/config.yml`
+GitHub actions are used for CI and CD and you can find the configuration in `.github/workflows/test-build-deploy.yml`
 
 After a successful merge to master, a docker image will be created and pushed to an ECR repository.
 It will also trigger an automatic deploy to [staging][k8s-staging].
 
-For more details on the ENV variables needed for CircleCI, refer to the [deploy repo][deploy-repo].
+For more details, refer to the [deploy repo][deploy-repo].
 
 [c100-application]: https://github.com/ministryofjustice/c100-application
 [deploy-repo]: https://github.com/ministryofjustice/disclosure-checker-deploy
-[k8s-staging]: https://disclosure-checker-staging.apps.live-1.cloud-platform.service.justice.gov.uk
+[k8s-staging]: https://disclosure-checker-staging.apps.live.cloud-platform.service.justice.gov.uk
