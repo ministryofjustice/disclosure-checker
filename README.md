@@ -31,21 +31,15 @@ It is important to understand how convictions work, as this is the main reason f
 
 ## Docker
 
-The application can be run inside a docker container. This will take care of the ruby environment, postgres database,
-nginx, and any other dependency for you, without having to configure anything in your machine.
+The application can be run inside a docker container. This will take care of the ruby environment, postgres database, 
+and any other dependency for you, without having to configure anything in your machine.
 
 * `docker-compose up`
 
 The application will be run in "production" mode, so will be as accurate as possible to a real production environment.
-An nginx reverse proxy will also be run to serve the static assets and to fallback to a static error page if the
-upstream server (rails with puma) does not respond.
-
-If you make local changes to the assets (images, javascript or stylesheets), you need to remove the docker volume, as
-otherwise old versions of these assets may persist.  
-In order to do this, please run: `docker volume rm disclosure-checker_assets`
 
 Please note, in production environments this is done in a slightly different way as we don't use docker-compose in those
-environments (kubernetes cluster). But the general ideal is the same (nginx reverse proxy).
+environments (kubernetes cluster). But the general idea is the same.
 
 ## Getting Started
 

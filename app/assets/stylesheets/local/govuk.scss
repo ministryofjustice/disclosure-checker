@@ -1,0 +1,8 @@
+// GOV.UK Frontend
+// https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/installing-with-npm.md
+//
+$govuk-new-link-styles: true;
+$govuk-global-styles: true;
+$govuk-assets-path: '/assets/govuk-frontend/govuk/assets/';
+
+@import 'govuk-frontend/govuk/all';

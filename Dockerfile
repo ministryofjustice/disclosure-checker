@@ -1,5 +1,5 @@
 FROM ruby:2.7.2-alpine
-MAINTAINER UCPD Cross Justice Delivery
+MAINTAINER Cross Justice Delivery Team
 
 # build dependencies:
 #   - virtual: create virtual package for later deletion
