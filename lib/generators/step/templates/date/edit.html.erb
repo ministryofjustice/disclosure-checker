@@ -8,7 +8,7 @@
     <!-- The header is part of the date legend by default, but can be configured -->
 
     <%%= step_form @form_object do |f| %>
-      <%%= f.govuk_date_field :caution_date %>
+      <%%= f.govuk_date_field :caution_date, maxlength_enabled: true %>
       <%%= f.continue_button %>
     <%% end %>
   </div>

@@ -6,7 +6,7 @@
     <%= govuk_error_summary %>
 
     <%= step_form @form_object do |f| %>
-      <%= f.govuk_date_field :known_date, form_group: { classes: 'app-util--compact-form-group' } %>
+      <%= f.govuk_date_field :known_date, maxlength_enabled: true, form_group: { classes: 'app-util--compact-form-group' } %>
 
       <%= render partial: 'steps/shared/approx_date_checkbox', locals: {
         form: f, attribute: :approximate_known_date

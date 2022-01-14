@@ -6,7 +6,7 @@
     <%= govuk_error_summary %>
 
     <%= step_form @form_object do |f| %>
-      <%= f.govuk_date_field :conditional_end_date, form_group: { classes: 'app-util--compact-form-group' } do
+      <%= f.govuk_date_field :conditional_end_date, maxlength_enabled: true, form_group: { classes: 'app-util--compact-form-group' } do
         tag.p t('.lead_text'), class: 'govuk-body-m'
       end %>
 
