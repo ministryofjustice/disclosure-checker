@@ -157,10 +157,10 @@ GEM
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    govuk_design_system_formbuilder (2.8.0)
-      actionview (>= 6.0)
-      activemodel (>= 6.0)
-      activesupport (>= 6.0)
+    govuk_design_system_formbuilder (3.0.0)
+      actionview (>= 6.1)
+      activemodel (>= 6.1)
+      activesupport (>= 6.1)
       deep_merge (~> 1.2.1)
     highline (2.0.3)
     i18n (1.8.11)
@@ -391,7 +391,7 @@ DEPENDENCIES
   cucumber-rails
   dotenv-rails
   factory_bot_rails
-  govuk_design_system_formbuilder (~> 2.8.0)
+  govuk_design_system_formbuilder (~> 3.0.0)
   i18n-debug
   i18n-tasks
   jquery-rails

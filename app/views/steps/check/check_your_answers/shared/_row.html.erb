@@ -1,11 +1,18 @@
-<div class="govuk-summary-list__row">
+<%
+  row_classes = ['govuk-summary-list__row']
+  row_classes << 'govuk-summary-list__row--no-actions' unless row.change_path
+%>
+
+<div class="<%= row_classes.join(' ') %>">
   <dt class="govuk-summary-list__key govuk-!-width-one-half">
     <%=t "#{row.question}.question", scope: row.scope %>
   </dt>
   <dd class="govuk-summary-list__value">
     <%=t "#{row.question}.answers.#{row.answer}", scope: row.scope, default: row.answer %>
   </dd>
-  <dd class="govuk-summary-list__actions">
-    <%= render partial: 'steps/check/check_your_answers/shared/change_link', locals: { row: row } if row.change_path %>
-  </dd>
+  <% if row.change_path %>
+    <dd class="govuk-summary-list__actions">
+      <%= render partial: 'steps/check/check_your_answers/shared/change_link', locals: { row: row } %>
+    </dd>
+  <% end %>
 </div>
