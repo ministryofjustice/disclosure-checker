@@ -2,7 +2,7 @@
 
 <% content_for(:head) do %>
   <%= csrf_meta_tags %>
-  <%= render partial: 'layouts/analytics' if analytics_tracking_id.present? %>
+  <%= render partial: 'layouts/analytics' if analytics_allowed? %>
 <% end %>
 
 <% content_for(:service_name) do %>
