@@ -17,12 +17,13 @@ Rails.application.routes.draw do
   get 'home/index'
 
   get 'about/contact'
-  get 'about/cookies'
   get 'about/privacy'
   get 'about/terms_and_conditions'
   get 'about/accessibility'
 
   get 'warning/reset_session'
+
+  resource :cookies, only: [:show, :update]
 
   # Back office
   namespace :backoffice do
@@ -71,8 +72,6 @@ Rails.application.routes.draw do
   end
 
   resources :results, only: [:show], param: :report_id
-
-  resources :pilot, only: [:show]
 
   resource :errors, only: [] do
     get :invalid_session

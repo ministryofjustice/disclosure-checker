@@ -44,5 +44,9 @@ module Disclosure
 
     # Maintain `completed` checks for this number of days
     config.x.checks.complete_purge_after_days = 60
+
+    # Cookies permission banner
+    config.x.cookies_consent_name = 'dc_cookies_consent'.freeze
+    config.x.cookies_consent_expiration = 1.year
   end
 end
