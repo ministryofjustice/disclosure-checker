@@ -24,4 +24,10 @@
 $(document).ready(function() {
   // Initialize custom modules
   moj.init();
+
+  // Cookie banner
+  var $cookieBanner = document.querySelector('[data-module="govuk-cookie-banner"]');
+  if ($cookieBanner) {
+    new CookieBanner($cookieBanner).init();
+  }
 });
