@@ -8,13 +8,6 @@ RSpec.describe AboutController do
     end
   end
 
-  describe '#cookies' do
-    it 'renders the expected page' do
-      get :cookies
-      expect(response).to render_template(:cookies)
-    end
-  end
-
   describe '#privacy' do
     it 'renders the expected page' do
       get :privacy
