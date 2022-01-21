@@ -3,7 +3,7 @@
   enhanced_result = dbs_visibility.enhanced
 
   content_for(
-    :dbs_maybe_explanation, t('dbs_maybe_explanation_html', scope: :results)
+    :dbs_maybe_explanation, t('dbs_maybe_explanation_html', scope: :results), flush: true
   ) if enhanced_result.eql?(:maybe)
 %>
 
