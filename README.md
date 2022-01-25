@@ -110,7 +110,7 @@ It contains the k8s configuration files and also the required ENV variables.
 
 GitHub actions are used for CI and CD and you can find the configuration in `.github/workflows/test-build-deploy.yml`
 
-After a successful merge to master, a docker image will be created and pushed to an ECR repository.
+After a successful merge to `main`, a docker image will be created and pushed to an ECR repository.
 It will also trigger an automatic deploy to [staging][k8s-staging].
 
 For more details, refer to the [deploy repo][deploy-repo].
