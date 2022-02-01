@@ -61,7 +61,8 @@ module ApplicationHelper
   end
 
   def any_completed_checks?
-    current_disclosure_report.disclosure_checks.completed.any?
+    current_disclosure_report &&
+      current_disclosure_report.disclosure_checks.completed.any?
   end
 
   def resume_check_path
