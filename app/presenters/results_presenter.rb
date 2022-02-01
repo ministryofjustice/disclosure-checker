@@ -19,7 +19,7 @@ class ResultsPresenter < BasketPresenter
   end
 
   def motoring?
-    conviction_checks.map(&:conviction).any?(&:motoring?)
+    conviction_checks.map(&:conviction).compact.any?(&:motoring?)
   end
 
   def time_on_bail?
