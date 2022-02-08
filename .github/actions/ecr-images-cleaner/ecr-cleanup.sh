@@ -2,9 +2,9 @@
 
 set -eo pipefail
 
-ecr_repo=${{ inputs.ecr-repo-name }}
-namespaces=${{ inputs.kube-namespaces }}
-region=${{ inputs.aws-region }}
+ecr_repo="${ECR_REPO}"
+namespaces="${NAMESPACES}"
+region='eu-west-2'
 
 # Number of days to keep images. Any image older than these days (not including images used in replica sets)
 # will be purge, unless it falls inside `max_old_images_to_keep`.

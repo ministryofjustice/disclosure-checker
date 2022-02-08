@@ -8,10 +8,6 @@ inputs:
   secret-access-key:
     required: true
     description: Secret access key for IAM User.
-  aws-region:
-    required: false
-    default: 'eu-west-2'
-    description: AWS Region to use. Defaults to eu-west-2.
   kube-cert:
     required: true
     description: Kubernetes certificate
@@ -32,3 +28,6 @@ runs:
   steps:
     - run: ${{ github.action_path }}/ecr-cleanup.sh
       shell: bash
+      env:
+        ECR_REPO: ${{ inputs.ecr-repo-name }}
+        NAMESPACES: ${{ inputs.kube-namespaces }}
