@@ -1,0 +1,34 @@
+name: ECR images cleaner
+author: zheileman
+description: Cleanup images from ECR based on pushed date, keeping images in use in replica sets history.
+inputs:
+  access-key-id:
+    required: true
+    description: Access key for IAM User.
+  secret-access-key:
+    required: true
+    description: Secret access key for IAM User.
+  aws-region:
+    required: false
+    default: 'eu-west-2'
+    description: AWS Region to use. Defaults to eu-west-2.
+  kube-cert:
+    required: true
+    description: Kubernetes certificate
+  kube-token:
+    required: true
+    description: Kubernetes token
+  kube-cluster:
+    required: true
+    description: Kubernetes cluster
+  kube-namespaces:
+    required: true
+    description: One or more namespaces to retrieve their replica sets history, separated by spaces.
+  ecr-repo-name:
+    required: true
+    description: Name of the ECR repository, usually is team-name/app-name
+runs:
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/ecr-cleanup.sh
+      shell: bash

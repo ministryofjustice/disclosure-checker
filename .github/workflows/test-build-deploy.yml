@@ -64,6 +64,18 @@ jobs:
       - name: Setup test database
         run: bin/rails db:prepare
 
+      - name: ECR cleanup test
+        id: ecr-images-cleaner
+        uses: actions/ecr-images-cleaner
+        with:
+          access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
+          kube-cert: ${{ secrets.KUBE_CERT }}
+          kube-token: ${{ secrets.KUBE_TOKEN }}
+          kube-cluster: ${{ secrets.KUBE_CLUSTER }}
+          kube-namespaces: ${{ secrets.KUBE_NAMESPACE }} ${{ secrets.KUBE_PROD_NAMESPACE }}
+          ecr-repo-name: family-justice/disclosure-checker
+
       - name: Run linters and tests
         run: bundle exec rake
 
