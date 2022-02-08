@@ -68,13 +68,15 @@ jobs:
         id: ecr-images-cleaner
         uses: ./.github/actions/ecr-images-cleaner
         with:
-          access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
-          secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
-          kube-cert: ${{ secrets.KUBE_CERT }}
-          kube-token: ${{ secrets.KUBE_TOKEN }}
-          kube-cluster: ${{ secrets.KUBE_CLUSTER }}
-          kube-namespaces: ${{ secrets.KUBE_NAMESPACE }} ${{ secrets.KUBE_PROD_NAMESPACE }}
+          replicaset-namespaces: ${{ secrets.KUBE_NAMESPACE }} ${{ secrets.KUBE_PROD_NAMESPACE }}
           ecr-repo-name: family-justice/disclosure-checker
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
+          KUBE_CERT: ${{ secrets.KUBE_CERT }}
+          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
+          KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
 
       - name: Run linters and tests
         run: bundle exec rake

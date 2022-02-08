@@ -3,7 +3,7 @@
 set -eo pipefail
 
 ecr_repo="${ECR_REPO}"
-namespaces="${NAMESPACES}"
+namespaces="${REPLICASET_NAMESPACES}"
 region='eu-west-2'
 
 # Number of days to keep images. Any image older than these days (not including images used in replica sets)
@@ -44,6 +44,13 @@ function delete_images() {
 #  echo "Failures: $failures"
   echo "delete_images() called"
 }
+
+echo "Authenticating to the EKS cluster to retrieve replica sets history..."
+echo "${KUBE_CERT}" > ca.crt
+kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
+kubectl config set-credentials deploy-user --token=${KUBE_TOKEN}
+kubectl config set-context ${KUBE_CLUSTER} --cluster=${KUBE_CLUSTER} --user=deploy-user --namespace=${KUBE_NAMESPACE}
+kubectl config use-context ${KUBE_CLUSTER}
 
 replicaset_tags=$(replicaset_images)
 echo -e "Image tags used in ReplicaSet history in namespaces '$namespaces':\n$replicaset_tags"

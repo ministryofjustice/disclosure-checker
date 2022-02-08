@@ -2,22 +2,7 @@ name: ECR images cleaner
 author: zheileman
 description: Cleanup images from ECR based on pushed date, keeping images in use in replica sets history.
 inputs:
-  access-key-id:
-    required: true
-    description: Access key for IAM User.
-  secret-access-key:
-    required: true
-    description: Secret access key for IAM User.
-  kube-cert:
-    required: true
-    description: Kubernetes certificate
-  kube-token:
-    required: true
-    description: Kubernetes token
-  kube-cluster:
-    required: true
-    description: Kubernetes cluster
-  kube-namespaces:
+  replicaset-namespaces:
     required: true
     description: One or more namespaces to retrieve their replica sets history, separated by spaces.
   ecr-repo-name:
@@ -30,4 +15,4 @@ runs:
       shell: bash
       env:
         ECR_REPO: ${{ inputs.ecr-repo-name }}
-        NAMESPACES: ${{ inputs.kube-namespaces }}
+        REPLICASET_NAMESPACES: ${{ inputs.replicaset-namespaces }}
