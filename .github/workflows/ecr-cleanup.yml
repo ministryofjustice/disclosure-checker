@@ -9,13 +9,9 @@ on:
 jobs:
   cleanup-script:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Run ECR cleanup script
-        uses: ./.github/actions/ecr-images-cleaner
+        uses: ministryofjustice/ecr-images-cleaner-action@v1.0.0
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
