@@ -6,16 +6,16 @@ ecr_repo="${ECR_REPO_NAME}"
 namespace="${KUBE_NAMESPACE}"
 region='eu-west-2'
 
+# Additional tags that should not be deleted, in addition to the replica set tags.
+regex_tags="${ADDITIONAL_TAGS_REGEX}"
+
 # Number of days to keep images. Any image older than these days (not including images used in replica sets)
 # will be purge, unless it falls inside `max_old_images_to_keep`.
 days_to_keep_old_images=30
 
 # Number of images to keep even if they are older than the cutoff date (not including images used in replica sets)
 # This ensures a buffer of images, even if there are no deploys for several months, just in case as a precaution.
-max_old_images_to_keep=300
-
-# Additional tags that should not be deleted, in addition to the replica set tags.
-regex_tags='.*main.*|.*latest.*'
+max_old_images_to_keep=190
 
 function image_count() {
   local image_count=$(aws ecr list-images --region $region --repository-name $ecr_repo | jq '.imageIds | length')

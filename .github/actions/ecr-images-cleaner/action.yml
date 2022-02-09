@@ -5,6 +5,9 @@ inputs:
   ecr-repo-name:
     required: true
     description: Name of the ECR repository, usually is team-name/app-name
+  additional-tags-regex:
+    required: true
+    description: Additional image tags that should not be deleted (regex)
 runs:
   using: "composite"
   steps:
@@ -12,3 +15,4 @@ runs:
       shell: bash
       env:
         ECR_REPO_NAME: ${{ inputs.ecr-repo-name }}
+        ADDITIONAL_TAGS_REGEX: ${{ inputs.additional-tags-regex }}

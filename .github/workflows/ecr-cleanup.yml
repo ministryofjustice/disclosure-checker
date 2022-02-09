@@ -25,3 +25,4 @@ jobs:
           KUBE_NAMESPACE: ${{ secrets.KUBE_PROD_NAMESPACE }}
         with:
           ecr-repo-name: family-justice/disclosure-checker
+          additional-tags-regex: .*main.*|.*latest.*
