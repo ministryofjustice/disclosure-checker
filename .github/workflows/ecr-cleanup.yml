@@ -1,0 +1,23 @@
+name: Cleanup ECR images
+on:
+  workflow_dispatch:
+jobs:
+  cleanup-ecr-images:
+    name: Cleanup ECR images
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run ECR cleanup script
+        uses: ./.github/actions/ecr-images-cleaner
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
+          KUBE_CERT: ${{ secrets.KUBE_CERT }}
+          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
+          KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+        with:
+          ecr-repo-name: family-justice/disclosure-checker

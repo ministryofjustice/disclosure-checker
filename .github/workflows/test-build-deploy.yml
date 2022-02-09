@@ -64,20 +64,6 @@ jobs:
       - name: Setup test database
         run: bin/rails db:prepare
 
-      - name: ECR cleanup test
-        id: ecr-images-cleaner
-        uses: ./.github/actions/ecr-images-cleaner
-        with:
-          replicaset-namespaces: ${{ secrets.KUBE_NAMESPACE }} ${{ secrets.KUBE_PROD_NAMESPACE }}
-          ecr-repo-name: family-justice/disclosure-checker
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
-          KUBE_CERT: ${{ secrets.KUBE_CERT }}
-          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
-          KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
-
       - name: Run linters and tests
         run: bundle exec rake
 

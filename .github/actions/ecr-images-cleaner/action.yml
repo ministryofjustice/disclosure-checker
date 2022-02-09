@@ -2,9 +2,6 @@ name: ECR images cleaner
 author: zheileman
 description: Cleanup images from ECR based on pushed date, keeping images in use in replica sets history.
 inputs:
-  replicaset-namespaces:
-    required: true
-    description: One or more namespaces to retrieve their replica sets history, separated by spaces.
   ecr-repo-name:
     required: true
     description: Name of the ECR repository, usually is team-name/app-name
@@ -14,5 +11,4 @@ runs:
     - run: ${{ github.action_path }}/ecr-cleanup.sh
       shell: bash
       env:
-        ECR_REPO: ${{ inputs.ecr-repo-name }}
-        REPLICASET_NAMESPACES: ${{ inputs.replicaset-namespaces }}
+        ECR_REPO_NAME: ${{ inputs.ecr-repo-name }}

@@ -2,8 +2,8 @@
 
 set -eo pipefail
 
-ecr_repo="${ECR_REPO}"
-namespaces="${REPLICASET_NAMESPACES}"
+ecr_repo="${ECR_REPO_NAME}"
+namespace="${KUBE_NAMESPACE}"
 region='eu-west-2'
 
 # Number of days to keep images. Any image older than these days (not including images used in replica sets)
@@ -23,16 +23,10 @@ function image_count() {
 }
 
 # This will return a string of docker image tags, tokenized by pipes to be used as a regex input.
-# It gets the tags from all the namespaces provided, removing duplicates.
 # Example: 44814e41d8ea7f449f3391fe5d4b9763ddbbd06d|f4c73b2f047d49270de5c6779c921ca819117674|af4e24ee011425c4e26329d887bf9bdf9172b8bf
 function replicaset_images() {
-  local rs_tags="[]"
-
-  for ns in $namespaces; do
-    rs_tags=$(echo $rs_tags | jq ". += $(kubectl get replicaset -n $ns -o jsonpath='{..image}' | tr ' ' '\n' | sed 's/.*://' | jq -Rsc 'split("\n")')")
-  done
-
-  echo $rs_tags | jq 'unique'
+  local rs_tags=$(kubectl get replicaset -n $namespace -o jsonpath='{..image}' | tr ' ' '\n' | sed 's/.*://' | tr '\n' '|')
+  echo $rs_tags
 }
 
 function delete_images() {
@@ -53,7 +47,7 @@ kubectl config set-context ${KUBE_CLUSTER} --cluster=${KUBE_CLUSTER} --user=depl
 kubectl config use-context ${KUBE_CLUSTER}
 
 replicaset_tags=$(replicaset_images)
-echo -e "Image tags used in ReplicaSet history in namespaces '$namespaces':\n$replicaset_tags"
+echo -e "Image tags used in ReplicaSet history in namespace '$namespace':\n$replicaset_tags"
 echo "Additional tags to keep (regex): '$regex_tags'"
 
 retention_time_ms=$(($days_to_keep_old_images*60*60*24))
@@ -62,7 +56,6 @@ retention_cut_off_date=$(echo $retention_cut_off_epoch | jq 'todate')
 echo "Retention cutoff date: $retention_cut_off_date ($days_to_keep_old_images days or older)"
 echo
 
-replicaset_tags=$(echo $replicaset_tags | jq -r 'join("|")')
 images_to_delete=$(aws ecr describe-images --region $region --repository-name $ecr_repo | jq "{imageDetails: [.imageDetails[] | select(.imageTags // [] | any(match(\"^($replicaset_tags|$regex_tags)$\")) | not ) | select(.imagePushedAt <= $retention_cut_off_date)] | sort_by(.imagePushedAt) | .[0:-$max_old_images_to_keep] }")
 images_to_delete_count=$(echo $images_to_delete | jq '.imageDetails | length')
 echo "Total images to delete: $images_to_delete_count (excluding replicaset images and a buffer of $max_old_images_to_keep images)"
