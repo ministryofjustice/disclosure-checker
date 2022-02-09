@@ -12,7 +12,7 @@ days_to_keep_old_images=30
 
 # Number of images to keep even if they are older than the cutoff date (not including images used in replica sets)
 # This ensures a buffer of images, even if there are no deploys for several months, just in case as a precaution.
-max_old_images_to_keep=400
+max_old_images_to_keep=300
 
 # Additional tags that should not be deleted, in addition to the replica set tags.
 regex_tags='.*main.*|.*latest.*'
@@ -30,13 +30,12 @@ function replicaset_images() {
 }
 
 function delete_images() {
-#  if [[ $# -ne 1 ]]; then echo "$0: wrong number of arguments"; return 1; fi
-#  local response=$(aws ecr batch-delete-image --region $region --repository-name $ecr_repo --image-ids "$1")
-#  local successes=$(echo $response | jq '.imageIds | length')
-#  local failures=$(echo $response | jq '.failures | length')
-#  echo "Successes: $successes"
-#  echo "Failures: $failures"
-  echo "delete_images() called"
+  if [[ $# -ne 1 ]]; then echo "$0: wrong number of arguments"; return 1; fi
+  local response=$(aws ecr batch-delete-image --region $region --repository-name $ecr_repo --image-ids "$1")
+  local successes=$(echo $response | jq '.imageIds | length')
+  local failures=$(echo $response | jq '.failures | length')
+  echo "Successes: $successes"
+  echo "Failures: $failures"
 }
 
 echo "Authenticating to the EKS cluster to retrieve replica sets history..."
@@ -47,7 +46,7 @@ kubectl config set-context ${KUBE_CLUSTER} --cluster=${KUBE_CLUSTER} --user=depl
 kubectl config use-context ${KUBE_CLUSTER}
 
 replicaset_tags=$(replicaset_images)
-echo -e "Image tags used in ReplicaSet history in namespace '$namespace':\n$replicaset_tags"
+echo -e "Image tags used in ReplicaSet history in authenticated namespace:\n$replicaset_tags"
 echo "Additional tags to keep (regex): '$regex_tags'"
 
 retention_time_ms=$(($days_to_keep_old_images*60*60*24))

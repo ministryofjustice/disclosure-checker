@@ -4,8 +4,7 @@ on:
   pull_request:
 
 jobs:
-  cleanup-ecr-images:
-    name: Cleanup ECR images
+  cleanup-script:
     runs-on: ubuntu-latest
 
     steps:
