@@ -6,6 +6,9 @@ ecr_repo="${ECR_REPO_NAME}"
 namespace="${KUBE_NAMESPACE}"
 region='eu-west-2'
 
+# AWS BatchDeleteImage has a limit of 100 imageIds per call. If it ever changes, update this variable.
+batch_delete_limit=100
+
 # Additional tags that should not be deleted, in addition to the replica set tags.
 regex_tags="${ADDITIONAL_TAGS_REGEX}"
 
@@ -15,7 +18,7 @@ days_to_keep_old_images=30
 
 # Number of images to keep even if they are older than the cutoff date (not including images used in replica sets)
 # This ensures a buffer of images, even if there are no deploys for several months, just in case as a precaution.
-max_old_images_to_keep=190
+max_old_images_to_keep=75
 
 function image_count() {
   local image_count=$(aws ecr list-images --region $region --repository-name $ecr_repo | jq '.imageIds | length')
@@ -58,13 +61,17 @@ echo
 images_to_delete=$(aws ecr describe-images --region $region --repository-name $ecr_repo | jq "{imageDetails: [.imageDetails[] | select(.imageTags // [] | any(match(\"^($replicaset_tags|$regex_tags)$\")) | not ) | select(.imagePushedAt <= $retention_cut_off_date)] | sort_by(.imagePushedAt) | .[0:-$max_old_images_to_keep] }")
 images_to_delete_count=$(echo $images_to_delete | jq '.imageDetails | length')
 echo "Total images to delete: $images_to_delete_count (excluding replicaset images and a buffer of $max_old_images_to_keep images)"
-echo
 
+if [[ ${images_to_delete_count} -gt ${batch_delete_limit} ]]; then
+  echo "There are more than $batch_delete_limit images to delete but BatchDeleteImage operation can only delete $batch_delete_limit at a time. Next run of the script will delete remaining images."
+fi
+
+echo
 echo "Deleting images now..."
 echo "Images before cleaning: $(image_count)"
 
 if [[ ${images_to_delete_count} -gt 0 ]]; then
-  image_digests=$(echo $images_to_delete | jq '[{ imageDigest: .imageDetails[].imageDigest }]')
+  image_digests=$(echo $images_to_delete | jq "[{ imageDigest: .imageDetails[].imageDigest }] | .[0:$batch_delete_limit]")
   delete_images "$image_digests"
   echo "Images deletion complete"
 else
