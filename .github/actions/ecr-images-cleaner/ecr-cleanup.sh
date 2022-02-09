@@ -4,21 +4,23 @@ set -eo pipefail
 
 ecr_repo="${ECR_REPO_NAME}"
 namespace="${KUBE_NAMESPACE}"
-region='eu-west-2'
-
-# AWS BatchDeleteImage has a limit of 100 imageIds per call. If it ever changes, update this variable.
-batch_delete_limit=100
 
 # Additional tags that should not be deleted, in addition to the replica set tags.
 regex_tags="${ADDITIONAL_TAGS_REGEX}"
 
 # Number of days to keep images. Any image older than these days (not including images used in replica sets)
 # will be purge, unless it falls inside `max_old_images_to_keep`.
-days_to_keep_old_images=30
+days_to_keep_old_images="${DAYS_TO_KEEP_OLD_IMAGES}"
 
 # Number of images to keep even if they are older than the cutoff date (not including images used in replica sets)
 # This ensures a buffer of images, even if there are no deploys for several months, just in case as a precaution.
-max_old_images_to_keep=75
+max_old_images_to_keep="${MAX_OLD_IMAGES_TO_KEEP}"
+
+# Amazon AWS region. As this is unlikely to change, for now it is hardcoded, but is easy to extract to a variable.
+region='eu-west-2'
+
+# AWS BatchDeleteImage has a limit of 100 imageIds per call. If it ever changes, update this variable.
+batch_delete_limit=100
 
 function image_count() {
   local image_count=$(aws ecr list-images --region $region --repository-name $ecr_repo | jq '.imageIds | length')

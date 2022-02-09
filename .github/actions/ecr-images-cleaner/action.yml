@@ -6,8 +6,18 @@ inputs:
     required: true
     description: Name of the ECR repository, usually is team-name/app-name
   additional-tags-regex:
-    required: true
+    required: false
+    default: .*main.*|.*latest.*
     description: Additional image tags that should not be deleted (regex)
+  days-to-keep-old-images:
+    required: false
+    default: "30"
+    description: Number of days to keep images, older will be purge (unless in use or in buffer)
+  max-old-images-to-keep:
+    required: false
+    default: "25"
+    description: Number of images to keep even if they are older than the cutoff date
+
 runs:
   using: "composite"
   steps:
@@ -16,3 +26,5 @@ runs:
       env:
         ECR_REPO_NAME: ${{ inputs.ecr-repo-name }}
         ADDITIONAL_TAGS_REGEX: ${{ inputs.additional-tags-regex }}
+        DAYS_TO_KEEP_OLD_IMAGES: ${{ inputs.days-to-keep-old-images }}
+        MAX_OLD_IMAGES_TO_KEEP: ${{ inputs.max-old-images-to-keep }}
