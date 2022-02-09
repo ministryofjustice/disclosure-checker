@@ -1,5 +1,8 @@
 name: Cleanup ECR images
 on:
+  schedule:
+    # At 8am every Sunday
+    - cron: '0 8 * * 0'
   workflow_dispatch:
   pull_request:
 
@@ -16,9 +19,9 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
-          KUBE_CERT: ${{ secrets.KUBE_CERT }}
-          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
-          KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+          KUBE_CERT: ${{ secrets.KUBE_PROD_CERT }}
+          KUBE_TOKEN: ${{ secrets.KUBE_PROD_TOKEN }}
+          KUBE_CLUSTER: ${{ secrets.KUBE_PROD_CLUSTER }}
+          KUBE_NAMESPACE: ${{ secrets.KUBE_PROD_NAMESPACE }}
         with:
           ecr-repo-name: family-justice/disclosure-checker
