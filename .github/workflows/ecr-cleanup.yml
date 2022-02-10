@@ -20,4 +20,4 @@ jobs:
           kube-cluster: ${{ secrets.KUBE_PROD_CLUSTER }}
           kube-namespace: ${{ secrets.KUBE_PROD_NAMESPACE }}
           ecr-repo-name: family-justice/disclosure-checker
-          max-old-images-to-keep: 75
+          max-old-images-to-keep: 50
