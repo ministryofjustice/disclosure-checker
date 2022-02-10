@@ -11,14 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run ECR cleanup script
-        uses: ministryofjustice/ecr-images-cleaner-action@v1.0.0
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
-          KUBE_CERT: ${{ secrets.KUBE_PROD_CERT }}
-          KUBE_TOKEN: ${{ secrets.KUBE_PROD_TOKEN }}
-          KUBE_CLUSTER: ${{ secrets.KUBE_PROD_CLUSTER }}
-          KUBE_NAMESPACE: ${{ secrets.KUBE_PROD_NAMESPACE }}
+        uses: ministryofjustice/ecr-images-cleaner-action@main
         with:
+          aws-access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
+          kube-cert: ${{ secrets.KUBE_PROD_CERT }}
+          kube-token: ${{ secrets.KUBE_PROD_TOKEN }}
+          kube-cluster: ${{ secrets.KUBE_PROD_CLUSTER }}
+          kube-namespace: ${{ secrets.KUBE_PROD_NAMESPACE }}
           ecr-repo-name: family-justice/disclosure-checker
           max-old-images-to-keep: 75
