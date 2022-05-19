@@ -3,6 +3,6 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "govuk-frontend": "^4.0.0"
+    "govuk-frontend": "^4.1.0"
   }
 }
