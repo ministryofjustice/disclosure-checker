@@ -9,7 +9,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # This gem complies with the GOV.UK Design System
 # https://design-system.service.gov.uk
 # https://govuk-form-builder.netlify.app
-gem 'govuk_design_system_formbuilder', '~> 3.0.0'
+gem 'govuk_design_system_formbuilder', '~> 3.1.0'
 
 gem 'jquery-rails'
 gem 'pg'
