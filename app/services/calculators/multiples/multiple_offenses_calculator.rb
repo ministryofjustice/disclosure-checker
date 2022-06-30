@@ -54,14 +54,17 @@ module Calculators
           # The comparison to know if there's an overlap in conviction dates
           # should be done without the relevant order
           # because relevant orders do not dictacte the spent_date of another conviction.
-          next unless within_other_conviction_date_and_spent_date?(proceeding, spent_date, other_conviction_date, other_spent_date)
+          next unless within_other_conviction_date_and_spent_date?(
+            proceeding, spent_date, other_conviction_date, other_spent_date
+          )
 
           next if conviction_date > other_conviction_date
 
           # This comparison determines wether the relevant order spent date is the longest
           # within the same conviction and also when compared to another conviction spent date.
           # see graph in docs/results/08_relevant_order_3.png
-          next if spent_date.to_date >= spent_date_without_relevant_order.to_date && spent_date.to_date >= other_spent_date.to_date
+          next if spent_date.to_date >= spent_date_without_relevant_order.to_date &&
+                  spent_date.to_date >= other_spent_date.to_date
 
           # If the spent date falls inside another rehabilitation, we do drag-through,
           # saving this new spent date in the memory for later use.

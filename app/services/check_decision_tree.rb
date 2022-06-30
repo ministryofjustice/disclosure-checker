@@ -30,6 +30,6 @@ class CheckDecisionTree < BaseDecisionTree
     return check_your_answers if disclosure_check.disclosure_report.disclosure_checks.completed.any?
 
     # restart fresh
-    edit('/steps/check/kind', {new: 'y'})
+    edit('/steps/check/kind', { new: 'y' })
   end
 end

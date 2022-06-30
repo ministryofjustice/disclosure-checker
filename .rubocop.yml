@@ -20,25 +20,13 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
+Style/FetchEnvVar:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/SymbolArray:
-  Enabled: false
-
-Style/MethodCalledOnDoEndBlock:
-  Enabled: false
-
-Layout/SpaceInsideHashLiteralBraces:
-  Enabled: false
-
-Naming/MemoizedInstanceVariableName:
-  Enabled: false
-
-Naming/VariableNumber:
-  Enabled: false
-
-Layout/HashAlignment:
   Enabled: false
 
 Style/TrailingCommaInHashLiteral:
@@ -47,29 +35,18 @@ Style/TrailingCommaInHashLiteral:
 Style/TrailingCommaInArrayLiteral:
   Enabled: false
 
-Layout/LineLength:
+Naming/MemoizedInstanceVariableName:
   Enabled: false
+
+Layout/HashAlignment:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: true
+  Max: 132
 
 Metrics/MethodLength:
-  Max: 20
+  Max: 19
 
 Metrics/AbcSize:
-  Max: 20
-
-Metrics/CyclomaticComplexity:
-  Max: 9
-
-Metrics/PerceivedComplexity:
-  Max: 9
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
-
-Style/FetchEnvVar:
-  Enabled: false
+  Max: 19
