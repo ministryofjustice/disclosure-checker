@@ -1,15 +1,11 @@
 module Steps
   class ConvictionStepController < StepController
-    before_action :check_for_conviction
+    before_action :redirect_to_root, if: :invalid_kind?
 
     private
 
-    def check_for_conviction
-      if current_disclosure_check.kind != "conviction"
-        current_disclosure_check.navigation_stack.pop
-        current_disclosure_check.save
-        redirect_to root_path
-      end
+    def invalid_kind?
+      current_disclosure_check.kind != "conviction"
     end
 
     def decision_tree_class
