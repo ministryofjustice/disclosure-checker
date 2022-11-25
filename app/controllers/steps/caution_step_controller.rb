@@ -5,7 +5,7 @@ module Steps
     private
 
     def invalid_kind?
-      current_disclosure_check.kind != 'caution'
+      current_disclosure_check.kind != CheckKind::CAUTION
     end
 
     def decision_tree_class
