@@ -133,7 +133,7 @@ RSpec.shared_examples 'an intermediate step controller' do |form_class, decision
     end
 
     context 'when a case exists in the session' do
-      let!(:existing_case) { DisclosureCheck.create(status: :in_progress) }
+      let!(:existing_case) { create(:disclosure_check, :caution, :in_progress) }
 
       it 'responds with HTTP success' do
         get :edit, session: { disclosure_check_id: existing_case.id }
@@ -153,7 +153,7 @@ RSpec.shared_examples 'an intermediate step controller' do |form_class, decision
         end
 
         context 'and the other record belongs to a different report' do
-          let!(:another_case) { DisclosureCheck.create(status: :completed) }
+          let!(:another_case) { create(:disclosure_check, :caution, :completed) }
 
           it 'raises a not found exception' do
             expect {
@@ -181,7 +181,7 @@ RSpec.shared_examples 'an intermediate step controller without update' do
     end
 
     context 'when a case exists in the session' do
-      let!(:existing_case) { DisclosureCheck.create(status: :in_progress) }
+      let!(:existing_case) { create(:disclosure_check, :caution, :in_progress) }
 
       it 'responds with HTTP success' do
         get :edit, session: { disclosure_check_id: existing_case.id }
@@ -207,7 +207,7 @@ RSpec.shared_examples 'a show step controller' do
     end
 
     context 'when a case exists in the session' do
-      let!(:existing_case) { DisclosureCheck.create }
+      let!(:existing_case) { create(:disclosure_check, :caution, :in_progress) }
 
       it 'responds with HTTP success' do
         get :show, session: { disclosure_check_id: existing_case.id }

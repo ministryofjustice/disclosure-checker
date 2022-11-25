@@ -193,5 +193,9 @@ FactoryBot.define do
     trait :completed do
       status { :completed }
     end
+
+    trait :in_progress do
+      status { :in_progress }
+    end
   end
 end
