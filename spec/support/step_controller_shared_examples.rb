@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.shared_examples 'a generic step controller' do |form_class, decision_tree_class|
+  let(:type) { decision_tree_class.is_a?(CautionDecisionTree) ? :caution : :conviction }
   describe '#update' do
     let(:form_object) { instance_double(form_class, attributes: { foo: double }) }
     let(:form_class_params_name) { form_class.name.underscore }
@@ -20,7 +21,7 @@ RSpec.shared_examples 'a generic step controller' do |form_class, decision_tree_
     end
 
     context 'when the disclosure report is completed' do
-      let(:existing_case) { DisclosureCheck.create(status: :in_progress) }
+      let(:existing_case) { create(:disclosure_check, type, :in_progress) }
 
       before do
         existing_case.disclosure_report.completed!
@@ -33,7 +34,7 @@ RSpec.shared_examples 'a generic step controller' do |form_class, decision_tree_
     end
 
     context 'when the disclosure check is in progress' do
-      let(:existing_case) { DisclosureCheck.create(status: :in_progress) }
+      let(:existing_case) { create(:disclosure_check, type, :in_progress) }
 
       before do
         allow(form_class).to receive(:new).and_return(form_object)
@@ -87,7 +88,7 @@ RSpec.shared_examples 'a starting point step controller' do
     end
 
     context 'when a case exists in the session' do
-      let!(:existing_case) { DisclosureCheck.create(navigation_stack: ['/not', '/empty']) }
+      let!(:existing_case) { create(:disclosure_check, navigation_stack: ['/not', '/empty']) }
 
       it 'does not create a new case' do
         expect {
@@ -116,6 +117,7 @@ RSpec.shared_examples 'a starting point step controller' do
 end
 
 RSpec.shared_examples 'an intermediate step controller' do |form_class, decision_tree_class|
+  let(:type) { decision_tree_class.is_a?(CautionDecisionTree) ? :caution : :conviction }
   include_examples 'a generic step controller', form_class, decision_tree_class
 
   describe '#edit' do
@@ -133,7 +135,7 @@ RSpec.shared_examples 'an intermediate step controller' do |form_class, decision
     end
 
     context 'when a case exists in the session' do
-      let!(:existing_case) { create(:disclosure_check, :caution, :in_progress) }
+      let!(:existing_case) { create(:disclosure_check, type, :in_progress) }
 
       it 'responds with HTTP success' do
         get :edit, session: { disclosure_check_id: existing_case.id }
@@ -142,7 +144,7 @@ RSpec.shared_examples 'an intermediate step controller' do |form_class, decision
 
       context 'when editing a different disclosure_check record' do
         context 'and the other record belongs to this same report' do
-          let!(:another_case) { DisclosureCheck.create(status: :completed, check_group_id: existing_case.check_group_id) }
+          let!(:another_case) { create(:disclosure_check, type, :completed, check_group_id: existing_case.check_group_id) }
 
           it 'swaps the session with the new record and responds with HTTP success' do
             get :edit, session: { disclosure_check_id: existing_case.id }, params: { check_id: another_case.id }
@@ -153,7 +155,7 @@ RSpec.shared_examples 'an intermediate step controller' do |form_class, decision
         end
 
         context 'and the other record belongs to a different report' do
-          let!(:another_case) { create(:disclosure_check, :caution, :completed) }
+          let!(:another_case) { create(:disclosure_check, type, :completed) }
 
           it 'raises a not found exception' do
             expect {
@@ -181,7 +183,7 @@ RSpec.shared_examples 'an intermediate step controller without update' do
     end
 
     context 'when a case exists in the session' do
-      let!(:existing_case) { create(:disclosure_check, :caution, :in_progress) }
+      let!(:existing_case) { create(:disclosure_check, type, :in_progress) }
 
       it 'responds with HTTP success' do
         get :edit, session: { disclosure_check_id: existing_case.id }
@@ -207,7 +209,7 @@ RSpec.shared_examples 'a show step controller' do
     end
 
     context 'when a case exists in the session' do
-      let!(:existing_case) { create(:disclosure_check, :caution, :in_progress) }
+      let!(:existing_case) { create(:disclosure_check, type, :in_progress) }
 
       it 'responds with HTTP success' do
         get :show, session: { disclosure_check_id: existing_case.id }
