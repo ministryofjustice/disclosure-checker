@@ -208,7 +208,7 @@ RSpec.shared_examples 'a show step controller' do
     end
 
     context 'when a case exists in the session' do
-      let!(:existing_case) { create(:disclosure_check, type, :in_progress) }
+      let!(:existing_case) { create(:disclosure_check, :conviction, :in_progress) }
 
       it 'responds with HTTP success' do
         get :show, session: { disclosure_check_id: existing_case.id }
