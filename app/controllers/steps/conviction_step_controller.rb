@@ -5,7 +5,7 @@ module Steps
     private
 
     def invalid_kind?
-      current_disclosure_check.kind != CheckKind::CONVICTION
+      current_disclosure_check.kind != CheckKind::CONVICTION.to_s
     end
 
     def decision_tree_class
