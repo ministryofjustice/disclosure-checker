@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.shared_examples 'a generic step controller' do |form_class, decision_tree_class|
-  let(:type) { decision_tree_class.is_a?(CautionDecisionTree) ? :caution : :conviction }
+  let(:type) { decision_tree_class == CautionDecisionTree ? :caution : :conviction }
   describe '#update' do
     let(:form_object) { instance_double(form_class, attributes: { foo: double }) }
     let(:form_class_params_name) { form_class.name.underscore }
@@ -88,7 +88,7 @@ RSpec.shared_examples 'a starting point step controller' do
     end
 
     context 'when a case exists in the session' do
-      let!(:existing_case) { create(:disclosure_check, navigation_stack: ['/not', '/empty']) }
+      let!(:existing_case) { create(:disclosure_check, type, navigation_stack: ['/not', '/empty']) }
 
       it 'does not create a new case' do
         expect {
@@ -117,7 +117,6 @@ RSpec.shared_examples 'a starting point step controller' do
 end
 
 RSpec.shared_examples 'an intermediate step controller' do |form_class, decision_tree_class|
-  let(:type) { decision_tree_class.is_a?(CautionDecisionTree) ? :caution : :conviction }
   include_examples 'a generic step controller', form_class, decision_tree_class
 
   describe '#edit' do
