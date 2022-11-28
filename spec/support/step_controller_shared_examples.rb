@@ -163,6 +163,22 @@ RSpec.shared_examples 'an intermediate step controller' do |form_class, decision
           end
         end
       end
+
+      if decision_tree_class != CheckDecisionTree
+        context 'when disclosure_check record is the wrong type' do
+          let(:type) { decision_tree_class == CautionDecisionTree ? :conviction : :caution }
+
+          it 'removes visit from navigation stack' do
+            get :edit, session: { disclosure_check_id: existing_case.id }
+            expect(existing_case.navigation_stack).to be_empty
+          end
+
+          it 'responds with redirect' do
+            get :edit, session: { disclosure_check_id: existing_case.id }
+            expect(response).to redirect_to(root_path)
+          end
+        end
+      end
     end
   end
 end
