@@ -88,7 +88,7 @@ RSpec.shared_examples 'a starting point step controller' do
     end
 
     context 'when a case exists in the session' do
-      let!(:existing_case) { create(:disclosure_check, type, navigation_stack: ['/not', '/empty']) }
+      let!(:existing_case) { create(:disclosure_check, :conviction, navigation_stack: ['/not', '/empty']) }
 
       it 'does not create a new case' do
         expect {
