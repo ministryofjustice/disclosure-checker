@@ -101,4 +101,10 @@ class StepController < ApplicationController
     current_disclosure_check.navigation_stack = stack_until_current_page + [request.path]
     current_disclosure_check.save!
   end
+
+  def redirect_to_root
+    current_disclosure_check.navigation_stack.pop
+    current_disclosure_check.save
+    redirect_to root_path
+  end
 end
