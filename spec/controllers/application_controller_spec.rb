@@ -7,6 +7,7 @@ RSpec.describe ApplicationController do
     def results_not_found; raise Errors::ResultsNotFound; end
     def report_completed; raise Errors::ReportCompleted; end
     def report_not_completed; raise Errors::ReportNotCompleted; end
+    def maintenance; raise ActiveRecord::ConnectionNotEstablished; end
     def another_exception; raise Exception; end
   end
 
@@ -57,6 +58,17 @@ RSpec.describe ApplicationController do
 
         get :report_not_completed
         expect(response).to redirect_to(report_not_completed_errors_path)
+      end
+    end
+
+    context 'ActiveRecord::ConnectionNotEstablished' do
+      it 'should report the exception, and redirect to the error page' do
+        routes.draw { get 'maintenance' => 'anonymous#maintenance' }
+
+        expect(Raven).to receive(:capture_exception)
+
+        get :maintenance
+        expect(response).to redirect_to(maintenance_errors_path)
       end
     end
 

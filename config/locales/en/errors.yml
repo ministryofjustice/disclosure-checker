@@ -124,3 +124,7 @@ en:
       page_title: Unexpected error
       heading: Sorry, something went wrong with our service
       lead_text: You can go back and retry, or start again.
+    maintenance:
+      page_title: Service Maintenance
+      heading: Service Maintenance
+      lead_text: Sorry, this service is currently not available because of routine maintenance and will be back up shortly.

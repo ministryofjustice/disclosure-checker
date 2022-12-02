@@ -25,6 +25,10 @@ class ErrorsController < ApplicationController
     respond_with_status(:internal_server_error)
   end
 
+  def maintenance
+    respond_with_status(:service_unavailable)
+  end
+
   private
 
   def respond_with_status(status)
