@@ -3,6 +3,8 @@ module ErrorHandling
 
   included do
     rescue_from Exception do |exception|
+      return if controller_name == "errors"
+
       case exception
       when Errors::InvalidSession, ActionController::InvalidAuthenticityToken
         redirect_to invalid_session_errors_path
