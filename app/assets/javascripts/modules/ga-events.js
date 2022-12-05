@@ -15,7 +15,7 @@ moj.Modules.gaEvents = {
         var self = this;
 
         // don't bind anything if the GA object isn't defined
-        if (typeof window.ga !== 'undefined') { 
+        if (typeof window.ga !== 'undefined') {
             if ($(self.radioFormClass).length) {
                 self.trackRadioForms();
             }
@@ -44,7 +44,7 @@ moj.Modules.gaEvents = {
 
         // submitting GA tracked radio groups is intercepted[1] until the GA event
         // has been sent, by sending target to make a callback[2]
-        $form.on('submit', function (e) { alert("");
+        $form.on('submit', function (e) {
             var eventDataArray,
                 options;
 
