@@ -9,20 +9,6 @@ RSpec.describe AnalyticsHelper, type: :helper do
     allow(helper).to receive(:current_disclosure_check).and_return(record)
   end
 
-  describe '#analytics_tracking_id' do
-    it 'retrieves the environment variable' do
-      expect(ENV).to receive(:[]).with('GA_TRACKING_ID')
-      helper.analytics_tracking_id
-    end
-  end
-
-  describe '#analytics_tracking_id' do
-    it 'retrieves the environment variable' do
-      expect(ENV).to receive(:[]).with('GA_TRACKING_ID')
-      helper.analytics_tracking_id
-    end
-  end
-
   describe '#analytics_consent_cookie' do
     it 'retrieves the analytics consent cookie' do
       expect(controller.cookies).to receive(:[]).with('dc_cookies_consent')

@@ -2,7 +2,11 @@
 
 <% content_for(:head) do %>
   <%= csrf_meta_tags %>
-  <%= render partial: 'layouts/analytics' if analytics_allowed? %>
+  <%= render partial: 'layouts/gtm' if analytics_allowed? %>
+<% end %>
+
+<% content_for(:body_start) do %>
+  <%= render partial: 'layouts/gtm_noscript' if analytics_allowed? %>
 <% end %>
 
 <% content_for(:service_name) do %>
