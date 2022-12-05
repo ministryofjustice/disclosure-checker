@@ -3,7 +3,7 @@ module ErrorHandling
 
   included do
     rescue_from Exception do |exception|
-      return if controller_name == "errors"
+      return if on_error_page?
 
       case exception
       when Errors::InvalidSession, ActionController::InvalidAuthenticityToken
@@ -27,6 +27,10 @@ module ErrorHandling
   end
 
   private
+
+  def on_error_page?
+    controller_name == 'errors'
+  end
 
   def check_disclosure_check_presence
     raise Errors::InvalidSession unless current_disclosure_check
