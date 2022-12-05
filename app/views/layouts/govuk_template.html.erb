@@ -25,6 +25,7 @@
 </head>
 
 <body class="govuk-template__body app-body-class">
+  <%= yield :body_start %>
 <script>
   document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
 </script>

@@ -7,7 +7,11 @@ moj.Modules.gaEvents = {
     linkClass: '.ga-pageLink',
     revealingLinkClass: '.govuk-details__summary span.govuk-details__summary-text',
 
-    init: function () {
+    init: function() {
+        window.onload = function() { setTimeout('moj.Modules.gaEvents.pageLoaded()',1000); }
+    },
+
+    pageLoaded: function() {
         var self = this;
 
         // don't bind anything if the GA object isn't defined
@@ -189,6 +193,7 @@ moj.Modules.gaEvents = {
                 event_url = url.replace($el.search, '');
 
             window.open(url, target);
+            ga('create', 'UA-113317790-4');
             ga('send', 'event', 'outbound', 'click', event_url, {});
 
             e.preventDefault();
@@ -275,7 +280,7 @@ moj.Modules.gaEvents = {
     sendAnalyticsEvent: function (eventData, opts) {
         var self = this,
             opts = opts || {};
-
+        ga('create', 'UA-113317790-4');
         ga('send', 'event', eventData.eventCategory, eventData.eventAction, eventData.eventLabel, {
             hitCallback: self.createFunctionWithTimeout(function () {
                 if (opts.actionType) {
