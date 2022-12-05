@@ -80,6 +80,7 @@ Rails.application.routes.draw do
     get :results_not_found
     get :report_completed
     get :report_not_completed
+    get :maintenance
   end
 
   # Health and ping endpoints (`status` and `health` are alias)

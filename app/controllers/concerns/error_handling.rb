@@ -3,6 +3,8 @@ module ErrorHandling
 
   included do
     rescue_from Exception do |exception|
+      return if on_error_page?
+
       case exception
       when Errors::InvalidSession, ActionController::InvalidAuthenticityToken
         redirect_to invalid_session_errors_path
@@ -12,6 +14,9 @@ module ErrorHandling
         redirect_to report_completed_errors_path
       when Errors::ReportNotCompleted
         redirect_to report_not_completed_errors_path
+      when ActiveRecord::ConnectionNotEstablished
+        Raven.capture_exception(exception)
+        redirect_to maintenance_errors_path
       else
         raise if Rails.application.config.consider_all_requests_local
 
@@ -22,6 +27,10 @@ module ErrorHandling
   end
 
   private
+
+  def on_error_page?
+    controller_name == 'errors'
+  end
 
   def check_disclosure_check_presence
     raise Errors::InvalidSession unless current_disclosure_check
