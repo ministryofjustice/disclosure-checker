@@ -128,7 +128,7 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
 
     it 'should notify in Sentry about the missing translation' do
-      expect(Raven).to receive(:capture_exception).with(
+      expect(Sentry).to receive(:capture_exception).with(
         StandardError.new('page title missing: my_controller#an_action')
       )
       helper.fallback_title
