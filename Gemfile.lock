@@ -157,10 +157,6 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
-    faraday (2.3.0)
-      faraday-net_http (~> 2.0)
-      ruby2_keywords (>= 0.0.4)
-    faraday-net_http (2.0.3)
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -328,7 +324,6 @@ GEM
     rubocop-rspec (2.11.1)
       rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
-    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -346,8 +341,11 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sentry-raven (3.1.2)
-      faraday (>= 1.0)
+    sentry-rails (5.8.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.8.0)
+    sentry-ruby (5.8.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -427,7 +425,8 @@ DEPENDENCIES
   rubocop-rspec
   sass-rails (< 6.0.0)
   selenium-webdriver
-  sentry-raven (~> 3.0)
+  sentry-rails
+  sentry-ruby
   simplecov
   simplecov-rcov
   uglifier
@@ -438,4 +437,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.2.15
+   2.3.26

@@ -15,12 +15,12 @@ module ErrorHandling
       when Errors::ReportNotCompleted
         redirect_to report_not_completed_errors_path
       when ActiveRecord::ConnectionNotEstablished
-        Raven.capture_exception(exception)
+        Sentry.capture_exception(exception)
         redirect_to maintenance_errors_path
       else
         raise if Rails.application.config.consider_all_requests_local
 
-        Raven.capture_exception(exception)
+        Sentry.capture_exception(exception)
         redirect_to unhandled_errors_path
       end
     end

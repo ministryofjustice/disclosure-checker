@@ -1,16 +1,18 @@
 <% content_for(:head) do %>
-  <script src="https://browser.sentry-cdn.com/5.20.1/bundle.min.js" integrity="O8HdAJg1h8RARFowXd2J/r5fIWuinSBtjhwQoPesfVILeXzGpJxvyY/77OaPPXUo" crossorigin="anonymous"></script>
+  <script src="https://browser.sentry-cdn.com/7.44.2/bundle.min.js" integrity="sha384-DKvNAjtV829X/OfXiq539qMBQjm0X+mzgpSoEbPd0CUa6jU62Z7Y23By/A4oLgqB" crossorigin="anonymous"></script>
 <% end %>
 
 <% content_for(:body_end) do %>
   <script>
-    // Use only the public DSN here!
     Sentry.init({
-      dsn: '<%= "https://#{Raven.configuration.public_key}@#{Raven.configuration.host}/#{Raven.configuration.project_id}" %>'
-    });
-
-    Sentry.showReportDialog({
-      eventId: '<%= Raven.last_event_id %>'
+      dsn: "https://d82ca719a5b246bf80342c2266fe7550@o345774.ingest.sentry.io/5373163"
+      beforeSend(event, hint) {
+        // Check if it is an exception, and if so, show the report dialog
+        if (event.exception) {
+          Sentry.showReportDialog({ eventId: event.event_id });
+        }
+        return event;
+      },
     });
   </script>
 <% end %>

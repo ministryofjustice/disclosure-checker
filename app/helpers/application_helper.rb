@@ -48,7 +48,7 @@ module ApplicationHelper
     exception = StandardError.new("page title missing: #{controller_name}##{action_name}")
     raise exception if Rails.application.config.consider_all_requests_local
 
-    Raven.capture_exception(exception)
+    Sentry.capture_exception(exception)
 
     title ''
   end

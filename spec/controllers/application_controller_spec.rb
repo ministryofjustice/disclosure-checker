@@ -21,7 +21,7 @@ RSpec.describe ApplicationController do
       it 'should not report the exception, and redirect to the error page' do
         routes.draw { get 'invalid_session' => 'anonymous#invalid_session' }
 
-        expect(Raven).not_to receive(:capture_exception)
+        expect(Sentry).not_to receive(:capture_exception)
 
         get :invalid_session
         expect(response).to redirect_to(invalid_session_errors_path)
@@ -32,7 +32,7 @@ RSpec.describe ApplicationController do
       it 'should not report the exception, and redirect to the error page' do
         routes.draw { get 'results_not_found' => 'anonymous#results_not_found' }
 
-        expect(Raven).not_to receive(:capture_exception)
+        expect(Sentry).not_to receive(:capture_exception)
 
         get :results_not_found
         expect(response).to redirect_to(results_not_found_errors_path)
@@ -43,7 +43,7 @@ RSpec.describe ApplicationController do
       it 'should not report the exception, and redirect to the error page' do
         routes.draw { get 'report_completed' => 'anonymous#report_completed' }
 
-        expect(Raven).not_to receive(:capture_exception)
+        expect(Sentry).not_to receive(:capture_exception)
 
         get :report_completed
         expect(response).to redirect_to(report_completed_errors_path)
@@ -54,7 +54,7 @@ RSpec.describe ApplicationController do
       it 'should not report the exception, and redirect to the error page' do
         routes.draw { get 'report_not_completed' => 'anonymous#report_not_completed' }
 
-        expect(Raven).not_to receive(:capture_exception)
+        expect(Sentry).not_to receive(:capture_exception)
 
         get :report_not_completed
         expect(response).to redirect_to(report_not_completed_errors_path)
@@ -65,7 +65,7 @@ RSpec.describe ApplicationController do
       it 'should report the exception, and redirect to the error page' do
         routes.draw { get 'maintenance' => 'anonymous#maintenance' }
 
-        expect(Raven).to receive(:capture_exception)
+        expect(Sentry).to receive(:capture_exception)
 
         get :maintenance
         expect(response).to redirect_to(maintenance_errors_path)
@@ -76,7 +76,7 @@ RSpec.describe ApplicationController do
       it 'should report the exception, and redirect to the error page' do
         routes.draw { get 'another_exception' => 'anonymous#another_exception' }
 
-        expect(Raven).to receive(:capture_exception)
+        expect(Sentry).to receive(:capture_exception)
 
         get :another_exception
         expect(response).to redirect_to(unhandled_errors_path)
