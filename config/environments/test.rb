@@ -52,4 +52,7 @@ Rails.application.configure do
 
   # Fake for tests. Set the real value in `config/application.rb`
   config.x.surveys.feedback = 'https://example.com'.freeze
+
+  # Disable Sentry
+  config.sentry_dsn = ""
 end
