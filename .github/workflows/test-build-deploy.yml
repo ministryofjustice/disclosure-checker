@@ -92,7 +92,7 @@ jobs:
 
       - name: Push to ECR
         id: ecr
-        uses: jwalton/gh-ecr-push@v1.3.3
+        uses: jwalton/gh-ecr-push@v1.3.6
         with:
           access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
@@ -137,7 +137,7 @@ jobs:
     steps:
       - name: Pull from ECR
         id: ecr-pull
-        uses: jwalton/gh-ecr-push@v1.3.3
+        uses: jwalton/gh-ecr-push@v1.3.6
         with:
           access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
@@ -148,7 +148,7 @@ jobs:
 
       - name: Push to ECR
         id: ecr-push
-        uses: jwalton/gh-ecr-push@v1.3.3
+        uses: jwalton/gh-ecr-push@v1.3.6
         with:
           access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
