@@ -33,7 +33,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
@@ -41,7 +41,7 @@ jobs:
           bundler-cache: true
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 14.17.5
 
@@ -50,7 +50,7 @@ jobs:
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: JS package cache
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -74,7 +74,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Store current date
         run: echo "BUILD_DATE=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
@@ -92,7 +92,7 @@ jobs:
 
       - name: Push to ECR
         id: ecr
-        uses: jwalton/gh-ecr-push@v1.3.3
+        uses: jwalton/gh-ecr-push@v1.3.6
         with:
           access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
@@ -137,7 +137,7 @@ jobs:
     steps:
       - name: Pull from ECR
         id: ecr-pull
-        uses: jwalton/gh-ecr-push@v1.3.3
+        uses: jwalton/gh-ecr-push@v1.3.6
         with:
           access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
@@ -148,7 +148,7 @@ jobs:
 
       - name: Push to ECR
         id: ecr-push
-        uses: jwalton/gh-ecr-push@v1.3.3
+        uses: jwalton/gh-ecr-push@v1.3.6
         with:
           access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
