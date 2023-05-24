@@ -1,5 +1,4 @@
-FROM ruby:2.7.2-alpine
-MAINTAINER Cross Justice Delivery Team
+FROM ruby:3.2.2-alpine
 
 # build dependencies:
 #   - virtual: create virtual package for later deletion
