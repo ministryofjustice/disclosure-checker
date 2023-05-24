@@ -37,7 +37,7 @@ WORKDIR /usr/src/app
 
 COPY Gemfile* .ruby-version ./
 
-RUN gem install bundler -v 2.1.4 && \
+RUN gem install bundler -v 2.4.13 && \
     bundle config set frozen 'true' && \
     bundle config without test:development && \
     bundle install --jobs 2 --retry 3
