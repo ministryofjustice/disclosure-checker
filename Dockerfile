@@ -1,5 +1,4 @@
-FROM ruby:2.7.2-alpine
-MAINTAINER Cross Justice Delivery Team
+FROM ruby:3.2.2-alpine
 
 # build dependencies:
 #   - virtual: create virtual package for later deletion
@@ -38,7 +37,7 @@ WORKDIR /usr/src/app
 
 COPY Gemfile* .ruby-version ./
 
-RUN gem install bundler -v 2.1.4 && \
+RUN gem install bundler -v 2.4.13 && \
     bundle config set frozen 'true' && \
     bundle config without test:development && \
     bundle install --jobs 2 --retry 3

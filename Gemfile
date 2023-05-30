@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby File.read('.ruby-version')
+ruby File.read('.ruby-version').strip
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -29,17 +29,15 @@ group :production do
 end
 
 group :development do
-  gem 'better_errors'
   gem 'binding_of_caller'
   gem 'i18n-debug'
   gem 'web-console'
 end
 
 group :development, :test do
+  gem 'debug'
   gem 'dotenv-rails'
   gem 'listen'
-  gem 'pry-byebug'
-  gem 'pry-rails'
   gem 'i18n-tasks'
 
   # Available in dev env for generators
