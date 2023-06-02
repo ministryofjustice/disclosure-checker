@@ -12,6 +12,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'govuk_design_system_formbuilder', '~> 3.1.0'
 
 gem 'jquery-rails'
+gem 'mimemagic', '~> 0.3.7'
 gem 'pg'
 gem 'puma'
 gem 'rails', '~> 6.1', '>= 6.1.7.3'
@@ -21,7 +22,6 @@ gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'uglifier'
 gem 'virtus'
-gem 'mimemagic', '~> 0.3.7'
 
 group :production do
   gem 'lograge'
@@ -37,11 +37,12 @@ end
 group :development, :test do
   gem 'debug'
   gem 'dotenv-rails'
-  gem 'listen'
-  gem 'i18n-tasks'
 
   # Available in dev env for generators
   gem 'factory_bot_rails'
+
+  gem 'i18n-tasks'
+  gem 'listen'
   gem 'rspec-rails'
 end
 
