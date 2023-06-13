@@ -1,4 +1,4 @@
-class BareApplicationController < ActionController::Base
+class BareApplicationController < ActionController::Base # rubocop:disable Rails/ApplicationController
   # NOTE: Use this as the superclass for controllers that do not require
   # any special session/cookies handling nor error handling.
   # For any other controller, use `ApplicationController` instead.
