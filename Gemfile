@@ -52,8 +52,7 @@ group :test do
   gem 'cucumber', '< 9.0.0'
   gem 'cucumber-rails', require: false
   gem 'rails-controller-testing'
-  gem 'rubocop', require: false
-  gem 'rubocop-rspec', require: false
+  gem 'rubocop-govuk', require: false
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'simplecov-rcov'
