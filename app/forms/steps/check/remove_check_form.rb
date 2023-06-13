@@ -16,7 +16,7 @@ module Steps
 
         return true if remove_check.no?
 
-        disclosure_check.destroy
+        disclosure_check.destroy!
         disclosure_check.destroyed?
       end
     end

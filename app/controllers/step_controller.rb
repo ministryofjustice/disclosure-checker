@@ -104,7 +104,7 @@ private
 
   def redirect_to_root
     current_disclosure_check.navigation_stack.pop
-    current_disclosure_check.save
+    current_disclosure_check.save!
     redirect_to root_path
   end
 end

@@ -40,8 +40,8 @@ private
   def persist!
     raise BaseForm::DisclosureCheckNotFound unless disclosure_check
 
-    record_to_persist.update(
-      attributes_map.merge(attributes_to_reset)
+    record_to_persist.update!(
+      attributes_map.merge(attributes_to_reset),
     )
   end
 end

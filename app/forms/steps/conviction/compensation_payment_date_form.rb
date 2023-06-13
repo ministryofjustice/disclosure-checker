@@ -12,9 +12,9 @@ module Steps
       def persist!
         raise DisclosureCheckNotFound unless disclosure_check
 
-        disclosure_check.update(
-          compensation_payment_date: compensation_payment_date,
-          approximate_compensation_payment_date: approximate_compensation_payment_date
+        disclosure_check.update!(
+          compensation_payment_date:,
+          approximate_compensation_payment_date:,
         )
       end
     end

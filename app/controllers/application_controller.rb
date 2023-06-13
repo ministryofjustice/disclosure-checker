@@ -45,7 +45,7 @@ private
   end
 
   def initialize_disclosure_check(attributes = {})
-    DisclosureCheck.create(attributes).tap do |disclosure_check|
+    DisclosureCheck.create!(attributes).tap do |disclosure_check|
       session[:disclosure_check_id] = disclosure_check.id
     end
   end

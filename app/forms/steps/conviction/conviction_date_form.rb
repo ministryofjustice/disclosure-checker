@@ -12,9 +12,9 @@ module Steps
       def persist!
         raise DisclosureCheckNotFound unless disclosure_check
 
-        disclosure_check.update(
-          conviction_date: conviction_date,
-          approximate_conviction_date: approximate_conviction_date
+        disclosure_check.update!(
+          conviction_date:,
+          approximate_conviction_date:,
         )
       end
     end

@@ -31,8 +31,8 @@ module Steps
         raise DisclosureCheckNotFound unless disclosure_check
         return true unless changed?
 
-        disclosure_check.update(
-          conviction_type: conviction_type,
+        disclosure_check.update!(
+          conviction_type:,
           # The following are dependent attributes that need to be reset if form changes
           conviction_subtype: nil,
         )
