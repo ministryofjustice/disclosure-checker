@@ -1,5 +1,5 @@
 module ValidationHelpers
-  private
+private
 
   def check_errors(object, attribute, error)
     !object.valid?

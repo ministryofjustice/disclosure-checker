@@ -10,34 +10,34 @@ class CheckGroupPresenter
 
   def summary
     completed_checks.map do |disclosure_check|
-      CheckPresenter.new(disclosure_check, scope: scope)
+      CheckPresenter.new(disclosure_check, scope:)
     end
   end
 
   def spent_tag
     SpentTag.new(
-      variant: variant
+      variant:,
     )
   end
 
   def spent_date_panel
     SpentDatePanel.new(
       kind: first_check_kind,
-      variant: variant,
-      spent_date: spent_date
+      variant:,
+      spent_date:,
     )
   end
 
   def dbs_visibility
     DbsVisibility.new(
       kind: first_check_kind,
-      variant: variant,
-      completed_checks: completed_checks
+      variant:,
+      completed_checks:,
     )
   end
 
   def to_partial_path
-    [scope, 'shared', 'check'].join('/')
+    [scope, "shared", "check"].join("/")
   end
 
   def add_another_sentence_button?
@@ -48,7 +48,7 @@ class CheckGroupPresenter
     first_check_kind
   end
 
-  private
+private
 
   def first_check_kind
     @_first_check_kind ||= completed_checks.first.kind

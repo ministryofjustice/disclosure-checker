@@ -26,10 +26,10 @@ module ErrorHandling
     end
   end
 
-  private
+private
 
   def on_error_page?
-    controller_name == 'errors'
+    controller_name == "errors"
   end
 
   def check_disclosure_check_presence

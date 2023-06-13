@@ -1,4 +1,4 @@
-require 'rspec/expectations'
+require "rspec/expectations"
 
 RSpec::Matchers.define :have_destination do |controller, action, params = {}|
   match do |decision_tree|
@@ -17,7 +17,7 @@ RSpec::Matchers.define :show_check_your_answers_page do
     expect(decision_tree.disclosure_check).to receive(:completed!)
 
     destination = decision_tree.destination
-    destination[:controller] == '/steps/check/check_your_answers' && destination[:action] == :show
+    destination[:controller] == "/steps/check/check_your_answers" && destination[:action] == :show
   end
 
   failure_message do |decision_tree|

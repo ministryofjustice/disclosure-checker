@@ -2,19 +2,19 @@ class CookieSettingsForm
   include ActiveModel::Model
   attr_accessor :consent, :cookies
 
-  CONSENT_ACCEPT = 'accept'.freeze
-  CONSENT_REJECT = 'reject'.freeze
+  CONSENT_ACCEPT = "accept".freeze
+  CONSENT_REJECT = "reject".freeze
 
   def save
     cookies[cookie_name] = {
       expires: expiration,
-      value: accept_or_reject
+      value: accept_or_reject,
     }
 
     accept_or_reject
   end
 
-  private
+private
 
   # We filter the value to ensure it is either `accept` or `reject`, and if
   # it is none of those values, we default to `reject` as a precaution.

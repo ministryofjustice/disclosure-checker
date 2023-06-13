@@ -2,7 +2,7 @@ class ValueObject
   attr_reader :value
 
   def initialize(raw_value)
-    raise ArgumentError, 'Raw value must be symbol or implicitly convertible' unless raw_value.respond_to?(:to_sym)
+    raise ArgumentError, "Raw value must be symbol or implicitly convertible" unless raw_value.respond_to?(:to_sym)
 
     @value = raw_value.to_sym
     freeze
@@ -11,8 +11,8 @@ class ValueObject
   def ==(other)
     other.is_a?(self.class) && other.value == value
   end
-  alias === ==
-  alias eql? ==
+  alias_method :===, :==
+  alias_method :eql?, :==
 
   def self.find_constant(raw_value)
     const_get(raw_value.upcase)
@@ -26,13 +26,9 @@ class ValueObject
     [ValueObject, self.class, value].hash
   end
 
-  def inquiry
-    to_s.inquiry
-  end
+  delegate :inquiry, to: :to_s
 
-  def to_s
-    value.to_s
-  end
+  delegate :to_s, to: :value
 
   def to_sym
     value

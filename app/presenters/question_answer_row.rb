@@ -15,6 +15,6 @@ class QuestionAnswerRow
   # For example for a scope of: ['check_your_answers', 'caution']
   # we only need the partial path as: 'check_your_answers/shared/row'
   def to_partial_path
-    [scope[0], 'shared', 'row'].join('/')
+    [scope[0], "shared", "row"].join("/")
   end
 end

@@ -8,7 +8,7 @@ module Steps
       validates :known_date, sensible_date: true
       validate :before_conditional_date?
 
-      private
+    private
 
       def persist!
         raise DisclosureCheckNotFound unless disclosure_check

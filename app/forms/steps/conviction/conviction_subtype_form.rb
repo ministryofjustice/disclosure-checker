@@ -13,7 +13,7 @@ module Steps
         conviction_type
       end
 
-      private
+    private
 
       def choices
         values.map(&:to_s)
@@ -41,7 +41,7 @@ module Steps
           conviction_length_type: nil,
           compensation_paid: nil,
           compensation_payment_date: nil,
-          motoring_endorsement: nil
+          motoring_endorsement: nil,
         )
       end
     end

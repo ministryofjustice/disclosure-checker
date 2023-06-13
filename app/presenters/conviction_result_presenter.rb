@@ -1,5 +1,5 @@
 class ConvictionResultPresenter < ResultsItemPresenter
-  private
+private
 
   def type_attribute
     :conviction_subtype
@@ -34,7 +34,7 @@ class ConvictionResultPresenter < ResultsItemPresenter
     I18n.translate!(
       "conviction_length.answers.#{type}",
       length: disclosure_check.conviction_length,
-      scope: scope
+      scope:,
     )
   end
 end

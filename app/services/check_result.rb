@@ -7,20 +7,18 @@ class CheckResult
     @disclosure_check = disclosure_check
   end
 
-  def expiry_date
-    calculator.expiry_date
-  end
+  delegate :expiry_date, to: :calculator
 
   def calculator
     offence_type.calculator_class.new(disclosure_check)
   end
 
-  private
+private
 
   def offence_type
     return caution if kind.inquiry.caution?
     return conviction if kind.inquiry.conviction?
 
-    raise 'Unknown or nil check kind'
+    raise "Unknown or nil check kind"
   end
 end

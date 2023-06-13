@@ -3,21 +3,21 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.lograge.logger = ActiveSupport::Logger.new(STDOUT)
+  config.lograge.logger = ActiveSupport::Logger.new($stdout)
   config.lograge.enabled = true
   config.lograge.formatter = Lograge::Formatters::Logstash.new
   config.log_level = :info
   config.action_view.logger = nil
 
   config.lograge.custom_options = lambda do |event|
-    exceptions = %w(controller action format id)
+    exceptions = %w[controller action format id]
     {
       host: event.payload[:host],
       params: event.payload[:params].except(*exceptions),
       referrer: event.payload[:referrer],
       session_id: event.payload[:session_id],
-      tags: %w{disclosure-checker},
-      user_agent: event.payload[:user_agent]
+      tags: %w[disclosure-checker],
+      user_agent: event.payload[:user_agent],
     }
   end
 
@@ -40,7 +40,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -59,14 +59,14 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Force HTTPS (but allow disabling it, when running locally via docker-compose)
-  config.force_ssl = ENV.key?('DISABLE_HTTPS') ? false : true
+  config.force_ssl = ENV.key?("DISABLE_HTTPS") ? false : true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -95,8 +95,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Prevent host header poisoning by enforcing absolute redirects
-  if ENV['EXTERNAL_URL'].present?
-    uri = URI.parse(ENV['EXTERNAL_URL'])
+  if ENV["EXTERNAL_URL"].present?
+    uri = URI.parse(ENV["EXTERNAL_URL"])
     config.action_controller.default_url_options = {
       host: uri.host, protocol: uri.scheme, port: uri.port
     }

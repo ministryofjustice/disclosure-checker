@@ -13,7 +13,7 @@ module Steps
         end
       end
 
-      private
+    private
 
       def choices
         values.map(&:to_s)
@@ -35,7 +35,7 @@ module Steps
           caution_type: caution_type,
           # The following are dependent attributes that need to be reset if form changes
           known_date: nil,
-          conditional_end_date: nil
+          conditional_end_date: nil,
         )
       end
     end

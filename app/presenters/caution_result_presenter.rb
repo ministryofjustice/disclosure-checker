@@ -1,15 +1,15 @@
 class CautionResultPresenter < ResultsItemPresenter
-  private
+private
 
   def type_attribute
     :caution_type
   end
 
   def question_attributes
-    [
-      :under_age,
-      :known_date,
-      :conditional_end_date,
+    %i[
+      under_age
+      known_date
+      conditional_end_date
     ].freeze
   end
 

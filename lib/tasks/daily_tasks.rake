@@ -1,11 +1,11 @@
 task daily_tasks: :environment do
-  log 'Starting daily tasks'
+  log "Starting daily tasks"
   log "Checks count: #{DisclosureReport.count}"
 
-  Rake::Task['purge:checks'].invoke
+  Rake::Task["purge:checks"].invoke
 
   log "Checks count: #{DisclosureReport.count}"
-  log 'Finished daily tasks'
+  log "Finished daily tasks"
 end
 
 namespace :purge do
@@ -27,5 +27,5 @@ end
 private
 
 def log(message)
-  puts "[#{Time.now}] #{message}"
+  puts "[#{Time.zone.now}] #{message}"
 end

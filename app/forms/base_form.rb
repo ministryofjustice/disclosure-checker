@@ -28,7 +28,7 @@ class BaseForm
 
     attributes.merge!(
       disclosure_check: disclosure_check || record,
-      record: record
+      record:,
     )
 
     new(attributes)
@@ -60,7 +60,7 @@ class BaseForm
     ConvictionType.find_constant(disclosure_check.conviction_subtype)
   end
 
-  private
+private
 
   # :nocov:
   def record_id
@@ -77,7 +77,7 @@ class BaseForm
 
   # :nocov:
   def persist!
-    raise 'Subclasses of BaseForm need to implement #persist!'
+    raise "Subclasses of BaseForm need to implement #persist!"
   end
   # :nocov:
 end

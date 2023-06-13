@@ -14,7 +14,7 @@ module Steps
         conviction_subtype
       end
 
-      private
+    private
 
       def after_conviction_date?
         return if known_date.blank? || disclosure_check.conviction_date.blank?

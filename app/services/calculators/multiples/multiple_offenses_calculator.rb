@@ -11,9 +11,6 @@ module Calculators
         process!
       end
 
-      # rubocop:disable Metrics/AbcSize
-      # rubocop:disable Metrics/PerceivedComplexity
-      # rubocop:disable Metrics/CyclomaticComplexity
       def spent_date_for(proceeding)
         return unless disclosure_report.completed?
 
@@ -64,7 +61,7 @@ module Calculators
           # within the same conviction and also when compared to another conviction spent date.
           # see graph in docs/results/08_relevant_order_3.png
           next if spent_date.to_date >= spent_date_without_relevant_order.to_date &&
-                  spent_date.to_date >= other_spent_date.to_date
+            spent_date.to_date >= other_spent_date.to_date
 
           # If the spent date falls inside another rehabilitation, we do drag-through,
           # saving this new spent date in the memory for later use.
@@ -82,7 +79,7 @@ module Calculators
         proceedings.all?(&:spent?)
       end
 
-      private
+    private
 
       def within_other_conviction_date_and_spent_date?(proceeding, spent_date, other_conviction_date, other_spent_date)
         # We should first check wether the proceeding spent date has been affected
@@ -91,11 +88,11 @@ module Calculators
 
         if spent_date == proceeding.spent_date
           proceeding.spent_date_without_relevant_orders.to_date.in?(
-            other_conviction_date..other_spent_date.to_date
+            other_conviction_date..other_spent_date.to_date,
           )
         else
           spent_date.to_date.in?(
-            other_conviction_date..other_spent_date.to_date
+            other_conviction_date..other_spent_date.to_date,
           )
         end
       end

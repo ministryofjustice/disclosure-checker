@@ -1,9 +1,9 @@
 class ResultsPresenter < BasketPresenter
-  APPROXIMATE_DATE_ATTRS = [
-    :approximate_known_date,
-    :approximate_conviction_date,
-    :approximate_conditional_end_date,
-    :approximate_compensation_payment_date,
+  APPROXIMATE_DATE_ATTRS = %i[
+    approximate_known_date
+    approximate_conviction_date
+    approximate_conditional_end_date
+    approximate_compensation_payment_date
   ].freeze
 
   def convictions?
@@ -44,7 +44,7 @@ class ResultsPresenter < BasketPresenter
     calculator.proceedings.sum(&:size)
   end
 
-  private
+private
 
   def conviction_checks
     @_conviction_checks ||= disclosure_report.conviction_checks

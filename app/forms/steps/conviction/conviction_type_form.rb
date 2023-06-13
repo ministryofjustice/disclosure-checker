@@ -13,7 +13,7 @@ module Steps
         end
       end
 
-      private
+    private
 
       def choices
         values.map(&:to_s)
@@ -34,7 +34,7 @@ module Steps
         disclosure_check.update(
           conviction_type: conviction_type,
           # The following are dependent attributes that need to be reset if form changes
-          conviction_subtype: nil
+          conviction_subtype: nil,
         )
       end
     end

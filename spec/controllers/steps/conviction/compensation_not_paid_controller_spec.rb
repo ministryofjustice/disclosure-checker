@@ -1,5 +1,5 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Steps::Conviction::CompensationNotPaidController, type: :controller do
-  it_behaves_like 'a show step controller'
+  it_behaves_like "a show step controller"
 end

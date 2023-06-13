@@ -112,16 +112,16 @@ FactoryBot.define do
 
     trait :with_fine do
       conviction_with_known_date
-      conviction_type { self.under_age.inquiry.yes? ? ConvictionType::FINANCIAL : ConvictionType::ADULT_FINANCIAL }
-      conviction_subtype { self.under_age.inquiry.yes? ? ConvictionType::FINE : ConvictionType::ADULT_FINE }
+      conviction_type { under_age.inquiry.yes? ? ConvictionType::FINANCIAL : ConvictionType::ADULT_FINANCIAL }
+      conviction_subtype { under_age.inquiry.yes? ? ConvictionType::FINE : ConvictionType::ADULT_FINE }
     end
 
     # Motoring
 
     trait :with_motoring_disqualification do
       conviction_with_known_date
-      conviction_type { self.under_age.inquiry.yes? ? ConvictionType::YOUTH_MOTORING : ConvictionType::ADULT_MOTORING }
-      conviction_subtype { self.under_age.inquiry.yes? ? ConvictionType::YOUTH_DISQUALIFICATION : ConvictionType::ADULT_DISQUALIFICATION }
+      conviction_type { under_age.inquiry.yes? ? ConvictionType::YOUTH_MOTORING : ConvictionType::ADULT_MOTORING }
+      conviction_subtype { under_age.inquiry.yes? ? ConvictionType::YOUTH_DISQUALIFICATION : ConvictionType::ADULT_DISQUALIFICATION }
       conviction_length { 6 }
       conviction_length_type { ConvictionLengthType::MONTHS }
       motoring_endorsement { GenericYesNo::NO }
@@ -129,15 +129,15 @@ FactoryBot.define do
 
     trait :with_motoring_penalty_points do
       conviction_with_known_date
-      conviction_type { self.under_age.inquiry.yes? ? ConvictionType::YOUTH_MOTORING : ConvictionType::ADULT_MOTORING }
-      conviction_subtype { self.under_age.inquiry.yes? ? ConvictionType::YOUTH_PENALTY_POINTS : ConvictionType::ADULT_PENALTY_POINTS }
+      conviction_type { under_age.inquiry.yes? ? ConvictionType::YOUTH_MOTORING : ConvictionType::ADULT_MOTORING }
+      conviction_subtype { under_age.inquiry.yes? ? ConvictionType::YOUTH_PENALTY_POINTS : ConvictionType::ADULT_PENALTY_POINTS }
       motoring_endorsement { GenericYesNo::NO }
     end
 
     trait :with_motoring_fine do
       conviction_with_known_date
-      conviction_type { self.under_age.inquiry.yes? ? ConvictionType::YOUTH_MOTORING : ConvictionType::ADULT_MOTORING }
-      conviction_subtype { self.under_age.inquiry.yes? ? ConvictionType::YOUTH_MOTORING_FINE : ConvictionType::ADULT_MOTORING_FINE }
+      conviction_type { under_age.inquiry.yes? ? ConvictionType::YOUTH_MOTORING : ConvictionType::ADULT_MOTORING }
+      conviction_subtype { under_age.inquiry.yes? ? ConvictionType::YOUTH_MOTORING_FINE : ConvictionType::ADULT_MOTORING_FINE }
       motoring_endorsement { GenericYesNo::NO }
     end
 
@@ -145,20 +145,20 @@ FactoryBot.define do
 
     trait :with_bind_over do
       conviction_with_known_date
-      conviction_type { self.under_age.inquiry.yes? ? ConvictionType::DISCHARGE : ConvictionType::ADULT_DISCHARGE }
-      conviction_subtype { self.under_age.inquiry.yes? ? ConvictionType::BIND_OVER : ConvictionType::ADULT_BIND_OVER }
+      conviction_type { under_age.inquiry.yes? ? ConvictionType::DISCHARGE : ConvictionType::ADULT_DISCHARGE }
+      conviction_subtype { under_age.inquiry.yes? ? ConvictionType::BIND_OVER : ConvictionType::ADULT_BIND_OVER }
     end
 
     trait :with_discharge_order do
       conviction_with_known_date
-      conviction_type { self.under_age.inquiry.yes? ? ConvictionType::DISCHARGE : ConvictionType::ADULT_DISCHARGE }
-      conviction_subtype { self.under_age.inquiry.yes? ? ConvictionType::CONDITIONAL_DISCHARGE : ConvictionType::ADULT_CONDITIONAL_DISCHARGE }
+      conviction_type { under_age.inquiry.yes? ? ConvictionType::DISCHARGE : ConvictionType::ADULT_DISCHARGE }
+      conviction_subtype { under_age.inquiry.yes? ? ConvictionType::CONDITIONAL_DISCHARGE : ConvictionType::ADULT_CONDITIONAL_DISCHARGE }
       conviction_length { 12 }
       conviction_length_type { ConvictionLengthType::MONTHS }
     end
 
     # Community Reparation
-    # Only for adults
+    #  Only for adults
 
     trait :with_restraining_order do
       adult

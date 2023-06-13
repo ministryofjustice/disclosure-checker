@@ -4,7 +4,7 @@ module Steps
       def edit
         @form_object = CompensationPaidForm.new(
           disclosure_check: current_disclosure_check,
-          compensation_paid: current_disclosure_check.compensation_paid
+          compensation_paid: current_disclosure_check.compensation_paid,
         )
       end
 

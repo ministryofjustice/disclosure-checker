@@ -1,25 +1,26 @@
 RSpec.describe CheckGroupPresenter do
+  subject do
+    described_class.new(
+      number,
+      disclosure_check.check_group,
+      spent_date:,
+      scope: "foobar",
+    )
+  end
+
   let!(:disclosure_check) { create(:disclosure_check, :conviction, :completed) }
   let(:number) { 1 }
   let(:spent_date) { nil }
 
-  subject {
-    described_class.new(
-      number,
-      disclosure_check.check_group,
-      spent_date: spent_date,
-      scope: 'foobar'
-    )
-  }
-
-  describe '#to_partial_path' do
-    it { expect(subject.to_partial_path).to eq('foobar/shared/check') }
+  describe "#to_partial_path" do
+    it { expect(subject.to_partial_path).to eq("foobar/shared/check") }
   end
 
-  describe '#summary' do
+  describe "#summary" do
     let(:summary) { subject.summary }
-    context 'for a single youth caution' do
-      it 'returns CheckPresenter' do
+
+    context "for a single youth caution" do
+      it "returns CheckPresenter" do
         expect(summary.size).to eq(1)
         expect(summary[0]).to be_an_instance_of(CheckPresenter)
         expect(summary[0].disclosure_check).to eql(disclosure_check)
@@ -27,10 +28,10 @@ RSpec.describe CheckGroupPresenter do
     end
   end
 
-  describe '#spent_tag' do
+  describe "#spent_tag" do
     let(:spent_date) { Date.yesterday }
 
-    it 'builds a SpentTag instance with the correct attributes' do
+    it "builds a SpentTag instance with the correct attributes" do
       tag = subject.spent_tag
 
       expect(tag).to be_an_instance_of(SpentTag)
@@ -39,59 +40,63 @@ RSpec.describe CheckGroupPresenter do
     end
   end
 
-  describe '#spent_date_panel' do
-    let(:spent_date) { 'date' }
+  describe "#spent_date_panel" do
+    let(:spent_date) { "date" }
 
     before do
-      allow(subject).to receive(:first_check_kind).and_return('caution')
+      allow(subject).to receive(:first_check_kind).and_return("caution")
     end
 
-    it 'builds a SpentDatePanel instance with the correct attributes' do
+    it "builds a SpentDatePanel instance with the correct attributes" do
       panel = subject.spent_date_panel
 
       expect(panel).to be_an_instance_of(SpentDatePanel)
       expect(panel.spent_date).to eq(spent_date)
-      expect(panel.kind).to eq('caution')
+      expect(panel.kind).to eq("caution")
     end
   end
 
-  describe '#dbs_visibility' do
+  describe "#dbs_visibility" do
     let(:spent_date) { Date.yesterday }
 
     before do
-      allow(subject).to receive(:first_check_kind).and_return('caution')
+      allow(subject).to receive(:first_check_kind).and_return("caution")
     end
 
-    it 'builds a DbsVisibility instance with the correct attributes' do
+    it "builds a DbsVisibility instance with the correct attributes" do
       panel = subject.dbs_visibility
 
       expect(panel).to be_an_instance_of(DbsVisibility)
-      expect(panel.kind).to eq('caution')
+      expect(panel.kind).to eq("caution")
       expect(panel.variant).to eq(ResultsVariant::SPENT)
       expect(panel.completed_checks).to eq([disclosure_check])
     end
   end
 
-  describe '#check_group_kind' do
-    context 'caution' do
+  describe "#check_group_kind" do
+    context "caution" do
       let!(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
-      it { expect(subject.check_group_kind).to eq('caution') }
+
+      it { expect(subject.check_group_kind).to eq("caution") }
     end
 
-    context 'conviction' do
-      let!(:disclosure_check) { create(:disclosure_check, :conviction,  :completed) }
-      it { expect(subject.check_group_kind).to eq('conviction') }
+    context "conviction" do
+      let!(:disclosure_check) { create(:disclosure_check, :conviction, :completed) }
+
+      it { expect(subject.check_group_kind).to eq("conviction") }
     end
   end
 
-  describe '#add_another_sentence_button?' do
-    context 'for a caution' do
+  describe "#add_another_sentence_button?" do
+    context "for a caution" do
       let!(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
+
       it { expect(subject.add_another_sentence_button?).to eq(false) }
     end
 
-    context 'for a conviction' do
-      let!(:disclosure_check) { create(:disclosure_check, :conviction,  :completed) }
+    context "for a conviction" do
+      let!(:disclosure_check) { create(:disclosure_check, :conviction, :completed) }
+
       it { expect(subject.add_another_sentence_button?).to eq(true) }
     end
   end

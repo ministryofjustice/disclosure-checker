@@ -7,7 +7,7 @@ class BaseCalculator
     @disclosure_check = disclosure_check
   end
 
-  private
+private
 
   def motoring_endorsement?
     GenericYesNo.new(disclosure_check.motoring_endorsement).yes?
@@ -24,7 +24,7 @@ class BaseCalculator
   def conviction_length_in_months
     sentence_length_in_months(
       disclosure_check.conviction_length,
-      disclosure_check.conviction_length_type
+      disclosure_check.conviction_length_type,
     )
   end
 
@@ -42,13 +42,13 @@ class BaseCalculator
 
   def sentence_length_in_months(length, length_unit)
     case length_unit
-    when 'days'
+    when "days"
       length.days.in_months
-    when 'weeks'
+    when "weeks"
       length.weeks.in_months
-    when 'years'
+    when "years"
       length.years.in_months
-    when 'months'
+    when "months"
       length
     end
   end

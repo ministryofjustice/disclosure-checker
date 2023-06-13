@@ -1,16 +1,16 @@
-ENV['RAILS_ENV'] ||= 'test'
+ENV["RAILS_ENV"] ||= "test"
 
-require 'simplecov'
+require "simplecov"
 SimpleCov.minimum_coverage 100
 
 SimpleCov.start do
-  add_filter 'spec/support'
-  add_filter 'spec/rails_helper.rb'
-  add_filter 'config/initializers'
-  add_filter 'config/routes.rb'
+  add_filter "spec/support"
+  add_filter "spec/rails_helper.rb"
+  add_filter "config/initializers"
+  add_filter "config/routes.rb"
 end
 
-Dir['./spec/support/**/*.rb'].each {|f| require f}
+Dir["./spec/support/**/*.rb"].each { |f| require f }
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

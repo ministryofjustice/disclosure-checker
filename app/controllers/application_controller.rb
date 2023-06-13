@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :previous_step_path
 
-  private
+private
 
   def swap_disclosure_check_session(other_check_id)
     session[:disclosure_check_id] = current_disclosure_report.disclosure_checks.find_by!(id: other_check_id).id

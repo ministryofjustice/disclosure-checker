@@ -18,7 +18,7 @@ Rails.application.configure do
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
-    'Cache-Control' => "public, max-age=#{1.hour.to_i}"
+    "Cache-Control" => "public, max-age=#{1.hour.to_i}",
   }
 
   # Show full error reports and disable caching.
@@ -51,7 +51,7 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
 
   # Fake for tests. Set the real value in `config/application.rb`
-  config.x.surveys.feedback = 'https://example.com'.freeze
+  config.x.surveys.feedback = "https://example.com".freeze
 
   # Disable Sentry
   config.sentry_dsn = ""

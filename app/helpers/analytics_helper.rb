@@ -18,10 +18,10 @@ module AnalyticsHelper
   end
 
   def track_transaction(attributes)
-    return unless current_disclosure_check.present?
+    return if current_disclosure_check.blank?
 
     dimensions = custom_dimensions(
-      attributes.delete(:dimensions)
+      attributes.delete(:dimensions),
     )
 
     content_for :transaction_data, {
@@ -30,16 +30,16 @@ module AnalyticsHelper
       sku: transaction_sku,
       quantity: 1,
     }.merge(
-      attributes
+      attributes,
     ).merge(
-      dimensions
+      dimensions,
     ).to_json.html_safe
   end
 
   # We try to be as accurate as possible, but some transactions might
   # trigger before having reached the subtype step.
   def transaction_sku
-    return 'unknown' unless current_disclosure_check&.kind
+    return "unknown" unless current_disclosure_check&.kind
 
     current_disclosure_check.conviction_subtype ||
       current_disclosure_check.conviction_type ||
@@ -50,10 +50,10 @@ module AnalyticsHelper
   # Used for surveys, we return 'yes' or 'no' depending if we know
   # the current check is for under 18s or over 18s.
   def youth_check
-    current_disclosure_check&.under_age.presence || 'unknown'
+    current_disclosure_check&.under_age.presence || "unknown"
   end
 
-  private
+private
 
   # Custom dimensions on Google Analytics are named `dimensionX` where X
   # is an index from 1 to 20 (there is a limit of 20 per GA property).

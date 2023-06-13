@@ -68,7 +68,7 @@ module Calculators
       conviction_length_in_months <= self.class::UPPER_LIMIT
     end
 
-    private
+  private
 
     def rehabilitation_period
       case conviction_length_in_months

@@ -10,7 +10,7 @@ module Steps
       update_and_advance(Steps::Check::RemoveCheckForm)
     end
 
-    private
+  private
 
     def disclosure_checks
       @disclosure_checks ||= current_disclosure_report.disclosure_checks

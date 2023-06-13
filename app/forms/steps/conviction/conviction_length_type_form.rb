@@ -7,7 +7,7 @@ module Steps
 
       def values
         ConvictionLengthChoices.choices(
-          conviction_subtype: conviction_subtype
+          conviction_subtype:,
         )
       end
 
@@ -15,7 +15,7 @@ module Steps
         conviction_subtype
       end
 
-      private
+    private
 
       def choices
         values.map(&:to_s)

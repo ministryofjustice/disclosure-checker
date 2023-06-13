@@ -14,7 +14,7 @@ class CautionDecisionTree < BaseDecisionTree
     end
   end
 
-  private
+private
 
   def after_known_date
     return edit(:conditional_end_date) if caution.conditional?

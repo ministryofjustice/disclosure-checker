@@ -4,7 +4,7 @@ module SingleQuestionForm
   module ClassMethods
     attr_accessor :reset_attributes
 
-    private
+  private
 
     def yes_no_attribute(name, reset_when_yes: [], reset_when_no: [])
       attribute name, YesNo
@@ -12,14 +12,14 @@ module SingleQuestionForm
 
       self.reset_attributes = {
         GenericYesNo::YES => expand_attributes(reset_when_yes),
-        GenericYesNo::NO  => expand_attributes(reset_when_no)
+        GenericYesNo::NO => expand_attributes(reset_when_no),
       }
     end
 
     def expand_attributes(attributes)
-      attributes.map do |obj|
+      attributes.map { |obj|
         obj.is_a?(Symbol) ? obj : obj.attribute_names
-      end.flatten.uniq
+      }.flatten.uniq
     end
   end
 
@@ -27,14 +27,14 @@ module SingleQuestionForm
     GenericYesNo.values
   end
 
-  private
+private
 
   def answer
     attributes_map.values.first
   end
 
   def attributes_to_reset
-    self.class.reset_attributes[answer].to_h { |att| [att, nil] }
+    self.class.reset_attributes[answer].index_with { |_att| nil }
   end
 
   def persist!

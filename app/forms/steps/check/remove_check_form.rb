@@ -7,7 +7,7 @@ module Steps
 
       yes_no_attribute :remove_check
 
-      private
+    private
 
       # We do not store this in the database, so when user answers "No" we return true
       # Otherwise if the record is successfully destroyed, return true

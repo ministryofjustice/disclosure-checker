@@ -8,7 +8,7 @@ module Steps
       validates :conditional_end_date, sensible_date: { allow_future: true }
       validate :after_caution_date?
 
-      private
+    private
 
       def persist!
         raise DisclosureCheckNotFound unless disclosure_check

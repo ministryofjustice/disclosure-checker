@@ -1,9 +1,9 @@
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+ENV["RAILS_ENV"] ||= "test"
+require File.expand_path("../config/environment", __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'spec_helper'
-require 'rspec/rails'
-require_relative '../spec/support/view_spec_helpers'
+require "spec_helper"
+require "rspec/rails"
+require_relative "../spec/support/view_spec_helpers"
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -21,7 +21,7 @@ RSpec.configure do |config|
   config.before(:each, type: :helper) { initialize_view_helpers(helper) }
 
   config.before(:each, js: true) do
-    page.driver.browser.url_whitelist = %w(127.0.0.1 localhost)
+    page.driver.browser.url_whitelist = %w[127.0.0.1 localhost]
   end
 
   config.include FactoryBot::Syntax::Methods

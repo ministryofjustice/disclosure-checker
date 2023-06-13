@@ -9,12 +9,12 @@ class CheckPresenter
   end
 
   def to_partial_path
-    [scope, 'shared', 'check_row'].join('/')
+    [scope, "shared", "check_row"].join("/")
   end
 
-  private
+private
 
   def results_item
-    @_results_item ||= ResultsItemPresenter.build(disclosure_check, scope: scope)
+    @_results_item ||= ResultsItemPresenter.build(disclosure_check, scope:)
   end
 end

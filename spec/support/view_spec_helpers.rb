@@ -1,11 +1,11 @@
 module ViewSpecHelpers
   module ControllerViewHelpers
     def current_disclosure_check
-      raise 'Stub `current_disclosure_check` if you want to test the behavior.'
+      raise "Stub `current_disclosure_check` if you want to test the behavior."
     end
 
     def current_disclosure_report
-      raise 'Stub `current_disclosure_report` if you want to test the behavior.'
+      raise "Stub `current_disclosure_report` if you want to test the behavior."
     end
   end
 

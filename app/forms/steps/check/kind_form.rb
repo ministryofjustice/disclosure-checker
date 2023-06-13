@@ -9,7 +9,7 @@ module Steps
 
       validates_inclusion_of :kind, in: choices
 
-      private
+    private
 
       def changed?
         disclosure_check.kind != kind

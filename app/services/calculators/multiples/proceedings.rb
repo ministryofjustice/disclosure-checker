@@ -40,11 +40,9 @@ module Calculators
 
       # When there are more than one sentence (checks),
       # all will share the same conviction date.
-      def conviction_date
-        first_disclosure_check.conviction_date
-      end
+      delegate :conviction_date, to: :first_disclosure_check
 
-      private
+    private
 
       def disclosure_checks
         @_disclosure_checks ||= check_group.disclosure_checks.completed
