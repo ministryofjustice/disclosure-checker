@@ -12,7 +12,7 @@ RSpec.describe ConvictionDecisionTree do
     )
   end
 
-  let(:step_params)        { verifying_double("Step") }
+  let(:step_params)        { instance_double("Step") }
   let(:next_step)          { nil }
   let(:as)                 { nil }
   let(:conviction_type)    { nil }

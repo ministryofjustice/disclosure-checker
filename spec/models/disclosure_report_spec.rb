@@ -34,11 +34,9 @@ RSpec.describe DisclosureReport, type: :model do
     end
 
     it "marks the application as completed" do
-      report_spy = verifying_double(report).as_null_object
-
       expect(
-        report_spy,
-      ).to receive(:update!).and_call_original.with(
+        report,
+      ).to receive(:update!).with(
         status: :completed, completed_at: Time.zone.at(123),
       ).and_return(true)
 
@@ -47,7 +45,7 @@ RSpec.describe DisclosureReport, type: :model do
   end
 
   describe "#disclosure_checks_count" do
-    let(:collection_scope) { verifying_double("collection") }
+    let(:collection_scope) { instance_double("collection") }
 
     before do
       allow(report).to receive(:disclosure_checks).and_return(collection_scope) # rubocop:disable RSpec/SubjectStub
@@ -60,7 +58,7 @@ RSpec.describe DisclosureReport, type: :model do
   end
 
   context "when convenience query methods" do
-    let(:collection_scope) { verifying_double("collection") }
+    let(:collection_scope) { instance_double("collection") }
 
     before do
       allow(report).to receive(:disclosure_checks).and_return(collection_scope) # rubocop:disable RSpec/SubjectStub

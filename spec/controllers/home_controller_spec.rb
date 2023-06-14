@@ -44,7 +44,7 @@ RSpec.describe HomeController, type: :controller do
 
           it "resets the memoized `current_disclosure_check`" do
             # simulate memoization
-            controller.instance_variable_set(:@_current_disclosure_check, existing_disclosure_check)
+            controller.instance_variable_set(:@current_disclosure_check, existing_disclosure_check)
             expect(controller.current_disclosure_check).not_to be_nil
 
             get :index, session: { disclosure_check_id: existing_disclosure_check.id }, params: { new: "y" }

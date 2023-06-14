@@ -39,7 +39,7 @@ RSpec.describe Steps::Conviction::ConvictionTypeForm do
       let(:conviction_type) { "discharge" }
 
       it "saves the record" do
-        allow(disclosure_check).to receive(:update).with(
+        allow(disclosure_check).to receive(:update!).with(
           conviction_type: "discharge",
           # Dependent attributes to be reset
           conviction_subtype: nil,

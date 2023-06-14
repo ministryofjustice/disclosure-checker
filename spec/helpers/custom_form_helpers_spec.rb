@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe CustomFormHelpers, type: :helper do
-  let(:form_object) { verifying_double("FormObject") }
+  let(:form_object) { instance_double("FormObject") }
 
   let(:builder) do
     GOVUKDesignSystemFormBuilder::FormBuilder.new(
@@ -14,7 +14,7 @@ RSpec.describe CustomFormHelpers, type: :helper do
 
   describe "#continue_button" do
     let(:expected_markup) { '<button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true">Continue</button>' }
-    let(:template) { verifying_double("template", params:) }
+    let(:template) { instance_double("template", params:) }
 
     before do
       allow(builder).to receive(:template).and_return(template)
@@ -46,7 +46,7 @@ RSpec.describe CustomFormHelpers, type: :helper do
       it "outputs the govuk continue button with the next step hidden tag" do
         expect(
           template,
-        ).to receive(:hidden_field_tag).and_call_original.with(
+        ).to receive(:hidden_field_tag).with(
           :next_step, "/steps/check/check_your_answers"
         ).and_return("<hidden_tag_here>".html_safe)
 
@@ -86,7 +86,7 @@ RSpec.describe CustomFormHelpers, type: :helper do
   end
 
   describe "#i18n_hint" do
-    let(:found_locale) { verifying_double("locale") }
+    let(:found_locale) { instance_double("locale") }
 
     before do
       allow(form_object).to receive(:i18n_attribute).and_return(:foobar)

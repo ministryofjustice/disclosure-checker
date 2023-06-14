@@ -35,7 +35,7 @@ RSpec.describe Steps::Check::RemoveCheckForm do
       let(:answer_value) { "yes" }
 
       it "deletes the record" do
-        expect(disclosure_check).to receive(:destroy)
+        expect(disclosure_check).to receive(:destroy!)
         allow(disclosure_check).to receive(:destroyed?).and_return(true)
 
         expect(described_class.new(arguments).save).to be(true)

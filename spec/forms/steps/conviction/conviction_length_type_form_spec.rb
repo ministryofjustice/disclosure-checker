@@ -73,7 +73,7 @@ RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
       it_behaves_like "a value object form", attribute_name: :conviction_length_type, example_value: "weeks"
 
       it "saves the record" do
-        allow(disclosure_check).to receive(:update).with(
+        allow(disclosure_check).to receive(:update!).with(
           conviction_length_type:,
           # Dependent attributes to be reset
           conviction_length: nil,

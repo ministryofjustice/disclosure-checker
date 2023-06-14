@@ -44,7 +44,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   end
 
   describe "#step_header" do
-    let(:form_object) { verifying_double("Form object") }
+    let(:form_object) { instance_double("Form object") }
 
     it "renders the expected content" do
       allow(helper).to receive(:render).with(partial: "layouts/step_header", locals: { path: "/foo/bar" }).and_return("foobar")
@@ -154,7 +154,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
   describe "#any_completed_checks?" do
     let(:disclosure_report) { instance_double(DisclosureReport) }
-    let(:disclosure_checks) { verifying_double("result_set", completed: checks) }
+    let(:disclosure_checks) { instance_double("result_set", completed: checks) }
 
     before do
       allow(disclosure_report).to receive(:disclosure_checks).and_return(disclosure_checks)

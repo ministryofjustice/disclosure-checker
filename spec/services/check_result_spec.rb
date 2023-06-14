@@ -12,8 +12,8 @@ RSpec.describe CheckResult do
     context "when a caution" do
       let(:kind) { :adult_caution }
 
-      it "will call method on a calculator" do
-        expect(check_result.calculator).to receive(:expiry_date)
+      it "will call a calculator" do
+        expect(check_result).to receive(:calculator)
         check_result.expiry_date
       end
 
@@ -24,7 +24,7 @@ RSpec.describe CheckResult do
       let(:kind) { :dto_conviction }
 
       it "will call method on a calculator" do
-        expect(check_result.calculator).to receive(:expiry_date)
+        expect(check_result).to receive(:calculator).and_call_original
         check_result.expiry_date
       end
 

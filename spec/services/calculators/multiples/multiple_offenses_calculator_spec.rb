@@ -8,7 +8,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
   subject(:calculator) { described_class.new(disclosure_report) }
 
   let(:disclosure_report) { instance_double(DisclosureReport, check_groups: groups_result_set, completed?: true) }
-  let(:groups_result_set) { verifying_double("groups_result_set", with_completed_checks: [check_group1, check_group2]) }
+  let(:groups_result_set) { double("groups_result_set", with_completed_checks: [check_group1, check_group2]) }
 
   let(:check_group1) { instance_double(CheckGroup, disclosure_checks: [disclosure_check1, disclosure_check2]) }
   let(:check_group2) { instance_double(CheckGroup, disclosure_checks: [disclosure_check3]) }
@@ -555,11 +555,10 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     let(:conviction_2) { Calculators::Multiples::Proceedings.new(check_group2) }
 
     before do
-      calculator_spy = verifying_double(calculator).as_null_object
-      allow(calculator_spy).to receive(:proceedings).and_return([conviction_1, conviction_2])
+      allow(calculator).to receive(:proceedings).and_return([conviction_1, conviction_2])
 
-      allow(calculator_spy).to receive(:spent_date).and_return(spent_dates[0])
-      allow(calculator_spy).to receive(:spent_date).and_return(spent_dates[1])
+      allow(conviction_1).to receive(:spent_date).and_return(spent_dates[0])
+      allow(conviction_2).to receive(:spent_date).and_return(spent_dates[1])
     end
 
     context "when there is an offence that will never be spent" do

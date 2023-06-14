@@ -33,7 +33,7 @@ private
     session[:disclosure_check_id] = current_disclosure_report.disclosure_checks.find_by!(id: other_check_id).id
 
     # ensure we don't have a memoized record anymore
-    @_current_disclosure_check = nil
+    @current_disclosure_check = nil
   end
 
   def reset_disclosure_check_session
@@ -41,7 +41,7 @@ private
     session.delete(:last_seen)
 
     # ensure we don't have a memoized record anymore
-    @_current_disclosure_check = nil
+    @current_disclosure_check = nil
   end
 
   def initialize_disclosure_check(attributes = {})

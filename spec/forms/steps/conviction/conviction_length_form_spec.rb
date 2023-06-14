@@ -36,7 +36,7 @@ RSpec.describe Steps::Conviction::ConvictionLengthForm do
   describe "#save" do
     context "when form is valid" do
       it "saves the record" do
-        allow(disclosure_check).to receive(:update).with(
+        allow(disclosure_check).to receive(:update!).with(
           conviction_length:,
         ).and_return(true)
 

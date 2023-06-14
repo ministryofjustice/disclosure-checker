@@ -48,7 +48,7 @@ RSpec.describe Steps::Caution::CautionTypeForm do
 
     context "when form is valid" do
       it "saves the record" do
-        allow(disclosure_check).to receive(:update).with(
+        allow(disclosure_check).to receive(:update!).with(
           caution_type:,
           # Dependent attributes to be reset
           known_date: nil,

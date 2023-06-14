@@ -31,8 +31,7 @@ RSpec.describe DisclosureCheck, type: :model do
 
   describe "#drag_through?" do
     it "delegates to the conviction" do
-      spy = verifying_double(disclosure_check).as_null_object
-      expect(spy).to receive(:conviction)
+      expect(disclosure_check).to receive(:conviction)
       disclosure_check.drag_through?
     end
   end

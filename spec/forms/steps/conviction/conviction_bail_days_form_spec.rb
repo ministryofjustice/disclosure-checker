@@ -15,7 +15,7 @@ RSpec.describe Steps::Conviction::ConvictionBailDaysForm do
   describe "#save" do
     context "when form is valid" do
       it "saves the record" do
-        allow(disclosure_check).to receive(:update).with(
+        allow(disclosure_check).to receive(:update!).with(
           conviction_bail_days:,
         ).and_return(true)
 

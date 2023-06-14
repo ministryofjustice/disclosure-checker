@@ -10,7 +10,7 @@ class DummyStepController < StepController
   end
 end
 
-RSpec.describe StepController, type: :controller do
+RSpec.describe DummyStepController, type: :controller do
   subject(:controller) { described_class.new }
 
   before do

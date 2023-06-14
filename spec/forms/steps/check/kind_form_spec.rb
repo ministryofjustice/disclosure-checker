@@ -28,7 +28,7 @@ RSpec.describe Steps::Check::KindForm do
       let(:kind) { "caution" }
 
       it "saves the record" do
-        allow(disclosure_check).to receive(:update).with(
+        allow(disclosure_check).to receive(:update!).with(
           kind: "caution",
           # Dependent attributes to be reset
           under_age: nil,

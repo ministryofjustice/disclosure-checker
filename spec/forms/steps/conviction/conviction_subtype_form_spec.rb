@@ -42,7 +42,7 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
       let(:conviction_subtype) { "referral_order" }
 
       it "saves the record" do
-        allow(disclosure_check).to receive(:update).with(
+        allow(disclosure_check).to receive(:update!).with(
           conviction_subtype:,
           # Dependent attributes to be reset
           known_date: nil,
