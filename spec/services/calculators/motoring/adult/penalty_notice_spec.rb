@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Calculators::Motoring::Adult::PenaltyNotice do
-  subject { described_class.new(disclosure_check) }
+  subject(:calculator) { described_class.new(disclosure_check) }
 
   let(:disclosure_check) do
     build(:disclosure_check,
@@ -14,6 +14,6 @@ RSpec.describe Calculators::Motoring::Adult::PenaltyNotice do
   let(:known_date) { Date.new(2018, 10, 31) }
 
   describe "#expiry_date" do
-    it { expect(subject.expiry_date.to_s).to eq("2023-10-31") }
+    it { expect(calculator.expiry_date.to_s).to eq("2023-10-31") }
   end
 end

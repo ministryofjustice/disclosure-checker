@@ -14,7 +14,7 @@ RSpec.describe "I18n" do
   # so we don't inadvertently update just one place but not the other.
   # It doesn't matter the order of the keys in the locales, what matters is the content.
   #
-  context "shared dictionaries sanity checks" do
+  describe "shared dictionaries sanity checks" do
     it "caution types in `helpers.yml` match caution types in `results.yml`" do
       expect(
         i18n.tree("en.helpers/dictionary.CAUTION_TYPES").to_hash,

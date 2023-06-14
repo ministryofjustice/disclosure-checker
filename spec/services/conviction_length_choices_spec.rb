@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe ConvictionLengthChoices do
-  subject { described_class.choices(conviction_subtype:) }
+  subject(:choices) { described_class.choices(conviction_subtype:) }
 
   let(:all_choices) do
     [
@@ -50,61 +50,61 @@ RSpec.describe ConvictionLengthChoices do
   end
 
   describe ".choices" do
-    context "youth custodial sentence detention" do
+    context "when youth custodial sentence detention" do
       let(:conviction_subtype) { ConvictionType::DETENTION }
 
       it "excludes `no_length` and `indefinite` in the choices" do
-        expect(subject).to eq(all_choices_except_no_length)
+        expect(choices).to eq(all_choices_except_no_length)
       end
     end
 
-    context "youth custodial sentence detention training order" do
+    context "when youth custodial sentence detention training order" do
       let(:conviction_subtype) { ConvictionType::DETENTION_TRAINING_ORDER }
 
       it "excludes `no_length` and `indefinite` in the choices" do
-        expect(subject).to eq(all_choices_except_no_length)
+        expect(choices).to eq(all_choices_except_no_length)
       end
     end
 
-    context "adult custodial prison sentence" do
+    context "when adult custodial prison sentence" do
       let(:conviction_subtype) { ConvictionType::ADULT_PRISON_SENTENCE }
 
       it "excludes `no_length` and `indefinite` in the choices" do
-        expect(subject).to eq(all_choices_except_no_length)
+        expect(choices).to eq(all_choices_except_no_length)
       end
     end
 
-    context "adult custodial suspended prison sentence" do
+    context "when adult custodial suspended prison sentence" do
       let(:conviction_subtype) { ConvictionType::ADULT_SUSPENDED_PRISON_SENTENCE }
 
       it "excludes `no_length` and `indefinite` in the choices" do
-        expect(subject).to eq(all_choices_except_no_length)
+        expect(choices).to eq(all_choices_except_no_length)
       end
     end
 
     # just a few, no need to test all of them
     #
-    context "youth prevention and reparation orders" do
+    context "when youth prevention and reparation orders" do
       let(:conviction_subtype) { ConvictionType::SEXUAL_HARM_PREVENTION_ORDER }
 
       it "includes `no_length` and `indefinite` in the choices" do
-        expect(subject).to eq(all_choices)
+        expect(choices).to eq(all_choices)
       end
     end
 
-    context "bind over convictions" do
+    context "when bind over convictions" do
       let(:conviction_subtype) { ConvictionType::BIND_OVER }
 
       it "includes `no_length` and `indefinite` in the choices" do
-        expect(subject).to eq(all_choices)
+        expect(choices).to eq(all_choices)
       end
     end
 
-    context "adult bind over convictions" do
+    context "when adult bind over convictions" do
       let(:conviction_subtype) { ConvictionType::ADULT_BIND_OVER }
 
       it "includes `no_length` and `indefinite` in the choices" do
-        expect(subject).to eq(all_choices)
+        expect(choices).to eq(all_choices)
       end
     end
   end

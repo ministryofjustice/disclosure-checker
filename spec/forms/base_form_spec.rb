@@ -1,21 +1,23 @@
 require "spec_helper"
 
 RSpec.describe BaseForm do
+  subject(:form) { described_class.new }
+
   describe "#persisted?" do
     it "always returns false" do
-      expect(subject.persisted?).to eq(false)
+      expect(form.persisted?).to eq(false)
     end
   end
 
   describe "#new_record?" do
     it "always returns true" do
-      expect(subject.new_record?).to eq(true)
+      expect(form.new_record?).to eq(true)
     end
   end
 
   describe "#to_key" do
     it "always returns nil" do
-      expect(subject.to_key).to be_nil
+      expect(form.to_key).to be_nil
     end
   end
 
@@ -23,12 +25,13 @@ RSpec.describe BaseForm do
     let(:disclosure_check) { instance_double(DisclosureCheck) }
 
     before do
-      subject.disclosure_check = disclosure_check
+      form.disclosure_check = disclosure_check
     end
 
     it "read the attribute directly without using the method" do
-      expect(subject).not_to receive(:disclosure_check)
-      expect(subject[:disclosure_check]).to eq(disclosure_check)
+      form_spy = verifying_spy(form)
+      expect(form_spy).not_to receive(:disclosure_check)
+      expect(form[:disclosure_check]).to eq(disclosure_check)
     end
   end
 
@@ -36,9 +39,10 @@ RSpec.describe BaseForm do
     let(:disclosure_check) { instance_double(DisclosureCheck) }
 
     it "assigns the attribute directly without using the method" do
-      expect(subject).not_to receive(:disclosure_check=)
-      subject[:disclosure_check] = disclosure_check
-      expect(subject.disclosure_check).to eq(disclosure_check)
+      form_spy = verifying_spy(form)
+      expect(form_spy).not_to receive(:disclosure_check=)
+      form[:disclosure_check] = disclosure_check
+      expect(form.disclosure_check).to eq(disclosure_check)
     end
   end
 
@@ -50,12 +54,12 @@ RSpec.describe BaseForm do
     end
 
     before do
-      allow(subject).to receive(:disclosure_check).and_return(disclosure_check)
+      form.disclosure_check = disclosure_check
     end
 
     describe "#conviction_subtype" do
       it "returns the value object constant" do
-        expect(subject.conviction_subtype).to eq(ConvictionType::REFERRAL_ORDER)
+        expect(form.conviction_subtype).to eq(ConvictionType::REFERRAL_ORDER)
       end
     end
   end

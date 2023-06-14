@@ -1,21 +1,17 @@
 require "rails_helper"
 
 RSpec.describe ValueObject do
-  class FooValue < ValueObject; end
-  class BarValue < ValueObject; end
+  subject { described_class.new(value) }
 
-  subject     { described_class.new(value) }
-
+  let(:foo_value) { Class.new(described_class) }
+  let(:bar_value) { Class.new(described_class) }
   let(:value) { "Hello!" }
+  let(:foo_one)      { foo_value.new("one") }
+  let(:also_foo_one) { foo_value.new("one") }
+  let(:foo_two)      { foo_value.new("two") }
+  let(:bar_one)      { bar_value.new("one") }
 
-  let(:foo_one)      { FooValue.new("one") }
-  let(:also_foo_one) { FooValue.new("one") }
-  let(:foo_two)      { FooValue.new("two") }
-  let(:bar_one)      { BarValue.new("one") }
-
-  it "is immutable" do
-    expect(subject).to be_frozen
-  end
+  it { is_expected.to be_frozen }
 
   describe "#==" do
     it "considers same class/same value equal" do

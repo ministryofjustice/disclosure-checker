@@ -18,14 +18,14 @@ RSpec.describe DisclosureCheckerApp::Status do
 
   describe "#service_status" do
     before do
-      allow(subject).to receive(:database_status).and_return(database_status)
+      allow(check).to receive(:database_status).and_return(database_status)
     end
 
     context 'when database_status is "ok"' do
       let(:database_status) { "ok" }
 
       it "returns ok" do
-        expect(subject.send(:service_status)).to eq("ok")
+        expect(check.send(:service_status)).to eq("ok")
       end
     end
 
@@ -33,13 +33,13 @@ RSpec.describe DisclosureCheckerApp::Status do
       let(:database_status) { "failed" }
 
       it "returns failed" do
-        expect(subject.send(:service_status)).to eq("failed")
+        expect(check.send(:service_status)).to eq("failed")
       end
     end
   end
 
   describe "#success?" do
-    context "for a success result" do
+    context "when service status is 'ok" do
       it "returns true" do
         expect(check.success?).to eq(true)
       end
@@ -47,20 +47,20 @@ RSpec.describe DisclosureCheckerApp::Status do
   end
 
   describe "#result" do
-    context "database available" do
+    context "when database available" do
       before do
-        expect(ActiveRecord::Base).to receive(:connection).and_call_original
+        allow(ActiveRecord::Base).to receive(:connection).and_call_original
       end
 
       specify { expect(check.result).to eq(status) }
     end
 
-    context "database unavailable" do
+    context "when database unavailable" do
       let(:service_status) { "failed" }
       let(:database_status) { "failed" }
 
       before do
-        expect(ActiveRecord::Base).to receive(:connection).and_return(nil)
+        allow(ActiveRecord::Base).to receive(:connection).and_return(nil)
       end
 
       specify { expect(check.result).to eq(status) }

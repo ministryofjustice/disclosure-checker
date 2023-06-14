@@ -10,7 +10,9 @@ class DummyStepController < StepController
   end
 end
 
-RSpec.describe DummyStepController, type: :controller do
+RSpec.describe StepController, type: :controller do
+  subject(:controller) { described_class.new }
+
   before do
     Rails.application.routes.draw do
       get "/dummy_step" => "dummy_step#show"
@@ -77,7 +79,7 @@ RSpec.describe DummyStepController, type: :controller do
       let(:navigation_stack) { [] }
 
       it "returns the root path" do
-        expect(subject.previous_step_path).to eq("/")
+        expect(controller.previous_step_path).to eq("/")
       end
     end
 
@@ -86,7 +88,7 @@ RSpec.describe DummyStepController, type: :controller do
 
       it "returns the element before the current page" do
         # Not '/the', as we've performed a page load and thus added '/dummy_page' at the end
-        expect(subject.previous_step_path).to eq("/rainbow")
+        expect(controller.previous_step_path).to eq("/rainbow")
       end
     end
   end
@@ -95,7 +97,7 @@ RSpec.describe DummyStepController, type: :controller do
   # is quite self contained it makes sense to test it in isolation.
   #
   describe "#normalise_date_attributes!" do
-    let(:normalised_attributes) { subject.send(:normalise_date_attributes!, parameters) }
+    let(:normalised_attributes) { controller.send(:normalise_date_attributes!, parameters) }
     let(:extra_parameters) { { foo: "bar", another: "attribute" } }
 
     context "when there are not multi param dates" do

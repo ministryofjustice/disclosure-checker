@@ -7,11 +7,11 @@ RSpec.describe Steps::Check::UnderAgeForm do
     let(:disclosure_check) { DisclosureCheck.new(kind: "conviction") }
 
     before do
-      subject.disclosure_check = disclosure_check
+      form.disclosure_check = disclosure_check
     end
 
     it "returns the key that will be used to translate legends and hints" do
-      expect(subject.i18n_attribute).to eq("conviction")
+      expect(form.i18n_attribute).to eq("conviction")
     end
   end
 end

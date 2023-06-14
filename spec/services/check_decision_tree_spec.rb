@@ -13,7 +13,7 @@ RSpec.describe CheckDecisionTree do
     build(:disclosure_check, kind:, under_age:, disclosure_report:)
   end
 
-  let(:step_params)      { double("Step") }
+  let(:step_params)      { verifying_double("Step") }
   let(:next_step)        { nil }
   let(:as)               { nil }
   let(:kind)             { nil }
@@ -34,13 +34,13 @@ RSpec.describe CheckDecisionTree do
     context "and answer is `no`" do
       let(:under_age) { GenericYesNo::NO }
 
-      context "for a caution check" do
+      context "when a caution check" do
         let(:kind) { "caution" }
 
         it { is_expected.to have_destination("/steps/caution/caution_type", :edit) }
       end
 
-      context "for a conviction check" do
+      context "when a conviction check" do
         let(:kind) { "conviction" }
 
         it { is_expected.to have_destination("/steps/conviction/conviction_date", :edit) }
@@ -50,13 +50,13 @@ RSpec.describe CheckDecisionTree do
     context "and answer is `yes`" do
       let(:under_age) { GenericYesNo::YES }
 
-      context "for a caution check" do
+      context "when a caution check" do
         let(:kind) { "caution" }
 
         it { is_expected.to have_destination("/steps/caution/caution_type", :edit) }
       end
 
-      context "for a conviction check" do
+      context "when a conviction check" do
         let(:kind) { "conviction" }
 
         it { is_expected.to have_destination("/steps/conviction/conviction_date", :edit) }

@@ -13,7 +13,7 @@ RSpec.describe CautionDecisionTree do
 
   let(:caution_type) { nil }
   let(:under_age)    { nil }
-  let(:step_params)  { double("Step") }
+  let(:step_params)  { verifying_double("Step") }
   let(:next_step)    { nil }
   let(:as)           { nil }
 

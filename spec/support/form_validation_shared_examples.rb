@@ -93,7 +93,7 @@ RSpec.shared_examples "a yes-no question form" do |options|
       let(:additional_attributes) { attributes_to_reset(reset_when_yes).merge(linked_attributes) }
 
       it "saves the record" do
-        expect(disclosure_check).to receive(:update).with(
+        allow(disclosure_check).to receive(:update).with(
           { options[:attribute_name] => GenericYesNo::YES }.merge(additional_attributes),
         ).and_return(true)
         expect(described_class.new(arguments).save).to be(true)
@@ -105,9 +105,9 @@ RSpec.shared_examples "a yes-no question form" do |options|
       let(:additional_attributes) { attributes_to_reset(reset_when_no) }
 
       it "saves the record" do
-        expect(disclosure_check).to receive(:update).with(hash_including(
-                                                            { options[:attribute_name] => GenericYesNo::NO }.merge(additional_attributes),
-                                                          )).and_return(true)
+        allow(disclosure_check).to receive(:update).with(hash_including(
+                                                           { options[:attribute_name] => GenericYesNo::NO }.merge(additional_attributes),
+                                                         )).and_return(true)
         expect(described_class.new(arguments).save).to be(true)
       end
     end
@@ -115,7 +115,7 @@ RSpec.shared_examples "a yes-no question form" do |options|
 end
 
 RSpec.shared_examples "a date question form" do |options|
-  subject { described_class.new(arguments) }
+  subject(:form) { described_class.new(arguments) }
 
   let(:question_attribute) { options[:attribute_name] }
   let(:approximate_attribute) { ["approximate", question_attribute].join("_").to_sym }
@@ -144,7 +144,7 @@ RSpec.shared_examples "a date question form" do |options|
       end
     end
 
-    context "date validation" do
+    context "when validating date" do
       context "when date is not given" do
         let(:date_value) { nil }
 
@@ -210,7 +210,7 @@ RSpec.shared_examples "a date question form" do |options|
       end
     end
 
-    context "casting the date from multi parameters" do
+    context "when casting the date from multi parameters" do
       context "when date is valid" do
         let(:date_value) { [nil, 2008, 11, 22] }
 
@@ -234,7 +234,7 @@ RSpec.shared_examples "a date question form" do |options|
 
     context "when form is valid" do
       it "saves the record" do
-        expect(disclosure_check).to receive(:update).with(
+        allow(disclosure_check).to receive(:update).with(
           question_attribute => 3.months.ago.to_date,
           approximate_attribute => true,
         ).and_return(true)

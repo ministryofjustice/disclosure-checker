@@ -68,7 +68,7 @@ RSpec.describe HomeController, type: :controller do
       end
 
       context "with not enough steps advanced" do
-        let(:navigation_stack) { %w[/1] }
+        let(:navigation_stack) { ["/1"] }
 
         before do
           allow(controller.helpers).to receive(:any_completed_checks?).and_return(any_completed_checks)
@@ -108,7 +108,6 @@ RSpec.describe HomeController, type: :controller do
     end
 
     context "when no disclosure check exists in session" do
-      let!(:existing_disclosure_check) { nil }
       let(:navigation_stack) { [] }
 
       it "redirects to /steps/check/kind" do

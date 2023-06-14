@@ -4,7 +4,7 @@ RSpec.describe Steps::Check::RemoveCheckForm do
   # NOTE: not using the shared examples for 'a yes-no question form' because
   # we are performing a custom override of the `#persist!` method.
 
-  subject { described_class.new(arguments) }
+  subject(:form) { described_class.new(arguments) }
 
   let(:question_attribute) { :remove_check }
   let(:answer_value) { "yes" }
@@ -36,7 +36,7 @@ RSpec.describe Steps::Check::RemoveCheckForm do
 
       it "deletes the record" do
         expect(disclosure_check).to receive(:destroy)
-        expect(disclosure_check).to receive(:destroyed?).and_return(true)
+        allow(disclosure_check).to receive(:destroyed?).and_return(true)
 
         expect(described_class.new(arguments).save).to be(true)
       end

@@ -1,11 +1,11 @@
 RSpec.describe CheckPresenter do
-  subject { described_class.new(disclosure_check, scope:) }
+  subject(:presenter) { described_class.new(disclosure_check, scope:) }
 
   let(:disclosure_check) { instance_double(DisclosureCheck) }
   let(:scope) { "foobar" }
 
   describe "#to_partial_path" do
-    it { expect(subject.to_partial_path).to eq("foobar/shared/check_row") }
+    it { expect(presenter.to_partial_path).to eq("foobar/shared/check_row") }
   end
 
   describe "#summary" do
@@ -18,7 +18,7 @@ RSpec.describe CheckPresenter do
 
     it "returns the items from the `ResultsItemPresenter`" do
       expect(ResultsItemPresenter).to receive(:build).with(disclosure_check, scope:)
-      expect(subject.summary).to eq(item_summary)
+      expect(presenter.summary).to eq(item_summary)
     end
   end
 end

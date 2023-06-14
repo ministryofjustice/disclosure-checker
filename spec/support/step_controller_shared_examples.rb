@@ -42,13 +42,13 @@ RSpec.shared_examples "a generic step controller" do |form_class, decision_tree_
 
       context "when the form saves successfully" do
         before do
-          expect(form_object).to receive(:save).and_return(true)
+          allow(form_object).to receive(:save).and_return(true)
         end
 
         let(:decision_tree) { instance_double(decision_tree_class, destination: "/expected_destination") }
 
         it "asks the decision tree for the next destination and redirects there" do
-          expect(decision_tree_class).to receive(:new).and_return(decision_tree)
+          allow(decision_tree_class).to receive(:new).and_return(decision_tree)
           put :update, params: expected_params, session: { disclosure_check_id: existing_case.id }
           expect(subject).to redirect_to("/expected_destination")
         end
@@ -56,7 +56,7 @@ RSpec.shared_examples "a generic step controller" do |form_class, decision_tree_
 
       context "when the form fails to save" do
         before do
-          expect(form_object).to receive(:save).and_return(false)
+          allow(form_object).to receive(:save).and_return(false)
         end
 
         it "renders the question page again" do

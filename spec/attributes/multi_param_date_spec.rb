@@ -26,25 +26,25 @@ RSpec.describe MultiParamDate do
       it { expect(coerced_value).to eq(date) }
     end
 
-    context "the parts do not represent a valid date (invalid month)" do
+    context "and the parts do not represent a valid date (invalid month)" do
       let(:value) { [nil, date.year, 13, date.day] }
 
       it { expect(coerced_value).to be_nil }
     end
 
-    context "the parts do not represent a valid date (invalid day)" do
+    context "and the parts do not represent a valid date (invalid day)" do
       let(:value) { [nil, date.year, date.month, 32] }
 
       it { expect(coerced_value).to be_nil }
     end
 
-    context "any part is missing (zero)" do
+    context "and any part is missing (zero)" do
       let(:value) { [nil, date.year, 0, date.day] }
 
       it { expect(coerced_value).to be_nil }
     end
 
-    context "any part is missing (nil)" do
+    context "and any part is missing (nil)" do
       let(:value) { [nil, date.year, date.month, nil] }
 
       it { expect(coerced_value).to be_nil }

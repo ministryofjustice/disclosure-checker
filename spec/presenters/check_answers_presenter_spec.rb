@@ -1,21 +1,21 @@
 RSpec.describe CheckAnswersPresenter do
-  subject { described_class.new(disclosure_report) }
+  subject(:presenter) { described_class.new(disclosure_report) }
 
   let(:disclosure_check) { create(:disclosure_check, :dto_conviction, :completed) }
   let(:disclosure_report) { disclosure_check.disclosure_report }
 
   describe ".initialize" do
     it "processes the check groups (proceedings) for later use" do
-      expect(subject.calculator.proceedings).not_to be_empty
+      expect(presenter.calculator.proceedings).not_to be_empty
     end
   end
 
   describe "#scope" do
-    it { expect(subject.scope).to eq(:check_your_answers) }
+    it { expect(presenter.scope).to eq(:check_your_answers) }
   end
 
   describe "#summary" do
-    let(:summary) { subject.summary }
+    let(:summary) { presenter.summary }
     let(:spent_date) { "date" }
 
     context "when the report is completed" do

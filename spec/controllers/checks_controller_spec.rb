@@ -18,13 +18,7 @@ RSpec.describe ChecksController, type: :controller do
         allow(controller).to receive(:current_disclosure_check).and_return(disclosure_check)
       end
 
-      before(:context) do
-        # As we are creating some real records in these tests, ensure we always
-        # start with a clean database the following contexts.
-        DisclosureCheck.destroy_all
-      end
-
-      context "for a new check in a separate proceeding" do
+      context "with a new check in a separate proceeding" do
         it "creates a new disclosure check in a new group inside current disclosure report" do
           expect {
             post :create
@@ -46,19 +40,19 @@ RSpec.describe ChecksController, type: :controller do
         end
       end
 
-      context "for a new check in an existing proceeding" do
+      context "with a new check in an existing proceeding" do
         context "when the group does not exist" do
           it "raises an exception" do
             expect {
               post :create, params: { check_group_id: "123" }
-            }.to raise_error
+            }.to raise_error(ActiveRecord::RecordNotFound)
           end
         end
 
         it "creates a new disclosure check in an existing group" do
           expect {
             post :create, params: { check_group_id: disclosure_check.check_group_id }
-          }.not_to change { disclosure_report.check_groups.count }
+          }.not_to(change { disclosure_report.check_groups.count })
         end
 
         it "defaults some attributes" do

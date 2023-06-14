@@ -20,7 +20,7 @@ RSpec.describe StatusController, type: :controller do
       allow(DisclosureCheckerApp::Status).to receive(:new).and_return(status)
     end
 
-    context "for a healthy service" do
+    context "when a healthy service" do
       let(:success) { true }
 
       it "has a 200 response code" do
@@ -34,7 +34,7 @@ RSpec.describe StatusController, type: :controller do
       end
     end
 
-    context "for a non healthy service" do
+    context "when a non healthy service" do
       let(:success) { false }
 
       it "has a 503 response code" do

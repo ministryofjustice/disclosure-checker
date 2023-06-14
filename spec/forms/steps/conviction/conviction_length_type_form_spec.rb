@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
-  subject { described_class.new(arguments) }
+  subject(:form) { described_class.new(arguments) }
 
   let(:arguments) do
     {
@@ -17,7 +17,7 @@ RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
 
   describe "#i18n_attribute" do
     it "returns the key that will be used to translate legends and hints" do
-      expect(subject.i18n_attribute).to eq(ConvictionType.new(:youth_rehabilitation_order))
+      expect(form.i18n_attribute).to eq(ConvictionType.new(:youth_rehabilitation_order))
     end
   end
 
@@ -25,13 +25,13 @@ RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
   # the spec `spec/services/conviction_length_choices_spec.rb`
   #
   describe "#values" do
-    context "for a `Youth rehabilitation order`" do
+    context "when a `Youth rehabilitation order`" do
       it "includes `no_length` in the values" do
         expect(ConvictionLengthChoices).to receive(:choices).with(
           conviction_subtype: ConvictionType::YOUTH_REHABILITATION_ORDER,
         ).and_call_original
 
-        expect(subject.values).to eq(
+        expect(form.values).to eq(
           [
             ConvictionLengthType.new(:days),
             ConvictionLengthType.new(:weeks),
@@ -43,7 +43,7 @@ RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
       end
     end
 
-    context "for a `Youth referral order`" do
+    context "when a `Youth referral order`" do
       let(:conviction_subtype) { ConvictionType::REFERRAL_ORDER.to_s }
 
       it "includes `no_length` and `indefinite` in the values" do
@@ -51,7 +51,7 @@ RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
           conviction_subtype: ConvictionType::REFERRAL_ORDER,
         ).and_call_original
 
-        expect(subject.values).to eq(
+        expect(form.values).to eq(
           [
 
             ConvictionLengthType.new(:days),
@@ -73,13 +73,13 @@ RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
       it_behaves_like "a value object form", attribute_name: :conviction_length_type, example_value: "weeks"
 
       it "saves the record" do
-        expect(disclosure_check).to receive(:update).with(
+        allow(disclosure_check).to receive(:update).with(
           conviction_length_type:,
           # Dependent attributes to be reset
           conviction_length: nil,
         ).and_return(true)
 
-        expect(subject.save).to be(true)
+        expect(form.save).to be(true)
       end
 
       context "when conviction_length_type is already the same on the model" do
@@ -95,22 +95,22 @@ RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
 
         it "does not save the record but returns true" do
           expect(disclosure_check).not_to receive(:update)
-          expect(subject.save).to be(true)
+          expect(form.save).to be(true)
         end
       end
     end
 
-    context "Validation" do
+    describe "Validation" do
       context "when conviction_length_type is not given" do
         let(:conviction_length_type) { nil }
 
         it "returns false" do
-          expect(subject.save).to be(false)
+          expect(form.save).to be(false)
         end
 
         it "has a validation error on the field" do
-          expect(subject).not_to be_valid
-          expect(subject.errors.include?(:conviction_length_type)).to eq(true)
+          expect(form).not_to be_valid
+          expect(form.errors.include?(:conviction_length_type)).to eq(true)
         end
       end
     end

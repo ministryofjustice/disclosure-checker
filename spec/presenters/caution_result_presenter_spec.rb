@@ -1,5 +1,5 @@
 RSpec.describe CautionResultPresenter do
-  subject { described_class.new(disclosure_check, scope:) }
+  subject(:presenter) { described_class.new(disclosure_check, scope:) }
 
   let(:disclosure_check) { build(:disclosure_check, :youth_simple_caution) }
   let(:scope) { "results" }
@@ -9,21 +9,21 @@ RSpec.describe CautionResultPresenter do
   end
 
   describe "#scope" do
-    it { expect(subject.scope).to eq([scope, "caution"]) }
+    it { expect(presenter.scope).to eq([scope, "caution"]) }
   end
 
   describe "#kind" do
-    it { expect(subject.kind).to eq("caution") }
+    it { expect(presenter.kind).to eq("caution") }
   end
 
   describe "#order_type" do
-    it { expect(subject.order_type).to eq("youth_simple_caution") }
+    it { expect(presenter.order_type).to eq("youth_simple_caution") }
   end
 
   describe "#summary" do
-    let(:summary) { subject.summary }
+    let(:summary) { presenter.summary }
 
-    context "for a youth simple caution" do
+    context "when a youth simple caution" do
       it "returns the correct question-answer pairs" do
         expect(summary.size).to eq(2)
 
@@ -37,7 +37,7 @@ RSpec.describe CautionResultPresenter do
       end
     end
 
-    context "for a youth conditional caution" do
+    context "when a youth conditional caution" do
       let(:disclosure_check) { build(:disclosure_check, :youth_conditional_caution) }
 
       it "returns the correct question-answer pairs" do
@@ -72,11 +72,11 @@ RSpec.describe CautionResultPresenter do
 
   describe "#expiry_date" do
     before do
-      allow_any_instance_of(CheckResult).to receive(:expiry_date).and_return("foobar")
+      allow_any_instance_of(CheckResult).to receive(:expiry_date).and_return("foobar") # rubocop:disable RSpec/AnyInstance
     end
 
     it "delegates the method to the calculator" do
-      expect(subject.expiry_date).to eq("foobar")
+      expect(presenter.expiry_date).to eq("foobar")
     end
   end
 end

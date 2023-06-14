@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Calculators::CompensationCalculator do
-  subject { described_class.new(disclosure_check) }
+  subject(:calculator) { described_class.new(disclosure_check) }
 
   describe "#expiry_date" do
     let(:disclosure_check) do
@@ -14,7 +14,7 @@ RSpec.describe Calculators::CompensationCalculator do
     let(:compensation_payment_date) { Date.new(2019, 4, 30) }
 
     it "returns compensation payment date" do
-      expect(subject.expiry_date.to_s).to eq(compensation_payment_date.to_s)
+      expect(calculator.expiry_date.to_s).to eq(compensation_payment_date.to_s)
     end
   end
 end

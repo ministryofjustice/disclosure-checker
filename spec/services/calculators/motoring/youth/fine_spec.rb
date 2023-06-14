@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Calculators::Motoring::Youth::Fine do
-  subject { described_class.new(disclosure_check) }
+  subject(:calculator) { described_class.new(disclosure_check) }
 
   let(:disclosure_check) do
     build(:disclosure_check,
@@ -18,11 +18,11 @@ RSpec.describe Calculators::Motoring::Youth::Fine do
     context "with a motoring endorsement" do
       let(:motoring_endorsement) { GenericYesNo::YES }
 
-      it { expect(subject.expiry_date.to_s).to eq((known_date + 30.months).to_s) }
+      it { expect(calculator.expiry_date.to_s).to eq((known_date + 30.months).to_s) }
     end
 
     context "without a motoring endorsement" do
-      it { expect(subject.expiry_date.to_s).to eq((known_date + 6.months).to_s) }
+      it { expect(calculator.expiry_date.to_s).to eq((known_date + 6.months).to_s) }
     end
   end
 end

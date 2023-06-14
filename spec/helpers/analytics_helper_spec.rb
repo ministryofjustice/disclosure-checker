@@ -21,13 +21,13 @@ RSpec.describe AnalyticsHelper, type: :helper do
       allow(controller.cookies).to receive(:[]).with("dc_cookies_consent").and_return(value)
     end
 
-    context "cookies has been accepted" do
+    context "when cookies has been accepted" do
       let(:value) { CookieSettingsForm::CONSENT_ACCEPT }
 
       it { expect(helper.analytics_consent_accepted?).to eq(true) }
     end
 
-    context "cookies has been rejected" do
+    context "when cookies has been rejected" do
       let(:value) { CookieSettingsForm::CONSENT_REJECT }
 
       it { expect(helper.analytics_consent_accepted?).to eq(false) }
@@ -76,8 +76,8 @@ RSpec.describe AnalyticsHelper, type: :helper do
       ).to eq("{\"id\":\"12345\",\"name\":\"caution\",\"sku\":\"caution\",\"quantity\":1}")
     end
 
-    context "custom dimensions" do
-      context "spent" do
+    context "when custom dimensions" do
+      context "and spent" do
         it "sets the transaction attributes to track" do
           helper.track_transaction(name: "whatever", dimensions: { spent: "yes" })
 
@@ -87,7 +87,7 @@ RSpec.describe AnalyticsHelper, type: :helper do
         end
       end
 
-      context "proceedings" do
+      context "when proceedings" do
         it "sets the transaction attributes to track" do
           helper.track_transaction(name: "whatever", dimensions: { proceedings: 3 })
 
@@ -97,7 +97,7 @@ RSpec.describe AnalyticsHelper, type: :helper do
         end
       end
 
-      context "orders" do
+      context "when orders" do
         it "sets the transaction attributes to track" do
           helper.track_transaction(name: "whatever", dimensions: { orders: 5 })
 
@@ -114,25 +114,25 @@ RSpec.describe AnalyticsHelper, type: :helper do
       allow(record).to receive(attr_name).and_return(attr_name)
     end
 
-    context "conviction_subtype is present" do
+    context "when conviction_subtype is present" do
       let(:attr_name) { "conviction_subtype" }
 
       it { expect(helper.transaction_sku).to eq(attr_name) }
     end
 
-    context "conviction_type is present" do
+    context "when conviction_type is present" do
       let(:attr_name) { "conviction_type" }
 
       it { expect(helper.transaction_sku).to eq(attr_name) }
     end
 
-    context "caution_type is present" do
+    context "when caution_type is present" do
       let(:attr_name) { "caution_type" }
 
       it { expect(helper.transaction_sku).to eq(attr_name) }
     end
 
-    context "kind is present" do
+    context "when kind is present" do
       let(:attr_name) { "kind" }
 
       it { expect(helper.transaction_sku).to eq(attr_name) }
@@ -140,13 +140,13 @@ RSpec.describe AnalyticsHelper, type: :helper do
   end
 
   describe "#transaction_sku when not enough steps have been completed" do
-    context "`current_disclosure_check` is not present" do
+    context "when `current_disclosure_check` is not present" do
       let(:record) { nil }
 
       it { expect(helper.transaction_sku).to eq("unknown") }
     end
 
-    context "`current_disclosure_check` is present, but `kind` is not present" do
+    context "when `current_disclosure_check` is present, but `kind` is not present" do
       let(:kind) { nil }
 
       it { expect(helper.transaction_sku).to eq("unknown") }
@@ -154,19 +154,19 @@ RSpec.describe AnalyticsHelper, type: :helper do
   end
 
   describe "#youth_check" do
-    context "`current_disclosure_check` is not present" do
+    context "when `current_disclosure_check` is not present" do
       let(:record) { nil }
 
       it { expect(helper.youth_check).to eq("unknown") }
     end
 
-    context "`current_disclosure_check` is present, but `under_age` is not present" do
+    context "when `current_disclosure_check` is present, but `under_age` is not present" do
       let(:under_age) { nil }
 
       it { expect(helper.youth_check).to eq("unknown") }
     end
 
-    context "`under_age` is present" do
+    context "when `under_age` is present" do
       let(:under_age) { "yes" }
 
       it { expect(helper.youth_check).to eq("yes") }

@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe Steps::Check::KindForm do
-  subject { described_class.new(arguments) }
+  subject(:form) { described_class.new(arguments) }
 
   let(:arguments) do
     {
@@ -28,7 +28,7 @@ RSpec.describe Steps::Check::KindForm do
       let(:kind) { "caution" }
 
       it "saves the record" do
-        expect(disclosure_check).to receive(:update).with(
+        allow(disclosure_check).to receive(:update).with(
           kind: "caution",
           # Dependent attributes to be reset
           under_age: nil,
@@ -38,7 +38,7 @@ RSpec.describe Steps::Check::KindForm do
           conviction_date: nil,
         ).and_return(true)
 
-        expect(subject.save).to be(true)
+        expect(form.save).to be(true)
       end
 
       context "when kind is already the same on the model" do
@@ -47,7 +47,7 @@ RSpec.describe Steps::Check::KindForm do
 
         it "does not save the record but returns true" do
           expect(disclosure_check).not_to receive(:update)
-          expect(subject.save).to be(true)
+          expect(form.save).to be(true)
         end
       end
     end

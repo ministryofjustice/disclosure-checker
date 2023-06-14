@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe ResultsVariant do
-  subject { described_class.new(value) }
+  subject(:results_variant) { described_class.new(value) }
 
   describe ".values" do
     it "returns all possible values" do
@@ -20,7 +20,7 @@ RSpec.describe ResultsVariant do
       let(:value) { "never_spent" }
 
       it "considers an infinity date" do
-        expect(subject.to_date).to eq(Date::Infinity.new)
+        expect(results_variant.to_date).to eq(Date::Infinity.new)
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe ResultsVariant do
       let(:value) { "indefinite" }
 
       it "considers a very far in the future date but not infinite" do
-        expect(subject.to_date).to eq(Date.new(2049, 1, 1))
+        expect(results_variant.to_date).to eq(Date.new(2049, 1, 1))
       end
     end
 
@@ -38,40 +38,40 @@ RSpec.describe ResultsVariant do
       let(:value) { "indefinite" }
 
       it "fails if the `indefinite` date is no longer in the future" do
-        expect(subject.to_date.future?).to be(true)
+        expect(results_variant.to_date.future?).to be(true)
       end
     end
   end
 
   describe "#spent?" do
-    context "for a SPENT variant" do
+    context "with a SPENT variant" do
       let(:value) { "spent" }
 
-      it { expect(subject.spent?).to eq(true) }
+      it { expect(results_variant.spent?).to eq(true) }
     end
 
-    context "for a SPENT_SIMPLE variant" do
+    context "with a SPENT_SIMPLE variant" do
       let(:value) { "spent_simple" }
 
-      it { expect(subject.spent?).to eq(true) }
+      it { expect(results_variant.spent?).to eq(true) }
     end
 
-    context "for a NOT_SPENT variant" do
+    context "with a NOT_SPENT variant" do
       let(:value) { "not_spent" }
 
-      it { expect(subject.spent?).to eq(false) }
+      it { expect(results_variant.spent?).to eq(false) }
     end
 
-    context "for a NEVER_SPENT variant" do
+    context "with a NEVER_SPENT variant" do
       let(:value) { "never_spent" }
 
-      it { expect(subject.spent?).to eq(false) }
+      it { expect(results_variant.spent?).to eq(false) }
     end
 
-    context "for a INDEFINITE variant" do
+    context "with a INDEFINITE variant" do
       let(:value) { "indefinite" }
 
-      it { expect(subject.spent?).to eq(false) }
+      it { expect(results_variant.spent?).to eq(false) }
     end
   end
 end

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe CheckResult do
-  subject { described_class.new(disclosure_check:) }
+  subject(:check_result) { described_class.new(disclosure_check:) }
 
   let(:disclosure_check) do
     build(:disclosure_check, kind,
@@ -9,33 +9,33 @@ RSpec.describe CheckResult do
   end
 
   describe "#expiry_date" do
-    context "for a caution" do
+    context "when a caution" do
       let(:kind) { :adult_caution }
 
-      it "will call a calculator" do
-        expect(subject).to receive(:calculator).and_call_original
-        subject.expiry_date
+      it "will call method on a calculator" do
+        expect(check_result.calculator).to receive(:expiry_date)
+        check_result.expiry_date
       end
 
-      it { expect(subject.calculator).to be_an_instance_of(Calculators::CautionCalculator) }
+      it { expect(check_result.calculator).to be_an_instance_of(Calculators::CautionCalculator) }
     end
 
-    context "for a conviction" do
+    context "when a conviction" do
       let(:kind) { :dto_conviction }
 
-      it "will call a calculator" do
-        expect(subject).to receive(:calculator).and_call_original
-        subject.expiry_date
+      it "will call method on a calculator" do
+        expect(check_result.calculator).to receive(:expiry_date)
+        check_result.expiry_date
       end
 
-      it { expect(subject.calculator).to be_an_instance_of(Calculators::SentenceCalculator::DetentionTraining) }
+      it { expect(check_result.calculator).to be_an_instance_of(Calculators::SentenceCalculator::DetentionTraining) }
     end
 
-    context "for an unknown `kind`" do
+    context "when an unknown `kind`" do
       let(:disclosure_check) { DisclosureCheck.new(kind: "foobar") }
 
       it "raises an exception" do
-        expect { expect(subject.calculator) }.to raise_error
+        expect { check_result.calculator }.to raise_error(RuntimeError)
       end
     end
   end

@@ -2,42 +2,42 @@ require "rails_helper"
 
 RSpec.describe ConvictionLengthType do
   describe "#without_length?" do
-    subject { described_class.new(value).without_length? }
+    subject(:without_length) { described_class.new(value).without_length? }
 
-    context "days" do
+    context "when days" do
       let(:value) { :days }
 
-      it { expect(subject).to eq(false) }
+      it { expect(without_length).to eq(false) }
     end
 
-    context "weeks" do
+    context "when weeks" do
       let(:value) { :weeks }
 
-      it { expect(subject).to eq(false) }
+      it { expect(without_length).to eq(false) }
     end
 
-    context "months" do
+    context "when months" do
       let(:value) { :months }
 
-      it { expect(subject).to eq(false) }
+      it { expect(without_length).to eq(false) }
     end
 
-    context "years" do
+    context "when years" do
       let(:value) { :years }
 
-      it { expect(subject).to eq(false) }
+      it { expect(without_length).to eq(false) }
     end
 
-    context "no_length" do
+    context "when no_length" do
       let(:value) { :no_length }
 
-      it { expect(subject).to eq(true) }
+      it { expect(without_length).to eq(true) }
     end
 
-    context "indefinite" do
+    context "when indefinite" do
       let(:value) { :indefinite }
 
-      it { expect(subject).to eq(true) }
+      it { expect(without_length).to eq(true) }
     end
   end
 

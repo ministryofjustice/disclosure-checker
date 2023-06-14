@@ -44,18 +44,18 @@ RSpec.describe ApplicationHelper, type: :helper do
   end
 
   describe "#step_header" do
-    let(:form_object) { double("Form object") }
+    let(:form_object) { verifying_double("Form object") }
 
     it "renders the expected content" do
-      expect(helper).to receive(:render).with(partial: "layouts/step_header", locals: { path: "/foo/bar" }).and_return("foobar")
+      allow(helper).to receive(:render).with(partial: "layouts/step_header", locals: { path: "/foo/bar" }).and_return("foobar")
       assign(:form_object, form_object)
 
       expect(helper.step_header).to eq("foobar")
     end
 
-    context "a specific path is provided" do
+    context "when a specific path is provided" do
       it "renders the back link with provided path" do
-        expect(helper).to receive(:render).with(partial: "layouts/step_header", locals: { path: "/another/step" }).and_return("foobar")
+        allow(helper).to receive(:render).with(partial: "layouts/step_header", locals: { path: "/another/step" }).and_return("foobar")
         assign(:form_object, form_object)
 
         expect(helper.step_header(path: "/another/step")).to eq("foobar")
@@ -111,13 +111,13 @@ RSpec.describe ApplicationHelper, type: :helper do
       helper.title(value)
     end
 
-    context "for a blank value" do
+    context "with a blank value" do
       let(:value) { "" }
 
       it { expect(title).to eq("Check when to disclose cautions or convictions - GOV.UK") }
     end
 
-    context "for a provided value" do
+    context "with a provided value" do
       let(:value) { "Test page" }
 
       it { expect(title).to eq("Test page - Check when to disclose cautions or convictions - GOV.UK") }
@@ -126,7 +126,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
   describe "#fallback_title" do
     before do
-      allow(Rails).to receive_message_chain(:application, :config, :consider_all_requests_local).and_return(false)
+      allow(Rails).to receive_message_chain(:application, :config, :consider_all_requests_local).and_return(false) # rubocop:disable RSpec/MessageChain
       allow(helper).to receive(:controller_name).and_return("my_controller")
       allow(helper).to receive(:action_name).and_return("an_action")
     end
@@ -154,20 +154,20 @@ RSpec.describe ApplicationHelper, type: :helper do
 
   describe "#any_completed_checks?" do
     let(:disclosure_report) { instance_double(DisclosureReport) }
-    let(:disclosure_checks) { double("result_set", completed: checks) }
+    let(:disclosure_checks) { verifying_double("result_set", completed: checks) }
 
     before do
       allow(disclosure_report).to receive(:disclosure_checks).and_return(disclosure_checks)
       allow(helper).to receive(:current_disclosure_report).and_return(disclosure_report)
     end
 
-    context "for no checks completed" do
+    context "when no checks completed" do
       let(:checks) { [] }
 
       it { expect(helper.any_completed_checks?).to eq(false) }
     end
 
-    context "for at least one check completed" do
+    context "when at least one check completed" do
       let(:checks) { [1] }
 
       it { expect(helper.any_completed_checks?).to eq(true) }
@@ -200,25 +200,25 @@ RSpec.describe ApplicationHelper, type: :helper do
 
   describe "dev_tools_enabled?" do
     before do
-      allow(Rails).to receive_message_chain(:env, :development?).and_return(development_env)
+      allow(Rails).to receive_message_chain(:env, :development?).and_return(development_env) # rubocop:disable RSpec/MessageChain
       allow(ENV).to receive(:key?).with("DEV_TOOLS_ENABLED").and_return(dev_tools_enabled)
     end
 
-    context "for development envs" do
+    context "with development envs" do
       let(:development_env) { true }
       let(:dev_tools_enabled) { nil }
 
       it { expect(helper.dev_tools_enabled?).to eq(true) }
     end
 
-    context "for envs that declare the `DEV_TOOLS_ENABLED` env variable" do
+    context "with envs that declare the `DEV_TOOLS_ENABLED` env variable" do
       let(:development_env) { false }
       let(:dev_tools_enabled) { true }
 
       it { expect(helper.dev_tools_enabled?).to eq(true) }
     end
 
-    context "for envs without `DEV_TOOLS_ENABLED` env variable" do
+    context "with envs without `DEV_TOOLS_ENABLED` env variable" do
       let(:development_env) { false }
       let(:dev_tools_enabled) { false }
 

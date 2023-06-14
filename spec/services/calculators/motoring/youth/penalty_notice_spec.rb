@@ -14,6 +14,6 @@ RSpec.describe Calculators::Motoring::Youth::PenaltyNotice do
   let(:known_date) { Date.new(2020, 1, 1) }
 
   describe "#expiry_date" do
-    it { expect(subject.expiry_date.to_s).to eq("2022-07-01") }
+    it { expect(calculator.expiry_date.to_s).to eq("2022-07-01") }
   end
 end

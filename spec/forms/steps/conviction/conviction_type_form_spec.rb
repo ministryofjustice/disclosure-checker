@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe Steps::Conviction::ConvictionTypeForm do
-  subject { described_class.new(arguments) }
+  subject(:form) { described_class.new(arguments) }
 
   let(:arguments) do
     {
@@ -19,7 +19,7 @@ RSpec.describe Steps::Conviction::ConvictionTypeForm do
       let(:under_age) { "yes" }
 
       it "shows only the relevant values" do
-        expect(subject.values).to eq(ConvictionType::YOUTH_PARENT_TYPES)
+        expect(form.values).to eq(ConvictionType::YOUTH_PARENT_TYPES)
       end
     end
 
@@ -27,7 +27,7 @@ RSpec.describe Steps::Conviction::ConvictionTypeForm do
       let(:under_age) { "no" }
 
       it "shows only the relevant values" do
-        expect(subject.values).to eq(ConvictionType::ADULT_PARENT_TYPES)
+        expect(form.values).to eq(ConvictionType::ADULT_PARENT_TYPES)
       end
     end
   end
@@ -39,13 +39,13 @@ RSpec.describe Steps::Conviction::ConvictionTypeForm do
       let(:conviction_type) { "discharge" }
 
       it "saves the record" do
-        expect(disclosure_check).to receive(:update).with(
+        allow(disclosure_check).to receive(:update).with(
           conviction_type: "discharge",
           # Dependent attributes to be reset
           conviction_subtype: nil,
         ).and_return(true)
 
-        expect(subject.save).to be(true)
+        expect(form.save).to be(true)
       end
 
       context "when conviction_type is already the same on the model" do
@@ -56,7 +56,7 @@ RSpec.describe Steps::Conviction::ConvictionTypeForm do
 
         it "does not save the record but returns true" do
           expect(disclosure_check).not_to receive(:update)
-          expect(subject.save).to be(true)
+          expect(form.save).to be(true)
         end
       end
     end

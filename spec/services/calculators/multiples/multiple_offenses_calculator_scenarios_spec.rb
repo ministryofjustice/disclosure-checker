@@ -4,20 +4,20 @@ require "rails_helper"
 #  They have been added to aid understanding how the rules for convictions work
 
 RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
-  subject { described_class.new(disclosure_report) }
+  subject(:calculator) { described_class.new(disclosure_report) }
 
   let(:disclosure_report) { DisclosureReport.new }
   let(:first_proceeding_group) { disclosure_report.check_groups.build }
   let(:second_proceeding_group) { disclosure_report.check_groups.build }
 
-  let(:first_proceedings) { subject.proceedings.first }
-  let(:second_proceedings) { subject.proceedings.second }
+  let(:first_proceedings) { calculator.proceedings.first }
+  let(:second_proceedings) { calculator.proceedings.second }
 
   def save_report
     disclosure_report.completed!
   end
 
-  context "scenario 1" do
+  context "when scenario 1" do
     # Jack age 21 was convicted of possession of an offensive weapon on 25/01/2017 and received
     # - a two-year conditional discharge order. Jack’s conviction would become spent on 25/01/2019.
     #
@@ -64,15 +64,15 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(subject.spent_date_for(first_proceedings)).to eq(Date.new(2020, 12, 10))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2020, 12, 10))
     end
 
     it "returns indefinite for the second proceeding" do
-      expect(subject.spent_date_for(second_proceedings)).to eq(Date.new(2020, 12, 10))
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2020, 12, 10))
     end
   end
 
-  context "scenario 2" do
+  context "when scenario 2" do
     # On 01/08/2009 Alex, age 18, was convicted of common assault and given:
     # -  a three-month suspended custodial sentence. The rehabilitation period would end on 01/11/2011.
     #
@@ -144,15 +144,15 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(subject.spent_date_for(first_proceedings)).to eq(Date.new(2013, 12, 9))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2013, 12, 9))
     end
 
     it "returns indefinite for the second proceeding" do
-      expect(subject.spent_date_for(second_proceedings)).to eq(ResultsVariant::INDEFINITE)
+      expect(calculator.spent_date_for(second_proceedings)).to eq(ResultsVariant::INDEFINITE)
     end
   end
 
-  context "scenario 3" do
+  context "when scenario 3" do
     # Sandra, age 19, was convicted of theft on 20 May 2015 and receives:
     # - a 4 month custodial sentence. This conviction would become spent on 20 September 2017.
     #
@@ -195,15 +195,15 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(subject.spent_date_for(first_proceedings)).to eq(Date.new(2019, 4, 30))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2019, 4, 30))
     end
 
     it "returns indefinite for the second proceeding" do
-      expect(subject.spent_date_for(second_proceedings)).to eq(Date.new(2019, 4, 30))
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2019, 4, 30))
     end
   end
 
-  context "scenario 4" do
+  context "when scenario 4" do
     # Ranjit, age 32, was convicted of fraud on 20 May 2015 and receives:
     # -  a 3 month custodial sentence. This conviction would become spent on 20 August 2017.
     #
@@ -247,15 +247,15 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(subject.spent_date_for(first_proceedings)).to eq(Date.new(2017, 8, 19))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2017, 8, 19))
     end
 
     it "returns indefinite for the second proceeding" do
-      expect(subject.spent_date_for(second_proceedings)).to eq(Date.new(2019, 2, 1))
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2019, 2, 1))
     end
   end
 
-  context "scenario 5" do
+  context "when scenario 5" do
     # Andrea, age 38, was convicted on 2 August 2015 of assaulting a supporter at a football match, she received:
     # -  a 4 month custodial sentence
     # - a football banning order lasting 6 years. This conviction would become spent on 2 August 2021.
@@ -313,15 +313,15 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(subject.spent_date_for(first_proceedings)).to eq(Date.new(2021, 8, 2))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2021, 8, 2))
     end
 
     it "returns indefinite for the second proceeding" do
-      expect(subject.spent_date_for(second_proceedings)).to eq(Date.new(2019, 2, 5))
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2019, 2, 5))
     end
   end
 
-  context "scenario 6" do
+  context "when scenario 6" do
     # Darren was convicted of attempted murder on 12 September 2004.
     # - He was sentenced to 5 years in prison. This conviction will never be spent.
     #
@@ -385,9 +385,9 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     let(:third_proceeding_group) { disclosure_report.check_groups.build }
-    let(:third_proceedings) { subject.proceedings.third }
+    let(:third_proceedings) { calculator.proceedings.third }
 
-    context "before 7 February 2012" do
+    context "when before 7 February 2012" do
       before do
         first_proceeding_group.disclosure_checks << conviction_of_august_1998
         second_proceeding_group.disclosure_checks << conviction_of_july_2004
@@ -397,24 +397,24 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       end
 
       it "returns the date for the first proceeeding" do
-        expect(subject.spent_date_for(first_proceedings)).to eq(Date.new(2000, 8, 10))
+        expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2000, 8, 10))
       end
 
       it "returns `never spent` for the second proceeding" do
-        expect(subject.spent_date_for(second_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
+        expect(calculator.spent_date_for(second_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
       end
 
       it "returns `never spent` for the third proceeding" do
-        expect(subject.spent_date_for(third_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
+        expect(calculator.spent_date_for(third_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
       end
     end
 
     # third conviction 12/9/2004
     # duration: 5 years, meaning: never spent!
     # but duration is up to 12 9 2009
-    context "after 7 February 2012" do
+    context "when after 7 February 2012" do
       let(:forth_proceeding_group) { disclosure_report.check_groups.build }
-      let(:forth_proceedings) { subject.proceedings.fourth }
+      let(:forth_proceedings) { calculator.proceedings.fourth }
 
       # On 7 February 2012, Darren was is convicted for a separate incident of theft, resulting in:
       # - a 6 month suspended sentence
@@ -439,40 +439,40 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       end
 
       it "returns the date for the first proceeeding" do
-        expect(subject.spent_date_for(first_proceedings)).to eq(Date.new(2000, 8, 10))
+        expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2000, 8, 10))
       end
 
       it "returns `never spent` for the second proceeding" do
-        expect(subject.spent_date_for(second_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
+        expect(calculator.spent_date_for(second_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
       end
 
       it "returns `never spent` for the third proceeding" do
-        expect(subject.spent_date_for(third_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
+        expect(calculator.spent_date_for(third_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
       end
 
       # This becomes spent on 7 August 2014 as long as he is not convicted of a further offence during this time.
       it "returns the date for the forth proceeding" do
-        expect(subject.spent_date_for(forth_proceedings)).to eq(Date.new(2014, 8, 6))
+        expect(calculator.spent_date_for(forth_proceedings)).to eq(Date.new(2014, 8, 6))
       end
     end
   end
 
   # See graph in docs/results/07_relevant_order_2.png
-  context "scenario 7" do
+  context "when scenario 7" do
     let(:third_proceeding_group) { disclosure_report.check_groups.build }
-    let(:third_proceedings) { subject.proceedings.third }
-    let(:conviction_date_A)  { Date.new(2001, 1, 1) } # spent on 1, 1, 2004
-    let(:conviction_date_B)  { Date.new(2000, 6, 1) } # spent on 1, 6, 2001
-    let(:conviction_date_C)  { Date.new(2002, 3, 1) } # spent on 28 feb 2012
-    let(:conviction_A) do
+    let(:third_proceedings) { calculator.proceedings.third }
+    let(:conviction_date_a)  { Date.new(2001, 1, 1) } # spent on 1, 1, 2004
+    let(:conviction_date_b)  { Date.new(2000, 6, 1) } # spent on 1, 6, 2001
+    let(:conviction_date_c)  { Date.new(2002, 3, 1) } # spent on 28 feb 2012
+    let(:conviction_a) do
       [
         build(
           :disclosure_check,
           :adult,
           :with_discharge_order,
           :completed,
-          known_date: conviction_date_A,
-          conviction_date: conviction_date_A,
+          known_date: conviction_date_a,
+          conviction_date: conviction_date_a,
           conviction_length: 3,
           conviction_length_type: ConvictionLengthType::YEARS,
           # THIS IS SPENT ON 1 Jan 2004
@@ -481,51 +481,51 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
           :disclosure_check,
           :with_prison_sentence,
           :completed,
-          known_date: conviction_date_A,
-          conviction_date: conviction_date_A,
+          known_date: conviction_date_a,
+          conviction_date: conviction_date_a,
           conviction_length: 6,
           conviction_length_type: ConvictionLengthType::MONTHS,
           # 6 months = 30 June 2003!!!
         ),
       ]
     end
-    let(:conviction_B) do
+    let(:conviction_b) do
       build(
         :disclosure_check,
         :adult,
         :with_fine,
         :completed,
-        known_date: conviction_date_B,
-        conviction_date: conviction_date_B,
+        known_date: conviction_date_b,
+        conviction_date: conviction_date_b,
       )
     end
-    let(:conviction_C) do
+    let(:conviction_c) do
       build(
         :disclosure_check,
         :with_prison_sentence,
         :completed,
-        known_date: conviction_date_C,
-        conviction_date: conviction_date_C,
+        known_date: conviction_date_c,
+        conviction_date: conviction_date_c,
         conviction_length: 3,
         conviction_length_type: ConvictionLengthType::YEARS,
       )
     end
 
     before do
-      first_proceeding_group.disclosure_checks << conviction_A
-      second_proceeding_group.disclosure_checks << conviction_B
-      third_proceeding_group.disclosure_checks << conviction_C
+      first_proceeding_group.disclosure_checks << conviction_a
+      second_proceeding_group.disclosure_checks << conviction_b
+      third_proceeding_group.disclosure_checks << conviction_c
       save_report
     end
 
     it "dates" do
-      expect(subject.spent_date_for(first_proceedings)).to eq(Date.new(2012, 2, 28))
-      expect(subject.spent_date_for(second_proceedings)).to eq(Date.new(2012, 2, 28))
-      expect(subject.spent_date_for(third_proceedings)).to eq(Date.new(2012, 2, 28))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2012, 2, 28))
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2012, 2, 28))
+      expect(calculator.spent_date_for(third_proceedings)).to eq(Date.new(2012, 2, 28))
     end
   end
 
-  context "scenario 8" do
+  context "when scenario 8" do
     # Jack age 21 was convicted on 01/01/2010 and received
     # - a four-year custodial sentence
     # - a fifteen-year restraining order
@@ -587,15 +587,15 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(subject.spent_date_for(first_proceedings)).to eq(Date.new(2025, 0o1, 0o1))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2025, 0o1, 0o1))
     end
 
     it "returns indefinite for the second proceeding" do
-      expect(subject.spent_date_for(second_proceedings)).to eq(Date.new(2022, 12, 31))
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2022, 12, 31))
     end
   end
 
-  context "scenario 9" do
+  context "when scenario 9" do
     # Under 18, 25 Feb 2011, convictioned to 6 months referral order
     #  Under 18, 12 Feb 2013, convicted to 12 months Youth Rehabilitation Order
     # Over 18, 1 July 2014, convicted to 12 months Community Order
@@ -611,8 +611,8 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     let(:third_proceeding_group) { disclosure_report.check_groups.build }
     let(:fourth_proceeding_group) { disclosure_report.check_groups.build }
 
-    let(:third_proceedings) { subject.proceedings.third }
-    let(:fourth_proceedings) { subject.proceedings.fourth }
+    let(:third_proceedings) { calculator.proceedings.third }
+    let(:fourth_proceedings) { calculator.proceedings.fourth }
 
     let(:referral_order) do
       build(
@@ -671,9 +671,9 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       save_report
     end
 
-    it { expect(subject.spent_date_for(first_proceedings)).to eq(Date.new(2011, 8, 25)) }
-    it { expect(subject.spent_date_for(second_proceedings)).to eq(spent_date) }
-    it { expect(subject.spent_date_for(third_proceedings)).to eq(spent_date) }
-    it { expect(subject.spent_date_for(fourth_proceedings)).to eq(spent_date) }
+    it { expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2011, 8, 25)) }
+    it { expect(calculator.spent_date_for(second_proceedings)).to eq(spent_date) }
+    it { expect(calculator.spent_date_for(third_proceedings)).to eq(spent_date) }
+    it { expect(calculator.spent_date_for(fourth_proceedings)).to eq(spent_date) }
   end
 end

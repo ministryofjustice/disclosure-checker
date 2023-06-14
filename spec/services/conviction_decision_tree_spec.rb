@@ -12,7 +12,7 @@ RSpec.describe ConvictionDecisionTree do
     )
   end
 
-  let(:step_params)        { double("Step") }
+  let(:step_params)        { verifying_double("Step") }
   let(:next_step)          { nil }
   let(:as)                 { nil }
   let(:conviction_type)    { nil }
@@ -45,7 +45,7 @@ RSpec.describe ConvictionDecisionTree do
       it { is_expected.to have_destination(:compensation_paid, :edit) }
     end
 
-    context "Motoring sub types" do
+    context "when Motoring sub types" do
       let(:conviction_type) { :youth_motoring }
 
       context "when subtype equal youth_motoring_fine" do
@@ -67,7 +67,7 @@ RSpec.describe ConvictionDecisionTree do
       end
     end
 
-    context "Motoring adult sub types" do
+    context "when Motoring adult sub types" do
       let(:conviction_type) { :adult_motoring }
 
       context "when subtype equal adult_motoring_fine" do
@@ -95,7 +95,7 @@ RSpec.describe ConvictionDecisionTree do
       it { is_expected.to have_destination(:conviction_bail, :edit) }
     end
 
-    context "for any other conviction subtypes" do
+    context "when any other conviction subtypes" do
       it { is_expected.to have_destination(:known_date, :edit) }
     end
   end

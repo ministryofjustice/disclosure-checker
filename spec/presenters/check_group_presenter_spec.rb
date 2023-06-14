@@ -1,5 +1,5 @@
 RSpec.describe CheckGroupPresenter do
-  subject do
+  subject(:presenter) do
     described_class.new(
       number,
       disclosure_check.check_group,
@@ -13,13 +13,13 @@ RSpec.describe CheckGroupPresenter do
   let(:spent_date) { nil }
 
   describe "#to_partial_path" do
-    it { expect(subject.to_partial_path).to eq("foobar/shared/check") }
+    it { expect(presenter.to_partial_path).to eq("foobar/shared/check") }
   end
 
   describe "#summary" do
-    let(:summary) { subject.summary }
+    let(:summary) { presenter.summary }
 
-    context "for a single youth caution" do
+    context "when a single youth caution" do
       it "returns CheckPresenter" do
         expect(summary.size).to eq(1)
         expect(summary[0]).to be_an_instance_of(CheckPresenter)
@@ -32,7 +32,7 @@ RSpec.describe CheckGroupPresenter do
     let(:spent_date) { Date.yesterday }
 
     it "builds a SpentTag instance with the correct attributes" do
-      tag = subject.spent_tag
+      tag = presenter.spent_tag
 
       expect(tag).to be_an_instance_of(SpentTag)
       expect(tag.color).to eq(SpentTag::GREEN)
@@ -44,11 +44,11 @@ RSpec.describe CheckGroupPresenter do
     let(:spent_date) { "date" }
 
     before do
-      allow(subject).to receive(:first_check_kind).and_return("caution")
+      allow(presenter).to receive(:first_check_kind).and_return("caution") # rubocop:disable RSpec/SubjectStub
     end
 
     it "builds a SpentDatePanel instance with the correct attributes" do
-      panel = subject.spent_date_panel
+      panel = presenter.spent_date_panel
 
       expect(panel).to be_an_instance_of(SpentDatePanel)
       expect(panel.spent_date).to eq(spent_date)
@@ -60,11 +60,11 @@ RSpec.describe CheckGroupPresenter do
     let(:spent_date) { Date.yesterday }
 
     before do
-      allow(subject).to receive(:first_check_kind).and_return("caution")
+      allow(presenter).to receive(:first_check_kind).and_return("caution") # rubocop:disable RSpec/SubjectStub
     end
 
     it "builds a DbsVisibility instance with the correct attributes" do
-      panel = subject.dbs_visibility
+      panel = presenter.dbs_visibility
 
       expect(panel).to be_an_instance_of(DbsVisibility)
       expect(panel.kind).to eq("caution")
@@ -74,30 +74,38 @@ RSpec.describe CheckGroupPresenter do
   end
 
   describe "#check_group_kind" do
-    context "caution" do
-      let!(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
+    context "when a caution" do
+      before do
+        create(:disclosure_check, :caution, :completed)
+      end
 
-      it { expect(subject.check_group_kind).to eq("caution") }
+      it { expect(presenter.check_group_kind).to eq("caution") }
     end
 
-    context "conviction" do
-      let!(:disclosure_check) { create(:disclosure_check, :conviction, :completed) }
+    context "when a conviction" do
+      before do
+        create(:disclosure_check, :conviction, :completed)
+      end
 
-      it { expect(subject.check_group_kind).to eq("conviction") }
+      it { expect(presenter.check_group_kind).to eq("conviction") }
     end
   end
 
   describe "#add_another_sentence_button?" do
-    context "for a caution" do
-      let!(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
+    context "when a caution" do
+      before do
+        create(:disclosure_check, :caution, :completed)
+      end
 
-      it { expect(subject.add_another_sentence_button?).to eq(false) }
+      it { expect(presenter.add_another_sentence_button?).to eq(false) }
     end
 
-    context "for a conviction" do
-      let!(:disclosure_check) { create(:disclosure_check, :conviction, :completed) }
+    context "when a conviction" do
+      before do
+        create(:disclosure_check, :conviction, :completed)
+      end
 
-      it { expect(subject.add_another_sentence_button?).to eq(true) }
+      it { expect(presenter.add_another_sentence_button?).to eq(true) }
     end
   end
 end

@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
-  subject { described_class.new(arguments) }
+  subject(:form) { described_class.new(arguments) }
 
   let(:arguments) do
     {
@@ -19,7 +19,7 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
 
   describe "#i18n_attribute" do
     it "returns the key that will be used to translate legends and hints" do
-      expect(subject.i18n_attribute).to eq(ConvictionType.new(:referral_supervision_yro))
+      expect(form.i18n_attribute).to eq(ConvictionType.new(:referral_supervision_yro))
     end
   end
 
@@ -27,7 +27,7 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
   # in the value-object spec `spec/value_objects/conviction_type_spec.rb`
   describe "#values" do
     it "returns the relevant values (children of the conviction type)" do
-      expect(subject.values).to match_array([
+      expect(form.values).to match_array([
         ConvictionType.new(:referral_order),
         ConvictionType.new(:supervision_order),
         ConvictionType.new(:youth_rehabilitation_order),
@@ -42,7 +42,7 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
       let(:conviction_subtype) { "referral_order" }
 
       it "saves the record" do
-        expect(disclosure_check).to receive(:update).with(
+        allow(disclosure_check).to receive(:update).with(
           conviction_subtype:,
           # Dependent attributes to be reset
           known_date: nil,
@@ -55,7 +55,7 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
           motoring_endorsement: nil,
         ).and_return(true)
 
-        expect(subject.save).to be(true)
+        expect(form.save).to be(true)
       end
 
       context "when conviction_subtype is already the same on the model" do
@@ -65,7 +65,7 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
 
         it "does not save the record but returns true" do
           expect(disclosure_check).not_to receive(:update)
-          expect(subject.save).to be(true)
+          expect(form.save).to be(true)
         end
       end
     end
