@@ -1,4 +1,4 @@
-class CustomFormHelpers < ActionView::Helpers::FormBuilder
+module CustomFormHelpers
   delegate :params, :hidden_field_tag, to: :template
 
   attr_reader :template
