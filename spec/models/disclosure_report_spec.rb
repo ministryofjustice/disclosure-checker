@@ -34,7 +34,7 @@ RSpec.describe DisclosureReport, type: :model do
     end
 
     it "marks the application as completed" do
-      report_spy = verifying_spy(report)
+      report_spy = verifying_double(report).as_null_object
 
       expect(
         report_spy,

@@ -555,7 +555,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     let(:conviction_2) { Calculators::Multiples::Proceedings.new(check_group2) }
 
     before do
-      calculator_spy = verifying_spy(calculator)
+      calculator_spy = verifying_double(calculator).as_null_object
       allow(calculator_spy).to receive(:proceedings).and_return([conviction_1, conviction_2])
 
       allow(calculator_spy).to receive(:spent_date).and_return(spent_dates[0])

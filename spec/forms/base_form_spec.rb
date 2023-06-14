@@ -29,7 +29,7 @@ RSpec.describe BaseForm do
     end
 
     it "read the attribute directly without using the method" do
-      form_spy = verifying_spy(form)
+      form_spy = verifying_double(form).as_null_object
       expect(form_spy).not_to receive(:disclosure_check)
       expect(form[:disclosure_check]).to eq(disclosure_check)
     end
@@ -39,7 +39,7 @@ RSpec.describe BaseForm do
     let(:disclosure_check) { instance_double(DisclosureCheck) }
 
     it "assigns the attribute directly without using the method" do
-      form_spy = verifying_spy(form)
+      form_spy = verifying_double(form).as_null_object
       expect(form_spy).not_to receive(:disclosure_check=)
       form[:disclosure_check] = disclosure_check
       expect(form.disclosure_check).to eq(disclosure_check)
