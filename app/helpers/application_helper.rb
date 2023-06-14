@@ -23,7 +23,7 @@ module ApplicationHelper
     }
   end
 
-  def govuk_error_summary(form_object = @form_object)
+  def govuk_error_summary(form_object = @form_object) # rubocop:disable Rails/HelperInstanceVariable
     return if form_object.try(:errors).blank?
 
     # Prepend page title so screen readers read it out as soon as possible
