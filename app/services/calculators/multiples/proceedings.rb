@@ -45,21 +45,21 @@ module Calculators
     private
 
       def disclosure_checks
-        @_disclosure_checks ||= check_group.disclosure_checks.completed
+        @disclosure_checks ||= check_group.disclosure_checks.completed
       end
 
       def first_disclosure_check
-        @_first_disclosure_check ||= disclosure_checks.first
+        @first_disclosure_check ||= disclosure_checks.first
       end
 
       def expiry_dates
-        @_expiry_dates ||= disclosure_checks.map(
+        @expiry_dates ||= disclosure_checks.map(
           &method(:expiry_date_for)
         )
       end
 
       def non_relevant_expiry_dates
-        @_non_relevant_expiry_dates ||= disclosure_checks.reject(&:drag_through?).map(
+        @non_relevant_expiry_dates ||= disclosure_checks.reject(&:drag_through?).map(
           &method(:expiry_date_for)
         )
       end

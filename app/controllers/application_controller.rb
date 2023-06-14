@@ -12,12 +12,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_disclosure_check
-    @_current_disclosure_check ||= DisclosureCheck.find_by_id(session[:disclosure_check_id])
+    @current_disclosure_check ||= DisclosureCheck.find_by_id(session[:disclosure_check_id])
   end
   helper_method :current_disclosure_check
 
   def current_disclosure_report
-    @_current_disclosure_report ||= current_disclosure_check&.disclosure_report
+    @current_disclosure_report ||= current_disclosure_check&.disclosure_report
   end
   helper_method :current_disclosure_report
 

@@ -40,7 +40,7 @@ class ResultsItemPresenter
 private
 
   def result_service
-    @_result_service ||= CheckResult.new(
+    @result_service ||= CheckResult.new(
       disclosure_check:,
     )
   end

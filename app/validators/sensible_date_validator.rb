@@ -29,6 +29,6 @@ private
   end
 
   def valid_future?(date)
-    @_allow_future || Date.today >= date
+    @_allow_future || Time.zone.today >= date
   end
 end

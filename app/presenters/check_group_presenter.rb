@@ -51,11 +51,11 @@ class CheckGroupPresenter
 private
 
   def first_check_kind
-    @_first_check_kind ||= completed_checks.first.kind
+    @first_check_kind ||= completed_checks.first.kind
   end
 
   def completed_checks
-    @_completed_checks ||= check_group.disclosure_checks.completed
+    @completed_checks ||= check_group.disclosure_checks.completed
   end
 
   def variant

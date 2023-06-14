@@ -15,6 +15,6 @@ class CheckPresenter
 private
 
   def results_item
-    @_results_item ||= ResultsItemPresenter.build(disclosure_check, scope:)
+    @results_item ||= ResultsItemPresenter.build(disclosure_check, scope:)
   end
 end

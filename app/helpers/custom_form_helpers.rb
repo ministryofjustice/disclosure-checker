@@ -1,5 +1,7 @@
-module CustomFormHelpers
+class CustomFormHelpers < ActionView::Helpers::FormBuilder
   delegate :params, :hidden_field_tag, to: :template
+
+  attr_reader :template
 
   def continue_button(continue: :continue)
     submit_button(continue)
@@ -58,11 +60,4 @@ private
   def scope_for_locale(context)
     [:helpers, context, object_name]
   end
-
-  # This method is just to aid with testing
-  # :nocov:
-  def template
-    @template
-  end
-  # :nocov:
 end

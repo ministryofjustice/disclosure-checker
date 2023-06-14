@@ -9,6 +9,10 @@ class StepController < ApplicationController
 
 private
 
+  def show; end
+
+  def edit; end
+
   def update_and_advance(form_class, opts = {})
     hash = extract_parameters(form_class)
     record = opts[:record]

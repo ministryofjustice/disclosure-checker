@@ -8,7 +8,7 @@ class ResultsController < ApplicationController
 private
 
   def disclosure_report
-    @_disclosure_report ||= DisclosureReport.completed.find_by(
+    @disclosure_report ||= DisclosureReport.completed.find_by(
       id: params[:report_id],
     ) || (raise Errors::ResultsNotFound)
   end

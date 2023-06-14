@@ -31,11 +31,11 @@ private
   end
 
   def check_group
-    @_check_group ||= current_disclosure_report.check_groups.find(check_group_id)
+    @check_group ||= current_disclosure_report.check_groups.find(check_group_id)
   end
 
   def first_check_in_group
-    @_first_check_in_group ||= check_group.disclosure_checks.first
+    @first_check_in_group ||= check_group.disclosure_checks.first
   end
 
   # New checks created through this controller will start

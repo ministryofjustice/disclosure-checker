@@ -17,7 +17,7 @@ class BasketPresenter
   end
 
   def calculator
-    @_calculator ||= Calculators::Multiples::MultipleOffensesCalculator.new(disclosure_report)
+    @calculator ||= Calculators::Multiples::MultipleOffensesCalculator.new(disclosure_report)
   end
 
 private

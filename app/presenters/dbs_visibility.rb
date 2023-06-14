@@ -61,11 +61,11 @@ private
   end
 
   def cautions
-    @_cautions ||= completed_checks.filter_map(&:caution)
+    @cautions ||= completed_checks.filter_map(&:caution)
   end
 
   def convictions
-    @_convictions ||= completed_checks.filter_map(&:conviction)
+    @convictions ||= completed_checks.filter_map(&:conviction)
   end
 
   def youth_caution?

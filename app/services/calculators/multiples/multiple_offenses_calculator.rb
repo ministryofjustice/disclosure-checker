@@ -98,11 +98,11 @@ module Calculators
       end
 
       def dates_memory
-        @_dates_memory ||= {}
+        @dates_memory ||= {}
       end
 
       def convictions_by_date
-        @_convictions ||= proceedings.select(&:conviction?).sort_by(&:conviction_date)
+        @convictions_by_date ||= proceedings.select(&:conviction?).sort_by(&:conviction_date)
       end
 
       # The order of the `proceedings` collection is the order in which

@@ -47,6 +47,6 @@ class ResultsPresenter < BasketPresenter
 private
 
   def conviction_checks
-    @_conviction_checks ||= disclosure_report.conviction_checks
+    @conviction_checks ||= disclosure_report.conviction_checks
   end
 end

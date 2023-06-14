@@ -1,4 +1,4 @@
-module ApplicationHelper
+class ApplicationHelper < ActionView::Helpers::FormBuilder
   # Render a form_for tag pointing to the update action of the current controller
   def step_form(record, options = {}, &block)
     opts = {
