@@ -2,7 +2,9 @@ def edit_step(name, &block)
   resource name,
            only: %i[edit update],
            controller: name,
-           path_names: { edit: "" } do; block.call if block_given?; end
+           path_names: { edit: "" } do
+             block.call if block_given?
+           end
 end
 
 def show_step(name)

@@ -17,8 +17,6 @@ module I18n
         key:,
       )
       Sentry.capture_exception(self)
-
-      self
     end
   end
 end
