@@ -120,8 +120,10 @@ RSpec.describe Calculators::Multiples::Proceedings do
         let(:disclosure_check2) { instance_double(DisclosureCheck, drag_through?: false) }
 
         it "calculates the spent_date of the non-relevant orders" do
+          # rubocop:disable RSpec/SubjectStub, RSpec/StubbedMock
           expect(calculator).not_to receive(:expiry_date_for).with(disclosure_check1)
-          expect(calculator).to receive(:expiry_date_for).with(disclosure_check2).and_return("date") # rubocop:disable RSpec/StubbedMock
+          expect(calculator).to receive(:expiry_date_for).with(disclosure_check2).and_return("date")
+          # rubocop:enable RSpec/SubjectStub, RSpec/StubbedMock
 
           expect(calculator.spent_date_without_relevant_orders).to eq("date")
         end
@@ -132,8 +134,10 @@ RSpec.describe Calculators::Multiples::Proceedings do
         let(:disclosure_check2) { instance_double(DisclosureCheck, drag_through?: true) }
 
         it "returns a nil spent_date" do
-          expect(calculator).not_to receive(:expiry_date_for).with(disclosure_check1)
-          expect(calculator).not_to receive(:expiry_date_for).with(disclosure_check2)
+          # rubocop:disable RSpec/SubjectStub
+          expect(calculator).not_to receive(:expiry_date_for).with(disclosure_check1).and_call_original
+          expect(calculator).not_to receive(:expiry_date_for).with(disclosure_check2).and_call_original
+          # rubocop:enable RSpec/SubjectStub
 
           expect(calculator.spent_date_without_relevant_orders).to be_nil
         end

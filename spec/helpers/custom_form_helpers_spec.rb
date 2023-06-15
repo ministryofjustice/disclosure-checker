@@ -44,7 +44,7 @@ RSpec.describe CustomFormHelpers, type: :helper do
       let(:params) { { next_step: "cya" } }
 
       it "outputs the govuk continue button with the next step hidden tag" do
-        expect(
+        allow(
           template,
         ).to receive(:hidden_field_tag).with(
           :next_step, "/steps/check/check_your_answers"

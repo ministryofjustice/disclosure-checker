@@ -31,7 +31,7 @@ RSpec.describe DisclosureCheck, type: :model do
 
   describe "#drag_through?" do
     it "delegates to the conviction" do
-      expect(disclosure_check).to receive(:conviction)
+      expect(disclosure_check).to receive(:conviction) # rubocop:disable RSpec/SubjectStub
       disclosure_check.drag_through?
     end
   end

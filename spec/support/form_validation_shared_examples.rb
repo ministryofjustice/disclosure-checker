@@ -106,8 +106,8 @@ RSpec.shared_examples "a yes-no question form" do |options|
 
       it "saves the record" do
         allow(disclosure_check).to receive(:update!).with(hash_including(
-                                                           { options[:attribute_name] => GenericYesNo::NO }.merge(additional_attributes),
-                                                         )).and_return(true)
+                                                            { options[:attribute_name] => GenericYesNo::NO }.merge(additional_attributes),
+                                                          )).and_return(true)
         expect(described_class.new(arguments).save).to be(true)
       end
     end

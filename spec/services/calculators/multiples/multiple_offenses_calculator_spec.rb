@@ -8,7 +8,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
   subject(:calculator) { described_class.new(disclosure_report) }
 
   let(:disclosure_report) { instance_double(DisclosureReport, check_groups: groups_result_set, completed?: true) }
-  let(:groups_result_set) { double("groups_result_set", with_completed_checks: [check_group1, check_group2]) }
+  let(:groups_result_set) { class_double(CheckGroup, with_completed_checks: [check_group1, check_group2]) }
 
   let(:check_group1) { instance_double(CheckGroup, disclosure_checks: [disclosure_check1, disclosure_check2]) }
   let(:check_group2) { instance_double(CheckGroup, disclosure_checks: [disclosure_check3]) }

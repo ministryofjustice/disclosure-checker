@@ -8,7 +8,7 @@ RSpec.describe CheckGroupPresenter do
     )
   end
 
-  let!(:disclosure_check) { create(:disclosure_check, :conviction, :completed) }
+  let(:disclosure_check) { create(:disclosure_check, :conviction, :completed) }
   let(:number) { 1 }
   let(:spent_date) { nil }
 
@@ -75,13 +75,13 @@ RSpec.describe CheckGroupPresenter do
 
   describe "#check_group_kind" do
     context "when a caution" do
-      let!(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
+      let(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
 
       it { expect(presenter.check_group_kind).to eq("caution") }
     end
 
     context "when a conviction" do
-      let!(:disclosure_check) { create(:disclosure_check, :conviction, :completed) }
+      let(:disclosure_check) { create(:disclosure_check, :conviction, :completed) }
 
       it { expect(presenter.check_group_kind).to eq("conviction") }
     end
@@ -89,13 +89,13 @@ RSpec.describe CheckGroupPresenter do
 
   describe "#add_another_sentence_button?" do
     context "when a caution" do
-      let!(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
+      let(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
 
       it { expect(presenter.add_another_sentence_button?).to eq(false) }
     end
 
     context "when a conviction" do
-      let!(:disclosure_check) { create(:disclosure_check, :conviction, :completed) }
+      let(:disclosure_check) { create(:disclosure_check, :conviction, :completed) }
 
       it { expect(presenter.add_another_sentence_button?).to eq(true) }
     end

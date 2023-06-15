@@ -10,10 +10,10 @@ class DummyStepController < StepController
   end
 end
 
-RSpec.describe DummyStepController, type: :controller do
-  subject(:controller) { described_class.new }
-
+RSpec.describe StepController, type: :controller do
   before do
+    @controller = DummyStepController.new
+
     Rails.application.routes.draw do
       get "/dummy_step" => "dummy_step#show"
       root to: "dummy_root#index"

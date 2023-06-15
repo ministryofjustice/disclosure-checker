@@ -13,9 +13,9 @@ RSpec.describe DisclosureReport, type: :model do
     end
 
     it "picks records equal to or older than the passed-in date" do
-      expect(described_class).to receive(:where).and_call_original.with(
+      expect(described_class).to receive(:where).with(
         "created_at <= :date", date: 28.days.ago
-      ).and_return(finder_double)
+      ).and_call_original
 
       described_class.purge!(28.days.ago)
     end
@@ -34,11 +34,13 @@ RSpec.describe DisclosureReport, type: :model do
     end
 
     it "marks the application as completed" do
+      # rubocop:disable RSpec/SubjectStub
       expect(
         report,
       ).to receive(:update!).with(
         status: :completed, completed_at: Time.zone.at(123),
-      ).and_return(true)
+      )
+      # rubocop:enable RSpec/SubjectStub
 
       report.completed!
     end

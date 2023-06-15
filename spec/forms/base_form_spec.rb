@@ -29,7 +29,7 @@ RSpec.describe BaseForm do
     end
 
     it "read the attribute directly without using the method" do
-      expect(form).not_to receive(:disclosure_check)
+      expect(form).not_to receive(:disclosure_check) # rubocop:disable RSpec/SubjectStub
       expect(form[:disclosure_check]).to eq(disclosure_check)
     end
   end
@@ -38,7 +38,7 @@ RSpec.describe BaseForm do
     let(:disclosure_check) { instance_double(DisclosureCheck) }
 
     it "assigns the attribute directly without using the method" do
-      expect(form).not_to receive(:disclosure_check=)
+      expect(form).not_to receive(:disclosure_check=) # rubocop:disable RSpec/SubjectStub
       form[:disclosure_check] = disclosure_check
       expect(form.disclosure_check).to eq(disclosure_check)
     end

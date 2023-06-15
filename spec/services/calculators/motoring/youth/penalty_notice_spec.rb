@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Calculators::Motoring::Youth::PenaltyNotice do
-  subject { described_class.new(disclosure_check) }
+  subject(:calculator) { described_class.new(disclosure_check) }
 
   let(:disclosure_check) do
     build(:disclosure_check,

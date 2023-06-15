@@ -7,7 +7,9 @@ class CheckResult
     @disclosure_check = disclosure_check
   end
 
-  delegate :expiry_date, to: :calculator
+  def expiry_date
+    calculator&.expiry_date
+  end
 
   def calculator
     offence_type.calculator_class.new(disclosure_check)

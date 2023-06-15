@@ -13,7 +13,7 @@ RSpec.describe CheckResult do
       let(:kind) { :adult_caution }
 
       it "will call a calculator" do
-        expect(check_result).to receive(:calculator)
+        expect(check_result).to receive(:calculator).and_call_original # rubocop:disable RSpec/SubjectStub
         check_result.expiry_date
       end
 
@@ -24,7 +24,7 @@ RSpec.describe CheckResult do
       let(:kind) { :dto_conviction }
 
       it "will call method on a calculator" do
-        expect(check_result).to receive(:calculator).and_call_original
+        expect(check_result).to receive(:calculator).and_call_original # rubocop:disable RSpec/SubjectStub
         check_result.expiry_date
       end
 
