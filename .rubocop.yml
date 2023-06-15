@@ -10,7 +10,6 @@ inherit_mode:
 
 AllCops:
   Exclude:
-    - 'lib/tasks/**/*'
     - 'lib/generators/**/*'
 
 # **************************************************************

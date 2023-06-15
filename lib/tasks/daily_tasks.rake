@@ -1,3 +1,4 @@
+desc "run daily tasks"
 task daily_tasks: :environment do
   log "Starting daily tasks"
   log "Checks count: #{DisclosureReport.count}"
@@ -9,6 +10,7 @@ task daily_tasks: :environment do
 end
 
 namespace :purge do
+  desc "purge checks"
   task checks: :environment do
     # incomplete checks
     expire_after = Rails.configuration.x.checks.incomplete_purge_after_days
