@@ -25,8 +25,6 @@ class ConvictionDecisionTree < BaseDecisionTree
       raise InvalidStep, "Invalid step '#{as || step_params}'"
     end
   end
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/CyclomaticComplexity
 
 private
 

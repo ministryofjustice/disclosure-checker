@@ -107,7 +107,6 @@ class ConvictionType < ValueObject
     ADULT_PRISON_SENTENCE               = new(:adult_prison_sentence,              parent: ADULT_CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::Prison),
     ADULT_SUSPENDED_PRISON_SENTENCE     = new(:adult_suspended_prison_sentence,    parent: ADULT_CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::SuspendedPrison),
   ].flatten.freeze
-  # rubocop:enable Layout/LineLength
 
   # :nocov:
   def self.values
