@@ -38,7 +38,7 @@ module Calculators
       end
     end
 
-    private
+  private
 
     def rehabilitation_without_length
       self.class::REHABILITATION_WITH_ENDORSEMENT

@@ -1,6 +1,6 @@
 class SpentTag
-  GREEN = 'green'.freeze
-  RED = 'red'.freeze
+  GREEN = "green".freeze
+  RED = "red".freeze
 
   attr_reader :variant
 
@@ -15,6 +15,6 @@ class SpentTag
   end
 
   def scope
-    'results/spent_tag'
+    "results/spent_tag"
   end
 end

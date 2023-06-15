@@ -7,7 +7,7 @@ module Steps
 
       def values
         ConvictionLengthChoices.choices(
-          conviction_subtype: conviction_subtype
+          conviction_subtype:,
         )
       end
 
@@ -15,7 +15,7 @@ module Steps
         conviction_subtype
       end
 
-      private
+    private
 
       def choices
         values.map(&:to_s)
@@ -29,10 +29,10 @@ module Steps
         raise DisclosureCheckNotFound unless disclosure_check
         return true unless changed?
 
-        disclosure_check.update(
-          conviction_length_type: conviction_length_type,
+        disclosure_check.update!(
+          conviction_length_type:,
           # The following are dependent attributes that need to be reset if form changes
-          conviction_length: nil
+          conviction_length: nil,
         )
       end
     end

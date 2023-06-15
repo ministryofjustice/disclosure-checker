@@ -4,7 +4,7 @@ module Steps
       def edit
         @form_object = ConvictionBailForm.new(
           disclosure_check: current_disclosure_check,
-          conviction_bail: current_disclosure_check.conviction_bail
+          conviction_bail: current_disclosure_check.conviction_bail,
         )
       end
 

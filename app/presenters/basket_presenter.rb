@@ -11,16 +11,16 @@ class BasketPresenter
         index(proceeding),
         proceeding.check_group,
         spent_date: calculator.spent_date_for(proceeding),
-        scope: scope
+        scope:,
       )
     end
   end
 
   def calculator
-    @_calculator ||= Calculators::Multiples::MultipleOffensesCalculator.new(disclosure_report)
+    @calculator ||= Calculators::Multiples::MultipleOffensesCalculator.new(disclosure_report)
   end
 
-  private
+private
 
   def index(proceeding)
     (@_proceeding_index ||= Hash.new(0))[proceeding.kind] += 1
@@ -28,7 +28,7 @@ class BasketPresenter
 
   # :nocov:
   def scope
-    raise NotImplementedError, 'implement in subclasses'
+    raise NotImplementedError, "implement in subclasses"
   end
   # :nocov:
 end

@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -35,9 +35,9 @@ module Disclosure
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.x.session.expires_in_minutes = ENV.fetch('SESSION_EXPIRES_IN_MINUTES', 60).to_i
+    config.x.session.expires_in_minutes = ENV.fetch("SESSION_EXPIRES_IN_MINUTES", 60).to_i
 
-    config.x.surveys.feedback = 'https://www.research.net/r/QW7JCHL'.freeze
+    config.x.surveys.feedback = "https://www.research.net/r/QW7JCHL".freeze
 
     # Maintain `in_progress` checks for this number of days
     config.x.checks.incomplete_purge_after_days = 7
@@ -46,7 +46,7 @@ module Disclosure
     config.x.checks.complete_purge_after_days = 60
 
     # Cookies permission banner
-    config.x.cookies_consent_name = 'dc_cookies_consent'.freeze
+    config.x.cookies_consent_name = "dc_cookies_consent".freeze
     config.x.cookies_consent_expiration = 1.year
 
     config.sentry_dsn = "https://d82ca719a5b246bf80342c2266fe7550@o345774.ingest.sentry.io/5373163"

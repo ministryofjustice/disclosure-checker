@@ -13,12 +13,12 @@ class SentenceLengthValidator < ActiveModel::EachValidator
 
   def validate_each(record, attribute, value)
     return unless value.present? &&
-                  @_conviction_subtypes.include?(record.conviction_subtype)
+      @_conviction_subtypes.include?(record.conviction_subtype)
 
     record.errors.add(attribute, :invalid_sentence) unless valid_calculation?(record, value)
   end
 
-  private
+private
 
   def valid_calculation?(record, length)
     calculator = record.conviction_subtype.calculator_class

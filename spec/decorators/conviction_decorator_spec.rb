@@ -1,117 +1,137 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ConvictionDecorator do
-  context 'youth?' do
-    context 'for a youth conviction' do
-      subject { ConvictionType::YOUTH_REHABILITATION_ORDER }
-      it { expect(subject.youth?).to eq(true) }
+  describe "youth?" do
+    context "when a youth conviction" do
+      subject { ConvictionType::YOUTH_REHABILITATION_ORDER.youth? }
+
+      it { is_expected.to eq(true) }
     end
 
-    context 'for an adult conviction' do
-      subject { ConvictionType::ADULT_ABSOLUTE_DISCHARGE }
-      it { expect(subject.youth?).to eq(false) }
-    end
-  end
+    context "when an adult conviction" do
+      subject { ConvictionType::ADULT_ABSOLUTE_DISCHARGE.youth? }
 
-  context 'adult?' do
-    context 'for a youth conviction' do
-      subject { ConvictionType::YOUTH_REHABILITATION_ORDER }
-      it { expect(subject.adult?).to eq(false) }
-    end
-
-    context 'for an adult conviction' do
-      subject { ConvictionType::ADULT_ABSOLUTE_DISCHARGE }
-      it { expect(subject.adult?).to eq(true) }
+      it { is_expected.to eq(false) }
     end
   end
 
-  context 'compensation?' do
-    context 'for a conviction without compensation' do
-      subject { ConvictionType::HOSPITAL_ORDER }
-      it { expect(subject.compensation?).to eq(false) }
+  describe "adult?" do
+    context "when a youth conviction" do
+      subject { ConvictionType::YOUTH_REHABILITATION_ORDER.adult? }
+
+      it { is_expected.to eq(false) }
     end
 
-    context 'for a conviction with compensation' do
-      subject { ConvictionType::COMPENSATION_TO_A_VICTIM }
-      it { expect(subject.compensation?).to eq(true) }
-    end
-  end
+    context "when an adult conviction" do
+      subject(:decorator) { ConvictionType::ADULT_ABSOLUTE_DISCHARGE.adult? }
 
-  describe '#custodial_sentence?' do
-    context 'for a youth custodial conviction type' do
-      subject { ConvictionType::DETENTION_TRAINING_ORDER }
-      it { expect(subject.custodial_sentence?).to eq(true) }
-    end
-
-    context 'for an adult custodial conviction type' do
-      subject { ConvictionType::ADULT_PRISON_SENTENCE }
-      it { expect(subject.custodial_sentence?).to eq(true) }
-    end
-
-    context 'for a non-custodial type' do
-      subject { ConvictionType::ABSOLUTE_DISCHARGE }
-      it { expect(subject.custodial_sentence?).to eq(false) }
+      it { is_expected.to eq(true) }
     end
   end
 
-  describe '#motoring?' do
-    context 'for an adult motoring conviction type' do
-      subject { ConvictionType::ADULT_DISQUALIFICATION }
-      it { expect(subject.motoring?).to eq(true) }
+  describe "compensation?" do
+    context "when a conviction without compensation" do
+      subject { ConvictionType::HOSPITAL_ORDER.compensation? }
+
+      it { is_expected.to eq(false) }
     end
 
-    context 'for a youth motoring conviction type' do
-      subject { ConvictionType::YOUTH_DISQUALIFICATION }
-      it { expect(subject.motoring?).to eq(true) }
-    end
+    context "when a conviction with compensation" do
+      subject { ConvictionType::COMPENSATION_TO_A_VICTIM.compensation? }
 
-    context 'for a non-motoring conviction type' do
-      subject { ConvictionType::ADULT_COMMUNITY_ORDER }
-      it { expect(subject.motoring?).to eq(false) }
+      it { is_expected.to eq(true) }
     end
   end
 
-  describe '#motoring_fine?' do
-    context 'for an adult `ADULT_MOTORING_FINE` conviction type' do
-      subject { ConvictionType::ADULT_MOTORING_FINE }
-      it { expect(subject.motoring_fine?).to eq(true) }
+  describe "#custodial_sentence?" do
+    context "when a youth custodial conviction type" do
+      subject { ConvictionType::DETENTION_TRAINING_ORDER.custodial_sentence? }
+
+      it { is_expected.to eq(true) }
     end
 
-    context 'for a youth `YOUTH_MOTORING_FINE` conviction type' do
-      subject { ConvictionType::YOUTH_MOTORING_FINE }
-      it { expect(subject.motoring_fine?).to eq(true) }
+    context "when an adult custodial conviction type" do
+      subject { ConvictionType::ADULT_PRISON_SENTENCE.custodial_sentence? }
+
+      it { is_expected.to eq(true) }
+    end
+
+    context "when a non-custodial type" do
+      subject { ConvictionType::ABSOLUTE_DISCHARGE.custodial_sentence? }
+
+      it { is_expected.to eq(false) }
     end
   end
 
-  describe '#bailable_offense?' do
-    context 'for a youth `DETENTION` conviction type' do
-      subject { ConvictionType::DETENTION }
-      it { expect(subject.bailable_offense?).to eq(true) }
+  describe "#motoring?" do
+    context "when an adult motoring conviction type" do
+      subject { ConvictionType::ADULT_DISQUALIFICATION.motoring? }
+
+      it { is_expected.to eq(true) }
     end
 
-    context 'for a youth `DETENTION_TRAINING_ORDER` conviction type' do
-      subject { ConvictionType::DETENTION_TRAINING_ORDER }
-      it { expect(subject.bailable_offense?).to eq(true) }
+    context "when a youth motoring conviction type" do
+      subject { ConvictionType::YOUTH_DISQUALIFICATION.motoring? }
+
+      it { is_expected.to eq(true) }
     end
 
-    context 'for a youth `HOSPITAL_ORDER` conviction type' do
-      subject { ConvictionType::HOSPITAL_ORDER }
-      it { expect(subject.bailable_offense?).to eq(false) }
+    context "when a non-motoring conviction type" do
+      subject { ConvictionType::ADULT_COMMUNITY_ORDER.motoring? }
+
+      it { is_expected.to eq(false) }
+    end
+  end
+
+  describe "#motoring_fine?" do
+    context "when an adult `ADULT_MOTORING_FINE` conviction type" do
+      subject { ConvictionType::ADULT_MOTORING_FINE.motoring_fine? }
+
+      it { is_expected.to eq(true) }
     end
 
-    context 'for an `ADULT_PRISON_SENTENCE` conviction type' do
-      subject { ConvictionType::ADULT_PRISON_SENTENCE }
-      it { expect(subject.bailable_offense?).to eq(true) }
+    context "when a youth `YOUTH_MOTORING_FINE` conviction type" do
+      subject { ConvictionType::YOUTH_MOTORING_FINE.motoring_fine? }
+
+      it { is_expected.to eq(true) }
+    end
+  end
+
+  describe "#bailable_offense?" do
+    context "when a youth `DETENTION` conviction type" do
+      subject { ConvictionType::DETENTION.bailable_offense? }
+
+      it { is_expected.to eq(true) }
     end
 
-    context 'for an `ADULT_SUSPENDED_PRISON_SENTENCE` conviction type' do
-      subject { ConvictionType::ADULT_SUSPENDED_PRISON_SENTENCE }
-      it { expect(subject.bailable_offense?).to eq(true) }
+    context "when a youth `DETENTION_TRAINING_ORDER` conviction type" do
+      subject { ConvictionType::DETENTION_TRAINING_ORDER.bailable_offense? }
+
+      it { is_expected.to eq(true) }
     end
 
-    context 'for an `ADULT_HOSPITAL_ORDER` conviction type' do
-      subject { ConvictionType::ADULT_HOSPITAL_ORDER }
-      it { expect(subject.bailable_offense?).to eq(false) }
+    context "when a youth `HOSPITAL_ORDER` conviction type" do
+      subject { ConvictionType::HOSPITAL_ORDER.bailable_offense? }
+
+      it { is_expected.to eq(false) }
+    end
+
+    context "when an `ADULT_PRISON_SENTENCE` conviction type" do
+      subject { ConvictionType::ADULT_PRISON_SENTENCE.bailable_offense? }
+
+      it { is_expected.to eq(true) }
+    end
+
+    context "when an `ADULT_SUSPENDED_PRISON_SENTENCE` conviction type" do
+      subject { ConvictionType::ADULT_SUSPENDED_PRISON_SENTENCE.bailable_offense? }
+
+      it { is_expected.to eq(true) }
+    end
+
+    context "when an `ADULT_HOSPITAL_ORDER` conviction type" do
+      subject { ConvictionType::ADULT_HOSPITAL_ORDER.bailable_offense? }
+
+      it { is_expected.to eq(false) }
     end
   end
 end

@@ -1,15 +1,15 @@
 class StepGenerator < Rails::Generators::Base
-  source_root File.expand_path('../templates', __FILE__)
+  source_root File.expand_path("templates", __dir__)
   argument :task_name,  type: :string
   argument :step_name,  type: :string
-  class_option :type,   type: :string, required: false, default: 'edit'
+  class_option :type,   type: :string, required: false, default: "edit"
 
   # If you add a new type of step, do not forget to update this hash
   TYPE_TEMPLATES = {
-    show: 'show.html.erb',
-    edit: 'edit.html.erb',
-    question: 'edit.html.erb',
-    date: 'edit.html.erb',
+    show: "show.html.erb",
+    edit: "edit.html.erb",
+    question: "edit.html.erb",
+    date: "edit.html.erb",
   }.freeze
 
   def validate_options!
@@ -28,6 +28,7 @@ class StepGenerator < Rails::Generators::Base
 
   def copy_form
     return if type == :show # show steps doesn't have form objects
+
     template "#{type}/form.rb", "app/forms/steps/#{task_name.underscore}/#{step_name.underscore}_form.rb"
     template "#{type}/form_spec.rb", "spec/forms/steps/#{task_name.underscore}/#{step_name.underscore}_form_spec.rb"
   end
@@ -41,10 +42,10 @@ class StepGenerator < Rails::Generators::Base
     end
   end
 
-  private
+private
 
   def add_to_routes(step_line)
-    insert_into_file('config/routes.rb', after: /namespace :#{task_name.underscore} do.+?(?=end)/m) { "  #{step_line}\n    " }
+    insert_into_file("config/routes.rb", after: /namespace :#{task_name.underscore} do.+?(?=end)/m) { "  #{step_line}\n    " }
   end
 
   # Supplied as an optional parameter in the command line with `--type=X`

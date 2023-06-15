@@ -10,8 +10,8 @@ class DisclosureCheck < ApplicationRecord
   }
 
   composed_of :conviction, allow_nil: true, constructor: :find_constant,
-              mapping: [[:conviction_subtype, :value]], class_name: 'ConvictionType'
+                           mapping: [%i[conviction_subtype value]], class_name: "ConvictionType"
 
   composed_of :caution, allow_nil: true, constructor: :find_constant,
-              mapping: [[:caution_type, :value]], class_name: 'CautionType'
+                        mapping: [%i[caution_type value]], class_name: "CautionType"
 end

@@ -13,7 +13,7 @@ module CompletionStep
                   :mark_report_completed, unless: :report_completed?
   end
 
-  private
+private
 
   def report_completed?
     current_disclosure_report.completed?
@@ -30,7 +30,7 @@ module CompletionStep
     # It could happen the current session was one of the purged
     # incomplete checks, so this ensures we have a valid one again.
     swap_disclosure_check_session(
-      current_disclosure_report.disclosure_checks.last.id
+      current_disclosure_report.disclosure_checks.last.id,
     )
   end
 

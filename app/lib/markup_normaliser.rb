@@ -8,15 +8,15 @@ class MarkupNormaliser
     normalise!
   end
 
-  private
+private
 
   def normalise!
     @markup1 = remove_blank_children(
-      Nokogiri::HTML.fragment(markup1)
+      Nokogiri::HTML.fragment(markup1),
     ).to_html
 
     @markup2 = remove_blank_children(
-      Nokogiri::HTML.fragment(markup2)
+      Nokogiri::HTML.fragment(markup2),
     ).to_html
   end
 

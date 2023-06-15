@@ -13,7 +13,7 @@ module Steps
         end
       end
 
-      private
+    private
 
       def choices
         values.map(&:to_s)
@@ -31,11 +31,11 @@ module Steps
         raise DisclosureCheckNotFound unless disclosure_check
         return true unless changed?
 
-        disclosure_check.update(
-          caution_type: caution_type,
+        disclosure_check.update!(
+          caution_type:,
           # The following are dependent attributes that need to be reset if form changes
           known_date: nil,
-          conditional_end_date: nil
+          conditional_end_date: nil,
         )
       end
     end

@@ -16,7 +16,7 @@ class BaseDecisionTree
     @next_step = options[:next_step]
   end
 
-  private
+private
 
   def step_value(attribute_name)
     step_params.fetch(attribute_name)
@@ -37,6 +37,6 @@ class BaseDecisionTree
   def check_your_answers
     disclosure_check.completed! unless disclosure_check.completed?
 
-    show('/steps/check/check_your_answers')
+    show("/steps/check/check_your_answers")
   end
 end

@@ -1,38 +1,40 @@
 def edit_step(name, &block)
   resource name,
-           only: [:edit, :update],
+           only: %i[edit update],
            controller: name,
-           path_names: {edit: ''} do; block.call if block_given?; end
+           path_names: { edit: "" } do
+             block.call if block_given?
+           end
 end
 
 def show_step(name)
   resource name,
-           only:       [:show],
+           only: [:show],
            controller: name
 end
 
 Rails.application.routes.draw do
-  root 'home#index'
+  root "home#index"
 
-  get 'home/index'
+  get "home/index"
 
-  get 'about/contact'
-  get 'about/privacy'
-  get 'about/terms_and_conditions'
-  get 'about/accessibility'
+  get "about/contact"
+  get "about/privacy"
+  get "about/terms_and_conditions"
+  get "about/accessibility"
 
-  get 'warning/reset_session'
+  get "warning/reset_session"
 
-  resource :cookies, only: [:show, :update]
+  resource :cookies, only: %i[show update]
 
   # Back office
   namespace :backoffice do
-    get '/', to: 'home#index'
+    get "/", to: "home#index"
     resources :reports, only: [:index]
   end
 
   namespace :steps do
-    resources :checks, only: [:edit, :update]
+    resources :checks, only: %i[edit update]
 
     namespace :check do
       edit_step :kind
@@ -64,7 +66,7 @@ Rails.application.routes.draw do
   end
 
   resources :checks, only: [:create], param: :group_id do
-    post '', action: :create, as: :group
+    post "", action: :create, as: :group
   end
 
   resources :reports, only: [] do
@@ -85,12 +87,12 @@ Rails.application.routes.draw do
 
   # Health and ping endpoints (`status` and `health` are alias)
   defaults format: :json do
-    get :status, to: 'status#index'
-    get :health, to: 'status#index'
-    get :ping,   to: 'status#ping'
+    get :status, to: "status#index"
+    get :health, to: "status#index"
+    get :ping,   to: "status#ping"
   end
 
   # catch-all route
-  match '*path', to: 'errors#not_found', via: :all, constraints:
-    lambda { |_request| !Rails.application.config.consider_all_requests_local }
+  match "*path", to: "errors#not_found", via: :all, constraints:
+    ->(_request) { !Rails.application.config.consider_all_requests_local }
 end

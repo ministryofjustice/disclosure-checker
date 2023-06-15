@@ -7,14 +7,14 @@ module Steps
       validates_presence_of :compensation_payment_date
       validates :compensation_payment_date, sensible_date: true
 
-      private
+    private
 
       def persist!
         raise DisclosureCheckNotFound unless disclosure_check
 
-        disclosure_check.update(
-          compensation_payment_date: compensation_payment_date,
-          approximate_compensation_payment_date: approximate_compensation_payment_date
+        disclosure_check.update!(
+          compensation_payment_date:,
+          approximate_compensation_payment_date:,
         )
       end
     end

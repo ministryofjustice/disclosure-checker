@@ -4,7 +4,7 @@ module Steps
       def edit
         @form_object = MotoringEndorsementForm.new(
           disclosure_check: current_disclosure_check,
-          motoring_endorsement: current_disclosure_check.motoring_endorsement
+          motoring_endorsement: current_disclosure_check.motoring_endorsement,
         )
       end
 

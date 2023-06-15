@@ -6,11 +6,11 @@ class ResultsItemPresenter
   def self.build(disclosure_check, scope:)
     case CheckKind.new(disclosure_check.kind)
     when CheckKind::CAUTION
-      CautionResultPresenter.new(disclosure_check, scope: scope)
+      CautionResultPresenter.new(disclosure_check, scope:)
     when CheckKind::CONVICTION
-      ConvictionResultPresenter.new(disclosure_check, scope: scope)
+      ConvictionResultPresenter.new(disclosure_check, scope:)
     else
-      raise TypeError, 'unknown check kind'
+      raise TypeError, "unknown check kind"
     end
   end
 
@@ -25,25 +25,23 @@ class ResultsItemPresenter
   end
 
   def summary
-    question_attributes.map do |item, value|
+    question_attributes.map { |item, value|
       QuestionAnswerRow.new(
         item,
         value || format_value(item),
-        scope: scope,
-        change_path: change_path(item)
+        scope:,
+        change_path: change_path(item),
       )
-    end.select(&:show?)
+    }.select(&:show?)
   end
 
-  def expiry_date
-    result_service.expiry_date
-  end
+  delegate :expiry_date, to: :result_service
 
-  private
+private
 
   def result_service
-    @_result_service ||= CheckResult.new(
-      disclosure_check: disclosure_check
+    @result_service ||= CheckResult.new(
+      disclosure_check:,
     )
   end
 
@@ -51,12 +49,12 @@ class ResultsItemPresenter
     value = disclosure_check[attr]
     return value unless value.is_a?(Date)
 
-    approx_attr = ['approximate', attr].join('_').to_sym
-    format_type = disclosure_check[approx_attr].present? ? 'approximate' : 'exact'
+    approx_attr = ["approximate", attr].join("_").to_sym
+    format_type = disclosure_check[approx_attr].present? ? "approximate" : "exact"
 
     I18n.translate!(
       format_type, date: I18n.l(value),
-      scope: 'results/shared/date_format'
+                   scope: "results/shared/date_format"
     )
   end
 
@@ -66,15 +64,15 @@ class ResultsItemPresenter
 
   # :nocov:
   def type_attribute
-    raise NotImplementedError, 'implement in subclasses'
+    raise NotImplementedError, "implement in subclasses"
   end
 
   def question_attributes
-    raise NotImplementedError, 'implement in subclasses'
+    raise NotImplementedError, "implement in subclasses"
   end
 
   def editable_attributes
-    raise NotImplementedError, 'implement in subclasses'
+    raise NotImplementedError, "implement in subclasses"
   end
   # :nocov:
 end

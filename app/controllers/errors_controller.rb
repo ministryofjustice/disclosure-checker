@@ -29,7 +29,7 @@ class ErrorsController < ApplicationController
     respond_with_status(:service_unavailable)
   end
 
-  private
+private
 
   def respond_with_status(status)
     respond_to do |format|

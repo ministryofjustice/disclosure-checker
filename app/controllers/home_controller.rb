@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     redirect_to steps_check_kind_path
   end
 
-  private
+private
 
   def in_progress_enough?
     current_disclosure_report&.in_progress? &&

@@ -8,13 +8,13 @@ class CautionType < ValueObject
     ADULT_TYPES = [
       ADULT_SIMPLE_CAUTION = new(:adult_simple_caution),
       ADULT_CONDITIONAL_CAUTION = new(:adult_conditional_caution),
-    ].freeze
+    ].freeze,
   ].flatten.freeze
 
   def conditional?
     [
       ADULT_CONDITIONAL_CAUTION,
-      YOUTH_CONDITIONAL_CAUTION
+      YOUTH_CONDITIONAL_CAUTION,
     ].include?(self)
   end
 

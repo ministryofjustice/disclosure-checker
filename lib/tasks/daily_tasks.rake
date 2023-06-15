@@ -1,14 +1,16 @@
+desc "run daily tasks"
 task daily_tasks: :environment do
-  log 'Starting daily tasks'
+  log "Starting daily tasks"
   log "Checks count: #{DisclosureReport.count}"
 
-  Rake::Task['purge:checks'].invoke
+  Rake::Task["purge:checks"].invoke
 
   log "Checks count: #{DisclosureReport.count}"
-  log 'Finished daily tasks'
+  log "Finished daily tasks"
 end
 
 namespace :purge do
+  desc "purge checks"
   task checks: :environment do
     # incomplete checks
     expire_after = Rails.configuration.x.checks.incomplete_purge_after_days
@@ -27,5 +29,5 @@ end
 private
 
 def log(message)
-  puts "[#{Time.now}] #{message}"
+  puts "[#{Time.zone.now}] #{message}"
 end

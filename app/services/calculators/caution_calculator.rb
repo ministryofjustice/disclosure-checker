@@ -18,7 +18,7 @@ module Calculators
       caution_date.advance(CONDITIONAL_ADDED_TIME)
     end
 
-    private
+  private
 
     def conditional?
       CautionType.new(disclosure_check.caution_type).conditional?

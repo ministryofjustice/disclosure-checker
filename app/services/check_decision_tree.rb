@@ -14,14 +14,14 @@ class CheckDecisionTree < BaseDecisionTree
     end
   end
 
-  private
+private
 
   def after_under_age
     case CheckKind.new(disclosure_check.kind)
     when CheckKind::CAUTION
-      edit('/steps/caution/caution_type')
+      edit("/steps/caution/caution_type")
     when CheckKind::CONVICTION
-      edit('/steps/conviction/conviction_date')
+      edit("/steps/conviction/conviction_date")
     end
   end
 
@@ -30,6 +30,6 @@ class CheckDecisionTree < BaseDecisionTree
     return check_your_answers if disclosure_check.disclosure_report.disclosure_checks.completed.any?
 
     # restart fresh
-    edit('/steps/check/kind', { new: 'y' })
+    edit("/steps/check/kind", { new: "y" })
   end
 end

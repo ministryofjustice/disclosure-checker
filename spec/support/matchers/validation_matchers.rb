@@ -2,7 +2,7 @@ RSpec::Matchers.define :validate_presence_of do |attribute, error = :blank|
   include ValidationHelpers
 
   match do |object|
-    object.send("#{attribute}=", '')
+    object.send("#{attribute}=", "")
     check_errors(object, attribute, error)
   end
 
@@ -23,7 +23,7 @@ RSpec::Matchers.define :validate_absence_of do |attribute, error = :present|
   include ValidationHelpers
 
   match do |object|
-    object.send("#{attribute}=", 'xxx')
+    object.send("#{attribute}=", "xxx")
     check_errors(object, attribute, error)
   end
 
@@ -63,7 +63,7 @@ RSpec::Matchers.define :validate_email do |attribute, error = :invalid|
   include ValidationHelpers
 
   match do |object|
-    object.send("#{attribute}=", 'x@x')
+    object.send("#{attribute}=", "x@x")
     check_errors(object, attribute, error)
   end
 

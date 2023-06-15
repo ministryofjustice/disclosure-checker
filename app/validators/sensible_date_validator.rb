@@ -18,7 +18,7 @@ class SensibleDateValidator < ActiveModel::EachValidator
     record.errors.add(attribute, :future)  unless valid_future?(value)
   end
 
-  private
+private
 
   def positive_year?(date)
     date.year.to_i.positive?
@@ -29,6 +29,6 @@ class SensibleDateValidator < ActiveModel::EachValidator
   end
 
   def valid_future?(date)
-    @_allow_future || Date.today >= date
+    @_allow_future || Time.zone.today >= date
   end
 end

@@ -3,12 +3,12 @@ module ApplicationHelper
   def step_form(record, options = {}, &block)
     opts = {
       url: { controller: controller.controller_path, action: :update },
-      method: :put
+      method: :put,
     }.merge(options)
 
     # Support for appending optional css classes, maintaining the default one
     opts.merge!(
-      html: { class: dom_class(record, :edit) }
+      html: { class: dom_class(record, :edit) },
     ) do |_key, old_value, new_value|
       { class: old_value.values | new_value.values }
     end
@@ -18,30 +18,30 @@ module ApplicationHelper
 
   # Render a back link pointing to the user's previous step
   def step_header(path: nil)
-    render partial: 'layouts/step_header', locals: {
-      path: path || controller.previous_step_path
+    render partial: "layouts/step_header", locals: {
+      path: path || controller.previous_step_path,
     }
   end
 
-  def govuk_error_summary(form_object = @form_object)
-    return unless form_object.try(:errors).present?
+  def govuk_error_summary(form_object = @form_object) # rubocop:disable Rails/HelperInstanceVariable
+    return if form_object.try(:errors).blank?
 
     # Prepend page title so screen readers read it out as soon as possible
     content_for(:page_title, flush: true) do
-      content_for(:page_title).insert(0, t('errors.page_title_prefix'))
+      content_for(:page_title).insert(0, t("errors.page_title_prefix"))
     end
 
     fields_for(form_object, form_object) do |f|
-      f.govuk_error_summary t('errors.error_summary.heading')
+      f.govuk_error_summary t("errors.error_summary.heading")
     end
   end
 
   def service_name
-    t('service.name')
+    t("service.name")
   end
 
   def title(page_title)
-    content_for :page_title, [page_title.presence, service_name, 'GOV.UK'].compact.join(' - ')
+    content_for :page_title, [page_title.presence, service_name, "GOV.UK"].compact.join(" - ")
   end
 
   def fallback_title
@@ -50,13 +50,13 @@ module ApplicationHelper
 
     Sentry.capture_exception(exception)
 
-    title ''
+    title ""
   end
 
   def link_button(text, href, attributes = {})
     link_to t("helpers.buttons.#{text}"), href, {
-      class: 'govuk-button',
-      data: { module: 'govuk-button' },
+      class: "govuk-button",
+      data: { module: "govuk-button" },
     }.merge(attributes)
   end
 
@@ -71,6 +71,6 @@ module ApplicationHelper
 
   # Use this to feature-flag code that should only run/show on test environments
   def dev_tools_enabled?
-    Rails.env.development? || ENV.key?('DEV_TOOLS_ENABLED')
+    Rails.env.development? || ENV.key?("DEV_TOOLS_ENABLED")
   end
 end

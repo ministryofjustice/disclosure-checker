@@ -14,7 +14,7 @@ module Steps
         conviction_subtype
       end
 
-      private
+    private
 
       def after_conviction_date?
         return if known_date.blank? || disclosure_check.conviction_date.blank?
@@ -25,9 +25,9 @@ module Steps
       def persist!
         raise DisclosureCheckNotFound unless disclosure_check
 
-        disclosure_check.update(
-          known_date: known_date,
-          approximate_known_date: approximate_known_date
+        disclosure_check.update!(
+          known_date:,
+          approximate_known_date:,
         )
       end
     end

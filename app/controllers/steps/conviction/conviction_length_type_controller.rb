@@ -4,7 +4,7 @@ module Steps
       def edit
         @form_object = ConvictionLengthTypeForm.new(
           disclosure_check: current_disclosure_check,
-          conviction_length_type: current_disclosure_check.conviction_length_type
+          conviction_length_type: current_disclosure_check.conviction_length_type,
         )
       end
 

@@ -5,11 +5,11 @@ class ResultsController < ApplicationController
     redirect_to steps_check_results_path
   end
 
-  private
+private
 
   def disclosure_report
-    @_disclosure_report ||= DisclosureReport.completed.find_by(
-      id: params[:report_id]
+    @disclosure_report ||= DisclosureReport.completed.find_by(
+      id: params[:report_id],
     ) || (raise Errors::ResultsNotFound)
   end
 

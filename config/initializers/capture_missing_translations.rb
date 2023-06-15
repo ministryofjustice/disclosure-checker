@@ -12,13 +12,11 @@ module I18n
       super
 
       Sentry.set_extras(
-        locale: locale,
+        locale:,
         scope: options[:scope],
-        key: key
+        key:,
       )
       Sentry.capture_exception(self)
-
-      self
     end
   end
 end

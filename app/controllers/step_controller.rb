@@ -5,9 +5,13 @@ class StepController < ApplicationController
 
   before_action { swap_disclosure_check_session(params[:check_id]) if params[:check_id] }
 
-  before_action :update_navigation_stack, only: [:show, :edit]
+  before_action :update_navigation_stack, only: %i[show edit]
 
-  private
+private
+
+  def show; end
+
+  def edit; end
 
   def update_and_advance(form_class, opts = {})
     hash = extract_parameters(form_class)
@@ -15,18 +19,18 @@ class StepController < ApplicationController
 
     @next_step   = params[:next_step].presence
     @form_object = form_class.new(
-      hash.merge(disclosure_check: current_disclosure_check, record: record)
+      hash.merge(disclosure_check: current_disclosure_check, record:),
     )
 
     if @form_object.save
       destination = decision_tree_class.new(
         disclosure_check: current_disclosure_check,
-        record:        record,
-        step_params:   hash,
+        record:,
+        step_params: hash,
         # Used when the step name in the decision tree is not the same as the first
         # (and usually only) attribute in the form.
-        as:            opts[:as],
-        next_step:     @next_step
+        as: opts[:as],
+        next_step: @next_step,
       ).destination
 
       redirect_to destination
@@ -37,7 +41,7 @@ class StepController < ApplicationController
 
   def extract_parameters(form_class)
     normalise_date_attributes!(
-      permitted_params(form_class).to_h
+      permitted_params(form_class).to_h,
     )
   end
 
@@ -54,12 +58,12 @@ class StepController < ApplicationController
   end
 
   def form_attribute_names(form_class)
-    form_class.attribute_set.map do |attr|
+    form_class.attribute_set.map { |attr|
       attr_name = attr.name
       primitive = attr.primitive
 
       primitive.eql?(Date) ? %W[#{attr_name}_dd #{attr_name}_mm #{attr_name}_yyyy] : attr_name
-    end.flatten
+    }.flatten
   end
 
   # Converts multi-param Rails date attributes to an array that can be coerced more easily.
@@ -72,7 +76,7 @@ class StepController < ApplicationController
     regex = /(?<name>.+)\((?<index>[1-3])i\)$/ # captures the attribute name and index (1 to 3)
     new_hash = {}
 
-    hash.each do |key, value|
+    hash.each { |key, value|
       next unless key =~ regex
 
       hash.delete(key)
@@ -82,8 +86,8 @@ class StepController < ApplicationController
 
       new_hash[name] ||= []
       new_hash[name][index] = value.to_i
-    end.merge!(
-      new_hash
+    }.merge!(
+      new_hash,
     )
   end
 
@@ -104,7 +108,7 @@ class StepController < ApplicationController
 
   def redirect_to_root
     current_disclosure_check.navigation_stack.pop
-    current_disclosure_check.save
+    current_disclosure_check.save!
     redirect_to root_path
   end
 end

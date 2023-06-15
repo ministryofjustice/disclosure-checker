@@ -8,7 +8,7 @@ class SpentDatePanel
   end
 
   def to_partial_path
-    'results/shared/spent_date_panel'
+    "results/shared/spent_date_panel"
   end
 
   def scope

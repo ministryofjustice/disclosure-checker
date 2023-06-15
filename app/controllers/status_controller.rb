@@ -2,9 +2,9 @@ class StatusController < BareApplicationController
   respond_to :json
 
   BUILD_ARGS = {
-    build_date: ENV['APP_BUILD_DATE'],
-    build_tag: ENV['APP_BUILD_TAG'],
-    commit_id: ENV['APP_GIT_COMMIT'],
+    build_date: ENV["APP_BUILD_DATE"],
+    build_tag: ENV["APP_BUILD_TAG"],
+    commit_id: ENV["APP_GIT_COMMIT"],
   }.freeze
 
   def index

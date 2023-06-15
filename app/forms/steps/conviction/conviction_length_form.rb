@@ -13,13 +13,13 @@ module Steps
         disclosure_check.conviction_length_type
       end
 
-      private
+    private
 
       def persist!
         raise DisclosureCheckNotFound unless disclosure_check
 
-        disclosure_check.update(
-          conviction_length: conviction_length
+        disclosure_check.update!(
+          conviction_length:,
         )
       end
     end

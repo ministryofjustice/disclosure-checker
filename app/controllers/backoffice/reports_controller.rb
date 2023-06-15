@@ -10,7 +10,7 @@ module Backoffice
                  end
     end
 
-    private
+  private
 
     def limit
       RESULTS_LIMIT

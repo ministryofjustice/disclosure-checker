@@ -8,16 +8,14 @@ class DisclosureReport < ApplicationRecord
   }
 
   def self.purge!(date)
-    where('created_at <= :date', date: date).destroy_all
+    where("created_at <= :date", date:).destroy_all
   end
 
   def completed!
     update!(status: :completed, completed_at: Time.current)
   end
 
-  def disclosure_checks_count
-    disclosure_checks.count
-  end
+  delegate :count, to: :disclosure_checks, prefix: true
 
   # Convenience methods to return collections of just one kind
   #

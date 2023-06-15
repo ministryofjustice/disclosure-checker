@@ -37,10 +37,10 @@ class DbsVisibility
   end
 
   def to_partial_path
-    'results/shared/dbs_visibility'
+    "results/shared/dbs_visibility"
   end
 
-  private
+private
 
   # Recency rules for spent cautions or convictions:
   #
@@ -61,11 +61,11 @@ class DbsVisibility
   end
 
   def cautions
-    @_cautions ||= completed_checks.filter_map(&:caution)
+    @cautions ||= completed_checks.filter_map(&:caution)
   end
 
   def convictions
-    @_convictions ||= completed_checks.filter_map(&:conviction)
+    @convictions ||= completed_checks.filter_map(&:conviction)
   end
 
   def youth_caution?
@@ -89,7 +89,7 @@ class DbsVisibility
   end
 
   def caution_date
-    completed_checks.pluck(:known_date).first
+    completed_checks.pick(:known_date)
   end
 
   # NOTE: cautions always return just 1 date (`known_date`), but convictions
@@ -97,6 +97,6 @@ class DbsVisibility
   # `conviction_date`, so it is safe to pick one, the first one for example.
   #
   def conviction_date
-    completed_checks.pluck(:conviction_date).first
+    completed_checks.pick(:conviction_date)
   end
 end

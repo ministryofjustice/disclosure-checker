@@ -13,7 +13,7 @@ module Steps
         conviction_type
       end
 
-      private
+    private
 
       def choices
         values.map(&:to_s)
@@ -31,8 +31,8 @@ module Steps
         raise DisclosureCheckNotFound unless disclosure_check
         return true unless changed?
 
-        disclosure_check.update(
-          conviction_subtype: conviction_subtype,
+        disclosure_check.update!(
+          conviction_subtype:,
           # The following are dependent attributes that need to be reset if form changes
           known_date: nil,
           conviction_bail: nil,
@@ -41,7 +41,7 @@ module Steps
           conviction_length_type: nil,
           compensation_paid: nil,
           compensation_payment_date: nil,
-          motoring_endorsement: nil
+          motoring_endorsement: nil,
         )
       end
     end

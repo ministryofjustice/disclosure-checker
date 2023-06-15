@@ -4,9 +4,9 @@ class ConvictionType < ValueObject
   attr_reader :parent, :calculator_class,
               :skip_length, :relevant_order, :drag_through
 
-  alias skip_length? skip_length
-  alias relevant_order? relevant_order
-  alias drag_through? drag_through
+  alias_method :skip_length?, :skip_length
+  alias_method :relevant_order?, :relevant_order
+  alias_method :drag_through?, :drag_through
 
   def initialize(raw_value, params = {})
     @parent = params.fetch(:parent, nil)
@@ -20,7 +20,6 @@ class ConvictionType < ValueObject
     super(raw_value)
   end
 
-  # rubocop:disable Layout/LineLength
   VALUES = [
     YOUTH_PARENT_TYPES = [
       REFERRAL_SUPERVISION_YRO = new(:referral_supervision_yro),
@@ -108,7 +107,6 @@ class ConvictionType < ValueObject
     ADULT_PRISON_SENTENCE               = new(:adult_prison_sentence,              parent: ADULT_CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::Prison),
     ADULT_SUSPENDED_PRISON_SENTENCE     = new(:adult_suspended_prison_sentence,    parent: ADULT_CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::SuspendedPrison),
   ].flatten.freeze
-  # rubocop:enable Layout/LineLength
 
   # :nocov:
   def self.values

@@ -1,6 +1,6 @@
 module Steps
   class CheckStepController < StepController
-    private
+  private
 
     def decision_tree_class
       CheckDecisionTree

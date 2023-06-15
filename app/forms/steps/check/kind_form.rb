@@ -9,7 +9,7 @@ module Steps
 
       validates_inclusion_of :kind, in: choices
 
-      private
+    private
 
       def changed?
         disclosure_check.kind != kind
@@ -19,14 +19,14 @@ module Steps
         raise DisclosureCheckNotFound unless disclosure_check
         return true unless changed?
 
-        disclosure_check.update(
-          kind: kind,
+        disclosure_check.update!(
+          kind:,
           # The following are dependent attributes that need to be reset if form changes
           under_age: nil,
           caution_type: nil,
           conviction_type: nil,
           conviction_subtype: nil,
-          conviction_date: nil
+          conviction_date: nil,
         )
       end
     end

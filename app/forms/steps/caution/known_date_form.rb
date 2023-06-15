@@ -8,14 +8,14 @@ module Steps
       validates :known_date, sensible_date: true
       validate :before_conditional_date?
 
-      private
+    private
 
       def persist!
         raise DisclosureCheckNotFound unless disclosure_check
 
-        disclosure_check.update(
-          known_date: known_date,
-          approximate_known_date: approximate_known_date
+        disclosure_check.update!(
+          known_date:,
+          approximate_known_date:,
         )
       end
 

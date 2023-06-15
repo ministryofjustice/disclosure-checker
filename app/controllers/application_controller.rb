@@ -12,12 +12,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_disclosure_check
-    @_current_disclosure_check ||= DisclosureCheck.find_by_id(session[:disclosure_check_id])
+    @current_disclosure_check ||= DisclosureCheck.find_by_id(session[:disclosure_check_id])
   end
   helper_method :current_disclosure_check
 
   def current_disclosure_report
-    @_current_disclosure_report ||= current_disclosure_check&.disclosure_report
+    @current_disclosure_report ||= current_disclosure_check&.disclosure_report
   end
   helper_method :current_disclosure_report
 
@@ -27,13 +27,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :previous_step_path
 
-  private
+private
 
   def swap_disclosure_check_session(other_check_id)
     session[:disclosure_check_id] = current_disclosure_report.disclosure_checks.find_by!(id: other_check_id).id
 
     # ensure we don't have a memoized record anymore
-    @_current_disclosure_check = nil
+    @current_disclosure_check = nil
   end
 
   def reset_disclosure_check_session
@@ -41,11 +41,11 @@ class ApplicationController < ActionController::Base
     session.delete(:last_seen)
 
     # ensure we don't have a memoized record anymore
-    @_current_disclosure_check = nil
+    @current_disclosure_check = nil
   end
 
   def initialize_disclosure_check(attributes = {})
-    DisclosureCheck.create(attributes).tap do |disclosure_check|
+    DisclosureCheck.create!(attributes).tap do |disclosure_check|
       session[:disclosure_check_id] = disclosure_check.id
     end
   end

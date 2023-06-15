@@ -1,6 +1,4 @@
 class ConvictionDecisionTree < BaseDecisionTree
-  # rubocop:disable Metrics/CyclomaticComplexity
-  # rubocop:disable Metrics/MethodLength
   def destination
     return next_step if next_step
 
@@ -27,10 +25,8 @@ class ConvictionDecisionTree < BaseDecisionTree
       raise InvalidStep, "Invalid step '#{as || step_params}'"
     end
   end
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/CyclomaticComplexity
 
-  private
+private
 
   def after_conviction_subtype
     return edit(:conviction_bail)      if conviction.bailable_offense?
