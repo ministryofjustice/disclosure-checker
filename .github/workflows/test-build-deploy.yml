@@ -107,7 +107,7 @@ jobs:
         run: |
           docker tag app $REGISTRY/$REPOSITORY:$IMAGE_TAG
           docker tag app $REGISTRY/$REPOSITORY:staging.latest
-          docker push -a $REGISTRY/$REPOSITORY:staging.latest
+          docker push $REGISTRY/$REPOSITORY:staging.latest
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: ${{ vars.ECR_REPOSITORY }}
