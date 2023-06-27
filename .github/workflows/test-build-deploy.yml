@@ -104,7 +104,7 @@ jobs:
             -t app .
 
       - name: Push to ECR
-      - run: |
+        run: |
           docker tag app $REGISTRY/$REPOSITORY:$IMAGE_TAG
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG, $REGISTRY/$REPOSITORY:staging.latest
         env:
