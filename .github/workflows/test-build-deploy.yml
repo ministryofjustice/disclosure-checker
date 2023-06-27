@@ -105,8 +105,8 @@ jobs:
 
       - name: Push to ECR
         run: |
-          docker tag app $REGISTRY/$REPOSITORY:$IMAGE_TAG
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG, $REGISTRY/$REPOSITORY:staging.latest
+          docker tag app $REGISTRY/$REPOSITORY:$IMAGE_TAG $REGISTRY/$REPOSITORY:staging.latest
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: ${{ vars.ECR_REPOSITORY }}
