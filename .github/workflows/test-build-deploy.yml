@@ -106,6 +106,7 @@ jobs:
       - name: Push to ECR
         run: |
           docker tag app $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
           docker tag app $REGISTRY/$REPOSITORY:staging.latest
           docker push $REGISTRY/$REPOSITORY:staging.latest
         env:
@@ -136,7 +137,8 @@ jobs:
       - name: Rollout restart deployment
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
-          deployment/disclosure-checker-deployment-staging
+          deployment/disclosure-checker-deployment-staging \
+          webapp="${{ secrets.ECR_URL }}:${{ github.sha }}"
 
   deploy-production:
     runs-on: ubuntu-latest
