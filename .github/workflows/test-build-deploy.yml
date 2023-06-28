@@ -101,18 +101,13 @@ jobs:
             --build-arg APP_BUILD_DATE=${{ env.BUILD_DATE }} \
             --build-arg APP_BUILD_TAG=${{ github.ref }} \
             --build-arg APP_GIT_COMMIT=${{ github.sha }} \
-            -t app .
+            -t ${{ vars.ECR_URL }}:${{ github.sha }} .
 
       - name: Push to ECR
         run: |
-          docker tag app $REGISTRY/$REPOSITORY:$IMAGE_TAG
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
-          docker tag app $REGISTRY/$REPOSITORY:staging.latest
-          docker push $REGISTRY/$REPOSITORY:staging.latest
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: ${{ vars.ECR_REPOSITORY }}
-          IMAGE_TAG: ${{ github.sha }}
+          docker tag ${{ vars.ECR_URL }}:${{ github.sha }} ${{ vars.ECR_URL }}:staging.latest
+          docker push ${{ vars.ECR_URL }}:${{ github.sha }}
+          docker push ${{ vars.ECR_URL }}:staging.latest
 
   deploy-staging:
     runs-on: ubuntu-latest
@@ -138,7 +133,7 @@ jobs:
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
           deployment/disclosure-checker-deployment-staging \
-          webapp="${{ secrets.ECR_URL }}:${{ github.sha }}"
+          webapp="${{ vars.ECR_URL }}:${{ github.sha }}"
 
   deploy-production:
     runs-on: ubuntu-latest
@@ -151,25 +146,13 @@ jobs:
 
     steps:
       - name: Pull from ECR
-        id: ecr-pull
-        uses: jwalton/gh-ecr-push@v1.3.6
-        with:
-          access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
-          secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
-          region: eu-west-2
-          direction: pull
-          local-image: app
-          image: ${{ secrets.ECR_NAME }}:${{ github.sha }}
+        run: |
+          docker pull ${{ vars.ECR_URL }}:${{ github.sha }}
 
       - name: Push to ECR
-        id: ecr-push
-        uses: jwalton/gh-ecr-push@v1.3.6
-        with:
-          access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
-          secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
-          region: eu-west-2
-          local-image: app
-          image: ${{ secrets.ECR_NAME }}:production.latest
+        run: |
+          docker tag ${{ vars.ECR_URL }}:${{ github.sha }} ${{ vars.ECR_URL }}:production.latest
+          docker push ${{ vars.ECR_URL }}:production.latest
 
       - name: Authenticate to the cluster
         env:
@@ -187,4 +170,4 @@ jobs:
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
           deployment/disclosure-checker-deployment-production \
-          webapp="${{ secrets.ECR_URL }}:${{ github.sha }}"
+          webapp="${{ vars.ECR_URL }}:${{ github.sha }}"
