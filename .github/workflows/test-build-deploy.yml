@@ -72,9 +72,23 @@ jobs:
     needs: test
     if: github.ref == 'refs/heads/main'
 
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read  # This is required for actions/checkout
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Assume role in Cloud Platform
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.ECR_ROLE_TO_ASSUME }}
+          aws-region: ${{ vars.ECR_REGION }}
+
+      - name: Login to container repository
+        uses: aws-actions/amazon-ecr-login@v1
+        id: login-ecr
 
       - name: Store current date
         run: echo "BUILD_DATE=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
@@ -88,17 +102,15 @@ jobs:
             --build-arg APP_BUILD_DATE=${{ env.BUILD_DATE }} \
             --build-arg APP_BUILD_TAG=${{ github.ref }} \
             --build-arg APP_GIT_COMMIT=${{ github.sha }} \
-            -t app .
+            -t ${{ vars.ECR_URL }}:${{ github.sha }} .
 
       - name: Push to ECR
-        id: ecr
-        uses: jwalton/gh-ecr-push@v1.3.6
-        with:
-          access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
-          secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
-          region: eu-west-2
-          local-image: app
-          image: ${{ secrets.ECR_NAME }}:${{ github.sha }}, ${{ secrets.ECR_NAME }}:staging.latest
+        run: |
+          docker tag ${{ vars.ECR_URL }}:${{ github.sha }} ${{ vars.ECR_URL }}:staging.latest
+          docker tag ${{ vars.ECR_URL }}:${{ github.sha }} ${{ vars.ECR_URL }}:production.latest
+          docker push ${{ vars.ECR_URL }}:${{ github.sha }}
+          docker push ${{ vars.ECR_URL }}:staging.latest
+          docker push ${{ vars.ECR_URL }}:production.latest
 
   deploy-staging:
     runs-on: ubuntu-latest
@@ -124,7 +136,7 @@ jobs:
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
           deployment/disclosure-checker-deployment-staging \
-          webapp="${{ secrets.ECR_URL }}:${{ github.sha }}"
+          webapp="${{ vars.ECR_URL }}:${{ github.sha }}"
 
   deploy-production:
     runs-on: ubuntu-latest
@@ -135,27 +147,6 @@ jobs:
       KUBE_NAMESPACE: ${{ secrets.KUBE_PROD_NAMESPACE }}
 
     steps:
-      - name: Pull from ECR
-        id: ecr-pull
-        uses: jwalton/gh-ecr-push@v1.3.6
-        with:
-          access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
-          secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
-          region: eu-west-2
-          direction: pull
-          local-image: app
-          image: ${{ secrets.ECR_NAME }}:${{ github.sha }}
-
-      - name: Push to ECR
-        id: ecr-push
-        uses: jwalton/gh-ecr-push@v1.3.6
-        with:
-          access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
-          secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
-          region: eu-west-2
-          local-image: app
-          image: ${{ secrets.ECR_NAME }}:production.latest
-
       - name: Authenticate to the cluster
         env:
           KUBE_CERT: ${{ secrets.KUBE_PROD_CERT }}
@@ -172,4 +163,4 @@ jobs:
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
           deployment/disclosure-checker-deployment-production \
-          webapp="${{ secrets.ECR_URL }}:${{ github.sha }}"
+          webapp="${{ vars.ECR_URL }}:${{ github.sha }}"
