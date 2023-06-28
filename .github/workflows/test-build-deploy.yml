@@ -107,8 +107,10 @@ jobs:
       - name: Push to ECR
         run: |
           docker tag ${{ vars.ECR_URL }}:${{ github.sha }} ${{ vars.ECR_URL }}:staging.latest
+          docker tag ${{ vars.ECR_URL }}:${{ github.sha }} ${{ vars.ECR_URL }}:production.latest
           docker push ${{ vars.ECR_URL }}:${{ github.sha }}
           docker push ${{ vars.ECR_URL }}:staging.latest
+          docker push ${{ vars.ECR_URL }}:production.latest
 
   deploy-staging:
     runs-on: ubuntu-latest
@@ -145,15 +147,6 @@ jobs:
       KUBE_NAMESPACE: ${{ secrets.KUBE_PROD_NAMESPACE }}
 
     steps:
-      - name: Pull from ECR
-        run: |
-          docker pull ${{ vars.ECR_URL }}:${{ github.sha }}
-
-      - name: Push to ECR
-        run: |
-          docker tag ${{ vars.ECR_URL }}:${{ github.sha }} ${{ vars.ECR_URL }}:production.latest
-          docker push ${{ vars.ECR_URL }}:production.latest
-
       - name: Authenticate to the cluster
         env:
           KUBE_CERT: ${{ secrets.KUBE_PROD_CERT }}
