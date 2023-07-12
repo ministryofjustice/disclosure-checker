@@ -95,7 +95,7 @@ jobs:
       - name: Set build tag
         run: |
           prefix="dc"
-          branch=${{ github.ref_name }}
+          branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
           short_version=$(git rev-parse --short $branch)
           build_tag=$prefix-$branch-$short_version
           echo "BUILD_TAG=$build_tag" >> $GITHUB_ENV
