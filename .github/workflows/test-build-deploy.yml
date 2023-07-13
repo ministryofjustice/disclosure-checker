@@ -99,8 +99,11 @@ jobs:
       - name: Set build tag
         run: |
           prefix="dc"
+          echo $prefix
           branch=${{ steps.extract_branch.outputs.branch }}
-          short_version=$(git rev-parse --short $branch)
+          echo $branch
+          short_version=$(git rev-parse --short ${{ github.sha }})
+          echo $short_version
           build_tag=$prefix-$branch-$short_version
           echo "BUILD_TAG=$build_tag" >> $GITHUB_ENV
 
