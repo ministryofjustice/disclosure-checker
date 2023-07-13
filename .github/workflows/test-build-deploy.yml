@@ -96,7 +96,7 @@ jobs:
         run: |
           prefix="dc"
           branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-          echo branch
+          echo $branch
           short_version=$(git rev-parse --short ${{ github.sha }})
           build_tag=$prefix-$branch-$short_version
           echo "BUILD_TAG=$build_tag" >> $GITHUB_ENV
