@@ -92,10 +92,14 @@ jobs:
       - name: Store current date
         run: echo "BUILD_DATE=$(date +%Y-%m-%dT%H:%M:%S%z)" >> $GITHUB_ENV
 
+      - name: Extract branch name
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
       - name: Set build tag
         run: |
           prefix="dc"
-          branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+          branch=${{ steps.extract_branch.outputs.branch }}
           short_version=$(git rev-parse --short $branch)
           build_tag=$prefix-$branch-$short_version
           echo "BUILD_TAG=$build_tag" >> $GITHUB_ENV
