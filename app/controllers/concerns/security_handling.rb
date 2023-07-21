@@ -4,8 +4,7 @@ module SecurityHandling
   included do
     protect_from_forgery with: :exception, prepend: true
 
-    before_action :check_http_credentials,
-                  :drop_dangerous_headers!,
+    before_action :drop_dangerous_headers!,
                   :ensure_session_validity
 
     after_action :set_security_headers
