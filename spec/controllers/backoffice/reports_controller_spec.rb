@@ -15,5 +15,4 @@ RSpec.describe Backoffice::ReportsController, type: :controller do
     get :index, params: { sentences: 1 }
     expect(response).to render_template(:index)
   end
-
 end
