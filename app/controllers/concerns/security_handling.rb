@@ -4,8 +4,7 @@ module SecurityHandling
   included do
     protect_from_forgery with: :exception, prepend: true
 
-    before_action :check_http_credentials,
-                  :drop_dangerous_headers!,
+    before_action :drop_dangerous_headers!,
                   :ensure_session_validity
 
     after_action :set_security_headers
@@ -47,18 +46,4 @@ private
       "Strict-Transport-Security" => "max-age=15768000; includeSubDomains",
     }
   end
-
-  # :nocov:
-  def authenticate_internal_user(username, password)
-    username == ENV.fetch("HTTP_AUTH_USER") && password == ENV.fetch("HTTP_AUTH_PASSWORD")
-  end
-
-  def check_http_credentials
-    return unless ENV.fetch("HTTP_AUTH_ENABLED", false) || request.fullpath.include?("backoffice")
-
-    authenticate_or_request_with_http_basic do |username, password|
-      authenticate_internal_user(username, password)
-    end
-  end
-  # :nocov:
 end
