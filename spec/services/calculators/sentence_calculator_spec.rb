@@ -17,13 +17,13 @@ RSpec.describe Calculators::SentenceCalculator do
 
   describe Calculators::SentenceCalculator::Detention do
     describe "#expiry_date" do
-      context "with conviction length of 6 months or less" do
-        let(:conviction_months) { 5 }
+      context "with conviction length of 12 months or less" do
+        let(:conviction_months) { 11 }
 
-        it { expect(calculator.expiry_date.to_s).to eq("2018-09-19") }
+        it { expect(calculator.expiry_date.to_s).to eq("2018-03-19") }
       end
 
-      context "with conviction length of 7 to 30 months" do
+      context "with conviction length of 12 to 30 months" do
         let(:conviction_months) { 29 }
 
         it { expect(calculator.expiry_date.to_s).to eq("2021-03-19") }
@@ -32,17 +32,17 @@ RSpec.describe Calculators::SentenceCalculator do
       context "with conviction length of over 30 months and up to 4 years" do
         let(:conviction_months) { 48 }
 
-        it { expect(calculator.expiry_date.to_s).to eq("2024-04-19") }
+        it { expect(calculator.expiry_date.to_s).to eq("2022-10-19") }
       end
 
       context "when never spent for conviction length over 4 years" do
         let(:conviction_months) { 49 }
 
-        it { expect(calculator.expiry_date).to eq(ResultsVariant::NEVER_SPENT) }
+        it { expect(calculator.expiry_date.to_s).to eq("2024-05-19") }
       end
 
       context "when there is no upper limit" do
-        let(:conviction_months) { 120 } # obscene number of months
+        let(:conviction_months) { 240 }
 
         it { expect(calculator.valid?).to eq(true) }
         it { expect { calculator.expiry_date }.not_to raise_exception(BaseCalculator::InvalidCalculation) }
@@ -52,10 +52,10 @@ RSpec.describe Calculators::SentenceCalculator do
 
   describe Calculators::SentenceCalculator::DetentionTraining do
     describe "#expiry_date" do
-      context "with conviction length of 6 months or less" do
-        let(:conviction_months) { 5 }
+      context "with conviction length of 12 months or less" do
+        let(:conviction_months) { 11 }
 
-        it { expect(calculator.expiry_date.to_s).to eq("2018-09-19") }
+        it { expect(calculator.expiry_date.to_s).to eq("2018-03-19") }
       end
 
       context "with conviction length of 7 to 24 months" do
@@ -75,10 +75,10 @@ RSpec.describe Calculators::SentenceCalculator do
 
   describe Calculators::SentenceCalculator::Prison do
     describe "#expiry_date" do
-      context "with conviction length of 6 months or less" do
-        let(:conviction_months) { 5 }
+      context "with conviction length of 12 months or less" do
+        let(:conviction_months) { 11 }
 
-        it { expect(calculator.expiry_date.to_s).to eq("2019-03-19") }
+        it { expect(calculator.expiry_date.to_s).to eq("2018-09-19") }
       end
 
       context "with conviction length of 7 to 30 months" do
@@ -90,17 +90,17 @@ RSpec.describe Calculators::SentenceCalculator do
       context "with conviction length of over 30 months and up to 4 years" do
         let(:conviction_months) { 48 }
 
-        it { expect(calculator.expiry_date.to_s).to eq("2027-10-19") }
+        it { expect(calculator.expiry_date.to_s).to eq("2024-10-19") }
       end
 
       context "when never spent for conviction length over 4 years" do
         let(:conviction_months) { 49 }
 
-        it { expect(calculator.expiry_date).to eq(ResultsVariant::NEVER_SPENT) }
+        it { expect(calculator.expiry_date.to_s).to eq("2027-11-19") }
       end
 
       context "when there is no upper limit" do
-        let(:conviction_months) { 120 } # obscene number of months
+        let(:conviction_months) { 120 }
 
         it { expect(calculator.valid?).to eq(true) }
         it { expect { calculator.expiry_date }.not_to raise_exception(BaseCalculator::InvalidCalculation) }
@@ -113,16 +113,16 @@ RSpec.describe Calculators::SentenceCalculator do
       let(:conviction_months) { 31 }
       let(:bail_days) { 50 } # equals to 50 days less in the spent date
 
-      it { expect(calculator.expiry_date.to_s).to eq("2029-05-28") }
+      it { expect(calculator.expiry_date.to_s).to eq("2026-05-28") }
     end
   end
 
   describe Calculators::SentenceCalculator::SuspendedPrison do
     describe "#expiry_date" do
-      context "with conviction length of 6 months or less" do
-        let(:conviction_months) { 5 }
+      context "with conviction length of 12 months or less" do
+        let(:conviction_months) { 11 }
 
-        it { expect(calculator.expiry_date.to_s).to eq("2019-03-19") }
+        it { expect(calculator.expiry_date.to_s).to eq("2018-09-19") }
       end
 
       context "with conviction length of 7 to 24 months" do
