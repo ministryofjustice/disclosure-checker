@@ -1,7 +1,21 @@
-name: Deploy to Staging
+name: Deploy Workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        type: environment
+        options:
+          - Staging
+        required: true
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -55,6 +69,7 @@ jobs:
   deploy-staging:
     runs-on: ubuntu-latest
     needs: build
+    if: ${{ inputs.environment == "Staging" || github.ref == 'refs/heads/main' }}
 
     env:
       KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
@@ -76,4 +91,32 @@ jobs:
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
           deployment/disclosure-checker-deployment-staging \
+          webapp="${{ vars.ECR_URL }}:${{ github.sha }}"
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    if: ${{ github.ref == 'refs/heads/main' }}
+    environment: production
+
+    env:
+      KUBE_NAMESPACE: ${{ secrets.KUBE_PROD_NAMESPACE }}
+
+    steps:
+      - name: Authenticate to the cluster
+        env:
+          KUBE_CERT: ${{ secrets.KUBE_PROD_CERT }}
+          KUBE_TOKEN: ${{ secrets.KUBE_PROD_TOKEN }}
+          KUBE_CLUSTER: ${{ secrets.KUBE_PROD_CLUSTER }}
+        run: |
+          echo "${KUBE_CERT}" > ca.crt
+          kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
+          kubectl config set-credentials deploy-user --token=${KUBE_TOKEN}
+          kubectl config set-context ${KUBE_CLUSTER} --cluster=${KUBE_CLUSTER} --user=deploy-user --namespace=${KUBE_NAMESPACE}
+          kubectl config use-context ${KUBE_CLUSTER}
+
+      - name: Rollout restart deployment
+        run: |
+          kubectl set image -n ${KUBE_NAMESPACE} \
+          deployment/disclosure-checker-deployment-production \
           webapp="${{ vars.ECR_URL }}:${{ github.sha }}"
