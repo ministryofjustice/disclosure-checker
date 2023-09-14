@@ -2,19 +2,10 @@ name: Deploy Workflow
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment to deploy to'
-        type: environment
-        options:
-          - Staging
-        required: true
-  push:
-    branches:
-      - main
+  workflow_call:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: deploy-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -69,7 +60,6 @@ jobs:
   deploy-staging:
     runs-on: ubuntu-latest
     needs: build
-    if: ${{ inputs.environment == "Staging" || github.ref == 'refs/heads/main' }}
 
     env:
       KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
