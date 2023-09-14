@@ -2,13 +2,6 @@ name: Deploy Workflow
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment to deploy to'
-        type: environment
-        options:
-          - Staging
-        required: true
   push:
     branches:
       - main
