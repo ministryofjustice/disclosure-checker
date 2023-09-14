@@ -37,11 +37,11 @@ module Calculators
       def rehabilitation_period
         case conviction_length_in_months
         when 0..12
-          { months: 12 }
+          { years: 1 }
         when 13..48
-          { months: 48 }
+          { years: 4 }
         else
-          { months: 84 }
+          { years: 7 }
         end
       end
     end
@@ -52,9 +52,9 @@ module Calculators
       def rehabilitation_period
         case conviction_length_in_months
         when 0..12
-          { months: 12 }
+          { years: 1 }
         else
-          { months: 48 }
+          { years: 4 }
         end
       end
     end
