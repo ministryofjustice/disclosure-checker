@@ -4,7 +4,7 @@ module Calculators
     BAIL_OFFSET = -1.0
 
     class Detention < SentenceCalculator
-      UPPER_LIMIT = Float::INFINITY
+      UPPER_LIMIT_MONTHS = Float::INFINITY
 
       def rehabilitation_period
         case conviction_length_in_months
@@ -19,7 +19,7 @@ module Calculators
     end
 
     class DetentionTraining < SentenceCalculator
-      UPPER_LIMIT = 24
+      UPPER_LIMIT_MONTHS = 24
 
       def rehabilitation_period
         case conviction_length_in_months
@@ -32,7 +32,7 @@ module Calculators
     end
 
     class Prison < SentenceCalculator
-      UPPER_LIMIT = Float::INFINITY
+      UPPER_LIMIT_MONTHS = Float::INFINITY
 
       def rehabilitation_period
         case conviction_length_in_months
@@ -47,7 +47,7 @@ module Calculators
     end
 
     class SuspendedPrison < SentenceCalculator
-      UPPER_LIMIT = 24
+      UPPER_LIMIT_MONTHS = 24
 
       def rehabilitation_period
         case conviction_length_in_months
@@ -69,7 +69,7 @@ module Calculators
     # a maximum number of months in the sentence length.
     #
     def valid?
-      conviction_length_in_months <= self.class::UPPER_LIMIT
+      conviction_length_in_months <= self.class::UPPER_LIMIT_MONTHS
     end
 
   private
