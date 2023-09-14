@@ -68,7 +68,7 @@ module Calculators
       case conviction_length_in_months
       when 0..12
         self.class::REHABILITATION_1
-      when 12..48
+      when 13..48
         self.class::REHABILITATION_2
       else
         self.class::REHABILITATION_3
