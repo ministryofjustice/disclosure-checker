@@ -71,3 +71,4 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     needs: test
     uses: ./.github/workflows/deploy.yml
+    secrets: inherit
