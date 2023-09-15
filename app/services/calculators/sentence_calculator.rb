@@ -10,7 +10,7 @@ module Calculators
         case conviction_length_in_months
         when 0..12
           { months: 6 }
-        when 13..48
+        when 12..48
           { months: 24 }
         else
           { months: 42 }
@@ -38,7 +38,7 @@ module Calculators
         case conviction_length_in_months
         when 0..12
           { years: 1 }
-        when 13..48
+        when 12..48
           { years: 4 }
         else
           { years: 7 }
