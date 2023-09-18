@@ -23,12 +23,12 @@ class ConvictionType < ValueObject
   VALUES = [
     YOUTH_PARENT_TYPES = [
       REFERRAL_SUPERVISION_YRO = new(:referral_supervision_yro),
-      CUSTODIAL_SENTENCE    = new(:custodial_sentence),
-      DISCHARGE             = new(:discharge),
-      YOUTH_MOTORING        = new(:youth_motoring),
-      MILITARY              = new(:military),
-      PREVENTION_REPARATION = new(:prevention_reparation),
-      FINANCIAL             = new(:financial),
+      CUSTODIAL_SENTENCE       = new(:custodial_sentence),
+      DISCHARGE                = new(:discharge),
+      YOUTH_MOTORING           = new(:youth_motoring),
+      MILITARY                 = new(:military),
+      PREVENTION_REPARATION    = new(:prevention_reparation),
+      FINANCIAL                = new(:financial),
     ].freeze,
 
     ADULT_PARENT_TYPES = [
@@ -51,6 +51,7 @@ class ConvictionType < ValueObject
     DETENTION_TRAINING_ORDER           = new(:detention_training_order,         parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::DetentionTraining),
     DETENTION                          = new(:detention,                        parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::Detention),
     HOSPITAL_ORDER                     = new(:hospital_order,                   parent: CUSTODIAL_SENTENCE, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    DETENTION_SCHEDULE_18              = new(:detention_schedule_18,            parent: nil, calculator_class: Calculators::SentenceCalculator::Schedule18Detention),
 
     BIND_OVER                          = new(:bind_over,                        parent: DISCHARGE, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ABSOLUTE_DISCHARGE                 = new(:absolute_discharge,               parent: DISCHARGE, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
@@ -106,6 +107,7 @@ class ConvictionType < ValueObject
     ADULT_HOSPITAL_ORDER                = new(:adult_hospital_order,               parent: ADULT_CUSTODIAL_SENTENCE, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ADULT_PRISON_SENTENCE               = new(:adult_prison_sentence,              parent: ADULT_CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::Prison),
     ADULT_SUSPENDED_PRISON_SENTENCE     = new(:adult_suspended_prison_sentence,    parent: ADULT_CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::SuspendedPrison),
+    ADULT_PRISON_SENTENCE_SCHEDULE_18   = new(:adult_schedule_18,                  parent: nil, calculator_class: Calculators::SentenceCalculator::Schedule18Prison),
   ].flatten.freeze
 
   # :nocov:
