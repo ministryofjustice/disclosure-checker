@@ -2,11 +2,12 @@ class ConvictionType < ValueObject
   include ConvictionDecorator
 
   attr_reader :parent, :calculator_class,
-              :skip_length, :relevant_order, :drag_through
+              :skip_length, :relevant_order, :drag_through, :schedule_18_offence
 
   alias_method :skip_length?, :skip_length
   alias_method :relevant_order?, :relevant_order
   alias_method :drag_through?, :drag_through
+  alias_method :schedule_18_offence?, :schedule_18_offence
 
   def initialize(raw_value, params = {})
     @parent = params.fetch(:parent, nil)
@@ -16,6 +17,7 @@ class ConvictionType < ValueObject
     @skip_length = params.fetch(:skip_length, false)
     @relevant_order = params.fetch(:relevant_order, false)
     @drag_through = params.fetch(:drag_through, false)
+    @schedule_18_offence = params.fetch(:schedule_18_offence, false)
 
     super(raw_value)
   end
@@ -51,7 +53,7 @@ class ConvictionType < ValueObject
     DETENTION_TRAINING_ORDER           = new(:detention_training_order,         parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::DetentionTraining),
     DETENTION                          = new(:detention,                        parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::Detention),
     HOSPITAL_ORDER                     = new(:hospital_order,                   parent: CUSTODIAL_SENTENCE, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
-    DETENTION_SCHEDULE_18              = new(:detention_schedule_18,            parent: nil, calculator_class: Calculators::SentenceCalculator::Schedule18Detention),
+    DETENTION_SCHEDULE_18              = new(:detention_schedule_18,            parent: nil, schedule_18_offence: true, calculator_class: Calculators::SentenceCalculator::Schedule18Detention),
 
     BIND_OVER                          = new(:bind_over,                        parent: DISCHARGE, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ABSOLUTE_DISCHARGE                 = new(:absolute_discharge,               parent: DISCHARGE, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
@@ -107,7 +109,7 @@ class ConvictionType < ValueObject
     ADULT_HOSPITAL_ORDER                = new(:adult_hospital_order,               parent: ADULT_CUSTODIAL_SENTENCE, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ADULT_PRISON_SENTENCE               = new(:adult_prison_sentence,              parent: ADULT_CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::Prison),
     ADULT_SUSPENDED_PRISON_SENTENCE     = new(:adult_suspended_prison_sentence,    parent: ADULT_CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::SuspendedPrison),
-    ADULT_PRISON_SENTENCE_SCHEDULE_18   = new(:adult_schedule_18,                  parent: nil, calculator_class: Calculators::SentenceCalculator::Schedule18Prison),
+    ADULT_PRISON_SENTENCE_SCHEDULE_18   = new(:adult_prison_sentence_schedule_18,  parent: nil, schedule_18_offence: true, calculator_class: Calculators::SentenceCalculator::Schedule18Prison),
   ].flatten.freeze
 
   # :nocov:
