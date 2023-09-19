@@ -1,11 +1,10 @@
 module Calculators
   class SentenceCalculator < BaseCalculator
-    NEVER_SPENT_THRESHOLD = 48
+    NEVER_SPENT_THRESHOLD = Float::INFINITY
+    UPPER_LIMIT_MONTHS = Float::INFINITY
     BAIL_OFFSET = -1.0
 
     class Detention < SentenceCalculator
-      UPPER_LIMIT_MONTHS = Float::INFINITY
-
       def rehabilitation_period
         case conviction_length_in_months
         when 0..12
@@ -18,22 +17,15 @@ module Calculators
       end
     end
 
-    class DetentionTraining < SentenceCalculator
-      UPPER_LIMIT_MONTHS = 24
+    class Schedule18Detention < Detention
+      NEVER_SPENT_THRESHOLD = 48
+    end
 
-      def rehabilitation_period
-        case conviction_length_in_months
-        when 0..12
-          { months: 6 }
-        else
-          { months: 24 }
-        end
-      end
+    class DetentionTraining < Detention
+      UPPER_LIMIT_MONTHS = 24
     end
 
     class Prison < SentenceCalculator
-      UPPER_LIMIT_MONTHS = Float::INFINITY
-
       def rehabilitation_period
         case conviction_length_in_months
         when 0..12
@@ -46,23 +38,22 @@ module Calculators
       end
     end
 
-    class SuspendedPrison < SentenceCalculator
-      UPPER_LIMIT_MONTHS = 24
+    class Schedule18Prison < Prison
+      NEVER_SPENT_THRESHOLD = 48
+    end
 
-      def rehabilitation_period
-        case conviction_length_in_months
-        when 0..12
-          { years: 1 }
-        else
-          { years: 4 }
-        end
-      end
+    class SuspendedPrison < Prison
+      UPPER_LIMIT_MONTHS = 24
     end
 
     def expiry_date
       raise InvalidCalculation unless valid?
 
-      conviction_end_date.advance(rehabilitation_period).advance(bail_offset)
+      if conviction_length_in_months > self.class::NEVER_SPENT_THRESHOLD
+        ResultsVariant::NEVER_SPENT
+      else
+        conviction_end_date.advance(rehabilitation_period).advance(bail_offset)
+      end
     end
 
     # Used to validate the upper limits, as some convictions can only be given
