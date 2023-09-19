@@ -3,7 +3,7 @@ class DisclosureCheck < ApplicationRecord
   has_one :disclosure_report, through: :check_group
 
   delegate :drag_through?, to: :conviction, allow_nil: true
-  delegate :schedule_18_offence?, to: :conviction, allow_nil: true
+  delegate :schedule_18_offence, to: :conviction, allow_nil: true
 
   enum status: {
     in_progress: 0,

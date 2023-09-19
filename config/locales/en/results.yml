@@ -67,6 +67,7 @@ en:
       adult_hospital_order: Hospital order
       adult_suspended_prison_sentence: Suspended prison sentence
       adult_prison_sentence: Prison sentence
+      adult_prison_sentence_schedule_18: Prison sentence
 
   CAUTION_ANSWERS: &CAUTION_ANSWERS
     heading: 'Caution %{index}'
@@ -113,6 +114,11 @@ en:
       answers:
         'yes': 'Yes'
         'no': 'No'
+    schedule_18_offence:
+      question: Schedule 18 offence
+      answers:
+        true: 'Yes'
+        false: 'No'
 
   # TODO: to be refactored for the new multiples results page design
   # Ensure all the values declared in `ResultsVariant` have their corresponding locale here.

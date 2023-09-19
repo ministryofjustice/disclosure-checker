@@ -14,6 +14,7 @@ private
       :conviction_bail_days,
       :compensation_payment_date,
       :motoring_endorsement,
+      :schedule_18_offence,
     ].freeze
   end
 
