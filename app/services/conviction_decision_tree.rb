@@ -20,13 +20,18 @@ class ConvictionDecisionTree < BaseDecisionTree
     when :compensation_paid
       after_compensation_paid
     when :conviction_length, :compensation_payment_date
-      check_your_answers
+#       check_your_answers
+      schedule18
     else
       raise InvalidStep, "Invalid step '#{as || step_params}'"
     end
   end
 
 private
+
+  def schedule18
+    edit(:conviction_schedule18)
+  end
 
   def after_conviction_subtype
     return edit(:conviction_bail)      if conviction.bailable_offense?
