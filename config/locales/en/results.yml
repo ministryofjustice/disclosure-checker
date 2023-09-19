@@ -15,6 +15,7 @@ en:
       # custodial_sentence
       detention_training_order: Detention and training order (DTO)
       detention: Detention
+      detention_schedule_18: Detention
       hospital_order: Hospital order
       # discharge
       bind_over: Bind over

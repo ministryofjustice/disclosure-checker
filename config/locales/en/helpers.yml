@@ -50,6 +50,7 @@ en:
       # custodial_sentence
       detention_training_order: Detention and training order (DTO)
       detention: Detention
+      detention_schedule_18: Detention
       hospital_order: Hospital order
       # discharge
       bind_over: Bind over
@@ -102,6 +103,7 @@ en:
       adult_hospital_order: Hospital order
       adult_suspended_prison_sentence: Suspended prison sentence
       adult_prison_sentence: Prison sentence
+      adult_prison_sentence_schedule_18: Prison sentence
 
     YESNO: &YESNO
       'yes': 'Yes'
