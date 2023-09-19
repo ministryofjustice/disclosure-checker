@@ -41,6 +41,14 @@ RSpec.describe StepController, type: :controller do
       end
     end
 
+    context "when new page added to sequence" do
+      let(:navigation_stack) { ["/somewhere", "/over", "/the", "/rainbow"] }
+
+      it "returns new page in sequence" do
+        expect(disclosure_check.navigation_stack).to eq(["/somewhere", "/over", "/pot", "/the", "/rainbow"])
+      end
+    end
+
     context "when the current page is on the stack" do
       let(:navigation_stack) { ["/foo", "/bar", "/dummy_step", "/baz"] }
 
