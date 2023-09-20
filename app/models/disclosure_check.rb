@@ -15,4 +15,17 @@ class DisclosureCheck < ApplicationRecord
 
   composed_of :caution, allow_nil: true, constructor: :find_constant,
                         mapping: [%i[caution_type value]], class_name: "CautionType"
+
+  def conviction_length_in_years
+    if conviction_length_type == ConvictionLengthType::MONTHS.to_s
+      conviction_length.months.in_years
+    elsif conviction_length_type == ConvictionLengthType::DAYS.to_s
+      conviction_length.days.in_years
+    elsif conviction_length_type == ConvictionLengthType::WEEKS.to_s
+      conviction_length.weeks.in_years
+    elsif conviction_length_type == ConvictionLengthType::YEARS.to_s
+      conviction_length.years.in_years
+    end
+  end
+
 end

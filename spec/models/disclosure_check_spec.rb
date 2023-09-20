@@ -35,4 +35,52 @@ RSpec.describe DisclosureCheck, type: :model do
       disclosure_check.drag_through?
     end
   end
+
+  describe "#conviction_length_in_years" do
+
+    context "when length is input is in months" do
+      it "returns length in 1 year" do
+
+        disclosure_check.conviction_length = 12
+        disclosure_check.conviction_length_type = ConvictionLengthType::MONTHS.to_s
+
+        expect(disclosure_check.conviction_length_in_years).to eq 1
+      end
+
+      it "returns length in 1.5 years" do
+        disclosure_check.conviction_length = 18
+        disclosure_check.conviction_length_type = ConvictionLengthType::MONTHS.to_s
+
+        expect(disclosure_check.conviction_length_in_years).to eq 1.5
+      end
+    end
+
+    context "when length is input in days" do
+      it "returns length between 1 and 2 years" do
+        disclosure_check.conviction_length = 500
+        disclosure_check.conviction_length_type = ConvictionLengthType::DAYS.to_s
+
+        expect(disclosure_check.conviction_length_in_years).to be_between(1, 2)
+      end
+    end
+
+    context "when length is input in weeks" do
+      it "returns length between 1 and 2 years" do
+        disclosure_check.conviction_length = 78
+        disclosure_check.conviction_length_type = ConvictionLengthType::WEEKS.to_s
+
+        expect(disclosure_check.conviction_length_in_years).to be_between(1, 2)
+      end
+    end
+
+    context "when length is input in years" do
+      it "returns length the years input" do
+        disclosure_check.conviction_length = 5
+        disclosure_check.conviction_length_type = ConvictionLengthType::YEARS.to_s
+
+        expect(disclosure_check.conviction_length_in_years).to eq 5
+      end
+    end
+
+  end
 end
