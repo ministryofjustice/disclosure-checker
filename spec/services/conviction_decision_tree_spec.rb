@@ -18,6 +18,7 @@ RSpec.describe ConvictionDecisionTree do
   let(:as)                 { nil }
   let(:conviction_type)    { nil }
   let(:conviction_subtype) { nil }
+  let(:conviction_length)  { nil }
   let(:compensation_paid)  { nil }
   let(:motoring_endorsement) { nil }
 
@@ -139,17 +140,19 @@ RSpec.describe ConvictionDecisionTree do
     end
   end
 
-  context "when the step is `conviction_length`" do
-    let(:step_params) { { conviction_length: "anything" } }
+  context "when the step is conviction length" do
+    let(:step_params) { { conviction_length: "" } }
 
-    context "when `conviction_length` is less than or equal to 4 years" do
+    context "when conviction length is less than or equal to 4 years" do
       let(:conviction_length) { 3 }
+      let(:conviction_length_type) { ConvictionLengthType::YEARS.to_s }
 
-      it { is_expected.to show_check_your_answers_page }
+      it { is_expected.to show check_your_answers_page }
     end
 
-    context "when `conviction_length` is greater than 4 years" do
+    context "when conviction length is greater than 4 years" do
       let(:conviction_length) { 5 }
+      let(:conviction_length_type) { ConvictionLengthType::YEARS.to_s }
 
       it { is_expected.to have_destination(:conviction_schedule18, :edit) }
     end
