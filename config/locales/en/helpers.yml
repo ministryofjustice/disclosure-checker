@@ -388,8 +388,6 @@ en:
         weeks: Number of weeks
         months: Number of months
         years: Number of years
-      steps_conviction_conviction_schedule18_form:
-        conviction_schedule18: Were any of the offences specified in Schedule 18 of the Sentencing Code?
 
     lead_text:
       steps_conviction_known_date_form:
