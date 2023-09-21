@@ -34,7 +34,10 @@ class ConvictionDecisionTree < BaseDecisionTree
 private
 
   def after_conviction_length
-    return check_your_answers if disclosure_check.conviction_length_in_years(step_value(:conviction_length).to_i) <= 4
+    conviction_length = disclosure_check.conviction_length_in_years(step_value(:conviction_length).to_i)
+    schedule_18_applicable = ConvictionType.new(disclosure_check.conviction_subtype).schedule_18_applicable?
+
+    return check_your_answers if conviction_length <= 4 || !schedule_18_applicable
 
     edit(:conviction_schedule18)
   end

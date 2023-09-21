@@ -121,4 +121,13 @@ class ConvictionType < ValueObject
   def children
     VALUES.select { |value| value.parent.eql?(self) }
   end
+
+  def schedule_18_applicable?
+    [
+      ADULT_PRISON_SENTENCE,
+      ADULT_PRISON_SENTENCE_SCHEDULE_18,
+      DETENTION,
+      DETENTION_SCHEDULE_18,
+    ].include?(self)
+  end
 end

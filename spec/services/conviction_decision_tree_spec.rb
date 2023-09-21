@@ -144,6 +144,8 @@ RSpec.describe ConvictionDecisionTree do
 
   context "when the step is conviction_length" do
     let(:conviction_length_type) { ConvictionLengthType::YEARS.to_s }
+    let(:conviction_type) { ConvictionType::ADULT_CUSTODIAL_SENTENCE }
+    let(:conviction_subtype) { ConvictionType::ADULT_PRISON_SENTENCE }
 
     context "when conviction length is less than or equal to 4 years" do
       let(:step_params) { { conviction_length: "3" } }
