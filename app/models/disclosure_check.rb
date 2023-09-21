@@ -27,5 +27,4 @@ class DisclosureCheck < ApplicationRecord
       conviction_length.years.in_years
     end
   end
-
 end

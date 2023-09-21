@@ -143,15 +143,15 @@ RSpec.describe ConvictionDecisionTree do
     let(:step_params) { { conviction_length: "anything" } }
 
     context "when `conviction_length` is less than or equal to 4 years" do
-    let(:conviction_length) { 3 }
+      let(:conviction_length) { 3 }
 
-        it { is_expected.to show_check_your_answers_page }
+      it { is_expected.to show_check_your_answers_page }
     end
 
     context "when `conviction_length` is greater than 4 years" do
-    let(:conviction_length) { 5 }
+      let(:conviction_length) { 5 }
 
-        it { is_expected.to have_destination(:conviction_schedule18, :edit) }
+      it { is_expected.to have_destination(:conviction_schedule18, :edit) }
     end
   end
 

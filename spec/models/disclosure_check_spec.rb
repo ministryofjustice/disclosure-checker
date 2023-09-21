@@ -37,10 +37,8 @@ RSpec.describe DisclosureCheck, type: :model do
   end
 
   describe "#conviction_length_in_years" do
-
     context "when length is input is in months" do
       it "returns length in 1 year" do
-
         disclosure_check.conviction_length = 12
         disclosure_check.conviction_length_type = ConvictionLengthType::MONTHS.to_s
 
@@ -81,6 +79,5 @@ RSpec.describe DisclosureCheck, type: :model do
         expect(disclosure_check.conviction_length_in_years).to eq 5
       end
     end
-
   end
 end
