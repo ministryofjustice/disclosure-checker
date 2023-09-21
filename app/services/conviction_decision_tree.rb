@@ -31,9 +31,9 @@ class ConvictionDecisionTree < BaseDecisionTree
 private
 
   def after_conviction_length
-    return check_your_answers if disclosure_check.conviction_length < 4
+    return check_your_answers if disclosure_check.conviction_length_in_year <= 4
 
-    edit(:conviction_schedule18) if disclosure_check.conviction_length >= 4
+    edit(:conviction_schedule18)
   end
 
   def after_conviction_subtype
