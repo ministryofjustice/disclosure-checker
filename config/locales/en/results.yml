@@ -106,6 +106,8 @@ en:
         years: '%{length} years'
         no_length: No length was given
         indefinite: Until further order
+    Conviction_schedule18:
+      question: Were any of the offences specified in Schedule 18 of the Sentencing Code?
     compensation_payment_date:
       question: Payment date
     motoring_endorsement:

@@ -5,12 +5,14 @@
   <div class="govuk-grid-column-two-thirds">
     <%= govuk_error_summary %>
 
-    <%= link_to t('.external_link'), 'https://www.legislation.gov.uk/ukpga/2020/17/schedule/18/enacted', class: 'govuk-link ga-pageLink', data: {ga_category: 'external link', ga_label: 'schedule 18 offences'} %>
-
     <!-- The header is part of the radios legend by default, but can be configured -->
 
+         <p class="govuk-body">
+            <a href="https://www.legislation.gov.uk/ukpga/2020/17/schedule/18/enacted#" class="govuk-link" rel="noreferrer noopener" target="_blank">schedule 18 offences</a>
+         </p>
     <%= step_form @form_object do |f| %>
-      <%= f.govuk_collection_radio_buttons :conviction_schedule18, GenericYesNo.values, :value, nil, inline: true %>
+      <%= f.govuk_collection_radio_buttons :conviction_schedule18,
+            GenericYesNo.values, :value, nil, inline: true %>
       <%= f.continue_button %>
     <% end %>
   </div>

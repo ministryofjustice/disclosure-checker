@@ -69,6 +69,10 @@ en:
               greater_than: The input must be greater than zero, or left blank
               not_a_number: The input must be a number, like 3
               not_an_integer: The input must be a whole number, like 4
+        steps/conviction/conviction_schedule18_form:
+          attributes:
+            Conviction_schedule18:
+              inclusion: Select yes if you spent any time on bail with an electronic tag
         steps/conviction/motoring_endorsement_form:
           attributes:
             motoring_endorsement:
