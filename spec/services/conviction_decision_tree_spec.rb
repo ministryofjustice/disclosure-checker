@@ -10,6 +10,7 @@ RSpec.describe ConvictionDecisionTree do
       compensation_paid:,
       motoring_endorsement:,
       conviction_length:,
+      conviction_length_type:,
     )
   end
 
@@ -19,7 +20,8 @@ RSpec.describe ConvictionDecisionTree do
   let(:conviction_type)    { nil }
   let(:conviction_subtype) { nil }
   let(:conviction_length)  { nil }
-  let(:compensation_paid)  { nil }
+  let(:conviction_length_type) { nil }
+  let(:compensation_paid) { nil }
   let(:motoring_endorsement) { nil }
 
   it_behaves_like "a decision tree"
@@ -140,19 +142,17 @@ RSpec.describe ConvictionDecisionTree do
     end
   end
 
-  context "when the step is conviction length" do
-    let(:step_params) { { conviction_length: "" } }
+  context "when the step is conviction_length" do
+    let(:conviction_length_type) { ConvictionLengthType::YEARS.to_s }
 
     context "when conviction length is less than or equal to 4 years" do
-      let(:conviction_length) { 3 }
-      let(:conviction_length_type) { ConvictionLengthType::YEARS.to_s }
+      let(:step_params) { { conviction_length: "3" } }
 
-      it { is_expected.to show check_your_answers_page }
+      it { is_expected.to show_check_your_answers_page }
     end
 
     context "when conviction length is greater than 4 years" do
-      let(:conviction_length) { 5 }
-      let(:conviction_length_type) { ConvictionLengthType::YEARS.to_s }
+      let(:step_params) { { conviction_length: "5" } }
 
       it { is_expected.to have_destination(:conviction_schedule18, :edit) }
     end
@@ -206,5 +206,11 @@ RSpec.describe ConvictionDecisionTree do
     let(:step_params) { { conviction_bail_days: "whatever" } }
 
     it { is_expected.to have_destination(:known_date, :edit) }
+  end
+
+  context "when the step is 'conviction_schedule18'" do
+    let(:step_params) { { conviction_schedule18: "whatever" } }
+
+    it { is_expected.to show_check_your_answers_page }
   end
 end

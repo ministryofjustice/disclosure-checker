@@ -21,8 +21,11 @@ class ConvictionDecisionTree < BaseDecisionTree
       after_compensation_paid
     when :conviction_length
       after_conviction_length
+    when :conviction_schedule18
+      check_your_answers
     when :compensation_payment_date
       check_your_answers
+
     else
       raise InvalidStep, "Invalid step '#{as || step_params}'"
     end
@@ -31,7 +34,7 @@ class ConvictionDecisionTree < BaseDecisionTree
 private
 
   def after_conviction_length
-    return check_your_answers if disclosure_check.conviction_length_in_years <= 4
+    return check_your_answers if disclosure_check.conviction_length_in_years(step_value(:conviction_length).to_i) <= 4
 
     edit(:conviction_schedule18)
   end
