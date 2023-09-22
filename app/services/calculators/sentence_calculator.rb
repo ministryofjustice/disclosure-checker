@@ -65,17 +65,6 @@ module Calculators
 
   private
 
-    def rehabilitation_period
-      case conviction_length_in_months
-      when 0..6
-        self.class::REHABILITATION_1
-      when 6..30
-        self.class::REHABILITATION_2
-      else
-        self.class::REHABILITATION_3
-      end
-    end
-
     # The day before the end date, thus we subtract 1 day.
     def conviction_end_date
       super.advance(days: -1)
