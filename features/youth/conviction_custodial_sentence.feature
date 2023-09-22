@@ -19,14 +19,14 @@ Feature: Conviction
     And I enter the following date 12-09-2019
     Then I should see "<length_type_header>"
 
-    And  I choose "Months"
+    And I choose "Months"
     Then I should see "<length_header>"
     And I should see "If you got more than one sentence at the same time"
     And I fill in "Number of months" with "24"
 
     Then I click the "Continue" button
-     And I check my "conviction" answers and go to the results page
-     And I should see "<result>"
+    And I check my "conviction" answers and go to the results page
+    And I should see "<result>"
 
     Examples:
       | subtype                            | known_date_header             | length_type_header                                               | length_header                         | result                                        |
@@ -44,7 +44,7 @@ Feature: Conviction
     And I enter a valid date
     Then I should see "<length_type_header>"
 
-    And  I choose "Years"
+    And I choose "Years"
     Then I should see "<length_header>"
     And I should see "If you got more than one sentence at the same time"
     And I fill in "Number of years" with "2"
@@ -70,7 +70,7 @@ Feature: Conviction
     Then I should see "<length_type_header>"
 
     When I choose "<length_type>"
-     And I check my "conviction" answers and go to the results page
+    And I check my "conviction" answers and go to the results page
     Then I should see "<result>"
 
     Examples:
@@ -82,25 +82,24 @@ Feature: Conviction
   Scenario Outline: Prison sentences (Schedule 18 Offences)
     Given The current date is 03-07-2020
     When I am completing a basic under 18 "Custody or hospital order" conviction
-
     Then I should see "What sentence were you given?"
+
     When I choose "Detention"
     Then I should see "Did you spend any time on bail with an electronic tag?"
 
-    And I choose "No"
+    When I choose "No"
     Then I should see "When did the detention start?"
 
-    And I enter the following date 01-01-2020
+    When I enter the following date 01-01-2020
     Then I should see "Was the length of the detention given in days, weeks, months or years?"
 
-    And  I choose "Years"
+    When I choose "Years"
     Then I should see "What was the length of the detention?"
 
-    And I fill in "Number of years" with "5"
-    Then I click the "Continue" button
-
+    When I fill in "Number of years" with "5"
+    And I click the "Continue" button
     Then I should see "Were any of the offences specified in Schedule 18 of the sentencing code?"
-    And I choose "Yes"
 
+    When I choose "Yes"
     And I check my "conviction" answers and go to the results page
-    And I should see "This conviction will be spent on 30 June 2028"
+    Then I should see "This conviction will be spent on 30 June 2028"

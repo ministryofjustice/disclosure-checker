@@ -19,14 +19,14 @@ Feature: Conviction
     And I enter the following date 01-01-2020
     Then I should see "<length_type_header>"
 
-    And  I choose "Months"
+    And I choose "Months"
     Then I should see "<length_header>"
     And I should see "If you got more than one sentence at the same time"
     And I fill in "Number of months" with "22"
 
     Then I click the "Continue" button
-     And I check my "conviction" answers and go to the results page
-     And I should see "<result>"
+    And I check my "conviction" answers and go to the results page
+    And I should see "<result>"
 
     Examples:
       | subtype                   | known_date_header            | length_type_header                                              | length_header                        | result                                           |
@@ -42,16 +42,16 @@ Feature: Conviction
     When I choose "<subtype>"
     Then I should see "<known_date_header>"
 
-    And I enter a valid date
+    When I enter a valid date
     Then I should see "<length_type_header>"
 
-    And  I choose "Years"
+    When I choose "Years"
     Then I should see "<length_header>"
     And I should see "If you got more than one sentence at the same time"
-    And I fill in "Number of years" with "2"
 
-    Then I click the "Continue" button
-     And I check my "conviction" answers and go to the results page
+    When I fill in "Number of years" with "2"
+    And I click the "Continue" button
+    Then I check my "conviction" answers and go to the results page
 
     Examples:
       | subtype        | known_date_header              | length_type_header                                           | length_header                     |
@@ -61,17 +61,16 @@ Feature: Conviction
   Scenario Outline: Hospital orders (with no length or indefinite length)
     Given The current date is 15-12-2020
     When I am completing a basic 18 or over "Custody or hospital order" conviction
-
     Then I should see "What sentence were you given?"
 
     When I choose "<subtype>"
     Then I should see "<known_date_header>"
 
-    And I enter the following date 01-01-2020
+    When I enter the following date 01-01-2020
     Then I should see "<length_type_header>"
 
     When I choose "<length_type>"
-     And I check my "conviction" answers and go to the results page
+    And I check my "conviction" answers and go to the results page
     Then I should see "<result>"
 
     Examples:
@@ -83,25 +82,24 @@ Feature: Conviction
   Scenario Outline: Prison sentences (Schedule 18 Offences)
     Given The current date is 03-07-2020
     When I am completing a basic 18 or over "Custody or hospital order" conviction
-
     Then I should see "What sentence were you given?"
+
     When I choose "Prison sentence"
     Then I should see "Did you spend any time on bail with an electronic tag?"
 
-    And I choose "No"
+    When I choose "No"
     Then I should see "When did the sentence start"
 
-    And I enter the following date 01-01-2020
+    When I enter the following date 01-01-2020
     Then I should see "Was the length of the sentence given in days, weeks, months or years?"
 
-    And  I choose "Years"
+    When I choose "Years"
     Then I should see "What was the length of the sentence?"
 
-    And I fill in "Number of years" with "5"
-    Then I click the "Continue" button
-
+    When I fill in "Number of years" with "5"
+    And I click the "Continue" button
     Then I should see "Were any of the offences specified in Schedule 18 of the sentencing code?"
-    And I choose "Yes"
 
+    When I choose "Yes"
     And I check my "conviction" answers and go to the results page
-    And I should see "This conviction will be spent on 31 December 2031"
+    Then I should see "This conviction will be spent on 31 December 2031"
