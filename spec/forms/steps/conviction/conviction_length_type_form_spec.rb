@@ -25,10 +25,12 @@ RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
   # the spec `spec/services/conviction_length_choices_spec.rb`
   #
   describe "#values" do
-    context "when a `Youth rehabilitation order`" do
+    context "when a `Youth supervision order`" do
+      let(:conviction_subtype) { ConvictionType::SUPERVISION_ORDER.to_s }
+
       it "includes `no_length` in the values" do
         expect(ConvictionLengthChoices).to receive(:choices).with(
-          conviction_subtype: ConvictionType::YOUTH_REHABILITATION_ORDER,
+          conviction_subtype: ConvictionType::SUPERVISION_ORDER,
         ).and_call_original
 
         expect(form.values).to eq(
