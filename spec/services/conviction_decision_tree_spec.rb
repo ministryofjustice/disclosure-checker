@@ -14,15 +14,15 @@ RSpec.describe ConvictionDecisionTree do
     )
   end
 
-  let(:step_params)        { instance_double("Step") }
-  let(:next_step)          { nil }
-  let(:as)                 { nil }
-  let(:conviction_type)    { nil }
-  let(:conviction_subtype) { nil }
-  let(:conviction_length)  { nil }
+  let(:step_params)            { instance_double("Step") }
+  let(:next_step)              { nil }
+  let(:as)                     { nil }
+  let(:conviction_type)        { nil }
+  let(:conviction_subtype)     { nil }
+  let(:conviction_length)      { nil }
   let(:conviction_length_type) { nil }
-  let(:compensation_paid) { nil }
-  let(:motoring_endorsement) { nil }
+  let(:compensation_paid)      { nil }
+  let(:motoring_endorsement)   { nil }
 
   it_behaves_like "a decision tree"
 
