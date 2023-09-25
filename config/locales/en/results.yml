@@ -115,11 +115,11 @@ en:
       answers:
         'yes': 'Yes'
         'no': 'No'
-    never_spent_schedule18:
-      question: Schedule 18 offence
+    schedule18_over_4_years:
+      question: Schedule 18 offence over 4 years
       answers:
-        true: 'Yes'
-        false: 'No'
+        'yes': 'Yes'
+        'no': 'No'
 
   # TODO: to be refactored for the new multiples results page design
   # Ensure all the values declared in `ResultsVariant` have their corresponding locale here.

@@ -27,7 +27,7 @@ class DisclosureCheck < ApplicationRecord
     end
   end
 
-  def never_spent_schedule18
-    conviction_schedule18.inquiry.yes?
+  def schedule18_over_4_years
+    conviction_schedule18
   end
 end
