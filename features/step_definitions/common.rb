@@ -119,3 +119,7 @@ And(/^I check my "([^"]*)" answers and go to the results page$/) do |kind|
   step %(I click the "Continue to your results" button)
   step %(I should be on "/steps/check/results")
 end
+
+And("I sleep") do
+  sleep(10)
+end

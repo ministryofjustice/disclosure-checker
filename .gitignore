@@ -36,3 +36,7 @@ public/assets/
 .DS_Store
 
 rerun.txt
+.idea/disclosure-checker.iml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/workspace.xml

@@ -685,4 +685,26 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.calculator_class).to eq(Calculators::SentenceCalculator::Schedule18Prison) }
     end
   end
+
+  describe "#schedule_18_applicable?" do
+    subject(:schedule_18_applicable) { described_class.new(value).schedule_18_applicable? }
+
+    context "when adult_prison_sentence" do
+      let(:value) { :adult_prison_sentence }
+
+      it { expect(schedule_18_applicable).to eq(true) }
+    end
+
+    context "when detention" do
+      let(:value) { :detention }
+
+      it { expect(schedule_18_applicable).to eq(true) }
+    end
+
+    context "when adult_service_detention" do
+      let(:value) { :adult_service_detention }
+
+      it { expect(schedule_18_applicable).to eq(false) }
+    end
+  end
 end

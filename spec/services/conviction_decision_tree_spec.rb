@@ -9,16 +9,20 @@ RSpec.describe ConvictionDecisionTree do
       conviction_subtype:,
       compensation_paid:,
       motoring_endorsement:,
+      conviction_length:,
+      conviction_length_type:,
     )
   end
 
-  let(:step_params)        { instance_double("Step") }
-  let(:next_step)          { nil }
-  let(:as)                 { nil }
-  let(:conviction_type)    { nil }
-  let(:conviction_subtype) { nil }
-  let(:compensation_paid)  { nil }
-  let(:motoring_endorsement) { nil }
+  let(:step_params)            { instance_double("Step") }
+  let(:next_step)              { nil }
+  let(:as)                     { nil }
+  let(:conviction_type)        { nil }
+  let(:conviction_subtype)     { nil }
+  let(:conviction_length)      { nil }
+  let(:conviction_length_type) { nil }
+  let(:compensation_paid)      { nil }
+  let(:motoring_endorsement)   { nil }
 
   it_behaves_like "a decision tree"
 
@@ -138,10 +142,34 @@ RSpec.describe ConvictionDecisionTree do
     end
   end
 
-  context "when the step is `conviction_length`" do
-    let(:step_params) { { conviction_length: "anything" } }
+  context "when the step is conviction_length" do
+    let(:conviction_length_type) { ConvictionLengthType::YEARS.to_s }
+    let(:conviction_type) { ConvictionType::ADULT_CUSTODIAL_SENTENCE }
+    let(:conviction_subtype) { ConvictionType::ADULT_PRISON_SENTENCE }
 
-    it { is_expected.to show_check_your_answers_page }
+    context "when conviction length is less than or equal to 4 years" do
+      let(:step_params) { { conviction_length: "3" } }
+
+      it { is_expected.to show_check_your_answers_page }
+    end
+
+    context "when conviction length is greater than 4 years" do
+      let(:step_params) { { conviction_length: "5" } }
+
+      context "when conviction type is prison sentence" do
+        let(:conviction_type) { ConvictionType::ADULT_CUSTODIAL_SENTENCE }
+        let(:conviction_subtype) { ConvictionType::ADULT_PRISON_SENTENCE }
+
+        it { is_expected.to have_destination(:conviction_schedule18, :edit) }
+      end
+
+      context "when conviction type is military sentence" do
+        let(:conviction_type) { ConvictionType::ADULT_MILITARY }
+        let(:conviction_subtype) { ConvictionType::ADULT_SERVICE_DETENTION }
+
+        it { is_expected.to show_check_your_answers_page }
+      end
+    end
   end
 
   context "when the step is `compensation_paid`" do
@@ -192,5 +220,11 @@ RSpec.describe ConvictionDecisionTree do
     let(:step_params) { { conviction_bail_days: "whatever" } }
 
     it { is_expected.to have_destination(:known_date, :edit) }
+  end
+
+  context "when the step is 'conviction_schedule18'" do
+    let(:step_params) { { conviction_schedule18: "whatever" } }
+
+    it { is_expected.to show_check_your_answers_page }
   end
 end

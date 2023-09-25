@@ -62,3 +62,8 @@ en:
         edit:
           page_title: Days spent with an electronic tag
           heading: How many days spent with an electronic tag counted towards your sentence?
+      conviction_schedule18:
+        edit:
+          page_title: Schedule 18 offences
+          external_link: Schedule 18 offences
+          heading: Were any of the offences specified in Schedule 18 of the sentencing code?
