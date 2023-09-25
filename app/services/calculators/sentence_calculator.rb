@@ -40,7 +40,7 @@ module Calculators
     def expiry_date
       raise InvalidCalculation unless valid?
 
-      if never_spent_schedule18?
+      if disclosure_check.never_spent_schedule18
         ResultsVariant::NEVER_SPENT
       else
         conviction_end_date.advance(rehabilitation_period).advance(bail_offset)
