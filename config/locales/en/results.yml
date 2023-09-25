@@ -115,7 +115,7 @@ en:
       answers:
         'yes': 'Yes'
         'no': 'No'
-    schedule_18_offence:
+    never_spent_schedule18:
       question: Schedule 18 offence
       answers:
         true: 'Yes'

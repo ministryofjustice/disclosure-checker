@@ -3,7 +3,6 @@ class DisclosureCheck < ApplicationRecord
   has_one :disclosure_report, through: :check_group
 
   delegate :drag_through?, to: :conviction, allow_nil: true
-  delegate :schedule_18_offence, to: :conviction, allow_nil: true
 
   enum status: {
     in_progress: 0,
@@ -26,5 +25,9 @@ class DisclosureCheck < ApplicationRecord
     elsif conviction_length_type == ConvictionLengthType::YEARS.to_s
       conviction_length.years.in_years
     end
+  end
+
+  def never_spent_schedule18
+    conviction_schedule18.inquiry.yes?
   end
 end
