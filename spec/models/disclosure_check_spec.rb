@@ -80,4 +80,24 @@ RSpec.describe DisclosureCheck, type: :model do
       end
     end
   end
+
+  describe "#schedule18_over_4_years" do
+    context "when conviction_schedule18 is 'yes'" do
+      it "returns 'yes'" do
+        value = "yes"
+        disclosure_check.conviction_schedule18 = value
+
+        expect(disclosure_check.schedule18_over_4_years).to eq value
+      end
+    end
+
+    context "when conviction_schedule18 is 'no'" do
+      it "returns 'no'" do
+        value = "no"
+        disclosure_check.conviction_schedule18 = value
+
+        expect(disclosure_check.schedule18_over_4_years).to eq value
+      end
+    end
+  end
 end
