@@ -71,6 +71,16 @@ RSpec.describe Calculators::SentenceCalculator do
         it { expect { calculator.expiry_date }.not_to raise_exception(BaseCalculator::InvalidCalculation) }
       end
     end
+
+    context "when schedule 18 offence over 4 years" do
+      let(:conviction_length) { 49 }
+
+      before do
+        disclosure_check.conviction_schedule18 = "yes"
+      end
+
+      it { expect(calculator.expiry_date).to eq ResultsVariant::NEVER_SPENT }
+    end
   end
 
   describe Calculators::SentenceCalculator::DetentionTraining do
@@ -175,6 +185,16 @@ RSpec.describe Calculators::SentenceCalculator do
         it { expect(calculator.valid?).to eq(true) }
         it { expect { calculator.expiry_date }.not_to raise_exception(BaseCalculator::InvalidCalculation) }
       end
+    end
+
+    context "when schedule 18 offence over 4 years" do
+      let(:conviction_length) { 49 }
+
+      before do
+        disclosure_check.conviction_schedule18 = "yes"
+      end
+
+      it { expect(calculator.expiry_date).to eq ResultsVariant::NEVER_SPENT }
     end
 
     # Just one example is enough as all other types of sentences behave the same
