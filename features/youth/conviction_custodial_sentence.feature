@@ -102,4 +102,4 @@ Feature: Conviction
 
     When I choose "Yes"
     And I check my "conviction" answers and go to the results page
-    Then I should see "This conviction will be spent on 30 June 2028"
+    Then I should see "This conviction will never be spent"
