@@ -23,6 +23,8 @@ class ConvictionDecisionTree < BaseDecisionTree
       after_conviction_length
     when :conviction_schedule18
       after_conviction_schedule18
+    when :conviction_multiple_sentences
+      check_your_answers
     when :compensation_payment_date
       check_your_answers
 
