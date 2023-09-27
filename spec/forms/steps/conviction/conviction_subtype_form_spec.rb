@@ -31,6 +31,7 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
         ConvictionType.new(:referral_order),
         ConvictionType.new(:supervision_order),
         ConvictionType.new(:youth_rehabilitation_order),
+        ConvictionType.new(:youth_other_requirement_order),
       ])
     end
   end
