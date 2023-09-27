@@ -47,6 +47,7 @@ en:
       referral_order: Referral order
       supervision_order: Supervision order
       youth_rehabilitation_order: Youth rehabilitation order
+      youth_other_requirement_order: Order with a requirement
       # custodial_sentence
       detention_training_order: Detention and training order (DTO)
       detention: Detention
@@ -193,6 +194,7 @@ en:
           referral_order: You were referred to community volunteers and the youth offending team (YOT)
           supervision_order: You were ordered to be supervised by a youth offending team after loitering, soliciting or 'breaching a civil injunction' (previously called an ASBO)
           youth_rehabilitation_order: You were given one or more orders, such as a curfew, wearing a tag, education or programme requirements
+          youth_other_requirement_order: Includes all orders that disqualify you, prohibit certain things or impose a penalty of some kind
           # custodial_sentence
           detention_training_order: "The first half of your sentence was spent in custody and the second half was spent in the community, supervised by the Youth Offending Team"
           detention: "You were sentenced to custody in a young offender institution or secure training centre"

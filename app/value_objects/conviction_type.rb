@@ -23,12 +23,12 @@ class ConvictionType < ValueObject
   VALUES = [
     YOUTH_PARENT_TYPES = [
       REFERRAL_SUPERVISION_YRO = new(:referral_supervision_yro),
-      CUSTODIAL_SENTENCE    = new(:custodial_sentence),
-      DISCHARGE             = new(:discharge),
-      YOUTH_MOTORING        = new(:youth_motoring),
-      MILITARY              = new(:military),
-      PREVENTION_REPARATION = new(:prevention_reparation),
-      FINANCIAL             = new(:financial),
+      CUSTODIAL_SENTENCE       = new(:custodial_sentence),
+      DISCHARGE                = new(:discharge),
+      YOUTH_MOTORING           = new(:youth_motoring),
+      MILITARY                 = new(:military),
+      PREVENTION_REPARATION    = new(:prevention_reparation),
+      FINANCIAL                = new(:financial),
     ].freeze,
 
     ADULT_PARENT_TYPES = [
@@ -43,10 +43,11 @@ class ConvictionType < ValueObject
     #####################
     # Youth convictions #
     #####################
-    #
+
     REFERRAL_ORDER                     = new(:referral_order,                   parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     SUPERVISION_ORDER                  = new(:supervision_order,                parent: REFERRAL_SUPERVISION_YRO, calculator_class: Calculators::AdditionCalculator::PlusSixMonths),
     YOUTH_REHABILITATION_ORDER         = new(:youth_rehabilitation_order,       parent: REFERRAL_SUPERVISION_YRO, calculator_class: Calculators::AdditionCalculator::PlusSixMonths),
+    YOUTH_OTHER_REQUIREMENT_ORDER      = new(:youth_other_requirement_order,    parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusSixMonths),
 
     DETENTION_TRAINING_ORDER           = new(:detention_training_order,         parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::DetentionTraining),
     DETENTION                          = new(:detention,                        parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::Detention),

@@ -12,6 +12,7 @@ en:
       referral_order: Referral order
       supervision_order: Supervision order
       youth_rehabilitation_order: Youth rehabilitation order
+      youth_other_requirement_order: Order with a requirement
       # custodial_sentence
       detention_training_order: Detention and training order (DTO)
       detention: Detention
