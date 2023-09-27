@@ -235,8 +235,7 @@ en:
           adult_suspended_prison_sentence: You were given a prison sentence that was suspended unless you breached the terms
           adult_prison_sentence: You were sent to prison (also known as being taken into custody)
       steps_conviction_conviction_schedule18_form:
-        adult_prison_sentence_html: "If you are unsure, please check the list of Schedule 18 offences here: <a href='https://www.legislation.gov.uk/ukpga/2020/17/schedule/18', class='govuk-link', rel='noreferrer noopener', target='_blank'>Sentencing Act 2020 (legislation.gov.uk)</a>"
-        detention_html: "If you are unsure, please check the list of Schedule 18 offences here: <a href='https://www.legislation.gov.uk/ukpga/2020/17/schedule/18', class='govuk-link', rel='noreferrer noopener', target='_blank'>Sentencing Act 2020 (legislation.gov.uk)</a>"
+        conviction_schedule18_text_html: "If you are unsure, please check the list of Schedule 18 offences here: <a href='https://www.legislation.gov.uk/ukpga/2020/17/schedule/18', class='govuk-link', rel='noreferrer noopener', target='_blank'>Sentencing Act 2020 (legislation.gov.uk)</a>"
 
     label:
       steps_check_kind_form:
