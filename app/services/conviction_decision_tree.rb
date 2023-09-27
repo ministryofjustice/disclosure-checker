@@ -22,7 +22,7 @@ class ConvictionDecisionTree < BaseDecisionTree
     when :conviction_length
       after_conviction_length
     when :conviction_schedule18
-      check_your_answers
+      after_conviction_schedule18
     when :compensation_payment_date
       check_your_answers
 
@@ -32,6 +32,12 @@ class ConvictionDecisionTree < BaseDecisionTree
   end
 
 private
+
+  def after_conviction_schedule18
+    return edit(:conviction_multiple_sentences) if GenericYesNo.new(disclosure_check.conviction_schedule18).yes?
+
+    check_your_answers
+  end
 
   def after_conviction_length
     conviction_length = disclosure_check.conviction_length_in_years(step_value(:conviction_length).to_i)

@@ -11,6 +11,7 @@ RSpec.describe ConvictionDecisionTree do
       motoring_endorsement:,
       conviction_length:,
       conviction_length_type:,
+      conviction_multiple_sentences:
     )
   end
 
@@ -23,6 +24,7 @@ RSpec.describe ConvictionDecisionTree do
   let(:conviction_length_type) { nil }
   let(:compensation_paid)      { nil }
   let(:motoring_endorsement)   { nil }
+  let(:conviction_multiple_sentences) { nil }
 
   it_behaves_like "a decision tree"
 
@@ -161,6 +163,24 @@ RSpec.describe ConvictionDecisionTree do
         let(:conviction_subtype) { ConvictionType::ADULT_PRISON_SENTENCE }
 
         it { is_expected.to have_destination(:conviction_schedule18, :edit) }
+      end
+
+      context "when conviction type is military sentence" do
+        let(:conviction_type) { ConvictionType::ADULT_MILITARY }
+        let(:conviction_subtype) { ConvictionType::ADULT_SERVICE_DETENTION }
+
+        it { is_expected.to show_check_your_answers_page }
+      end
+    end
+
+    context "when conviction length is less than or equal to 4 years" do
+      let(:step_params) { { conviction_length: "4" } }
+
+      context "when conviction type is prison sentence" do
+        let(:conviction_type) { ConvictionType::ADULT_CUSTODIAL_SENTENCE }
+        let(:conviction_subtype) { ConvictionType::ADULT_PRISON_SENTENCE }
+
+        it { is_expected.to show_check_your_answers_page }
       end
 
       context "when conviction type is military sentence" do
