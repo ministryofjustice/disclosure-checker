@@ -132,7 +132,7 @@ en:
         <<: *CONVICTION_SUBTYPES
       steps_conviction_conviction_schedule18_form:
         <<: *CONVICTION_SUBTYPES
-      steps_conviction_conviction_multiple_sentences:
+      steps_conviction_conviction_multiple_sentences_form:
         <<: *CONVICTION_SUBTYPES
       steps_conviction_conviction_length_type_form:
         <<: *CONVICTION_SUBTYPES
@@ -300,8 +300,8 @@ en:
         motoring_endorsement_options: *YESNO
       steps_conviction_conviction_schedule18_form:
         conviction_schedule18_options: *YESNO
-      steps_conviction_conviction_schedule18_form:
-        conviction_multiple_sentences: *YESNO
+      steps_conviction_conviction_multiple_sentences_form:
+        conviction_multiple_sentences_options: *YESNO
 
     legend:
       steps_check_kind_form:
