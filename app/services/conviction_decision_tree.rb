@@ -24,7 +24,7 @@ class ConvictionDecisionTree < BaseDecisionTree
     when :conviction_schedule18
       after_conviction_schedule18
     when :conviction_multiple_sentences
-      check_your_answers
+      after_conviction_multiple_sentences
     when :compensation_payment_date
       check_your_answers
 
@@ -34,6 +34,10 @@ class ConvictionDecisionTree < BaseDecisionTree
   end
 
 private
+
+  def after_conviction_multiple_sentences
+    return check_your_answers if step_value(:conviction_multiple_sentences).inquiry.yes?
+  end
 
   def after_conviction_schedule18
     return edit(:conviction_multiple_sentences) if step_value(:conviction_schedule18).inquiry.yes?
