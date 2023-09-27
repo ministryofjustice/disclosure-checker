@@ -76,7 +76,7 @@ en:
         steps/conviction/conviction_multiple_sentences:
           attributes:
             conviction_multiple_sentences:
-              inclusion: Select yes if you were given more than once sentence at the same time?
+              inclusion: Select yes if you were given more than one sentence at the same time?
         steps/conviction/motoring_endorsement_form:
           attributes:
             motoring_endorsement:
