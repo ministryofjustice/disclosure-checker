@@ -34,7 +34,7 @@ class ConvictionDecisionTree < BaseDecisionTree
 private
 
   def after_conviction_schedule18
-    return edit(:conviction_multiple_sentences) if GenericYesNo.new(disclosure_check.conviction_schedule18).yes?
+    return edit(:conviction_multiple_sentences) if step_value(:conviction_schedule18).inquiry.yes?
 
     check_your_answers
   end

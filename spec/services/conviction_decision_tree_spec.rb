@@ -11,7 +11,7 @@ RSpec.describe ConvictionDecisionTree do
       motoring_endorsement:,
       conviction_length:,
       conviction_length_type:,
-      conviction_multiple_sentences:
+      conviction_schedule18:,
     )
   end
 
@@ -24,7 +24,7 @@ RSpec.describe ConvictionDecisionTree do
   let(:conviction_length_type) { nil }
   let(:compensation_paid)      { nil }
   let(:motoring_endorsement)   { nil }
-  let(:conviction_multiple_sentences) { nil }
+  let(:conviction_schedule18) { nil }
 
   it_behaves_like "a decision tree"
 
@@ -225,8 +225,18 @@ RSpec.describe ConvictionDecisionTree do
   end
 
   context "when the step is 'conviction_schedule18'" do
-    let(:step_params) { { conviction_schedule18: "whatever" } }
+    let(:step_params) { { conviction_schedule18: answer } }
 
-    it { is_expected.to show_check_your_answers_page }
+    context "and the answer is yes" do
+      let(:answer) { GenericYesNo::YES }
+
+      it { is_expected.to have_destination(:conviction_multiple_sentences, :edit) }
+    end
+
+    context "and the answer is yes" do
+      let(:answer) { GenericYesNo::NO }
+
+      it { is_expected.to show_check_your_answers_page }
+    end
   end
 end
