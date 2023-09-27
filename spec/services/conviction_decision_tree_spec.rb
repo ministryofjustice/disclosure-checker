@@ -172,24 +172,6 @@ RSpec.describe ConvictionDecisionTree do
         it { is_expected.to show_check_your_answers_page }
       end
     end
-
-    context "when conviction length is less than or equal to 4 years" do
-      let(:step_params) { { conviction_length: "4" } }
-
-      context "when conviction type is prison sentence" do
-        let(:conviction_type) { ConvictionType::ADULT_CUSTODIAL_SENTENCE }
-        let(:conviction_subtype) { ConvictionType::ADULT_PRISON_SENTENCE }
-
-        it { is_expected.to show_check_your_answers_page }
-      end
-
-      context "when conviction type is military sentence" do
-        let(:conviction_type) { ConvictionType::ADULT_MILITARY }
-        let(:conviction_subtype) { ConvictionType::ADULT_SERVICE_DETENTION }
-
-        it { is_expected.to show_check_your_answers_page }
-      end
-    end
   end
 
   context "when the step is `compensation_paid`" do
