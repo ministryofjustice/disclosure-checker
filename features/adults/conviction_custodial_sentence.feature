@@ -101,5 +101,9 @@ Feature: Conviction
     Then I should see "Were any of the offences specified in Schedule 18 of the sentencing code?"
 
     When I choose "Yes"
+    And I sleep
+    Then I should see "Was more than one sentence given at the same time?"
+
+    When I choose "Yes"
     And I check my "conviction" answers and go to the results page
     Then I should see "This conviction will be spent on 31 December 2031"
