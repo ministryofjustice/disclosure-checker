@@ -47,7 +47,7 @@ class ConvictionType < ValueObject
     REFERRAL_ORDER                     = new(:referral_order,                   parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     SUPERVISION_ORDER                  = new(:supervision_order,                parent: REFERRAL_SUPERVISION_YRO, calculator_class: Calculators::AdditionCalculator::PlusSixMonths),
     YOUTH_REHABILITATION_ORDER         = new(:youth_rehabilitation_order,       parent: REFERRAL_SUPERVISION_YRO, calculator_class: Calculators::AdditionCalculator::PlusSixMonths),
-    YOUTH_OTHER_REQUIREMENT_ORDER      = new(:youth_other_requirement_order,    parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    YOUTH_OTHER_REQUIREMENT_ORDER      = new(:youth_other_requirement_order,    parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
 
     DETENTION_TRAINING_ORDER           = new(:detention_training_order,         parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::DetentionTraining),
     DETENTION                          = new(:detention,                        parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::Detention),
