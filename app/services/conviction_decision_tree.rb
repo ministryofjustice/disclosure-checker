@@ -37,6 +37,8 @@ private
 
   def after_conviction_multiple_sentences
     return check_your_answers if step_value(:conviction_multiple_sentences).inquiry.yes?
+
+    check_your_answers
   end
 
   def after_conviction_schedule18
