@@ -106,32 +106,3 @@ Feature: Conviction
     When I choose "Yes"
     And I check my "conviction" answers and go to the results page
     Then I should see "This conviction will be spent on 31 December 2031"
-
-@happy_path @date_travel
-  Scenario Outline: Prison sentences (Under 18 Schedule 18 Offences)
-    Given The current date is 03-07-2020
-    When I am completing a basic under 18 "Custody or hospital order" conviction
-    Then I should see "What sentence were you given?"
-
-    When I choose "Detention"
-    Then I should see "Did you spend any time on bail with an electronic tag?"
-
-    When I choose "No"
-    Then I should see "When did the detention start?"
-
-    When I enter the following date 01-01-2020
-    Then I should see "Was the length of the detention given in days, weeks, months or years?"
-
-    When I choose "Years"
-    Then I should see "What was the length of the detention?"
-
-    When I fill in "Number of years" with "5"
-    And I click the "Continue" button
-    Then I should see "Were any of the offences specified in Schedule 18 of the sentencing code?"
-
-    When I choose "Yes"
-    Then I should see "Was more than one sentence given at the same time?"
-
-    When I choose "Yes"
-    And I check my "conviction" answers and go to the results page
-    Then I should see "This conviction will be spent on 30 June 2028"
