@@ -79,7 +79,7 @@ en:
               inclusion: Select yes if you were given more than one sentence at the same time
         steps/conviction/single_sentence_length_form:
           attributes:
-            single_sentence_lengtj:
+            single_sentence_length:
               inclusion: Select yes if you were given a single sentence over 4 years
         steps/conviction/motoring_endorsement_form:
           attributes:
