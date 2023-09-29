@@ -25,6 +25,8 @@ class ConvictionDecisionTree < BaseDecisionTree
       after_conviction_schedule18
     when :conviction_multiple_sentences
       after_conviction_multiple_sentences
+    when :single_sentence_length
+      after_single_sentence_length
     when :compensation_payment_date
       check_your_answers
 
@@ -35,8 +37,14 @@ class ConvictionDecisionTree < BaseDecisionTree
 
 private
 
+  def after_single_sentence_length
+    return check_your_answers if step_value(:single_sentence_length).inquiry.yes?
+
+    check_your_answers
+  end
+
   def after_conviction_multiple_sentences
-    return check_your_answers if step_value(:conviction_multiple_sentences).inquiry.yes?
+    return edit(:single_sentence_length) if step_value(:conviction_multiple_sentences).inquiry.yes?
 
     check_your_answers
   end

@@ -4,14 +4,14 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <%= govuk_error_summary %>
-
-    <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
-
-    <p class="govuk-body-l"><%=t '.lead_text' %></p>
-
     <%= step_form @form_object do |f| %>
-      <!-- TODO: Add form fields here -->
-      <%= f.continue_button %>
+     <%= f.govuk_fieldset legend: { text: t('.heading') },
+                           caption: { text: f.i18n_caption } do %>
+        <%= f.govuk_collection_radio_buttons :single_sentence_length,
+              GenericYesNo.values, :value, nil, inline: true, legend: nil,
+              hint: { text: f.i18n_hint } %>
+        <%= f.continue_button %>
+      <% end %>
     <% end %>
   </div>
 </div>
