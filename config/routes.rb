@@ -63,6 +63,7 @@ Rails.application.routes.draw do
       show_step :compensation_not_paid
       edit_step :motoring_endorsement
       edit_step :conviction_schedule18
+      edit_step :conviction_multiple_sentences
     end
   end
 
