@@ -4,7 +4,7 @@ module Steps
       def edit
         @form_object = SingleSentenceLengthForm.new(
           disclosure_check: current_disclosure_check,
-          single_sentence_length: current_disclosure_check.single_sentence_length
+          single_sentence_length: current_disclosure_check.single_sentence_length,
         )
       end
 
