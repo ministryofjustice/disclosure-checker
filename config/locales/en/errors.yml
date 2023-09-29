@@ -72,11 +72,14 @@ en:
         steps/conviction/conviction_schedule18_form:
           attributes:
             conviction_schedule18:
-              inclusion: Select yes if you any of the offences are specified in Schedule 18 of the sentencing code
+              inclusion: Select yes if any of the offences are specified in Schedule 18 of the sentencing code
         steps/conviction/conviction_multiple_sentences_form:
           attributes:
             conviction_multiple_sentences:
-              inclusion: Select yes if you were given more than one sentence at the same time?
+              inclusion: Select yes if you were given more than one sentence at the same time
+        steps/conviction/conviction_multiple_sentences_form:
+          attributes:
+            conviction_multiple_sentences:
         steps/conviction/motoring_endorsement_form:
           attributes:
             motoring_endorsement:

@@ -48,7 +48,7 @@ class ConvictionType < ValueObject
     #
     REFERRAL_ORDER                     = new(:referral_order,                   parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     SUPERVISION_ORDER                  = new(:supervision_order,                parent: REFERRAL_SUPERVISION_YRO, calculator_class: Calculators::AdditionCalculator::PlusSixMonths),
-    YOUTH_REHABILITATION_ORDER         = new(:youth_rehabilitation_order,       parent: REFERRAL_SUPERVISION_YRO, calculator_class: Calculators::AdditionCalculator::PlusSixMonths),
+    YOUTH_REHABILITATION_ORDER         = new(:youth_rehabilitation_order,       parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusSixMonths),
 
     DETENTION_TRAINING_ORDER           = new(:detention_training_order,         parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::DetentionTraining),
     DETENTION                          = new(:detention,                        parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::Detention),
@@ -81,7 +81,7 @@ class ConvictionType < ValueObject
     ######################
 
     ADULT_ATTENDANCE_CENTRE_ORDER       = new(:adult_attendance_centre_order,      parent: ADULT_COMMUNITY_REPARATION, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
-    ADULT_COMMUNITY_ORDER               = new(:adult_community_order,              parent: ADULT_COMMUNITY_REPARATION, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
+    ADULT_COMMUNITY_ORDER               = new(:adult_community_order,              parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
     ADULT_CRIMINAL_BEHAVIOUR            = new(:adult_criminal_behaviour,           parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ADULT_REPARATION_ORDER              = new(:adult_reparation_order,             parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, drag_through: true, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
     ADULT_RESTRAINING_ORDER             = new(:adult_restraining_order,            parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),

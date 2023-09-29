@@ -99,6 +99,10 @@ Feature: Conviction
     When I fill in "Number of years" with "5"
     And I click the "Continue" button
     Then I should see "Were any of the offences specified in Schedule 18 of the sentencing code?"
+    Then I should see "If you are unsure, please check the list of Schedule 18 offences here: Sentencing Act 2020 (legislation.gov.uk)"
+
+    When I choose "Yes"
+    Then I should see "Was more than one sentence given at the same time?"
 
     When I choose "Yes"
     Then I should see "Was more than one sentence given at the same time?"
