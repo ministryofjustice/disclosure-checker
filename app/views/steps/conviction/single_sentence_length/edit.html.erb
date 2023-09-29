@@ -8,8 +8,7 @@
      <%= f.govuk_fieldset legend: { text: t('.heading') },
                            caption: { text: f.i18n_caption } do %>
         <%= f.govuk_collection_radio_buttons :single_sentence_length,
-              GenericYesNo.values, :value, nil, inline: true, legend: nil,
-              hint: { text: f.i18n_hint } %>
+                                             GenericYesNo.values, :value, nil, inline: true, legend: nil %>
         <%= f.continue_button %>
       <% end %>
     <% end %>

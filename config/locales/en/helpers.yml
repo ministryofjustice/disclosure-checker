@@ -306,7 +306,7 @@ en:
         conviction_schedule18_options: *YESNO
       steps_conviction_conviction_multiple_sentences_form:
         conviction_multiple_sentences_options: *YESNO
-      steps_single_sentence_length_form:
+      steps_conviction_single_sentence_length_form:
         single_sentence_length_options: *YESNO
 
     legend:
