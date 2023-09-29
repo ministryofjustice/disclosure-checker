@@ -102,5 +102,8 @@ Feature: Conviction
     Then I should see "If you are unsure, please check the list of Schedule 18 offences here: Sentencing Act 2020 (legislation.gov.uk)"
 
     When I choose "Yes"
+    Then I should see "Was more than one sentence given at the same time?"
+
+    When I choose "Yes"
     And I check my "conviction" answers and go to the results page
     Then I should see "This conviction will be spent on 31 December 2031"

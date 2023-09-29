@@ -223,8 +223,34 @@ RSpec.describe ConvictionDecisionTree do
   end
 
   context "when the step is 'conviction_schedule18'" do
-    let(:step_params) { { conviction_schedule18: "whatever" } }
+    let(:step_params) { { conviction_schedule18: answer } }
 
-    it { is_expected.to show_check_your_answers_page }
+    context "and the answer is yes" do
+      let(:answer) { GenericYesNo::YES }
+
+      it { is_expected.to have_destination(:conviction_multiple_sentences, :edit) }
+    end
+
+    context "and the answer is no" do
+      let(:answer) { GenericYesNo::NO }
+
+      it { is_expected.to show_check_your_answers_page }
+    end
+  end
+
+  context "when the step is 'conviction_multiple_sentences'" do
+    let(:step_params) { { conviction_multiple_sentences: answer } }
+
+    context "and the answer is yes" do
+      let(:answer) { GenericYesNo::YES }
+
+      it { is_expected.to show_check_your_answers_page }
+    end
+
+    context "and the answer is no" do
+      let(:answer) { GenericYesNo::NO }
+
+      it { is_expected.to show_check_your_answers_page }
+    end
   end
 end

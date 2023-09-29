@@ -66,3 +66,7 @@ en:
         edit:
           page_title: Schedule 18 offences
           heading: Were any of the offences specified in Schedule 18 of the sentencing code?
+      conviction_multiple_sentences:
+        edit:
+          page_title: Multiple Sentences?
+          heading: Was more than one sentence given at the same time?
