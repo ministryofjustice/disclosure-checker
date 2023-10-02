@@ -105,7 +105,7 @@ Feature: Conviction
     Then I should see "Was more than one sentence given at the same time?"
 
     When I choose "Yes"
-    Then I should see "Was more than one sentence given at the same time?"
+    Then I should see "Was a single sentence over 4 years?"
 
     When I choose "Yes"
     And I check my "conviction" answers and go to the results page
