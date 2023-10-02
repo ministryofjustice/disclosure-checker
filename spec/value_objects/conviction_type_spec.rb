@@ -255,7 +255,7 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.relevant_order?).to eq(false) }
       it { expect(conviction_type.drag_through?).to eq(false) }
       it { expect(conviction_type.schedule_18_offence?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusSixMonths) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     context "when YOUTH_REHABILITATION_ORDER" do
@@ -265,7 +265,7 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.relevant_order?).to eq(true) }
       it { expect(conviction_type.drag_through?).to eq(false) }
       it { expect(conviction_type.schedule_18_offence?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusSixMonths) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     context "when DETENTION_TRAINING_ORDER" do
@@ -407,7 +407,7 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.relevant_order?).to eq(true) }
       it { expect(conviction_type.drag_through?).to eq(false) }
       it { expect(conviction_type.schedule_18_offence?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusTwelveMonths) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     context "when ADULT_CRIMINAL_BEHAVIOUR" do
@@ -467,7 +467,7 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.relevant_order?).to eq(true) }
       it { expect(conviction_type.drag_through?).to eq(false) }
       it { expect(conviction_type.schedule_18_offence?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusTwelveMonths) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     # ADULT FINANCIAL
