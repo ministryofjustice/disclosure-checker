@@ -255,4 +255,20 @@ RSpec.describe ConvictionDecisionTree do
       it { is_expected.to show_check_your_answers_page }
     end
   end
+
+  context "when step is 'single_sentence_over4'" do
+   let(:step_params) { { single_sentence_over4: answer } }
+
+   context "when answer is yes" do
+     let(:answer) { GenericYesNo::YES }
+
+     it { is_expected.to show_check_your_answers_page}
+   end
+
+   context "when answer is no" do
+     let(:answer) { GenericYesNo::NO }
+
+     it { is_expected.to show_check_your_answers_page}
+   end
+  end
 end
