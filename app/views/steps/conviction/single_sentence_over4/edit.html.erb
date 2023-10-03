@@ -7,7 +7,7 @@
     <%= step_form @form_object do |f| %>
      <%= f.govuk_fieldset legend: { text: t('.heading') },
                            caption: { text: f.i18n_caption } do %>
-        <%= f.govuk_collection_radio_buttons :single_sentence_length,
+        <%= f.govuk_collection_radio_buttons :single_sentence_over4,
                                              GenericYesNo.values, :value, nil, inline: true, legend: nil %>
         <%= f.continue_button %>
       <% end %>

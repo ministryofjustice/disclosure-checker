@@ -246,7 +246,7 @@ RSpec.describe ConvictionDecisionTree do
     context "and the answer is yes" do
       let(:answer) { GenericYesNo::YES }
 
-      it { is_expected.to have_destination(:single_sentence_length, :edit) }
+      it { is_expected.to have_destination(:single_sentence_over4, :edit) }
     end
 
     context "and the answer is no" do
