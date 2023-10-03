@@ -82,6 +82,10 @@ RSpec.describe DisclosureCheck, type: :model do
   end
 
   describe "#schedule18_over_4_years" do
+    context "when conviction_schedule18 is empty" do
+      it { expect(disclosure_check.schedule18_over_4_years).to be_nil }
+    end
+
     context "when conviction_schedule18 is 'yes'" do
       before { disclosure_check.conviction_schedule18 = "yes" }
 

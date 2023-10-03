@@ -28,9 +28,13 @@ class DisclosureCheck < ApplicationRecord
   end
 
   def schedule18_over_4_years
-    result = conviction_schedule18&.inquiry&.yes? && (conviction_multiple_sentences.inquiry.no? || single_sentence_over4.inquiry.yes?)
+    return nil if conviction_schedule18.blank?
 
-    result ? "yes" : "no"
+    if conviction_schedule18&.inquiry&.yes? && (conviction_multiple_sentences.inquiry.no? || single_sentence_over4.inquiry.yes?)
+      "yes"
+    else
+      "no"
+    end
   end
 
   def schedule18_over_4_years?
