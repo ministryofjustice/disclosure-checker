@@ -26,22 +26,15 @@ class ConvictionDecisionTree < BaseDecisionTree
     when :conviction_multiple_sentences
       after_conviction_multiple_sentences
     when :single_sentence_length
-      after_single_sentence_length
+      check_your_answers
     when :compensation_payment_date
       check_your_answers
-
     else
       raise InvalidStep, "Invalid step '#{as || step_params}'"
     end
   end
 
 private
-
-  def after_single_sentence_length
-    return check_your_answers if step_value(:single_sentence_length).inquiry.yes?
-
-    check_your_answers
-  end
 
   def after_conviction_multiple_sentences
     return edit(:single_sentence_length) if step_value(:conviction_multiple_sentences).inquiry.yes?
