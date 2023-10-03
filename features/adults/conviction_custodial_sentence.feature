@@ -105,5 +105,8 @@ Feature: Conviction
     Then I should see "Was more than one sentence given at the same time?"
 
     When I choose "Yes"
+    Then I should see "Was a single sentence over 4 years?"
+
+    When I choose "Yes"
     And I check my "conviction" answers and go to the results page
     Then I should see "This conviction will be spent on 31 December 2031"

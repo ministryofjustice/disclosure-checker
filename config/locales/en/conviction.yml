@@ -70,3 +70,7 @@ en:
         edit:
           page_title: Multiple Sentences?
           heading: Was more than one sentence given at the same time?
+      single_sentence_over4:
+        edit:
+          page_title: Single Sentence Length?
+          heading: Was a single sentence over 4 years?

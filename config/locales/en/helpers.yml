@@ -134,6 +134,8 @@ en:
         <<: *CONVICTION_SUBTYPES
       steps_conviction_conviction_multiple_sentences_form:
         <<: *CONVICTION_SUBTYPES
+      steps_conviction_single_sentence_over4_form:
+        <<: *CONVICTION_SUBTYPES
       steps_conviction_conviction_length_type_form:
         <<: *CONVICTION_SUBTYPES
       steps_conviction_conviction_length_form:
@@ -304,6 +306,8 @@ en:
         conviction_schedule18_options: *YESNO
       steps_conviction_conviction_multiple_sentences_form:
         conviction_multiple_sentences_options: *YESNO
+      steps_conviction_single_sentence_over4_form:
+        single_sentence_over4_options: *YESNO
 
     legend:
       steps_check_kind_form:
@@ -413,4 +417,3 @@ en:
         adult_suspended_prison_sentence: *order_started_lead_text
         adult_disqualification: ''
         youth_disqualification: ''
-        
