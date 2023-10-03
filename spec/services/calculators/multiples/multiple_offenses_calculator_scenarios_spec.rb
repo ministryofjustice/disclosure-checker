@@ -22,11 +22,11 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     # - a two-year conditional discharge order. Jack’s conviction would become spent on 25/01/2019.
     #
     # On 10/12/2018 Jack was convicted of battery and received:
-    # -  a 12-month community order. This conviction would become spent on 10/12/2020.
+    # -  a 12-month community order. This conviction would become spent on 10/12/2019.
     #
     # Outcome:
-    # - First conviction is spent on 10/12/2020
-    # - Second conviction is spent on 10/12/2020
+    # - First conviction is spent on 10/12/2019
+    # - Second conviction is spent on 10/12/2019
 
     let(:first_conviction_date) { Date.new(2017, 1, 25) }
     let(:second_conviction_date) { Date.new(2018, 12, 10) }
@@ -64,11 +64,11 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2020, 12, 10))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2019, 12, 10))
     end
 
     it "returns indefinite for the second proceeding" do
-      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2020, 12, 10))
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2019, 12, 10))
     end
   end
 
@@ -598,8 +598,8 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
 
   context "when scenario 9" do
     # Under 18, 25 Feb 2011, convictioned to 6 months referral order
-    #  Under 18, 12 Feb 2013, convicted to 12 months Youth Rehabilitation Order
-    # Over 18, 1 July 2014, convicted to 12 months Community Order
+    # Under 18, 12 Feb 2013, convicted to 24 months Youth Rehabilitation Order
+    # Over 18, 1 July 2014, convicted to 24 months Community Order
     # Over 18, 30 June 2016, convicted to 12 months custody
 
     let(:first_conviction_date) { Date.new(2011, 2, 25) }
@@ -634,7 +634,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
         :completed,
         known_date: second_conviction_date,
         conviction_date: second_conviction_date,
-        conviction_length: 12,
+        conviction_length: 24,
         conviction_length_type: ConvictionLengthType::MONTHS,
       )
     end
@@ -646,7 +646,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
         :completed,
         known_date: third_conviction_date,
         conviction_date: third_conviction_date,
-        conviction_length: 12,
+        conviction_length: 24,
         conviction_length_type: ConvictionLengthType::MONTHS,
       )
     end
