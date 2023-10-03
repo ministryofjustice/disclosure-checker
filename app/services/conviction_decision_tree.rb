@@ -22,16 +22,31 @@ class ConvictionDecisionTree < BaseDecisionTree
     when :conviction_length
       after_conviction_length
     when :conviction_schedule18
+      after_conviction_schedule18
+    when :conviction_multiple_sentences
+      after_conviction_multiple_sentences
+    when :single_sentence_over4
       check_your_answers
     when :compensation_payment_date
       check_your_answers
-
     else
       raise InvalidStep, "Invalid step '#{as || step_params}'"
     end
   end
 
 private
+
+  def after_conviction_multiple_sentences
+    return edit(:single_sentence_over4) if step_value(:conviction_multiple_sentences).inquiry.yes?
+
+    check_your_answers
+  end
+
+  def after_conviction_schedule18
+    return edit(:conviction_multiple_sentences) if step_value(:conviction_schedule18).inquiry.yes?
+
+    check_your_answers
+  end
 
   def after_conviction_length
     conviction_length = disclosure_check.conviction_length_in_years(step_value(:conviction_length).to_i)

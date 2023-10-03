@@ -9,7 +9,6 @@ RSpec.describe ConvictionDecisionTree do
       conviction_subtype:,
       compensation_paid:,
       motoring_endorsement:,
-      conviction_length:,
       conviction_length_type:,
     )
   end
@@ -19,7 +18,6 @@ RSpec.describe ConvictionDecisionTree do
   let(:as)                     { nil }
   let(:conviction_type)        { nil }
   let(:conviction_subtype)     { nil }
-  let(:conviction_length)      { nil }
   let(:conviction_length_type) { nil }
   let(:compensation_paid)      { nil }
   let(:motoring_endorsement)   { nil }
@@ -223,8 +221,50 @@ RSpec.describe ConvictionDecisionTree do
   end
 
   context "when the step is 'conviction_schedule18'" do
-    let(:step_params) { { conviction_schedule18: "whatever" } }
+    let(:step_params) { { conviction_schedule18: answer } }
 
-    it { is_expected.to show_check_your_answers_page }
+    context "and the answer is yes" do
+      let(:answer) { GenericYesNo::YES }
+
+      it { is_expected.to have_destination(:conviction_multiple_sentences, :edit) }
+    end
+
+    context "and the answer is no" do
+      let(:answer) { GenericYesNo::NO }
+
+      it { is_expected.to show_check_your_answers_page }
+    end
+  end
+
+  context "when the step is 'conviction_multiple_sentences'" do
+    let(:step_params) { { conviction_multiple_sentences: answer } }
+
+    context "and the answer is yes" do
+      let(:answer) { GenericYesNo::YES }
+
+      it { is_expected.to have_destination(:single_sentence_over4, :edit) }
+    end
+
+    context "and the answer is no" do
+      let(:answer) { GenericYesNo::NO }
+
+      it { is_expected.to show_check_your_answers_page }
+    end
+  end
+
+  context "when step is 'single_sentence_over4'" do
+    let(:step_params) { { single_sentence_over4: answer } }
+
+    context "when answer is yes" do
+      let(:answer) { GenericYesNo::YES }
+
+      it { is_expected.to show_check_your_answers_page }
+    end
+
+    context "when answer is no" do
+      let(:answer) { GenericYesNo::NO }
+
+      it { is_expected.to show_check_your_answers_page }
+    end
   end
 end

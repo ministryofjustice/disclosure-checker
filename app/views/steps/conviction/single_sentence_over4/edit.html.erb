@@ -5,11 +5,10 @@
   <div class="govuk-grid-column-two-thirds">
     <%= govuk_error_summary %>
     <%= step_form @form_object do |f| %>
-      <%= f.govuk_fieldset legend: { text: t('.heading') },
+     <%= f.govuk_fieldset legend: { text: t('.heading') },
                            caption: { text: f.i18n_caption } do %>
-        <%= f.govuk_collection_radio_buttons :conviction_schedule18,
-              GenericYesNo.values, :value, nil, inline: true, legend: nil,
-              hint: { text: f.i18n_hint } %>
+        <%= f.govuk_collection_radio_buttons :single_sentence_over4,
+                                             GenericYesNo.values, :value, nil, inline: true, legend: nil %>
         <%= f.continue_button %>
       <% end %>
     <% end %>
