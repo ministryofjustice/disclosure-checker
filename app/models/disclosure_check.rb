@@ -27,7 +27,7 @@ class DisclosureCheck < ApplicationRecord
     end
   end
 
-  def schedule18_over_4_years
-    conviction_schedule18
+  def schedule18_over_4_years?
+    conviction_schedule18.inquiry.yes? && (conviction_multiple_sentences.inquiry.no? || single_sentence_over4.inquiry.yes?)
   end
 end
