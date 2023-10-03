@@ -9,9 +9,7 @@ RSpec.describe ConvictionDecisionTree do
       conviction_subtype:,
       compensation_paid:,
       motoring_endorsement:,
-      conviction_length:,
       conviction_length_type:,
-      conviction_schedule18:,
     )
   end
 
@@ -20,11 +18,9 @@ RSpec.describe ConvictionDecisionTree do
   let(:as)                     { nil }
   let(:conviction_type)        { nil }
   let(:conviction_subtype)     { nil }
-  let(:conviction_length)      { nil }
   let(:conviction_length_type) { nil }
   let(:compensation_paid)      { nil }
   let(:motoring_endorsement)   { nil }
-  let(:conviction_schedule18) { nil }
 
   it_behaves_like "a decision tree"
 
