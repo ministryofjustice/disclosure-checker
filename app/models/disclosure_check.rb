@@ -30,7 +30,7 @@ class DisclosureCheck < ApplicationRecord
   def schedule18_over_4_years
     return nil if conviction_schedule18.blank?
 
-    if conviction_schedule18&.inquiry&.yes? && (conviction_multiple_sentences.inquiry.no? || single_sentence_over4.inquiry.yes?)
+    if conviction_schedule18.inquiry.yes? && (conviction_multiple_sentences.inquiry.no? || single_sentence_over4.inquiry.yes?)
       "yes"
     else
       "no"

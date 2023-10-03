@@ -77,6 +77,7 @@ RSpec.describe Calculators::SentenceCalculator do
 
       before do
         disclosure_check.conviction_schedule18 = "yes"
+        disclosure_check.conviction_multiple_sentences = "no"
       end
 
       it { expect(calculator.expiry_date).to eq ResultsVariant::NEVER_SPENT }
@@ -192,6 +193,7 @@ RSpec.describe Calculators::SentenceCalculator do
 
       before do
         disclosure_check.conviction_schedule18 = "yes"
+        disclosure_check.conviction_multiple_sentences = "no"
       end
 
       it { expect(calculator.expiry_date).to eq ResultsVariant::NEVER_SPENT }
