@@ -60,6 +60,7 @@ RSpec.describe ConvictionType do
           referral_order
           supervision_order
           youth_rehabilitation_order
+          youth_other_requirement_order
         ])
       end
     end
