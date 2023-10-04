@@ -119,3 +119,12 @@ And(/^I check my "([^"]*)" answers and go to the results page$/) do |kind|
   step %(I click the "Continue to your results" button)
   step %(I should be on "/steps/check/results")
 end
+
+Then(/^I should see the notification banner$/) do
+  step %(I should see "New legislation changes to rehabilitation periods are coming")
+  step %(I should see a "Factsheet" link to "https://www.gov.uk/government/publications/police-crime-sentencing-and-courts-bill-2021-factsheets/police-crime-sentencing-and-courts-bill-2021-rehabilitation-factsheet#:~:text=Criminal%20Record%20Reform,be%20revealed%20to%20most%20employers.")
+end
+
+Then(/^I should not see the notification banner$/) do
+  step %(I should not see "New legislation changes to rehabilitation periods are coming")
+end

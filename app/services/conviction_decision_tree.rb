@@ -19,7 +19,15 @@ class ConvictionDecisionTree < BaseDecisionTree
       after_conviction_length_type
     when :compensation_paid
       after_compensation_paid
-    when :conviction_length, :compensation_payment_date
+    when :conviction_length
+      after_conviction_length
+    when :conviction_schedule18
+      after_conviction_schedule18
+    when :conviction_multiple_sentences
+      after_conviction_multiple_sentences
+    when :single_sentence_over4
+      check_your_answers
+    when :compensation_payment_date
       check_your_answers
     else
       raise InvalidStep, "Invalid step '#{as || step_params}'"
@@ -27,6 +35,27 @@ class ConvictionDecisionTree < BaseDecisionTree
   end
 
 private
+
+  def after_conviction_multiple_sentences
+    return edit(:single_sentence_over4) if step_value(:conviction_multiple_sentences).inquiry.yes?
+
+    check_your_answers
+  end
+
+  def after_conviction_schedule18
+    return edit(:conviction_multiple_sentences) if step_value(:conviction_schedule18).inquiry.yes?
+
+    check_your_answers
+  end
+
+  def after_conviction_length
+    conviction_length = disclosure_check.conviction_length_in_years(step_value(:conviction_length).to_i)
+    schedule_18_applicable = ConvictionType.new(disclosure_check.conviction_subtype).schedule_18_applicable?
+
+    return check_your_answers if conviction_length <= 4 || !schedule_18_applicable
+
+    edit(:conviction_schedule18)
+  end
 
   def after_conviction_subtype
     return edit(:conviction_bail)      if conviction.bailable_offense?

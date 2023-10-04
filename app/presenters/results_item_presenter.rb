@@ -32,7 +32,7 @@ class ResultsItemPresenter
         scope:,
         change_path: change_path(item),
       )
-    }.select(&:show?)
+    }.compact.select(&:show?)
   end
 
   delegate :expiry_date, to: :result_service
@@ -46,7 +46,7 @@ private
   end
 
   def format_value(attr)
-    value = disclosure_check[attr]
+    value = disclosure_check.send(attr)
     return value unless value.is_a?(Date)
 
     approx_attr = ["approximate", attr].join("_").to_sym
