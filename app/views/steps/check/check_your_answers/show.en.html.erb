@@ -1,6 +1,10 @@
 <% title t('.page_title') %>
 <% track_transaction category: 'CYA Basket' %>
 
+<% content_for(:notification_banner) do %>
+  <%= render partial: 'layouts/notification_banner' %>
+<% end %>
+
 <%# TODO: extract strings to locals once design is finalised %>
 
 <div class="govuk-grid-row">
