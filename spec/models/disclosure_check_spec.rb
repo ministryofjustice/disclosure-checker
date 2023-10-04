@@ -80,4 +80,61 @@ RSpec.describe DisclosureCheck, type: :model do
       end
     end
   end
+
+  describe "#schedule18_over_4_years" do
+    context "when conviction_schedule18 is empty" do
+      it { expect(disclosure_check.schedule18_over_4_years).to be_nil }
+    end
+
+    context "when conviction_schedule18 is 'yes'" do
+      before { disclosure_check.conviction_schedule18 = "yes" }
+
+      context "when not multiple sentences" do
+        before { disclosure_check.conviction_multiple_sentences = "no" }
+
+        it { expect(disclosure_check.schedule18_over_4_years).to eq "yes" }
+      end
+
+      context "when multiple sentences" do
+        before { disclosure_check.conviction_multiple_sentences = "yes" }
+
+        context "when single sentence is over 4 years" do
+          before { disclosure_check.single_sentence_over4 = "yes" }
+
+          it { expect(disclosure_check.schedule18_over_4_years).to eq "yes" }
+        end
+
+        context "when single sentence is not over 4 years" do
+          before { disclosure_check.single_sentence_over4 = "no" }
+
+          it { expect(disclosure_check.schedule18_over_4_years).to eq "no" }
+        end
+      end
+    end
+
+    context "when conviction_schedule18 is 'no'" do
+      before { disclosure_check.conviction_schedule18 = "no" }
+
+      it { expect(disclosure_check.schedule18_over_4_years).to eq "no" }
+    end
+  end
+
+  describe "#schedule18_over_4_years?" do
+    context "when conviction_schedule18 is 'yes'" do
+      before do
+        disclosure_check.conviction_schedule18 = "yes"
+        disclosure_check.conviction_multiple_sentences = "no"
+      end
+
+      it { expect(disclosure_check).to be_schedule18_over_4_years }
+    end
+
+    context "when conviction_schedule18 is 'no'" do
+      before do
+        disclosure_check.conviction_schedule18 = "no"
+      end
+
+      it { expect(disclosure_check).not_to be_schedule18_over_4_years }
+    end
+  end
 end

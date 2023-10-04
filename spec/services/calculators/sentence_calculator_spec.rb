@@ -71,6 +71,17 @@ RSpec.describe Calculators::SentenceCalculator do
         it { expect { calculator.expiry_date }.not_to raise_exception(BaseCalculator::InvalidCalculation) }
       end
     end
+
+    context "when schedule 18 offence over 4 years" do
+      let(:conviction_length) { 49 }
+
+      before do
+        disclosure_check.conviction_schedule18 = "yes"
+        disclosure_check.conviction_multiple_sentences = "no"
+      end
+
+      it { expect(calculator.expiry_date).to eq ResultsVariant::NEVER_SPENT }
+    end
   end
 
   describe Calculators::SentenceCalculator::DetentionTraining do
@@ -118,61 +129,6 @@ RSpec.describe Calculators::SentenceCalculator do
 
         it { expect(calculator.valid?).to eq(false) }
         it { expect { calculator.expiry_date }.to raise_exception(BaseCalculator::InvalidCalculation) }
-      end
-    end
-  end
-
-  describe Calculators::SentenceCalculator::Schedule18Detention do
-    describe "#expiry_date" do
-      context "with conviction length of 12 months or less" do
-        let(:conviction_length) { 11 }
-        let(:expected) { conviction_end_date.advance(months: 6) }
-
-        it { expect(calculator.expiry_date.to_s).to eq(expected.to_s) }
-      end
-
-      context "with conviction length of over 12 months and up to 4 years" do
-        let(:conviction_length) { 48 }
-        let(:expected) { conviction_end_date.advance(months: 24) }
-
-        it { expect(calculator.expiry_date.to_s).to eq(expected.to_s) }
-      end
-
-      context "when never spent for conviction length over 4 years" do
-        let(:conviction_length) { 49 }
-
-        it { expect(calculator.expiry_date).to eq ResultsVariant::NEVER_SPENT }
-      end
-
-      context "when conviction length is in years" do
-        let(:conviction_length_type) { ConvictionLengthType::YEARS.to_s }
-        let(:conviction_length) { 1 }
-        let(:expected) { conviction_end_date.advance(months: 6) }
-
-        it { expect(calculator.expiry_date.to_s).to eq(expected.to_s) }
-      end
-
-      context "when conviction length is in weeks" do
-        let(:conviction_length_type) { ConvictionLengthType::WEEKS.to_s }
-        let(:conviction_length) { 53 }
-        let(:expected) { conviction_end_date.advance(months: 24) }
-
-        it { expect(calculator.expiry_date.to_s).to eq(expected.to_s) }
-      end
-
-      context "when conviction length is in days" do
-        let(:conviction_length_type) { ConvictionLengthType::DAYS.to_s }
-        let(:conviction_length) { 367 }
-        let(:expected) { conviction_end_date.advance(months: 24) }
-
-        it { expect(calculator.expiry_date.to_s).to eq(expected.to_s) }
-      end
-
-      context "when there is no upper limit" do
-        let(:conviction_length) { 120 }
-
-        it { expect(calculator.valid?).to eq(true) }
-        it { expect { calculator.expiry_date }.not_to raise_exception(BaseCalculator::InvalidCalculation) }
       end
     end
   end
@@ -232,6 +188,17 @@ RSpec.describe Calculators::SentenceCalculator do
       end
     end
 
+    context "when schedule 18 offence over 4 years" do
+      let(:conviction_length) { 49 }
+
+      before do
+        disclosure_check.conviction_schedule18 = "yes"
+        disclosure_check.conviction_multiple_sentences = "no"
+      end
+
+      it { expect(calculator.expiry_date).to eq ResultsVariant::NEVER_SPENT }
+    end
+
     # Just one example is enough as all other types of sentences behave the same
     describe "#expiry_date - with bail time" do
       let(:known_date) { Date.new(2019, 12, 18) }
@@ -240,61 +207,6 @@ RSpec.describe Calculators::SentenceCalculator do
       let(:expected) { conviction_end_date.advance(months: 48).advance(days: -bail_days) }
 
       it { expect(calculator.expiry_date.to_s).to eq(expected.to_s) }
-    end
-  end
-
-  describe Calculators::SentenceCalculator::Schedule18Prison do
-    describe "#expiry_date" do
-      context "with conviction length of 12 months or less" do
-        let(:conviction_length) { 11 }
-        let(:expected) { conviction_end_date.advance(months: 12) }
-
-        it { expect(calculator.expiry_date.to_s).to eq(expected.to_s) }
-      end
-
-      context "with conviction length of over 12 months and up to 48 months" do
-        let(:conviction_length) { 29 }
-        let(:expected) { conviction_end_date.advance(months: 48) }
-
-        it { expect(calculator.expiry_date.to_s).to eq(expected.to_s) }
-      end
-
-      context "with conviction length over 4 years" do
-        let(:conviction_length) { 49 }
-
-        it { expect(calculator.expiry_date).to eq ResultsVariant::NEVER_SPENT }
-      end
-
-      context "when conviction length is in years" do
-        let(:conviction_length_type) { ConvictionLengthType::YEARS.to_s }
-        let(:conviction_length) { 1 }
-        let(:expected) { conviction_end_date.advance(months: 12) }
-
-        it { expect(calculator.expiry_date.to_s).to eq(expected.to_s) }
-      end
-
-      context "when conviction length is in weeks" do
-        let(:conviction_length_type) { ConvictionLengthType::WEEKS.to_s }
-        let(:conviction_length) { 53 }
-        let(:expected) { conviction_end_date.advance(months: 48) }
-
-        it { expect(calculator.expiry_date.to_s).to eq(expected.to_s) }
-      end
-
-      context "when conviction length is in days" do
-        let(:conviction_length_type) { ConvictionLengthType::DAYS.to_s }
-        let(:conviction_length) { 367 }
-        let(:expected) { conviction_end_date.advance(months: 48) }
-
-        it { expect(calculator.expiry_date.to_s).to eq(expected.to_s) }
-      end
-
-      context "when there is no upper limit" do
-        let(:conviction_length) { 120 }
-
-        it { expect(calculator.valid?).to eq(true) }
-        it { expect { calculator.expiry_date }.not_to raise_exception(BaseCalculator::InvalidCalculation) }
-      end
     end
   end
 

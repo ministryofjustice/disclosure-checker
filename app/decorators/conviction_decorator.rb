@@ -45,10 +45,8 @@ module ConvictionDecorator
     [
       ConvictionType::DETENTION,
       ConvictionType::DETENTION_TRAINING_ORDER,
-      ConvictionType::DETENTION_SCHEDULE_18,
       ConvictionType::ADULT_PRISON_SENTENCE,
       ConvictionType::ADULT_SUSPENDED_PRISON_SENTENCE,
-      ConvictionType::ADULT_PRISON_SENTENCE_SCHEDULE_18,
     ].include?(self)
   end
 end
