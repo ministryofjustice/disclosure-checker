@@ -211,29 +211,58 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
 
       context "when all sentences are dates" do
         context "and there is overlapping of rehabilitation periods" do
-          let(:conviction_1) do
-            instance_double(
-              Calculators::Multiples::Proceedings,
-              conviction?: true,
-              conviction_date: Date.new(2020, 1, 1),
-              spent_date: Date.new(2022, 1, 1),
-              spent_date_without_relevant_orders: Date.new(2022, 1, 1),
-            )
+          context "when 2nd sentence causes drag through" do
+            let(:conviction_1) do
+              instance_double(
+                Calculators::Multiples::Proceedings,
+                conviction?: true,
+                conviction_date: Date.new(2020, 1, 1),
+                spent_date: Date.new(2022, 1, 1),
+                spent_date_without_relevant_orders: Date.new(2022, 1, 1),
+              )
+            end
+
+            let(:conviction_2) do
+              instance_double(
+                Calculators::Multiples::Proceedings,
+                conviction?: true,
+                conviction_date: Date.new(2021, 1, 1),
+                spent_date: Date.new(2025, 1, 1),
+                spent_date_without_relevant_orders: Date.new(2025, 1, 1),
+              )
+            end
+
+            it "returns the spent date for the matching check group" do
+              expect(calculator.spent_date_for(conviction_1)).to eq(Date.new(2025, 1, 1))
+              expect(calculator.spent_date_for(conviction_2)).to eq(Date.new(2025, 1, 1))
+            end
           end
 
-          let(:conviction_2) do
-            instance_double(
-              Calculators::Multiples::Proceedings,
-              conviction?: true,
-              conviction_date: Date.new(2021, 1, 1),
-              spent_date: Date.new(2025, 1, 1),
-              spent_date_without_relevant_orders: Date.new(2025, 1, 1),
-            )
-          end
+          context "when 1st sentence causes drag through" do
+            let(:conviction_1) do
+              instance_double(
+                Calculators::Multiples::Proceedings,
+                conviction?: true,
+                conviction_date: Date.new(2019, 4, 23),
+                spent_date: Date.new(2030, 4, 22),
+                spent_date_without_relevant_orders: Date.new(2030, 4, 22),
+              )
+            end
 
-          it "returns the spent date for the matching check group" do
-            expect(calculator.spent_date_for(conviction_1)).to eq(Date.new(2025, 1, 1))
-            expect(calculator.spent_date_for(conviction_2)).to eq(Date.new(2025, 1, 1))
+            let(:conviction_2) do
+              instance_double(
+                Calculators::Multiples::Proceedings,
+                conviction?: true,
+                conviction_date: Date.new(2023, 9, 23),
+                spent_date: Date.new(2026, 3, 22),
+                spent_date_without_relevant_orders: Date.new(2026, 3, 22),
+              )
+            end
+
+            it "returns the spent date for the matching check group" do
+              expect(calculator.spent_date_for(conviction_1)).to eq(Date.new(2030, 4, 22))
+              expect(calculator.spent_date_for(conviction_2)).to eq(Date.new(2030, 4, 22))
+            end
           end
         end
 
@@ -352,7 +381,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
           let(:spent_date_2) { ResultsVariant::INDEFINITE }
 
           it "returns the spent date for the matching check group" do
-            expect(calculator.spent_date_for(conviction_1)).to eq(ResultsVariant::INDEFINITE)
+            expect(calculator.spent_date_for(conviction_1)).to eq(Date.new(2023, 1, 1))
             expect(calculator.spent_date_for(conviction_2)).to eq(ResultsVariant::INDEFINITE)
           end
         end
