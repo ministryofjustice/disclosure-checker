@@ -53,6 +53,6 @@ private
   end
 
   def maintenance_mode
-    render "errors/maintenance"
+    render "errors/maintenance" unless Rails.env.test?
   end
 end
