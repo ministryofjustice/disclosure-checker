@@ -265,7 +265,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     #
     # Outcome:
     # - First conviction is spent on 02/08/2021
-    # - Second conviction is spent on 05/02/2019
+    # - Second conviction is spent on 02/08/2021
 
     let(:first_conviction_date) { Date.new(2015, 8, 2) }
     let(:second_conviction_date) { Date.new(2018, 2, 5) }
@@ -316,8 +316,8 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2021, 8, 2))
     end
 
-    it "returns indefinite for the second proceeding" do
-      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2019, 2, 5))
+    it "returns the date for the second proceeding" do
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2021, 8, 2))
     end
   end
 
