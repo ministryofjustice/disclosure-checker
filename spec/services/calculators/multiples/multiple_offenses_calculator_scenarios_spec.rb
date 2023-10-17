@@ -321,142 +321,142 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
   end
 
-  ## TODO: re-add as schedule 18 offence
-  # context "when scenario 6" do
-  #   # Darren was convicted of attempted murder on 12 September 2004.
-  #   # - He was sentenced to 5 years in prison. This conviction will never be spent.
-  #   #
-  #   # He had 2 previous convictions:
-  #   # - 10 August 1998 - he was convicted of assault resulting in:
-  #   # 	- a 12 month community order and a fine.
-  #   # - 10 July 2004 - he was convicted of harassment resulting in:
-  #   # 	-  a fine of £100
-  #   #
-  #   # Outcome:
-  #   # - Conviction of attempted murder will never be spent
-  #   # - Conviction of August 1998 is spent on 10 August 2000
-  #   # - Conviction of July 2004 will never be spent
-  #   #
-  #   # On 7 February 2012, Darren was is convicted for a separate incident of theft, resulting in:
-  #   # - a 6 month suspended sentence
-  #   #
-  #   # Outcome:
-  #   # - Conviction of attempted murder will never be spent
-  #   # - Conviction of August 1998 is spent on 10 August 2000
-  #   # - Conviction of July 2004 will never be spent
-  #   # - Conviction of February 2012 is spent on 07/08/2014
+  # TODO: re-add as schedule 18 offence
+  context "when scenario 6" do
+    # Darren was convicted of attempted murder on 12 September 2004.
+    # - He was sentenced to 5 years in prison. This conviction will never be spent.
+    #
+    # He had 2 previous convictions:
+    # - 10 August 1998 - he was convicted of assault resulting in:
+    # 	- a 12 month community order and a fine.
+    # - 10 July 2004 - he was convicted of harassment resulting in:
+    # 	-  a fine of £100
+    #
+    # Outcome:
+    # - Conviction of attempted murder will never be spent
+    # - Conviction of August 1998 is spent on 10 August 2000
+    # - Conviction of July 2004 will never be spent
+    #
+    # On 7 February 2012, Darren was is convicted for a separate incident of theft, resulting in:
+    # - a 6 month suspended sentence
+    #
+    # Outcome:
+    # - Conviction of attempted murder will never be spent
+    # - Conviction of August 1998 is spent on 10 August 2000
+    # - Conviction of July 2004 will never be spent
+    # - Conviction of February 2012 is spent on 07/08/2014
 
-  #   let(:first_conviction_date)  { Date.new(1998, 8, 10) }
-  #   let(:second_conviction_date) { Date.new(2004, 7, 10) }
-  #   let(:third_conviction_date)  { Date.new(2004, 9, 12) }
-  #   let(:forth_conviction_date)  { Date.new(2012, 2, 7) }
+    let(:first_conviction_date)  { Date.new(1998, 8, 10) }
+    let(:second_conviction_date) { Date.new(2004, 7, 10) }
+    let(:third_conviction_date)  { Date.new(2004, 9, 12) }
+    let(:forth_conviction_date)  { Date.new(2012, 2, 7) }
 
-  #   let(:conviction_of_august_1998) do
-  #     build(
-  #       :disclosure_check,
-  #       :with_community_order,
-  #       :completed,
-  #       known_date: first_conviction_date,
-  #       conviction_date: first_conviction_date,
-  #       conviction_length: 12,
-  #     )
-  #   end
+    let(:conviction_of_august_1998) do
+      build(
+        :disclosure_check,
+        :with_community_order,
+        :completed,
+        known_date: first_conviction_date,
+        conviction_date: first_conviction_date,
+        conviction_length: 12,
+      )
+    end
 
-  #   let(:conviction_of_july_2004) do
-  #     build(
-  #       :disclosure_check,
-  #       :adult,
-  #       :with_fine,
-  #       :completed,
-  #       known_date: second_conviction_date,
-  #       conviction_date: second_conviction_date,
-  #     )
-  #   end
+    let(:conviction_of_july_2004) do
+      build(
+        :disclosure_check,
+        :adult,
+        :with_fine,
+        :completed,
+        known_date: second_conviction_date,
+        conviction_date: second_conviction_date,
+      )
+    end
 
-  #   let(:conviction_of_september_2004) do
-  #     build(
-  #       :disclosure_check,
-  #       :with_prison_sentence,
-  #       :completed,
-  #       known_date: third_conviction_date,
-  #       conviction_date: third_conviction_date,
-  #       conviction_length: 5,
-  #       conviction_length_type: ConvictionLengthType::YEARS,
-  #     )
-  #   end
+    let(:conviction_of_september_2004) do
+      build(
+        :disclosure_check,
+        :schedule18_offence,
+        :completed,
+        known_date: third_conviction_date,
+        conviction_date: third_conviction_date,
+        conviction_length: 5,
+        conviction_length_type: ConvictionLengthType::YEARS,
+      )
+    end
 
-  #   let(:third_proceeding_group) { disclosure_report.check_groups.build }
-  #   let(:third_proceedings) { calculator.proceedings.third }
+    let(:third_proceeding_group) { disclosure_report.check_groups.build }
+    let(:third_proceedings) { calculator.proceedings.third }
 
-  #   context "when before 7 February 2012" do
-  #     before do
-  #       first_proceeding_group.disclosure_checks << conviction_of_august_1998
-  #       second_proceeding_group.disclosure_checks << conviction_of_july_2004
-  #       third_proceeding_group.disclosure_checks << conviction_of_september_2004
+    context "when before 7 February 2012" do
+      before do
+        first_proceeding_group.disclosure_checks << conviction_of_august_1998
+        second_proceeding_group.disclosure_checks << conviction_of_july_2004
+        third_proceeding_group.disclosure_checks << conviction_of_september_2004
 
-  #       save_report
-  #     end
+        save_report
+      end
 
-  #     it "returns the date for the first proceeeding" do
-  #       expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2000, 8, 10))
-  #     end
+      it "returns the date for the first proceeeding" do
+        expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(1999, 8, 10))
+      end
 
-  #     it "returns `never spent` for the second proceeding" do
-  #       expect(calculator.spent_date_for(second_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
-  #     end
+      it "returns `never spent` for the second proceeding" do
+        expect(calculator.spent_date_for(second_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
+      end
 
-  #     it "returns `never spent` for the third proceeding" do
-  #       expect(calculator.spent_date_for(third_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
-  #     end
-  #   end
+      it "returns `never spent` for the third proceeding" do
+        expect(calculator.spent_date_for(third_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
+      end
+    end
 
-  #   # third conviction 12/9/2004
-  #   # duration: 5 years, meaning: never spent!
-  #   # but duration is up to 12 9 2009
-  #   context "when after 7 February 2012" do
-  #     let(:forth_proceeding_group) { disclosure_report.check_groups.build }
-  #     let(:forth_proceedings) { calculator.proceedings.fourth }
+    # third conviction 12/9/2004
+    # duration: 5 years, meaning: never spent!
+    # but duration is up to 12 9 2009
+    context "when after 7 February 2012" do
+      let(:forth_proceeding_group) { disclosure_report.check_groups.build }
+      let(:forth_proceedings) { calculator.proceedings.fourth }
 
-  #     # On 7 February 2012, Darren was is convicted for a separate incident of theft, resulting in:
-  #     # - a 6 month suspended sentence
-  #     let(:conviction_of_february_2012) do
-  #       build(
-  #         :disclosure_check,
-  #         :suspended_prison_sentence,
-  #         :completed,
-  #         known_date: forth_conviction_date,
-  #         conviction_date: forth_conviction_date,
-  #         conviction_length: 6,
-  #       )
-  #     end
+      # On 7 February 2012, Darren was is convicted for a separate incident of theft, resulting in:
+      # - a 6 month suspended sentence
+      let(:conviction_of_february_2012) do
+        build(
+          :disclosure_check,
+          :suspended_prison_sentence,
+          :completed,
+          known_date: forth_conviction_date,
+          conviction_date: forth_conviction_date,
+          conviction_length: 6,
+        )
+      end
 
-  #     before do
-  #       first_proceeding_group.disclosure_checks << conviction_of_august_1998
-  #       second_proceeding_group.disclosure_checks << conviction_of_july_2004
-  #       third_proceeding_group.disclosure_checks << conviction_of_september_2004
-  #       forth_proceeding_group.disclosure_checks << conviction_of_february_2012
+      before do
+        first_proceeding_group.disclosure_checks << conviction_of_august_1998
+        second_proceeding_group.disclosure_checks << conviction_of_july_2004
+        third_proceeding_group.disclosure_checks << conviction_of_september_2004
+        forth_proceeding_group.disclosure_checks << conviction_of_february_2012
 
-  #       save_report
-  #     end
+        save_report
+      end
 
-  #     it "returns the date for the first proceeeding" do
-  #       expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2000, 8, 10))
-  #     end
+      it "returns the date for the first proceeeding" do
+        expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(1999, 8, 10))
+      end
 
-  #     it "returns `never spent` for the second proceeding" do
-  #       expect(calculator.spent_date_for(second_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
-  #     end
+      it "returns `never spent` for the second proceeding" do
+        expect(calculator.spent_date_for(second_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
+      end
 
-  #     it "returns `never spent` for the third proceeding" do
-  #       expect(calculator.spent_date_for(third_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
-  #     end
+      it "returns `never spent` for the third proceeding" do
+        expect(calculator.spent_date_for(third_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
+      end
 
-  #     # This becomes spent on 7 August 2014 as long as he is not convicted of a further offence during this time.
-  #     it "returns the date for the forth proceeding" do
-  #       expect(calculator.spent_date_for(forth_proceedings)).to eq(Date.new(2014, 8, 6))
-  #     end
-  #   end
-  # end
+      # This becomes spent on 7 August 2013 as long as he is not convicted of a further offence during this time.
+      it "returns the date for the forth proceeding" do
+        expect(calculator.spent_date_for(forth_proceedings)).to eq(Date.new(2013, 8, 6))
+      end
+    end
+  end
 
   # See graph in docs/results/07_relevant_order_2.png
   context "when scenario 7" do
