@@ -55,7 +55,11 @@ module Calculators
             proceeding, spent_date, other_conviction_date, other_spent_date
           )
 
-          next if conviction_date > other_conviction_date
+          # indefinite spent dates are only expected with a relevant order
+          next if other_spent_date == ResultsVariant::INDEFINITE
+
+          # Drag through for "never spent" convictions only applies to previous convictions
+          next if other_spent_date == ResultsVariant::NEVER_SPENT && conviction_date > other_conviction_date
 
           # This comparison determines wether the relevant order spent date is the longest
           # within the same conviction and also when compared to another conviction spent date.
@@ -79,7 +83,7 @@ module Calculators
     private
 
       def within_other_conviction_date_and_spent_date?(proceeding, spent_date, other_conviction_date, other_spent_date)
-        # We should first check wether the proceeding spent date has been affected
+        # We should first check whether the proceeding spent date has been affected
         # by previous comparisons, if so, we should use the value assigned to _spent_date_
         # otherwise we continue to compare spent dates with _spent_date_without_relevant_orders_
 
