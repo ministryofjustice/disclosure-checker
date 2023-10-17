@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   include SecurityHandling
   include ErrorHandling
 
+  before_action :maintenance_mode
+
   # This is required to get request attributes in to the production logs.
   # See the various lograge configurations in `production.rb`.
   def append_info_to_payload(payload)
@@ -48,5 +50,9 @@ private
     DisclosureCheck.create!(attributes).tap do |disclosure_check|
       session[:disclosure_check_id] = disclosure_check.id
     end
+  end
+
+  def maintenance_mode
+    render "errors/maintenance" unless Rails.env.test?
   end
 end
