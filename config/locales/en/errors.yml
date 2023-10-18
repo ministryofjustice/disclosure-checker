@@ -127,4 +127,9 @@ en:
     maintenance:
       page_title: Service Maintenance
       heading: Service Maintenance
-      lead_text: This service is currently unavailable
+      lead_text_html: |
+        This service is currently unavailable
+        <p>For guidance see</p>
+        <p>
+          <a href="https://www.gov.uk/tell-employer-or-college-about-criminal-record">Check if you need to tell someone about your criminal record: When you need to tell someone about your criminal record - GOV.UK (www.gov.uk)</a>
+        </p>
