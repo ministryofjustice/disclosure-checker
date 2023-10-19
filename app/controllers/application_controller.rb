@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include SecurityHandling
   include ErrorHandling
 
-  before_action :maintenance_mode
+  # before_action :maintenance_mode
 
   # This is required to get request attributes in to the production logs.
   # See the various lograge configurations in `production.rb`.
