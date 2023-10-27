@@ -71,9 +71,9 @@ Feature: A person with cautions and convictions
       And I should see "Referral order"
 
       And I should see "Conviction 2"
-      And I should see "This conviction was spent on 10 December 2020"
+      And I should see "This conviction was spent on 10 December 2019"
       And I should see "Conditional discharge"
 
       And I should see "Conviction 3"
-      And I should see "This conviction was spent on 10 December 2020"
+      And I should see "This conviction was spent on 10 December 2019"
       And I should see "Community order"

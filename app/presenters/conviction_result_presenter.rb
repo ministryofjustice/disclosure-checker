@@ -14,6 +14,7 @@ private
       :conviction_bail_days,
       :compensation_payment_date,
       :motoring_endorsement,
+      :schedule18_over_4_years,
     ].freeze
   end
 
@@ -24,6 +25,7 @@ private
       conviction_bail_days: ->(id) { edit_steps_conviction_conviction_bail_days_path(check_id: id, next_step: :cya) },
       compensation_payment_date: ->(id) { edit_steps_conviction_compensation_payment_date_path(check_id: id, next_step: :cya) },
       motoring_endorsement: ->(id) { edit_steps_conviction_motoring_endorsement_path(check_id: id, next_step: :cya) },
+      schedule18_over_4_years: ->(id) { edit_steps_conviction_conviction_schedule18_path(check_id: id) },
     }
   end
 

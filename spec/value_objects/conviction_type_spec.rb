@@ -60,6 +60,7 @@ RSpec.describe ConvictionType do
           referral_order
           supervision_order
           youth_rehabilitation_order
+          youth_other_requirement_order
         ])
       end
     end
@@ -203,7 +204,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusSixMonths) }
     end
 
@@ -212,7 +213,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusSixMonths) }
     end
 
@@ -221,7 +222,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusSixMonths) }
     end
 
@@ -230,7 +231,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusSixMonths) }
     end
 
@@ -239,7 +240,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -248,17 +249,17 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusSixMonths) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     context "when YOUTH_REHABILITATION_ORDER" do
       let(:subtype) { "youth_rehabilitation_order" }
 
       it { expect(conviction_type.skip_length?).to eq(false) }
-      it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusSixMonths) }
+      it { expect(conviction_type.relevant_order?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     context "when DETENTION_TRAINING_ORDER" do
@@ -266,7 +267,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::SentenceCalculator::DetentionTraining) }
     end
 
@@ -275,7 +276,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::SentenceCalculator::Detention) }
     end
 
@@ -284,7 +285,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -293,7 +294,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -302,7 +303,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::ImmediatelyCalculator) }
     end
 
@@ -311,7 +312,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -320,7 +321,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusSixMonths) }
     end
 
@@ -329,7 +330,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::CompensationCalculator) }
     end
 
@@ -338,7 +339,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::ImmediatelyCalculator) }
     end
 
@@ -347,7 +348,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -356,7 +357,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -367,7 +368,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -375,9 +376,9 @@ RSpec.describe ConvictionType do
       let(:subtype) { "adult_community_order" }
 
       it { expect(conviction_type.skip_length?).to eq(false) }
-      it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusTwelveMonths) }
+      it { expect(conviction_type.relevant_order?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     context "when ADULT_CRIMINAL_BEHAVIOUR" do
@@ -385,7 +386,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -394,7 +395,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::ImmediatelyCalculator) }
     end
 
@@ -403,7 +404,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -412,7 +413,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -421,7 +422,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -430,8 +431,8 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(true) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusTwelveMonths) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     # ADULT FINANCIAL
@@ -448,7 +449,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::CompensationCalculator) }
     end
 
@@ -459,7 +460,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusTwelveMonths) }
     end
 
@@ -468,7 +469,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusTwelveMonths) }
     end
 
@@ -477,7 +478,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusTwelveMonths) }
     end
 
@@ -486,7 +487,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusTwelveMonths) }
     end
 
@@ -497,7 +498,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::DisqualificationCalculator::Youths) }
     end
 
@@ -506,7 +507,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::Motoring::Youth::Fine) }
     end
 
@@ -515,7 +516,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::Motoring::Youth::PenaltyNotice) }
     end
 
@@ -524,7 +525,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::Motoring::Youth::PenaltyPoints) }
     end
 
@@ -535,7 +536,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::DisqualificationCalculator::Adults) }
     end
 
@@ -544,7 +545,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::Motoring::Adult::Fine) }
     end
 
@@ -553,7 +554,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::Motoring::Adult::PenaltyNotice) }
     end
 
@@ -562,7 +563,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::Motoring::Adult::PenaltyPoints) }
     end
 
@@ -571,7 +572,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -580,7 +581,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::ImmediatelyCalculator) }
     end
 
@@ -589,7 +590,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -598,7 +599,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -607,7 +608,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::SentenceCalculator::SuspendedPrison) }
     end
 
@@ -616,8 +617,30 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::SentenceCalculator::Prison) }
+    end
+  end
+
+  describe "#schedule_18_applicable?" do
+    subject(:schedule_18_applicable) { described_class.new(value).schedule_18_applicable? }
+
+    context "when adult_prison_sentence" do
+      let(:value) { :adult_prison_sentence }
+
+      it { expect(schedule_18_applicable).to eq(true) }
+    end
+
+    context "when detention" do
+      let(:value) { :detention }
+
+      it { expect(schedule_18_applicable).to eq(true) }
+    end
+
+    context "when adult_service_detention" do
+      let(:value) { :adult_service_detention }
+
+      it { expect(schedule_18_applicable).to eq(false) }
     end
   end
 end

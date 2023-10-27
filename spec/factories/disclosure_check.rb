@@ -108,6 +108,12 @@ FactoryBot.define do
       conviction_length { 12 }
     end
 
+    trait :schedule18_offence do
+      with_prison_sentence
+      conviction_schedule18 { "yes" }
+      conviction_multiple_sentences { "no" }
+    end
+
     # Financial
 
     trait :with_fine do

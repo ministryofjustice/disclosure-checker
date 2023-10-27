@@ -59,7 +59,7 @@ module Calculators
       end
 
       def non_relevant_expiry_dates
-        @non_relevant_expiry_dates ||= disclosure_checks.reject(&:drag_through?).map(
+        @non_relevant_expiry_dates ||= disclosure_checks.reject(&:no_drag_through?).map(
           &method(:expiry_date_for)
         )
       end

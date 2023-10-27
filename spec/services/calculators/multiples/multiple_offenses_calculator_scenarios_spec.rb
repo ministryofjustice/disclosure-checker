@@ -22,11 +22,11 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     # - a two-year conditional discharge order. Jack’s conviction would become spent on 25/01/2019.
     #
     # On 10/12/2018 Jack was convicted of battery and received:
-    # -  a 12-month community order. This conviction would become spent on 10/12/2020.
+    # -  a 12-month community order. This conviction would become spent on 10/12/2019.
     #
     # Outcome:
-    # - First conviction is spent on 10/12/2020
-    # - Second conviction is spent on 10/12/2020
+    # - First conviction is spent on 10/12/2019
+    # - Second conviction is spent on 10/12/2019
 
     let(:first_conviction_date) { Date.new(2017, 1, 25) }
     let(:second_conviction_date) { Date.new(2018, 12, 10) }
@@ -64,29 +64,29 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2020, 12, 10))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2019, 12, 10))
     end
 
     it "returns indefinite for the second proceeding" do
-      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2020, 12, 10))
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2019, 12, 10))
     end
   end
 
   context "when scenario 2" do
     # On 01/08/2009 Alex, age 18, was convicted of common assault and given:
-    # -  a three-month suspended custodial sentence. The rehabilitation period would end on 01/11/2011.
+    # -  a three-month suspended custodial sentence. The rehabilitation period would end on 01/11/2010.
     #
-    # Alex was then convicted of battery on 10/06/2011. He was sentenced to:
-    # - A six-month custodial sentence (would become ‘spent’ 10/12/2013)
+    # Alex was then convicted of battery on 10/06/2010. He was sentenced to:
+    # - A six-month custodial sentence (would become ‘spent’ 10/12/2011)
     # - Restraining order until further order (will be ‘unspent’ until further notice)
     # - A fine of £150.00 (would become ‘spent’ 10/06/2012)
     #
     # Outcome:
-    # - First conviction is spent on 10 December 2013
+    # - First conviction is spent on 10 December 2011
     # - Second conviction is unspent until further notice
 
     let(:first_conviction_date) { Date.new(2009, 8, 1) }
-    let(:second_conviction_date) { Date.new(2011, 6, 10) }
+    let(:second_conviction_date) { Date.new(2010, 6, 10) }
 
     let(:suspended_prison_sentence) do
       build(
@@ -144,7 +144,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2013, 12, 9))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2011, 12, 9))
     end
 
     it "returns indefinite for the second proceeding" do
@@ -154,16 +154,16 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
 
   context "when scenario 3" do
     # Sandra, age 19, was convicted of theft on 20 May 2015 and receives:
-    # - a 4 month custodial sentence. This conviction would become spent on 20 September 2017.
+    # - a 4 month custodial sentence. This conviction alone would become spent on 20 September 2016.
     #
-    # On 1 February 2017, she is convicted of battery and receives:
-    # - a 3 month suspended custodial sentence. This conviction would become spent on 1 May 2019.
+    # On 1 February 2016, she is convicted of battery and receives:
+    # - a 3 month suspended custodial sentence. This conviction would become spent on 1 May 2017.
     #
     # Outcome:
-    # - Both convictions will remain unspent until 01/05/2019
+    # - Both convictions will remain unspent until 01/05/2017
 
     let(:first_conviction_date) { Date.new(2015, 5, 20) }
-    let(:second_conviction_date) { Date.new(2017, 2, 1) }
+    let(:second_conviction_date) { Date.new(2016, 2, 1) }
 
     let(:custodial_sentence) do
       build(
@@ -195,23 +195,23 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2019, 4, 30))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2017, 4, 30))
     end
 
     it "returns indefinite for the second proceeding" do
-      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2019, 4, 30))
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2017, 4, 30))
     end
   end
 
   context "when scenario 4" do
     # Ranjit, age 32, was convicted of fraud on 20 May 2015 and receives:
-    # -  a 3 month custodial sentence. This conviction would become spent on 20 August 2017.
+    # -  a 3 month custodial sentence. This conviction would become spent on 20 August 2016.
     #
-    # On 1 February 2018 he was convicted of a further offence for which he was given:
+    # On 1 February 2017 he was convicted of a further offence for which he was given:
     # -  a fine of £200. This conviction would become spent on 1 February 2019.
     #
     # Outcome:
-    # - First conviction is spent on 20/08/2017
+    # - First conviction is spent on 20/08/2016
     # - Second conviction is spent on 01/02/2019
 
     let(:first_conviction_date) { Date.new(2015, 5, 20) }
@@ -247,7 +247,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2017, 8, 19))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2016, 8, 19))
     end
 
     it "returns indefinite for the second proceeding" do
@@ -265,7 +265,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     #
     # Outcome:
     # - First conviction is spent on 02/08/2021
-    # - Second conviction is spent on 05/02/2019
+    # - Second conviction is spent on 02/08/2021
 
     let(:first_conviction_date) { Date.new(2015, 8, 2) }
     let(:second_conviction_date) { Date.new(2018, 2, 5) }
@@ -316,11 +316,12 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2021, 8, 2))
     end
 
-    it "returns indefinite for the second proceeding" do
-      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2019, 2, 5))
+    it "returns the date for the second proceeding" do
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2021, 8, 2))
     end
   end
 
+  # TODO: re-add as schedule 18 offence
   context "when scenario 6" do
     # Darren was convicted of attempted murder on 12 September 2004.
     # - He was sentenced to 5 years in prison. This conviction will never be spent.
@@ -375,7 +376,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     let(:conviction_of_september_2004) do
       build(
         :disclosure_check,
-        :with_prison_sentence,
+        :schedule18_offence,
         :completed,
         known_date: third_conviction_date,
         conviction_date: third_conviction_date,
@@ -397,7 +398,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       end
 
       it "returns the date for the first proceeeding" do
-        expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2000, 8, 10))
+        expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(1999, 8, 10))
       end
 
       it "returns `never spent` for the second proceeding" do
@@ -439,7 +440,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       end
 
       it "returns the date for the first proceeeding" do
-        expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2000, 8, 10))
+        expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(1999, 8, 10))
       end
 
       it "returns `never spent` for the second proceeding" do
@@ -450,9 +451,9 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
         expect(calculator.spent_date_for(third_proceedings)).to eq(ResultsVariant::NEVER_SPENT)
       end
 
-      # This becomes spent on 7 August 2014 as long as he is not convicted of a further offence during this time.
+      # This becomes spent on 7 August 2013 as long as he is not convicted of a further offence during this time.
       it "returns the date for the forth proceeding" do
-        expect(calculator.spent_date_for(forth_proceedings)).to eq(Date.new(2014, 8, 6))
+        expect(calculator.spent_date_for(forth_proceedings)).to eq(Date.new(2013, 8, 6))
       end
     end
   end
@@ -463,7 +464,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     let(:third_proceedings) { calculator.proceedings.third }
     let(:conviction_date_a)  { Date.new(2001, 1, 1) } # spent on 1, 1, 2004
     let(:conviction_date_b)  { Date.new(2000, 6, 1) } # spent on 1, 6, 2001
-    let(:conviction_date_c)  { Date.new(2002, 3, 1) } # spent on 28 feb 2012
+    let(:conviction_date_c)  { Date.new(2002, 3, 1) } # spent on 28 feb 2009
     let(:conviction_a) do
       [
         build(
@@ -519,9 +520,9 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "dates" do
-      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2012, 2, 28))
-      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2012, 2, 28))
-      expect(calculator.spent_date_for(third_proceedings)).to eq(Date.new(2012, 2, 28))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2009, 2, 28))
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2009, 2, 28))
+      expect(calculator.spent_date_for(third_proceedings)).to eq(Date.new(2009, 2, 28))
     end
   end
 
@@ -587,26 +588,26 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2025, 0o1, 0o1))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2025, 1, 1))
     end
 
-    it "returns indefinite for the second proceeding" do
-      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2022, 12, 31))
+    it "returns the date for the second proceeding" do
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2019, 12, 31))
     end
   end
 
   context "when scenario 9" do
     # Under 18, 25 Feb 2011, convictioned to 6 months referral order
-    #  Under 18, 12 Feb 2013, convicted to 12 months Youth Rehabilitation Order
-    # Over 18, 1 July 2014, convicted to 12 months Community Order
+    # Under 18, 12 Feb 2013, convicted to 24 months Youth Rehabilitation Order
+    # Over 18, 1 July 2014, convicted to 24 months Community Order
     # Over 18, 30 June 2016, convicted to 12 months custody
 
-    let(:first_conviction_date) { Date.new(2011, 0o2, 25) }
-    let(:second_conviction_date) { Date.new(2013, 0o2, 12) }
-    let(:third_conviction_date) { Date.new(2014, 0o7, 1) }
-    let(:fourth_conviction_date) { Date.new(2016, 0o6, 30) }
+    let(:first_conviction_date) { Date.new(2011, 2, 25) }
+    let(:second_conviction_date) { Date.new(2013, 2, 12) }
+    let(:third_conviction_date) { Date.new(2014, 7, 1) }
+    let(:fourth_conviction_date) { Date.new(2016, 6, 30) }
 
-    let(:spent_date) { Date.new(2021, 6, 29) }
+    let(:spent_date) { Date.new(2018, 6, 29) }
 
     let(:third_proceeding_group) { disclosure_report.check_groups.build }
     let(:fourth_proceeding_group) { disclosure_report.check_groups.build }
@@ -633,7 +634,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
         :completed,
         known_date: second_conviction_date,
         conviction_date: second_conviction_date,
-        conviction_length: 12,
+        conviction_length: 24,
         conviction_length_type: ConvictionLengthType::MONTHS,
       )
     end
@@ -645,7 +646,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
         :completed,
         known_date: third_conviction_date,
         conviction_date: third_conviction_date,
-        conviction_length: 12,
+        conviction_length: 24,
         conviction_length_type: ConvictionLengthType::MONTHS,
       )
     end
