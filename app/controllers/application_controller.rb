@@ -53,6 +53,6 @@ private
   end
 
   def maintenance_mode
-    # render "errors/maintenance" if Rails.env.production?
+    render "errors/maintenance" if Rails.env.production?
   end
 end
