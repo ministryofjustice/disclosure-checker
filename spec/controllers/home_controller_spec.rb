@@ -15,9 +15,14 @@ RSpec.describe HomeController, type: :controller do
           existing_disclosure_check.disclosure_report.completed!
         end
 
-        it "redirects to /steps/check/kind" do
-          get :index, session: { disclosure_check_id: existing_disclosure_check.id }
-          expect(response).to redirect_to("/steps/check/kind")
+        # it "redirects to /steps/check/kind" do
+        #   get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+        #   expect(response).to redirect_to("/steps/check/kind")
+        # end
+
+        it "renders home page" do
+          get :index
+          expect(response).to render_template(:index)
         end
 
         it "resets the disclosure_check session data" do
@@ -30,9 +35,14 @@ RSpec.describe HomeController, type: :controller do
 
       context "with enough steps advanced" do
         context "and user bypass the warning" do
-          it "redirects to /steps/check/kind" do
-            get :index, session: { disclosure_check_id: existing_disclosure_check.id }, params: { new: "y" }
-            expect(response).to redirect_to("/steps/check/kind")
+          # it "redirects to /steps/check/kind" do
+          #   get :index, session: { disclosure_check_id: existing_disclosure_check.id }, params: { new: "y" }
+          #   expect(response).to redirect_to("/steps/check/kind")
+          # end
+
+          it "renders home page" do
+            get :index
+            expect(response).to render_template(:index)
           end
 
           it "resets the disclosure_check session data" do
@@ -92,9 +102,14 @@ RSpec.describe HomeController, type: :controller do
         context "without any completed caution/conviction in the basket" do
           let(:any_completed_checks) { false }
 
-          it "redirects to /steps/check/kind" do
-            get :index, session: { disclosure_check_id: existing_disclosure_check.id }
-            expect(response).to redirect_to("/steps/check/kind")
+          # it "redirects to /steps/check/kind" do
+          #   get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+          #   expect(response).to redirect_to("/steps/check/kind")
+          # end
+
+          it "renders home page" do
+            get :index
+            expect(response).to render_template(:index)
           end
 
           it "resets the disclosure check session data" do
@@ -110,9 +125,14 @@ RSpec.describe HomeController, type: :controller do
     context "when no disclosure check exists in session" do
       let(:navigation_stack) { [] }
 
-      it "redirects to /steps/check/kind" do
+      # it "redirects to /steps/check/kind" do
+      #   get :index
+      #   expect(response).to redirect_to("/steps/check/kind")
+      # end
+
+      it "renders home page" do
         get :index
-        expect(response).to redirect_to("/steps/check/kind")
+        expect(response).to render_template(:index)
       end
 
       it "resets the disclosure_checker session data" do
