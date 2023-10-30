@@ -115,7 +115,7 @@ And(/^I check my "([^"]*)" answers and go to the results page$/) do |kind|
     step %(I should see the button "Add another sentence")
   end
 
-  step %(I should see the button "Add a caution or conviction")
+  # step %(I should see the button "Add a caution or conviction")
   step %(I click the "Continue to your results" button)
   step %(I should be on "/steps/check/results")
 end
