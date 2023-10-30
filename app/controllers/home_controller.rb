@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_action :existing_disclosure_check_warning, :reset_disclosure_check_session
 
   def index
-    redirect_to steps_check_kind_path
+    # redirect_to steps_check_kind_path
   end
 
 private
