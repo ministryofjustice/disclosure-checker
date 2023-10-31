@@ -14,7 +14,7 @@
 
     <%= step_form @form_object do |f| %>
       <%= f.govuk_collection_radio_buttons :kind, CheckKind.values, :value, nil do %>
-        <p class="govuk-body-l"><%=t '.lead_text' %></p>
+        <p class="govuk-body-l"><%#=t '.lead_text' %></p>
       <% end %>
 
       <%= f.continue_button %>
