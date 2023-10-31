@@ -1,6 +1,6 @@
 <% title t('.page_title') %>
 <%
-  back_path = any_completed_checks? ? steps_check_check_your_answers_path : ExternalUrl.govuk_service_start_page
+  back_path = any_completed_checks? ? steps_check_check_your_answers_path : root_path
   step_header(path: back_path)
 %>
 
