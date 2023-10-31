@@ -105,6 +105,7 @@ end
 
 When(/^I have started a check$/) do
   step %(I visit "/")
+  step %(I click the "Continue" link)
 end
 
 When(/^I am in the conviction known date step$/) do
