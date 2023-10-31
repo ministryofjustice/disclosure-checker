@@ -1,6 +1,6 @@
 Feature: Caution
   Background:
-    When I visit "/"
+    When I have started a check
     Then I should see "Were you cautioned or convicted?"
     When I choose "Cautioned"
     Then I should see "How old were you when you got cautioned?"
