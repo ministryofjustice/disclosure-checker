@@ -221,18 +221,18 @@ RSpec.describe ConvictionType do
       let(:subtype) { "service_community_order" }
 
       it { expect(conviction_type.skip_length?).to eq(false) }
-      it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.no_drag_through?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusSixMonths) }
+      it { expect(conviction_type.relevant_order?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     context "when OVERSEAS_COMMUNITY_ORDER" do
       let(:subtype) { "overseas_community_order" }
 
       it { expect(conviction_type.skip_length?).to eq(false) }
-      it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.no_drag_through?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusSixMonths) }
+      it { expect(conviction_type.relevant_order?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     context "when REFERRAL_ORDER" do
@@ -468,18 +468,18 @@ RSpec.describe ConvictionType do
       let(:subtype) { "adult_overseas_community_order" }
 
       it { expect(conviction_type.skip_length?).to eq(false) }
-      it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.no_drag_through?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusTwelveMonths) }
+      it { expect(conviction_type.relevant_order?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     context "when ADULT_SERVICE_COMMUNITY_ORDER" do
       let(:subtype) { "adult_service_community_order" }
 
       it { expect(conviction_type.skip_length?).to eq(false) }
-      it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.no_drag_through?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusTwelveMonths) }
+      it { expect(conviction_type.relevant_order?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     context "when ADULT_SERVICE_DETENTION" do

@@ -14,6 +14,10 @@ Then(/^I should see the button "([^"]*)"$/) do |text|
   expect(page).to have_button(text, match: :first)
 end
 
+Then(/^I should not see the button "([^"]*)"$/) do |text|
+  expect(page).not_to have_button(text, match: :first)
+end
+
 Then(/^I should not see "([^"]*)"$/) do |text|
   expect(page).not_to have_text(text)
 end
@@ -115,16 +119,16 @@ And(/^I check my "([^"]*)" answers and go to the results page$/) do |kind|
     step %(I should see the button "Add another sentence")
   end
 
-  step %(I should see the button "Add a caution or conviction")
+  step %(I should not see the button "Add a caution or conviction")
   step %(I click the "Continue to your results" button)
   step %(I should be on "/steps/check/results")
 end
 
 Then(/^I should see the notification banner$/) do
-  step %(I should see "New legislation changes to rehabilitation periods are coming")
-  step %(I should see a "Factsheet" link to "https://www.gov.uk/government/publications/police-crime-sentencing-and-courts-bill-2021-factsheets/police-crime-sentencing-and-courts-bill-2021-rehabilitation-factsheet#:~:text=Criminal%20Record%20Reform,be%20revealed%20to%20most%20employers.")
+  step %(I should see "New legislative changes to rehabilitation periods came into effect")
+  step %(I should see a "rehabilitation periods" link to "https://www.gov.uk/guidance/rehabilitation-periods")
 end
 
 Then(/^I should not see the notification banner$/) do
-  step %(I should not see "New legislation changes to rehabilitation periods are coming")
+  step %(I should not see "New legislative changes to rehabilitation periods came into effect")
 end
