@@ -63,7 +63,7 @@ RSpec.describe HomeController, type: :controller do
           end
         end
 
-        context "before the user sees the warning" do
+        context "and before the user sees the warning" do
           it "renders home page" do
             get :index, session: { disclosure_check_id: existing_disclosure_check.id }
             expect(response).to render_template(:index)
