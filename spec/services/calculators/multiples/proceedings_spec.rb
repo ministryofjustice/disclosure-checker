@@ -143,5 +143,18 @@ RSpec.describe Calculators::Multiples::Proceedings do
         end
       end
     end
+
+    context "when there is at least one `never_spent` date" do
+      let(:disclosure_checks_scope) { instance_double("scope", completed: [disclosure_check1, disclosure_check2]) }
+
+      before do
+        allow(CheckResult).to receive(:new).with(disclosure_check: disclosure_check1).and_return(check_result1)
+        allow(CheckResult).to receive(:new).with(disclosure_check: disclosure_check2).and_return(check_never_spent)
+      end
+
+      it "returns `never_spent`" do
+        expect(calculator.spent_date_without_relevant_orders).to eq(ResultsVariant::NEVER_SPENT)
+      end
+    end
   end
 end
