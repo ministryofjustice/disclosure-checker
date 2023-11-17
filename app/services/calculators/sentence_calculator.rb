@@ -1,7 +1,6 @@
 module Calculators
   class SentenceCalculator < BaseCalculator
     UPPER_LIMIT_MONTHS = Float::INFINITY
-    BAIL_OFFSET = -1.0
 
     class Detention < SentenceCalculator
       def rehabilitation_period
@@ -43,7 +42,7 @@ module Calculators
       if disclosure_check.schedule18_over_4_years?
         ResultsVariant::NEVER_SPENT
       else
-        conviction_end_date.advance(rehabilitation_period).advance(bail_offset)
+        conviction_end_date.advance(rehabilitation_period)
       end
     end
 
@@ -59,14 +58,6 @@ module Calculators
     # The day before the end date, thus we subtract 1 day.
     def conviction_end_date
       super.advance(days: -1)
-    end
-
-    # Each full day spent on bail with a tag offsets the value of `BAIL_OFFSET`
-    # from the sentence length (after the rehabilitation period has been applied).
-    # Attribute can be blank or nil, but `#to_i` makes it safe.
-    #
-    def bail_offset
-      { days: disclosure_check.conviction_bail_days.to_i * BAIL_OFFSET }
     end
   end
 end

@@ -6,7 +6,6 @@ RSpec.describe Calculators::SentenceCalculator do
   let(:disclosure_check) do
     build(:disclosure_check,
           known_date:,
-          conviction_bail_days: bail_days,
           conviction_length:,
           conviction_length_type:)
   end
@@ -14,7 +13,6 @@ RSpec.describe Calculators::SentenceCalculator do
   let(:known_date) { Date.new(2016, 10, 20) }
   let(:conviction_length) { nil }
   let(:conviction_length_type) { ConvictionLengthType::MONTHS.to_s }
-  let(:bail_days) { nil }
   let(:conviction_end_date) { calculator.send(:conviction_end_date) }
 
   describe Calculators::SentenceCalculator::Detention do
@@ -197,16 +195,6 @@ RSpec.describe Calculators::SentenceCalculator do
       end
 
       it { expect(calculator.expiry_date).to eq ResultsVariant::NEVER_SPENT }
-    end
-
-    # Just one example is enough as all other types of sentences behave the same
-    describe "#expiry_date - with bail time" do
-      let(:known_date) { Date.new(2019, 12, 18) }
-      let(:conviction_length) { 31 }
-      let(:bail_days) { 50 } # equals to 50 days less in the spent date
-      let(:expected) { conviction_end_date.advance(months: 48).advance(days: -bail_days) }
-
-      it { expect(calculator.expiry_date.to_s).to eq(expected.to_s) }
     end
   end
 
