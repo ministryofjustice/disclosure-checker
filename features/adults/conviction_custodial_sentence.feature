@@ -22,9 +22,9 @@ Feature: Conviction
     And I should see "<result>"
 
     Examples:
-      | subtype                   | known_date_header            | length_type_header                                              | length_header                        | result                                           |
-      | Prison sentence           | When did the sentence start? | Was the length of the sentence given in days, weeks, months or years? | What was the length of the sentence? | This conviction will be spent on 21 October 2025 |
-      | Suspended prison sentence | When did the sentence start? | Was the length of the sentence given in days, weeks, months or years? | What was the length of the sentence? | This conviction will be spent on 21 October 2025 |
+      | subtype                   | known_date_header            | length_type_header                                                    | length_header                        | result                                           |
+      | Prison sentence           | When did the sentence start? | Was the length of the sentence given in days, weeks, months or years? | What was the length of the sentence? | This conviction will be spent on 31 October 2025 |
+      | Suspended prison sentence | When did the sentence start? | Was the length of the sentence given in days, weeks, months or years? | What was the length of the sentence? | This conviction will be spent on 31 October 2025 |
 
 
   @happy_path
