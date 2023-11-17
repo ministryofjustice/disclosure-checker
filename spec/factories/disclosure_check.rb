@@ -94,11 +94,6 @@ FactoryBot.define do
 
     # Prison
 
-    trait :with_conviction_bail do
-      conviction_bail { GenericYesNo::YES }
-      conviction_bail_days { 10 }
-    end
-
     trait :with_prison_sentence do
       adult
       conviction_with_known_date
