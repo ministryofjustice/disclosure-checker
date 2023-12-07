@@ -15,9 +15,14 @@ RSpec.describe HomeController, type: :controller do
           existing_disclosure_check.disclosure_report.completed!
         end
 
-        it "redirects to /steps/check/kind" do
-          get :index, session: { disclosure_check_id: existing_disclosure_check.id }
-          expect(response).to redirect_to("/steps/check/kind")
+        # it "redirects to /steps/check/kind" do
+        #   get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+        #   expect(response).to redirect_to("/steps/check/kind")
+        # end
+
+        it "renders home page" do
+          get :index
+          expect(response).to render_template(:index)
         end
 
         it "resets the disclosure_check session data" do
@@ -25,6 +30,11 @@ RSpec.describe HomeController, type: :controller do
           expect(session).to receive(:delete).with(:last_seen).ordered
           expect(session).to receive(:delete) # any other deletes
           get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+        end
+
+        it "has continue button going to the next step" do
+          get :index
+          expect(assigns(:continue_link)).to eq "/steps/check/kind"
         end
       end
 
@@ -53,16 +63,26 @@ RSpec.describe HomeController, type: :controller do
           end
         end
 
-        context "and user do not bypass the warning" do
-          it "redirects to the warning page" do
+        context "and before the user sees the warning" do
+          it "renders home page" do
             get :index, session: { disclosure_check_id: existing_disclosure_check.id }
-            expect(response).to redirect_to(warning_reset_session_path)
+            expect(response).to render_template(:index)
           end
+
+          # it "redirects to the warning page" do
+          #   get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+          #   expect(response).to redirect_to(warning_reset_session_path)
+          # end
 
           it "does not reset any application session data" do
             expect(session).not_to receive(:delete).with(:disclosure_check_id).ordered
             expect(session).not_to receive(:delete).with(:last_seen).ordered
             get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+          end
+
+          it "has continue button going to the warning page" do
+            get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+            expect(assigns(:continue_link)).to eq "/warning/reset_session"
           end
         end
       end
@@ -77,24 +97,39 @@ RSpec.describe HomeController, type: :controller do
         context "but at least one completed caution/conviction in the basket" do
           let(:any_completed_checks) { true }
 
-          it "redirects to the warning page" do
+          it "renders home page" do
             get :index, session: { disclosure_check_id: existing_disclosure_check.id }
-            expect(response).to redirect_to(warning_reset_session_path)
+            expect(response).to render_template(:index)
           end
+
+          # it "redirects to the warning page" do
+          #   get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+          #   expect(response).to redirect_to(warning_reset_session_path)
+          # end
 
           it "does not reset any application session data" do
             expect(session).not_to receive(:delete).with(:disclosure_check_id).ordered
             expect(session).not_to receive(:delete).with(:last_seen).ordered
             get :index, session: { disclosure_check_id: existing_disclosure_check.id }
           end
+
+          it "has continue button going to the next step" do
+            get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+            expect(assigns(:continue_link)).to eq "/warning/reset_session"
+          end
         end
 
         context "without any completed caution/conviction in the basket" do
           let(:any_completed_checks) { false }
 
-          it "redirects to /steps/check/kind" do
+          # it "redirects to /steps/check/kind" do
+          #   get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+          #   expect(response).to redirect_to("/steps/check/kind")
+          # end
+
+          it "renders home page" do
             get :index, session: { disclosure_check_id: existing_disclosure_check.id }
-            expect(response).to redirect_to("/steps/check/kind")
+            expect(response).to render_template(:index)
           end
 
           it "resets the disclosure check session data" do
@@ -103,6 +138,11 @@ RSpec.describe HomeController, type: :controller do
             expect(session).to receive(:delete) # any other deletes
             get :index
           end
+
+          it "has continue button going to the next step" do
+            get :index, session: { disclosure_check_id: existing_disclosure_check.id }
+            expect(assigns(:continue_link)).to eq "/steps/check/kind"
+          end
         end
       end
     end
@@ -110,9 +150,14 @@ RSpec.describe HomeController, type: :controller do
     context "when no disclosure check exists in session" do
       let(:navigation_stack) { [] }
 
-      it "redirects to /steps/check/kind" do
+      # it "redirects to /steps/check/kind" do
+      #   get :index
+      #   expect(response).to redirect_to("/steps/check/kind")
+      # end
+
+      it "renders home page" do
         get :index
-        expect(response).to redirect_to("/steps/check/kind")
+        expect(response).to render_template(:index)
       end
 
       it "resets the disclosure_checker session data" do
@@ -120,6 +165,11 @@ RSpec.describe HomeController, type: :controller do
         expect(session).to receive(:delete).with(:last_seen).ordered
         expect(session).to receive(:delete) # any other deletes
         get :index
+      end
+
+      it "has continue button going to the next step" do
+        get :index
+        expect(assigns(:continue_link)).to eq "/steps/check/kind"
       end
     end
   end

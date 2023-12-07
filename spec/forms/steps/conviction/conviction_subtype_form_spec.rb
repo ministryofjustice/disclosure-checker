@@ -47,8 +47,6 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
           conviction_subtype:,
           # Dependent attributes to be reset
           known_date: nil,
-          conviction_bail: nil,
-          conviction_bail_days: nil,
           conviction_length: nil,
           conviction_length_type: nil,
           compensation_paid: nil,
