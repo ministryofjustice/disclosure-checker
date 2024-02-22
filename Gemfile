@@ -5,7 +5,7 @@ ruby File.read(".ruby-version").strip
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
-gem "govuk-components", "~> 5.0.0"
+gem "govuk-components", "~> 5.0"
 gem "govuk_design_system_formbuilder"
 gem "jquery-rails"
 gem "mimemagic", "~> 0.3.7"
