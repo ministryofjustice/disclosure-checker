@@ -50,5 +50,7 @@ module Disclosure
     config.x.cookies_consent_expiration = 1.year
 
     config.sentry_dsn = "https://d82ca719a5b246bf80342c2266fe7550@o345774.ingest.sentry.io/5373163"
+
+    config.assets.paths << Rails.root.join("node_modules/govuk-frontend/dist/govuk/assets")
   end
 end
