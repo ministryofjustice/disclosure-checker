@@ -7,7 +7,7 @@
 
     <%= step_form @form_object do |f| %>
       <%= f.govuk_date_field :known_date, maxlength_enabled: true,
-            form_group: { classes: 'app-util--compact-form-group' },
+            form_group: { class: 'app-util--compact-form-group' },
             legend: { text: f.i18n_legend },
             caption: { text: f.i18n_caption } do
         tag.p f.i18n_lead_text, class: 'govuk-body-m'
