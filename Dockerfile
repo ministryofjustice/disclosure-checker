@@ -57,8 +57,7 @@ RUN bundle exec rake assets:precompile
 # Copy fonts and images (without digest) along with the digested ones,
 # as there are some hardcoded references in the `govuk-frontend` files
 # that will not be able to use the rails digest mechanism.
-RUN cp node_modules/govuk-frontend/govuk/assets/fonts/*  public/assets/govuk-frontend/govuk/assets/fonts
-RUN cp node_modules/govuk-frontend/govuk/assets/images/* public/assets/govuk-frontend/govuk/assets/images
+RUN cp -r node_modules/govuk-frontend/dist/govuk/assets/. public/assets/
 
 # tidy up installation
 RUN apk del build-deps && rm -rf /tmp/*
