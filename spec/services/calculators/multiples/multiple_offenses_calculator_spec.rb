@@ -73,7 +73,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       end
 
       # See graph in docs/results/06_relevant_order_1.png
-      context "conviction A with 2 sentences (relevant and non relevant)," \
+      context "when conviction A with 2 sentences (relevant and non relevant)," \
               "conviction B with 1 relevant order sentence, conviction C with 1 non relevant sentence" do
         # conviction with:
         # 1 relevant order, the longest of both, spent_date: 1 Jan 2005
@@ -120,7 +120,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       end
 
       # See graph in docs/results/07_relevant_order_2.png
-      context "conviction A with 2 sentences (relevant & non-relevant) conviction B with 1 non-relevant sentence - overlaps A," \
+      context "when conviction A with 2 sentences (relevant & non-relevant) conviction B with 1 non-relevant sentence - overlaps A," \
               "conviction C with 1 non-relevant sentence - overlaps non-relevant sentence of conviction A" do
         # conviction with:
         # 1 relevant order, the longest of both, spent_date: 1 June 2008

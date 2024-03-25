@@ -5,7 +5,7 @@ RSpec.describe Steps::Conviction::KnownDateForm do
 
   it_behaves_like "a date question form", attribute_name: :known_date do
     before do
-      allow(form).to receive(:after_conviction_date?).and_return(true)  # rubocop:disable RSpec/SubjectStub
+      allow(form).to receive(:after_conviction_date?).and_return(true) # rubocop:disable RSpec/SubjectStub
     end
   end
 
