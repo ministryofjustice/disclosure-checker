@@ -1,13 +1,13 @@
 ENV["RAILS_ENV"] ||= "test"
 
 require "simplecov"
-SimpleCov.minimum_coverage 100
-
-SimpleCov.start do
-  add_filter "spec/support"
-  add_filter "spec/rails_helper.rb"
-  add_filter "config/initializers"
-  add_filter "config/routes.rb"
+require "simplecov-json"
+SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
+  SimpleCov::Formatter::HTMLFormatter,
+  SimpleCov::Formatter::JSONFormatter,
+])
+SimpleCov.start "rails" do
+  add_filter %r{^/lib/}
 end
 
 Dir["./spec/support/**/*.rb"].each { |f| require f }
