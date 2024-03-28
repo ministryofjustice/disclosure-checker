@@ -32,9 +32,6 @@ class ErrorsController < ApplicationController
 private
 
   def respond_with_status(status)
-    respond_to do |format|
-      format.html
-      format.all { head status }
-    end
+    render status:
   end
 end

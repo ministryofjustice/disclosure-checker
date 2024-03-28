@@ -48,5 +48,5 @@ group :test do
   gem "rubocop-govuk", require: false
   gem "selenium-webdriver"
   gem "simplecov", require: false
-  gem "simplecov-rcov"
+  gem "simplecov-json", require: false
 end
