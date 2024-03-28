@@ -1,8 +1,16 @@
-# Check when to disclose cautions or convictions
+<div align="center">
+
+<a id="readme-top"></a>
+
+<br>
+
+<img alt="MoJ logo" src="https://moj-logos.s3.eu-west-2.amazonaws.com/moj-uk-logo.png" width="200">
+
+# Disclosure Checker
 
 [![repo standards badge](https://img.shields.io/badge/dynamic/json?color=blue&style=for-the-badge&logo=github&label=MoJ%20Compliant&query=%24.data%5B%3F%28%40.name%20%3D%3D%20%22disclosure-checker%22%29%5D.status&url=https%3A%2F%2Foperations-engineering-reports.cloud-platform.service.justice.gov.uk%2Fgithub_repositories)](https://operations-engineering-reports.cloud-platform.service.justice.gov.uk/public-report/disclosure-checker "Link to report")
 
-[![CI and CD](https://github.com/ministryofjustice/disclosure-checker/actions/workflows/test-build-deploy.yml/badge.svg)](https://github.com/ministryofjustice/disclosure-checker/actions/workflows/test-build-deploy.yml)
+</div>
 
 This is a Rails application to enable citizens to check when their convictions are spent.
 It is based on software patterns developed for the [C100 Application][c100-application].
@@ -33,7 +41,7 @@ It is important to understand how convictions work, as this is the main reason f
 
 ## Docker
 
-The application can be run inside a docker container. This will take care of the ruby environment, postgres database, 
+The application can be run inside a docker container. This will take care of the ruby environment, postgres database,
 and any other dependency for you, without having to configure anything in your machine.
 
 * `docker-compose up`
