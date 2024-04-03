@@ -197,9 +197,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (2.7.1)
     language_server-protocol (3.17.0.3)
-    listen (3.8.0)
-      rb-fsevent (~> 0.10, >= 0.10.3)
-      rb-inotify (~> 0.9, >= 0.9.10)
     lograge (0.12.0)
       actionpack (>= 4)
       activesupport (>= 4)
@@ -448,7 +445,6 @@ DEPENDENCIES
   i18n-debug
   i18n-tasks
   jquery-rails
-  listen
   lograge
   logstash-event
   mimemagic (~> 0.3.7)

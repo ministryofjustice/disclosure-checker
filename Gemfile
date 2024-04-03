@@ -35,7 +35,6 @@ group :development, :test do
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "i18n-tasks"
-  gem "listen"
   gem "rspec-rails"
 end
 
