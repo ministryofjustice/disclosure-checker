@@ -71,7 +71,7 @@ jobs:
         uses: joshmfrankel/simplecov-check-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          minimum_suite_coverage: 96
+          minimum_suite_coverage: 97
           minimum_file_coverage: 0
 
   call-build-and-deploy:
