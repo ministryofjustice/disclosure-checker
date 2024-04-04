@@ -17,7 +17,6 @@ RUN apk --no-cache add --virtual build-deps \
   curl \
 && apk --no-cache add \
   postgresql-client \
-  shared-mime-info \
   linux-headers \
   xz-libs \
   tzdata \
@@ -69,8 +68,8 @@ FROM ruby:3.2.3-alpine
 # The application runs from /app
 WORKDIR /app
 
-# libpq: required to run postgres, tzdata: required to set timezone
-RUN apk add --no-cache libpq tzdata
+# libpq: required to run postgres, tzdata: required to set timezone, shared-mime-info: mimemagic
+RUN apk add --no-cache libpq tzdata shared-mime-info
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup && \
