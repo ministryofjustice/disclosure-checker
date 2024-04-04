@@ -15,7 +15,7 @@ gem "responders"
 gem "sass-rails"
 gem "sentry-rails"
 gem "sentry-ruby"
-gem "uglifier"
+gem "terser"
 gem "virtus"
 
 group :production do
