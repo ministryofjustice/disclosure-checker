@@ -78,9 +78,6 @@ RUN apk add --no-cache libpq tzdata
 RUN addgroup -g 1000 -S appgroup && \
     adduser -u 1000 -S appuser -G appgroup
 
-# non-root/appuser should own only what they need to
-RUN chown -R appuser:appgroup log tmp db
-
 # Download RDS certificates bundle -- needed for SSL verification
 # We set the path to the bundle in the ENV, and use it in `/config/database.yml`
 #
