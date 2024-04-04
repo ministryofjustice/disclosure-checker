@@ -68,8 +68,8 @@ FROM ruby:3.2.3-alpine
 # The application runs from /app
 WORKDIR /app
 
-# libpq: required to run postgres, tzdata: required to set timezone
-RUN apk add --no-cache libpq tzdata
+# libpq: required to run postgres, tzdata: required to set timezone, nodejs: JS runtime
+RUN apk add --no-cache libpq tzdata nodejs
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup && \
