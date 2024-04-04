@@ -75,7 +75,7 @@ jobs:
           minimum_file_coverage: 0
 
   call-build-and-deploy:
-    if: ${{ github.ref == 'refs/heads/main' }}
+    # if: ${{ github.ref == 'refs/heads/main' }}
     needs: test
     uses: ./.github/workflows/deploy.yml
     secrets: inherit
