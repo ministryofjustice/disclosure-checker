@@ -1,4 +1,4 @@
-FROM ruby:3.2.2-alpine
+FROM ruby:3.2.3-alpine
 
 # build dependencies:
 #   - virtual: create virtual package for later deletion
