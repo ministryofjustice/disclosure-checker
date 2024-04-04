@@ -62,11 +62,9 @@ RUN rm -rf node_modules log/* tmp/* /tmp && \
     find /usr/local/bundle/gems -name "*.h" -delete && \
     find /usr/local/bundle/gems -name "*.o" -delete && \
     find /usr/local/bundle/gems -name "*.html" -delete
-RUN apk del build-deps && rm -rf /tmp/*
-
 
 # Build runtime image
-FROM ruby:3.1.3-alpine
+FROM ruby:3.2.3-alpine
 
 # The application runs from /app
 WORKDIR /app
