@@ -1,27 +1,11 @@
 FROM ruby:3.2.3-alpine as builder
 
 # build dependencies:
-#   - virtual: create virtual package for later deletion
-#   - build-base for alpine fundamentals
-#   - libxml2-dev/libxslt-dev for nokogiri, at least
-#   - postgresql-dev for pg/activerecord gems
-#   - git for installing gems referred to use a git:// uri
-#
-RUN apk --no-cache add --virtual build-deps \
-  build-base \
-  libxml2-dev \
-  libxslt-dev \
-  postgresql-dev \
-  git \
-  bash \
-  curl \
-&& apk --no-cache add \
-  postgresql-client \
-  linux-headers \
-  xz-libs \
-  tzdata \
-  nodejs \
-  yarn
+RUN apk add --no-cache \
+    build-base \
+    postgresql-dev \
+    tzdata \
+    yarn
 
 WORKDIR /app
 
