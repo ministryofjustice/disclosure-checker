@@ -1,3 +1,5 @@
+require "custom_form_helpers"
+
 ActionView::Base.default_form_builder = GOVUKDesignSystemFormBuilder::FormBuilder
 
 GOVUKDesignSystemFormBuilder.configure do |config|

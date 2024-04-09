@@ -1,3 +1,5 @@
+require "markup_normaliser"
+
 Then(/^The form markup should match "([^"]*)"$/) do |fixture|
   raw_markup = page.all(
     :css, "form > div.govuk-form-group"

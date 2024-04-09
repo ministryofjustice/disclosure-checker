@@ -8,15 +8,14 @@ gem "bootsnap", ">= 1.1.0", require: false
 gem "govuk-components", "~> 5.0"
 gem "govuk_design_system_formbuilder"
 gem "jquery-rails"
-gem "mimemagic", "~> 0.3.7"
 gem "pg"
 gem "puma"
-gem "rails", "~> 6.1", ">= 6.1.7.3"
+gem "rails", "~> 7.0"
 gem "responders"
-gem "sass-rails", "< 6.0.0"
+gem "sass-rails"
 gem "sentry-rails"
 gem "sentry-ruby"
-gem "uglifier"
+gem "terser"
 gem "virtus"
 
 group :production do
@@ -35,7 +34,6 @@ group :development, :test do
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "i18n-tasks"
-  gem "listen"
   gem "rspec-rails"
 end
 

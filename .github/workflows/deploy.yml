@@ -6,6 +6,7 @@ on:
 
 env:
   PREFIX: "dc"
+  SHA: ${{ github.event.pull_request.head.sha || github.sha }}
 
 concurrency:
   group: deploy-${{ github.ref }}
@@ -40,7 +41,7 @@ jobs:
         id: vars
         run: |
           branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-          short_sha=$(git rev-parse --short ${{ github.sha }})
+          short_sha=$(git rev-parse --short $SHA)
           build_tag=$PREFIX-$branch-$short_sha
           echo "build_tag=$build_tag" >> $GITHUB_OUTPUT
 
@@ -49,14 +50,14 @@ jobs:
           docker build \
             --build-arg APP_BUILD_DATE=${{ env.BUILD_DATE }} \
             --build-arg APP_BUILD_TAG=${{ steps.vars.outputs.build_tag }} \
-            --build-arg APP_GIT_COMMIT=${{ github.sha }} \
-            -t ${{ vars.ECR_URL }}:${{ github.sha }} .
+            --build-arg APP_GIT_COMMIT=$SHA \
+            -t ${{ vars.ECR_URL }}:$SHA .
 
       - name: Push to ECR
         run: |
-          docker tag ${{ vars.ECR_URL }}:${{ github.sha }} ${{ vars.ECR_URL }}:staging.latest
-          docker tag ${{ vars.ECR_URL }}:${{ github.sha }} ${{ vars.ECR_URL }}:production.latest
-          docker push ${{ vars.ECR_URL }}:${{ github.sha }}
+          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:staging.latest
+          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:production.latest
+          docker push ${{ vars.ECR_URL }}:$SHA
           docker push ${{ vars.ECR_URL }}:staging.latest
           docker push ${{ vars.ECR_URL }}:production.latest
 
@@ -75,7 +76,7 @@ jobs:
         id: vars
         run: |
           branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-          short_sha=$(git rev-parse --short ${{ github.sha }})
+          short_sha=$(git rev-parse --short $SHA)
           build_tag=$PREFIX-$branch-$short_sha
           echo "build_tag=$build_tag" >> $GITHUB_OUTPUT
 
@@ -95,7 +96,7 @@ jobs:
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
           deployment/disclosure-checker-deployment-staging \
-          webapp="${{ vars.ECR_URL }}:${{ github.sha }}"
+          webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel
         uses: slackapi/slack-github-action@v1.25.0
@@ -144,7 +145,7 @@ jobs:
         id: vars
         run: |
           branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-          short_sha=$(git rev-parse --short ${{ github.sha }})
+          short_sha=$(git rev-parse --short $SHA)
           build_tag=$PREFIX-$branch-$short_sha
           echo "build_tag=$build_tag" >> $GITHUB_OUTPUT
 
@@ -164,7 +165,7 @@ jobs:
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
           deployment/disclosure-checker-deployment-production \
-          webapp="${{ vars.ECR_URL }}:${{ github.sha }}"
+          webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel
         uses: slackapi/slack-github-action@v1.25.0
