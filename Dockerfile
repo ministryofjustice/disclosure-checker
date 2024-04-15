@@ -39,7 +39,7 @@ RUN bundle exec rake assets:precompile
 RUN cp -r node_modules/govuk-frontend/dist/govuk/assets/. public/assets/
 
 # tidy up installation
-RUN rm -rf node_modules log/* tmp/* /tmp && \
+RUN rm -rf log/* tmp/* /tmp && \
     rm -rf /usr/local/bundle/cache && \
     find /usr/local/bundle/gems -name "*.c" -delete && \
     find /usr/local/bundle/gems -name "*.h" -delete && \
