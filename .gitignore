@@ -17,8 +17,6 @@
 /node_modules
 /yarn-error.log
 
-/public/assets
-
 # Ignore Byebug command history file.
 .byebug_history
 /coverage/*
@@ -32,7 +30,6 @@ tags
 .env
 .env.test
 
-public/assets/
 .DS_Store
 
 rerun.txt
