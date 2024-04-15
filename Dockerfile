@@ -33,11 +33,6 @@ ENV GOVUK_NOTIFY_API_KEY    replace_this_at_build_time
 ENV RAILS_ENV production
 RUN bundle exec rake assets:precompile
 
-# Copy fonts and images (without digest) along with the digested ones,
-# as there are some hardcoded references in the `govuk-frontend` files
-# that will not be able to use the rails digest mechanism.
-RUN cp -r node_modules/govuk-frontend/dist/govuk/assets/. public/assets/
-
 # tidy up installation
 RUN rm -rf log/* tmp/* /tmp && \
     rm -rf /usr/local/bundle/cache && \
