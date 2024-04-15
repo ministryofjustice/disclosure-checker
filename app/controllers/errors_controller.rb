@@ -32,6 +32,6 @@ class ErrorsController < ApplicationController
 private
 
   def respond_with_status(status)
-    render status:
+    render formats: [:html], status:
   end
 end
