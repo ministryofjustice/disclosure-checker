@@ -30,4 +30,7 @@ en:
       hide_button: Hide this message
     notification_banner:
       title: Important
-      content_paragraph_html: New legislative changes to rehabilitation periods came into effect on 28th October 2023 which may have impacted when your caution or conviction becomes spent. Please see guidance on <a href="https://www.gov.uk/guidance/rehabilitation-periods" class="govuk-link" rel="external" target="_blank">rehabilitation periods</a>.
+      content_paragraph_1: New legislation changes to rehabilitation periods are coming into effect on 28th October 2023 which may impact when you need to disclose your results.
+      content_paragraph_2_html: |
+        For more information please refer to the Criminal Record Reform section using this link
+        <a href="https://www.gov.uk/government/publications/police-crime-sentencing-and-courts-bill-2021-factsheets/police-crime-sentencing-and-courts-bill-2021-rehabilitation-factsheet#:~:text=Criminal%20Record%20Reform,be%20revealed%20to%20most%20employers." class="govuk-link govuk-link--no-visited-state">Factsheet</a>

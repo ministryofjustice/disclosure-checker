@@ -1,6 +1,6 @@
 Feature: Caution
   Background:
-    When I have started a check
+    When I visit "/"
     Then I should see "Were you cautioned or convicted?"
     When I choose "Cautioned"
     Then I should see "How old were you when you got cautioned?"
@@ -14,10 +14,11 @@ Feature: Caution
     Then I should see "When did you get the caution?"
     When I enter a valid date
 
-    And I check my "caution" answers and go to the results page
+     And I check my "caution" answers and go to the results page
     Then I should see "This caution is spent on the day you receive it"
 
-    And I should see "This caution will not appear on a basic DBS check."
+     And I should see "This caution will not appear on a basic DBS check."
+     And I should see "This caution will not appear on a standard or enhanced DBS check."
 
   @happy_path
   Scenario: Over 18, conditional caution
@@ -29,9 +30,10 @@ Feature: Caution
     Then I should see "When did the conditions end?"
     When I enter a valid date
 
-    And I check my "caution" answers and go to the results page
+     And I check my "caution" answers and go to the results page
     Then I should see "This caution was spent on 1 January 1999"
 
-    And I should see "This caution will not appear on a basic DBS check."
+     And I should see "This caution will not appear on a basic DBS check."
+     And I should see "This caution will not appear on a standard or enhanced DBS check."
 
-    And I should not see "Your results say your caution or conviction may appear on a DBS check."
+     And I should not see "Your results say your caution or conviction may appear on a DBS check."

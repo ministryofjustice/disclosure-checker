@@ -59,6 +59,16 @@ en:
               blank: Enter the date of the compensation payment in the format dd/mm/yyyy
               invalid: The date is too far in the past. Enter a date after 01/01/1940
               future: The date of the compensation payment date can’t be in the future
+        steps/conviction/conviction_bail_form:
+          attributes:
+            conviction_bail:
+              inclusion: Select yes if you spent any time on bail with an electronic tag
+        steps/conviction/conviction_bail_days_form:
+          attributes:
+            conviction_bail_days:
+              greater_than: The input must be greater than zero, or left blank
+              not_a_number: The input must be a number, like 3
+              not_an_integer: The input must be a whole number, like 4
         steps/conviction/conviction_schedule18_form:
           attributes:
             conviction_schedule18:

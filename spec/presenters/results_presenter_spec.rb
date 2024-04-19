@@ -96,6 +96,16 @@ RSpec.describe ResultsPresenter do
     end
   end
 
+  describe "#time_on_bail?" do
+    it { expect(calculator.time_on_bail?).to be(false) }
+
+    context "when conviction_bail_days is a positive number" do
+      before { disclosure_check.update(conviction_bail_days: 1) }
+
+      it { expect(calculator.time_on_bail?).to be(true) }
+    end
+  end
+
   describe "#proceedings_size" do
     it "returns the calculator proceedings size" do
       expect(calculator.proceedings_size).to eq(1)

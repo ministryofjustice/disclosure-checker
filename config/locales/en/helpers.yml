@@ -65,7 +65,6 @@ en:
       service_detention: Service detention
       service_community_order: Service community order
       overseas_community_order: Overseas community order
-      reprimand: Severe reprimand or reprimand
       # prevention_reparation
       reparation_order: Reparation order
       restraining_order: Restraining order
@@ -87,7 +86,6 @@ en:
       adult_overseas_community_order: Overseas community order
       adult_service_community_order: Service community order
       adult_service_detention: Service detention
-      adult_reprimand: Severe reprimand or reprimand
       # adult_motoring
       adult_disqualification: Disqualification
       adult_motoring_fine: Fine
@@ -130,6 +128,10 @@ en:
       steps_conviction_compensation_paid_form:
         <<: *CONVICTION_SUBTYPES
       steps_conviction_compensation_payment_date_form:
+        <<: *CONVICTION_SUBTYPES
+      steps_conviction_conviction_bail_days_form:
+        <<: *CONVICTION_SUBTYPES
+      steps_conviction_conviction_bail_form:
         <<: *CONVICTION_SUBTYPES
       steps_conviction_conviction_schedule18_form:
         <<: *CONVICTION_SUBTYPES
@@ -187,6 +189,10 @@ en:
         compensation_payment_date_html: *date_hint_text
       steps_conviction_motoring_endorsement_form:
         motoring_endorsement: An endorsement means that your conviction is recorded on your driving licence. Endorsements are usually given by courts.
+      steps_conviction_conviction_bail_form:
+        conviction_bail: Time spent on bail with an electronic tag affects the spent date of your conviction. Time spent on bail without a tag does not.
+      steps_conviction_conviction_bail_days_form:
+        conviction_bail_days: This is decided by the court. If you do not know the exact number of days you can enter an approximate number or leave this blank, but it might affect the accuracy of your result.
       steps_conviction_conviction_subtype_form:
         default_html: ''
         adult_motoring_html: A fixed penalty notice (FPN) with no penalty points is a fine for a minor driving offence. It will not appear on your criminal record unless a court gives you a conviction because of one.
@@ -292,6 +298,10 @@ en:
       steps_conviction_compensation_payment_date_form:
         approximate_compensation_payment_date_options:
           'true': *approximate_date_checkbox
+      steps_conviction_conviction_bail_form:
+        conviction_bail_options: *YESNO
+      steps_conviction_conviction_bail_days_form:
+        conviction_bail_days: Number of days
       steps_conviction_compensation_paid_form:
         compensation_paid_options: *YESNO
       steps_conviction_motoring_endorsement_form:
@@ -329,7 +339,6 @@ en:
         # alternative keys defined with `i18_attribute`
         referral_order: What was the date of your first panel meeting?
         dismissal: When were you given the dismissal?
-        reprimand: When were you given the severe reprimand or reprimand?
         service_detention: When were you given the detention?
         detention_training_order: When did the DTO start?
         detention: When did the detention start?
@@ -340,7 +349,6 @@ en:
         adult_suspended_prison_sentence: When did the sentence start?
         adult_prison_sentence: When did the sentence start?
         adult_dismissal: When were you given the dismissal?
-        adult_reprimand: When were you given the severe reprimand or reprimand?
         adult_service_detention: When were you given the detention?
         adult_disqualification: When did the ban start?
         adult_motoring_fine: When were you given the fine?
@@ -373,6 +381,8 @@ en:
         approximate_compensation_payment_date: *approximate_date_legend
       steps_conviction_compensation_paid_form:
         compensation_paid: Have you paid the compensation in full?
+      steps_conviction_conviction_bail_form:
+        conviction_bail: Did you spend any time on bail with an electronic tag?
       steps_conviction_conviction_length_type_form:
         # default key
         default: Was the length of the order given in days, weeks, months or years?

@@ -55,16 +55,6 @@
         Read more about what information you need to give</a>.
     </p>
 
-    <div class="govuk-inset-text govuk-!-padding-top-1 govuk-!-padding-bottom-1">
-      <p class="govuk-body">
-        Whilst we work on the updates the tool cannot be used for checking the combined rehabilitation period for more than one conviction.
-      </p>
-
-      <p class="govuk-body">
-        To find out how having more than one conviction can impact rehabilitation periods please see guidance on the <a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/government/publications/new-guidance-on-the-rehabilitation-of-offenders-act-1974/guidance-on-the-rehabilitation-of-offenders-act-1974-and-the-exceptions-order-1975#what-happens-if-someone-receives-another-caution-or-conviction-before-their-first-conviction-becomes-spent">Rehabilitation of Offenders Act 1974</a>.
-      </p>
-    </div>
-
     <% if @presenter.motoring? %>
       <h3 class="govuk-heading-m">Your driving record</h3>
 
@@ -80,6 +70,18 @@
 
       <p class="govuk-body">
         You can find out more about <a href="https://www.gov.uk/penalty-points-endorsements" class="govuk-link" rel="external" target="_blank">penalty points</a> on GOV.UK.
+      </p>
+    <% end %>
+
+    <% if @presenter.time_on_bail? %>
+      <h3 class="govuk-heading-m">
+        Time spent on bail with an electronic tag
+      </h3>
+
+      <p class="govuk-body">
+        Your result and spent date include the number of days you said you spent
+        on bail with an electronic tag that counted towards your sentence.
+        Each full day offsets a day from the total length of your sentence.
       </p>
     <% end %>
 
@@ -108,10 +110,10 @@
     </p>
 
     <ul class="govuk-list govuk-list--bullet">
-      <li>a basic check, which shows unspent convictions and conditional cautions</li>
-      <li>a standard check, which shows spent and unspent convictions and adult cautions, from the Police National Computer which have not been <a class="govuk-link" rel="external" target="_blank" href="https://www.gov.uk/government/collections/dbs-filtering-guidance ">filtered in line with legislation</a></li>
-      <li>an enhanced check, which shows the same as a standard check plus any information held by local police that’s considered relevant to the role</li>
-      <li>an enhanced check with a check of the barred lists, which shows the same as an enhanced check plus whether the applicant is on the adults’ barred list, children’s barred list or both</li>
+      <li>Basic - shows only cautions and convictions that are not spent.</li>
+      <li>Standard - shows all convictions, cautions, reprimands and final warnings, even if they’re spent</li>
+      <li>Enhanced - shows the same information as a standard check but also includes any information held by the police that they think is relevant to your application.</li>
+      <li>Enhanced with barred list - shows the same information as an enhanced check but also tells employers if you’ve been barred from doing the role you’re applying for.</li>
     </ul>
 
     <%= render partial: 'steps/check/results/shared/feedback' %>

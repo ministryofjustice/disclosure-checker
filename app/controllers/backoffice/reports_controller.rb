@@ -1,7 +1,5 @@
 module Backoffice
   class ReportsController < ApplicationController
-    before_action :check_environment
-
     RESULTS_LIMIT = 50
 
     def index
@@ -24,10 +22,6 @@ module Backoffice
 
     def sort_by_sentences?
       params[:sentences].presence
-    end
-
-    def check_environment
-      redirect_to root_path if Rails.env.production?
     end
   end
 end

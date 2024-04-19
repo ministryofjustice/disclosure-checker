@@ -80,6 +80,18 @@ RSpec.describe ConvictionResultPresenter do
         expect(summary[3].answer).to eq("31 October 2019 (approximate)")
       end
     end
+
+    context "when there is time on bail" do
+      let(:disclosure_check) { build(:disclosure_check, :dto_conviction, conviction_bail_days: 15) }
+
+      it "returns the correct question-answer pairs" do
+        expect(summary.size).to eq(5)
+
+        expect(summary[4].question).to be(:conviction_bail_days)
+        expect(summary[4].answer).to eq(15)
+        expect(summary[4].change_path).to eq("/steps/conviction/conviction_bail_days?check_id=12345&next_step=cya")
+      end
+    end
   end
 
   describe "#expiry_date" do

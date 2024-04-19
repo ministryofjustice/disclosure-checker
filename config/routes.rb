@@ -56,6 +56,8 @@ Rails.application.routes.draw do
       edit_step :conviction_subtype
       edit_step :conviction_length
       edit_step :conviction_length_type
+      edit_step :conviction_bail
+      edit_step :conviction_bail_days
       edit_step :compensation_paid
       edit_step :compensation_payment_date
       show_step :compensation_not_paid

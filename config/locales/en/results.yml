@@ -30,7 +30,6 @@ en:
       service_detention: Service detention
       service_community_order: Service community order
       overseas_community_order: Overseas community order
-      reprimand: Severe reprimand or reprimand
       # prevention_reparation
       reparation_order: Reparation order
       restraining_order: Restraining order
@@ -52,7 +51,6 @@ en:
       adult_overseas_community_order: Overseas community order
       adult_service_community_order: Service community order
       adult_service_detention: Service detention
-      adult_reprimand: Severe reprimand or reprimand
       # adult_motoring
       adult_disqualification: Disqualification
       adult_motoring_fine: Fine
@@ -96,6 +94,8 @@ en:
       answers:
         'yes': Under 18
         'no': 18 or over
+    conviction_bail_days:
+      question: Days on bail
     conviction_date:
       question: Date of conviction
     known_date:

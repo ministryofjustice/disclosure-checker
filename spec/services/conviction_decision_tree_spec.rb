@@ -91,6 +91,12 @@ RSpec.describe ConvictionDecisionTree do
       end
     end
 
+    context "when subtype is a bailable offence" do
+      let(:conviction_subtype) { :detention_training_order }
+
+      it { is_expected.to have_destination(:conviction_bail, :edit) }
+    end
+
     context "when any other conviction subtypes" do
       it { is_expected.to have_destination(:known_date, :edit) }
     end
@@ -188,6 +194,28 @@ RSpec.describe ConvictionDecisionTree do
 
   context "when the step is `motoring_endorsement`" do
     let(:step_params) { { motoring_endorsement: GenericYesNo::YES } }
+
+    it { is_expected.to have_destination(:known_date, :edit) }
+  end
+
+  context "when the step is `conviction_bail`" do
+    let(:step_params) { { conviction_bail: answer } }
+
+    context "and the answer is yes" do
+      let(:answer) { GenericYesNo::YES }
+
+      it { is_expected.to have_destination(:conviction_bail_days, :edit) }
+    end
+
+    context "and the answer is no" do
+      let(:answer) { GenericYesNo::NO }
+
+      it { is_expected.to have_destination(:known_date, :edit) }
+    end
+  end
+
+  context "when the step is `conviction_bail_days`" do
+    let(:step_params) { { conviction_bail_days: "whatever" } }
 
     it { is_expected.to have_destination(:known_date, :edit) }
   end

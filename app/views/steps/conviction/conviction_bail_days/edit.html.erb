@@ -1,0 +1,16 @@
+<% title t('.page_title') %>
+<% step_header %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.govuk_fieldset legend: { text: t('.heading') }, caption: { text: f.i18n_caption } do %>
+        <%= f.govuk_text_field :conviction_bail_days, width: 3, pattern: "[0-9]*", inputmode: "numeric" %>
+      <% end %>
+
+      <%= f.continue_button %>
+    <% end %>
+  </div>
+</div>
