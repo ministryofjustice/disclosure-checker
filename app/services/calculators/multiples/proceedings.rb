@@ -10,16 +10,11 @@ module Calculators
       end
 
       def spent_date
-        return ResultsVariant::NEVER_SPENT if expiry_dates.include?(ResultsVariant::NEVER_SPENT)
-        return ResultsVariant::INDEFINITE  if expiry_dates.include?(ResultsVariant::INDEFINITE)
-
-        # Pick the latest date in the collection
-        # If there is only one sentence then it returns that date
-        expiry_dates.max
+        max_expiry(expiry_dates)
       end
 
       def spent_date_without_relevant_orders
-        non_relevant_expiry_dates.max
+        max_expiry(non_relevant_expiry_dates)
       end
 
       def spent?
@@ -43,6 +38,15 @@ module Calculators
       delegate :conviction_date, to: :first_disclosure_check
 
     private
+
+      def max_expiry(expiry_dates)
+        return ResultsVariant::NEVER_SPENT if expiry_dates.include?(ResultsVariant::NEVER_SPENT)
+        return ResultsVariant::INDEFINITE  if expiry_dates.include?(ResultsVariant::INDEFINITE)
+
+        # Pick the latest date in the collection
+        # If there is only one sentence then it returns that date
+        expiry_dates.max
+      end
 
       def disclosure_checks
         @disclosure_checks ||= check_group.disclosure_checks.completed
