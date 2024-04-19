@@ -129,10 +129,6 @@ en:
         <<: *CONVICTION_SUBTYPES
       steps_conviction_compensation_payment_date_form:
         <<: *CONVICTION_SUBTYPES
-      steps_conviction_conviction_bail_days_form:
-        <<: *CONVICTION_SUBTYPES
-      steps_conviction_conviction_bail_form:
-        <<: *CONVICTION_SUBTYPES
       steps_conviction_conviction_schedule18_form:
         <<: *CONVICTION_SUBTYPES
       steps_conviction_conviction_multiple_sentences_form:
@@ -189,10 +185,6 @@ en:
         compensation_payment_date_html: *date_hint_text
       steps_conviction_motoring_endorsement_form:
         motoring_endorsement: An endorsement means that your conviction is recorded on your driving licence. Endorsements are usually given by courts.
-      steps_conviction_conviction_bail_form:
-        conviction_bail: Time spent on bail with an electronic tag affects the spent date of your conviction. Time spent on bail without a tag does not.
-      steps_conviction_conviction_bail_days_form:
-        conviction_bail_days: This is decided by the court. If you do not know the exact number of days you can enter an approximate number or leave this blank, but it might affect the accuracy of your result.
       steps_conviction_conviction_subtype_form:
         default_html: ''
         adult_motoring_html: A fixed penalty notice (FPN) with no penalty points is a fine for a minor driving offence. It will not appear on your criminal record unless a court gives you a conviction because of one.
@@ -298,10 +290,6 @@ en:
       steps_conviction_compensation_payment_date_form:
         approximate_compensation_payment_date_options:
           'true': *approximate_date_checkbox
-      steps_conviction_conviction_bail_form:
-        conviction_bail_options: *YESNO
-      steps_conviction_conviction_bail_days_form:
-        conviction_bail_days: Number of days
       steps_conviction_compensation_paid_form:
         compensation_paid_options: *YESNO
       steps_conviction_motoring_endorsement_form:
@@ -381,8 +369,6 @@ en:
         approximate_compensation_payment_date: *approximate_date_legend
       steps_conviction_compensation_paid_form:
         compensation_paid: Have you paid the compensation in full?
-      steps_conviction_conviction_bail_form:
-        conviction_bail: Did you spend any time on bail with an electronic tag?
       steps_conviction_conviction_length_type_form:
         # default key
         default: Was the length of the order given in days, weeks, months or years?

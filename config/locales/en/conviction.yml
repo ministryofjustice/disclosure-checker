@@ -55,13 +55,6 @@ en:
       motoring_endorsement:
         edit:
           page_title: Motoring Endorsement
-      conviction_bail:
-        edit:
-          page_title: Did you spend any time on bail?
-      conviction_bail_days:
-        edit:
-          page_title: Days spent with an electronic tag
-          heading: How many days spent with an electronic tag counted towards your sentence?
       conviction_schedule18:
         edit:
           page_title: Schedule 18 offences

@@ -96,42 +96,4 @@ RSpec.describe ConvictionDecorator do
       it { is_expected.to eq(true) }
     end
   end
-
-  describe "#bailable_offense?" do
-    context "when a youth `DETENTION` conviction type" do
-      subject { ConvictionType::DETENTION.bailable_offense? }
-
-      it { is_expected.to eq(true) }
-    end
-
-    context "when a youth `DETENTION_TRAINING_ORDER` conviction type" do
-      subject { ConvictionType::DETENTION_TRAINING_ORDER.bailable_offense? }
-
-      it { is_expected.to eq(true) }
-    end
-
-    context "when a youth `HOSPITAL_ORDER` conviction type" do
-      subject { ConvictionType::HOSPITAL_ORDER.bailable_offense? }
-
-      it { is_expected.to eq(false) }
-    end
-
-    context "when an `ADULT_PRISON_SENTENCE` conviction type" do
-      subject { ConvictionType::ADULT_PRISON_SENTENCE.bailable_offense? }
-
-      it { is_expected.to eq(true) }
-    end
-
-    context "when an `ADULT_SUSPENDED_PRISON_SENTENCE` conviction type" do
-      subject { ConvictionType::ADULT_SUSPENDED_PRISON_SENTENCE.bailable_offense? }
-
-      it { is_expected.to eq(true) }
-    end
-
-    context "when an `ADULT_HOSPITAL_ORDER` conviction type" do
-      subject { ConvictionType::ADULT_HOSPITAL_ORDER.bailable_offense? }
-
-      it { is_expected.to eq(false) }
-    end
-  end
 end

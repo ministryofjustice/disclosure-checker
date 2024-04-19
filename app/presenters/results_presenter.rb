@@ -22,12 +22,6 @@ class ResultsPresenter < BasketPresenter
     conviction_checks.map(&:conviction).compact.any?(&:motoring?)
   end
 
-  def time_on_bail?
-    conviction_checks.any? do |disclosure_check|
-      disclosure_check.conviction_bail_days.to_i.positive?
-    end
-  end
-
   def scope
     :results
   end
