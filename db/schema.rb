@@ -41,8 +41,6 @@ ActiveRecord::Schema[6.1].define(version: 2023_11_17_102424) do
     t.date "compensation_payment_date"
     t.string "motoring_endorsement"
     t.uuid "check_group_id"
-    t.string "conviction_bail"
-    t.integer "conviction_bail_days"
     t.boolean "approximate_known_date", default: false
     t.boolean "approximate_conditional_end_date", default: false
     t.boolean "approximate_compensation_payment_date", default: false
