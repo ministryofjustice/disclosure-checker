@@ -64,6 +64,7 @@ jobs:
   deploy-staging:
     runs-on: ubuntu-latest
     needs: build
+    environment: staging
 
     env:
       KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
@@ -107,6 +108,74 @@ jobs:
                 {
                   "color": "#1d990c",
                   "text": "${{ github.actor }} deployed *${{ steps.vars.outputs.build_tag }}* to *Staging*",
+                  "fields": [
+                    {
+                      "title": "Project",
+                      "value": "Disclosure Checker",
+                      "short": true
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "text": "Visit Job",
+                      "type": "button",
+                      "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+
+  deploy-qa:
+    runs-on: ubuntu-latest
+    needs: build
+    environment: qa
+
+    env:
+      KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Store build tag
+        id: vars
+        run: |
+          branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+          short_sha=$(git rev-parse --short $SHA)
+          build_tag=$PREFIX-$branch-$short_sha
+          echo "build_tag=$build_tag" >> $GITHUB_OUTPUT
+
+      - name: Authenticate to the cluster
+        env:
+          KUBE_CERT: ${{ secrets.KUBE_CERT }}
+          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
+        run: |
+          echo "${KUBE_CERT}" > ca.crt
+          kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
+          kubectl config set-credentials deploy-user --token=${KUBE_TOKEN}
+          kubectl config set-context ${KUBE_CLUSTER} --cluster=${KUBE_CLUSTER} --user=deploy-user --namespace=${KUBE_NAMESPACE}
+          kubectl config use-context ${KUBE_CLUSTER}
+
+      - name: Rollout restart deployment
+        run: |
+          kubectl set image -n ${KUBE_NAMESPACE} \
+          deployment/disclosure-checker-deployment-qa \
+          webapp="${{ vars.ECR_URL }}:$SHA"
+
+      - name: Send deploy notification to product Slack channel
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "attachments": [
+                {
+                  "color": "#1d990c",
+                  "text": "${{ github.actor }} deployed *${{ steps.vars.outputs.build_tag }}* to *QA*",
                   "fields": [
                     {
                       "title": "Project",
