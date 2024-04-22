@@ -1,4 +1,5 @@
-XFeature: Notification banner functionality
+@ignore
+Feature: Notification banner functionality
   Scenario: The banner shows with a link on the homepage
     When I visit "/"
     Then I should see the notification banner
