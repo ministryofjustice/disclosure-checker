@@ -92,6 +92,7 @@ jobs:
 
       - name: Tag build and push to ECR
         run: |
+          docker pull ${{ vars.ECR_URL }}:$SHA
           docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:staging.latest
           docker push ${{ vars.ECR_URL }}:staging.latest
 
@@ -179,6 +180,7 @@ jobs:
 
       - name: Tag build and push to ECR
         run: |
+          docker pull ${{ vars.ECR_URL }}:$SHA
           docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:qa.latest
           docker push ${{ vars.ECR_URL }}:qa.latest
 
@@ -267,6 +269,7 @@ jobs:
 
       - name: Tag build and push to ECR
         run: |
+          docker pull ${{ vars.ECR_URL }}:$SHA
           docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:production.latest
           docker push ${{ vars.ECR_URL }}:production.latest
 
