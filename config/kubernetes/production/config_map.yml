@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: disclosure-checker-configmap-production
+  namespace: disclosure-checker-production
+data:
+  EXTERNAL_URL: https://check-when-to-disclose-caution-conviction.service.gov.uk
+  RACK_ENV: production
+  RAILS_ENV: production
+  RAILS_MAX_THREADS: "3"
+  RAILS_SERVE_STATIC_FILES: enabled

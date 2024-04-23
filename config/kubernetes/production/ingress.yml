@@ -1,0 +1,60 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: disclosure-checker-ingress-production
+  namespace: disclosure-checker-production
+  annotations:
+    external-dns.alpha.kubernetes.io/set-identifier: disclosure-checker-ingress-production-disclosure-checker-production-green
+    external-dns.alpha.kubernetes.io/aws-weight: "100"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      location ~* \.(php|cgi|xml)$ {
+        deny all; access_log off;
+      }
+      if ($host ~* .justice.gov.uk$) {
+        return 301 https://check-when-to-disclose-caution-conviction.service.gov.uk$request_uri;
+      }
+      location = /.well-known/security.txt {
+        return 301 https://raw.githubusercontent.com/ministryofjustice/security-guidance/main/contact/vulnerability-disclosure-security.txt;
+      }
+spec:
+  ingressClassName: default
+  tls:
+  - hosts:
+    - disclosure-checker-production.apps.live.cloud-platform.service.justice.gov.uk
+  - hosts:
+    - check-when-to-disclose-caution-conviction.service.justice.gov.uk
+    secretName: disclosure-checker-tls-certificate
+  - hosts:
+    - check-when-to-disclose-caution-conviction.service.gov.uk
+    secretName: disclosure-checker-tls-certificate-gds
+  rules:
+  - host: disclosure-checker-production.apps.live.cloud-platform.service.justice.gov.uk
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: disclosure-checker-service-production
+            port:
+              number: 80
+  - host: check-when-to-disclose-caution-conviction.service.justice.gov.uk
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: disclosure-checker-service-production
+            port:
+              number: 80
+  - host: check-when-to-disclose-caution-conviction.service.gov.uk
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: disclosure-checker-service-production
+            port:
+              number: 80
