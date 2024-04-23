@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: disclosure-checker-configmap-qa
+  namespace: disclosure-checker-qa
+data:
+  DEV_TOOLS_ENABLED: "1"
+  EXTERNAL_URL: https://disclosure-checker-qa.apps.live.cloud-platform.service.justice.gov.uk
+  RACK_ENV: production
+  RAILS_ENV: production
+  RAILS_MAX_THREADS: "3"
+  RAILS_SERVE_STATIC_FILES: enabled

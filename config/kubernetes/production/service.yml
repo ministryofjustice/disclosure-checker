@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: disclosure-checker-service-production
+  namespace: disclosure-checker-production
+  labels:
+    app: disclosure-checker-web-production
+spec:
+  ports:
+  - port: 80
+    name: http
+    targetPort: 3000
+  selector:
+    app: disclosure-checker-web-production
