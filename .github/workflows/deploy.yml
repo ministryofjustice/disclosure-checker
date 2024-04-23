@@ -55,11 +55,8 @@ jobs:
 
       - name: Push to ECR
         run: |
-          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:staging.latest
-          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:production.latest
+          docker tag ${{ vars.ECR_URL }}:$SHA
           docker push ${{ vars.ECR_URL }}:$SHA
-          docker push ${{ vars.ECR_URL }}:staging.latest
-          docker push ${{ vars.ECR_URL }}:production.latest
 
   deploy-staging:
     runs-on: ubuntu-latest
@@ -81,6 +78,11 @@ jobs:
           build_tag=$PREFIX-$branch-$short_sha
           echo "build_tag=$build_tag" >> $GITHUB_OUTPUT
 
+      - name: Tag build and push to ECR
+        run: |
+          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:staging.latest
+          docker push ${{ vars.ECR_URL }}:staging.latest
+
       - name: Authenticate to the cluster
         env:
           KUBE_CERT: ${{ secrets.KUBE_CERT }}
@@ -96,7 +98,7 @@ jobs:
       - name: Rollout restart deployment
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
-          deployment/disclosure-checker-deployment-staging \
+          config/kubernetes/staging \
           webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel
@@ -149,6 +151,11 @@ jobs:
           build_tag=$PREFIX-$branch-$short_sha
           echo "build_tag=$build_tag" >> $GITHUB_OUTPUT
 
+      - name: Tag build and push to ECR
+        run: |
+          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:qa.latest
+          docker push ${{ vars.ECR_URL }}:qa.latest
+
       - name: Authenticate to the cluster
         env:
           KUBE_CERT: ${{ secrets.KUBE_CERT }}
@@ -164,7 +171,7 @@ jobs:
       - name: Rollout restart deployment
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
-          deployment/disclosure-checker-deployment-qa \
+          config/kubernetes/qa \
           webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel
@@ -218,6 +225,11 @@ jobs:
           build_tag=$PREFIX-$branch-$short_sha
           echo "build_tag=$build_tag" >> $GITHUB_OUTPUT
 
+      - name: Tag build and push to ECR
+        run: |
+          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:production.latest
+          docker push ${{ vars.ECR_URL }}:production.latest
+
       - name: Authenticate to the cluster
         env:
           KUBE_CERT: ${{ secrets.KUBE_PROD_CERT }}
@@ -233,7 +245,7 @@ jobs:
       - name: Rollout restart deployment
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
-          deployment/disclosure-checker-deployment-production \
+          config/kubernetes/production \
           webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel
