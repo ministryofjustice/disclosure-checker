@@ -54,9 +54,7 @@ jobs:
             -t ${{ vars.ECR_URL }}:$SHA .
 
       - name: Push to ECR
-        run: |
-          docker tag ${{ vars.ECR_URL }}:$SHA
-          docker push ${{ vars.ECR_URL }}:$SHA
+        run: docker push ${{ vars.ECR_URL }}:$SHA
 
   deploy-staging:
     runs-on: ubuntu-latest
