@@ -4,7 +4,7 @@ metadata:
   name: disclosure-checker-production
   namespace: disclosure-checker-production
 spec:
-  replicas: 2
+  replicas: 3
   revisionHistoryLimit: 5
   strategy:
     type: RollingUpdate
