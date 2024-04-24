@@ -67,6 +67,9 @@ jobs:
 
     env:
       KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+      KUBE_CERT: ${{ secrets.KUBE_CERT }}
+      KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+      KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
 
     steps:
       - name: Checkout
@@ -92,15 +95,10 @@ jobs:
 
       - name: Tag build and push to ECR
         run: |
-          docker pull ${{ vars.ECR_URL }}:$SHA
           docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:staging.latest
           docker push ${{ vars.ECR_URL }}:staging.latest
 
       - name: Authenticate to the cluster
-        env:
-          KUBE_CERT: ${{ secrets.KUBE_CERT }}
-          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
         run: |
           echo "${KUBE_CERT}" > ca.crt
           kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
@@ -111,7 +109,7 @@ jobs:
       - name: Rollout restart deployment
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
-          config/kubernetes/staging \
+          deployment/disclosure-checker-staging \
           webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel
@@ -155,6 +153,9 @@ jobs:
 
     env:
       KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+      KUBE_CERT: ${{ secrets.KUBE_CERT }}
+      KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+      KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
 
     steps:
       - name: Checkout
@@ -180,15 +181,10 @@ jobs:
 
       - name: Tag build and push to ECR
         run: |
-          docker pull ${{ vars.ECR_URL }}:$SHA
           docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:qa.latest
           docker push ${{ vars.ECR_URL }}:qa.latest
 
       - name: Authenticate to the cluster
-        env:
-          KUBE_CERT: ${{ secrets.KUBE_CERT }}
-          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
         run: |
           echo "${KUBE_CERT}" > ca.crt
           kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
@@ -199,7 +195,7 @@ jobs:
       - name: Rollout restart deployment
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
-          config/kubernetes/qa \
+          deployment/disclosure-checker-qa \
           webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel
@@ -243,7 +239,10 @@ jobs:
       contents: read  # This is required for actions/checkout
 
     env:
-      KUBE_NAMESPACE: ${{ secrets.KUBE_PROD_NAMESPACE }}
+      KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+      KUBE_CERT: ${{ secrets.KUBE_CERT }}
+      KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+      KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
 
     steps:
       - name: Checkout
@@ -269,15 +268,10 @@ jobs:
 
       - name: Tag build and push to ECR
         run: |
-          docker pull ${{ vars.ECR_URL }}:$SHA
           docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:production.latest
           docker push ${{ vars.ECR_URL }}:production.latest
 
       - name: Authenticate to the cluster
-        env:
-          KUBE_CERT: ${{ secrets.KUBE_PROD_CERT }}
-          KUBE_TOKEN: ${{ secrets.KUBE_PROD_TOKEN }}
-          KUBE_CLUSTER: ${{ secrets.KUBE_PROD_CLUSTER }}
         run: |
           echo "${KUBE_CERT}" > ca.crt
           kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
@@ -288,7 +282,7 @@ jobs:
       - name: Rollout restart deployment
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
-          config/kubernetes/production \
+          deployment/disclosure-checker-production \
           webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel
