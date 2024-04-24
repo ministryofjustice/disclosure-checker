@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: disclosure-checker-deployment-qa
+  name: disclosure-checker-qa
   namespace: disclosure-checker-qa
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 5
   strategy:
     type: RollingUpdate
@@ -35,7 +35,7 @@ spec:
             memory: 1Gi
         readinessProbe:
           httpGet:
-            path: /ping.json
+            path: /health
             port: 3000
             httpHeaders:
               - name: X-Forwarded-Proto
@@ -46,7 +46,7 @@ spec:
           periodSeconds: 10
         livenessProbe:
           httpGet:
-            path: /ping.json
+            path: /health
             port: 3000
             httpHeaders:
               - name: X-Forwarded-Proto

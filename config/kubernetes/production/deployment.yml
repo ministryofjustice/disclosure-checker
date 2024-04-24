@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: disclosure-checker-deployment-production
+  name: disclosure-checker-production
   namespace: disclosure-checker-production
 spec:
   replicas: 2
