@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: disclosure-checker-deployment-staging
+  name: disclosure-checker-staging
   namespace: disclosure-checker-staging
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 5
   strategy:
     type: RollingUpdate
