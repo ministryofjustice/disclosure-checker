@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: disclosure-checker-cronjob-staging
+  namespace: disclosure-checker-staging
+spec:
+  schedule: "0 13 * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 300
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 86400 # 24 hours
+      backoffLimit: 3
+      template:
+        metadata:
+          labels:
+            tier: worker
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: cronjob-daily-tasks
+            image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/family-justice/disclosure-checker:staging.latest
+            imagePullPolicy: Always
+            command: ['bin/rails', 'daily_tasks']
+            # non-secret env vars defined in `config_map.yaml`
+            envFrom:
+              - configMapRef:
+                  name: disclosure-checker-configmap-staging
+            env:
+              # external secrets defined in `secrets.yml`
+              - name: SECRET_KEY_BASE
+                valueFrom:
+                  secretKeyRef:
+                    name: disclosure-checker-secrets-staging
+                    key: secret_key_base
+              - name: SENTRY_DSN
+                valueFrom:
+                  secretKeyRef:
+                    name: disclosure-checker-secrets-staging
+                    key: sentry_dsn
+              #
+              # secrets created by `terraform`
+              #
+              - name: DATABASE_URL
+                valueFrom:
+                  secretKeyRef:
+                    name: rds-instance-disclosure-checker-staging
+                    key: url

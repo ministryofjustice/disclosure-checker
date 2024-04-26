@@ -54,23 +54,36 @@ jobs:
             -t ${{ vars.ECR_URL }}:$SHA .
 
       - name: Push to ECR
-        run: |
-          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:staging.latest
-          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:production.latest
-          docker push ${{ vars.ECR_URL }}:$SHA
-          docker push ${{ vars.ECR_URL }}:staging.latest
-          docker push ${{ vars.ECR_URL }}:production.latest
+        run: docker push ${{ vars.ECR_URL }}:$SHA
 
   deploy-staging:
     runs-on: ubuntu-latest
     needs: build
+    environment: staging
+
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read  # This is required for actions/checkout
 
     env:
       KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+      KUBE_CERT: ${{ secrets.KUBE_CERT }}
+      KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+      KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Assume role in Cloud Platform
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.ECR_ROLE_TO_ASSUME }}
+          aws-region: ${{ vars.ECR_REGION }}
+
+      - name: Login to container repository
+        uses: aws-actions/amazon-ecr-login@v2
+        id: login-ecr
 
       - name: Store build tag
         id: vars
@@ -80,11 +93,13 @@ jobs:
           build_tag=$PREFIX-$branch-$short_sha
           echo "build_tag=$build_tag" >> $GITHUB_OUTPUT
 
+      - name: Tag build and push to ECR
+        run: |
+          docker pull ${{ vars.ECR_URL }}:$SHA
+          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:staging.latest
+          docker push ${{ vars.ECR_URL }}:staging.latest
+
       - name: Authenticate to the cluster
-        env:
-          KUBE_CERT: ${{ secrets.KUBE_CERT }}
-          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
-          KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
         run: |
           echo "${KUBE_CERT}" > ca.crt
           kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
@@ -95,7 +110,7 @@ jobs:
       - name: Rollout restart deployment
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
-          deployment/disclosure-checker-deployment-staging \
+          deployment/disclosure-checker-staging \
           webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel
@@ -128,18 +143,34 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
 
-  deploy-production:
+  deploy-qa:
     runs-on: ubuntu-latest
-    needs: deploy-staging
-    if: ${{ github.ref == 'refs/heads/main' }}
-    environment: production
+    needs: build
+    environment: qa
+
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read  # This is required for actions/checkout
 
     env:
-      KUBE_NAMESPACE: ${{ secrets.KUBE_PROD_NAMESPACE }}
+      KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+      KUBE_CERT: ${{ secrets.KUBE_CERT }}
+      KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+      KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Assume role in Cloud Platform
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.ECR_ROLE_TO_ASSUME }}
+          aws-region: ${{ vars.ECR_REGION }}
+
+      - name: Login to container repository
+        uses: aws-actions/amazon-ecr-login@v2
+        id: login-ecr
 
       - name: Store build tag
         id: vars
@@ -149,11 +180,13 @@ jobs:
           build_tag=$PREFIX-$branch-$short_sha
           echo "build_tag=$build_tag" >> $GITHUB_OUTPUT
 
+      - name: Tag build and push to ECR
+        run: |
+          docker pull ${{ vars.ECR_URL }}:$SHA
+          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:qa.latest
+          docker push ${{ vars.ECR_URL }}:qa.latest
+
       - name: Authenticate to the cluster
-        env:
-          KUBE_CERT: ${{ secrets.KUBE_PROD_CERT }}
-          KUBE_TOKEN: ${{ secrets.KUBE_PROD_TOKEN }}
-          KUBE_CLUSTER: ${{ secrets.KUBE_PROD_CLUSTER }}
         run: |
           echo "${KUBE_CERT}" > ca.crt
           kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
@@ -164,7 +197,95 @@ jobs:
       - name: Rollout restart deployment
         run: |
           kubectl set image -n ${KUBE_NAMESPACE} \
-          deployment/disclosure-checker-deployment-production \
+          deployment/disclosure-checker-qa \
+          webapp="${{ vars.ECR_URL }}:$SHA"
+
+      - name: Send deploy notification to product Slack channel
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "attachments": [
+                {
+                  "color": "#1d990c",
+                  "text": "${{ github.actor }} deployed *${{ steps.vars.outputs.build_tag }}* to *QA*",
+                  "fields": [
+                    {
+                      "title": "Project",
+                      "value": "Disclosure Checker",
+                      "short": true
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "text": "Visit Job",
+                      "type": "button",
+                      "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    if: ${{ github.ref == 'refs/heads/main' }}
+    environment: production
+
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read  # This is required for actions/checkout
+
+    env:
+      KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
+      KUBE_CERT: ${{ secrets.KUBE_CERT }}
+      KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+      KUBE_CLUSTER: ${{ secrets.KUBE_CLUSTER }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Assume role in Cloud Platform
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.ECR_ROLE_TO_ASSUME }}
+          aws-region: ${{ vars.ECR_REGION }}
+
+      - name: Login to container repository
+        uses: aws-actions/amazon-ecr-login@v2
+        id: login-ecr
+
+      - name: Store build tag
+        id: vars
+        run: |
+          branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+          short_sha=$(git rev-parse --short $SHA)
+          build_tag=$PREFIX-$branch-$short_sha
+          echo "build_tag=$build_tag" >> $GITHUB_OUTPUT
+
+      - name: Tag build and push to ECR
+        run: |
+          docker pull ${{ vars.ECR_URL }}:$SHA
+          docker tag ${{ vars.ECR_URL }}:$SHA ${{ vars.ECR_URL }}:production.latest
+          docker push ${{ vars.ECR_URL }}:production.latest
+
+      - name: Authenticate to the cluster
+        run: |
+          echo "${KUBE_CERT}" > ca.crt
+          kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
+          kubectl config set-credentials deploy-user --token=${KUBE_TOKEN}
+          kubectl config set-context ${KUBE_CLUSTER} --cluster=${KUBE_CLUSTER} --user=deploy-user --namespace=${KUBE_NAMESPACE}
+          kubectl config use-context ${KUBE_CLUSTER}
+
+      - name: Rollout restart deployment
+        run: |
+          kubectl set image -n ${KUBE_NAMESPACE} \
+          deployment/disclosure-checker-production \
           webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel

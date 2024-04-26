@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: disclosure-checker-service-staging
+  namespace: disclosure-checker-staging
+  labels:
+    app: disclosure-checker-web-staging
+spec:
+  ports:
+  - port: 80
+    name: http
+    targetPort: 3000
+  selector:
+    app: disclosure-checker-web-staging
