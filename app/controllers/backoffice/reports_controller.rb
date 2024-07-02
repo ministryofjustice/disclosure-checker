@@ -1,6 +1,6 @@
 module Backoffice
   class ReportsController < ApplicationController
-    before_action :check_environment
+    # before_action :check_environment
 
     RESULTS_LIMIT = 50
 
