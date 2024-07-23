@@ -21,10 +21,10 @@ jobs:
       DATABASE_URL: "postgresql://postgres@127.0.0.1/disclosure-checker-test"
       EXTERNAL_URL: mocked_in_tests
       DEV_TOOLS_ENABLED: "1"
-
+x
     services:
       postgres:
-        image: postgres:16-alpine
+        image: postgres:16.3-alpine
         env:
           POSTGRES_DB: disclosure-checker-test
           POSTGRES_USER: postgres
