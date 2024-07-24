@@ -59,13 +59,6 @@ RUN apk add --no-cache libpq tzdata nodejs
 RUN addgroup -g 1000 -S appgroup && \
     adduser -u 1000 -S appuser -G appgroup
 
-# Download RDS certificates bundle -- needed for SSL verification
-# We set the path to the bundle in the ENV, and use it in `/config/database.yml`
-#
-ENV RDS_COMBINED_CA_BUNDLE /usr/src/app/config/rds-combined-ca-bundle.pem
-ADD https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem $RDS_COMBINED_CA_BUNDLE
-RUN chmod +r $RDS_COMBINED_CA_BUNDLE
-
 # Copy files generated in the builder image
 COPY --from=builder /app /app
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
