@@ -12,5 +12,3 @@ test:
   <<: *default
 production:
   <<: *default
-  sslmode: <%= ENV.fetch('DATABASE_SSLMODE', 'verify-full') %>
-  sslrootcert: <%= ENV['RDS_COMBINED_CA_BUNDLE'] %>
