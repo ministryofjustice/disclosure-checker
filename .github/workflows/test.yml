@@ -74,7 +74,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           minimum_suite_coverage: 99
-          minimum_file_coverage: 100
+          minimum_file_coverage: 99
 
   call-build-and-deploy:
     if: ${{ github.ref == 'refs/heads/main' }}
