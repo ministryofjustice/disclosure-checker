@@ -47,6 +47,8 @@ module Disclosure
     config.x.cookies_consent_name = "dc_cookies_consent".freeze
     config.x.cookies_consent_expiration = 1.year
 
+    config.add_autoload_paths_to_load_path = false
+
     config.sentry_dsn = "https://d82ca719a5b246bf80342c2266fe7550@o345774.ingest.sentry.io/5373163"
   end
 end
