@@ -33,7 +33,7 @@ module Disclosure
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.x.session.expires_in_minutes = ENV.fetch("SESSION_EXPIRES_IN_MINUTES", 60).to_i
+    config.x.session.expires_in_minutes = 60
 
     config.x.surveys.feedback = "https://www.research.net/r/QW7JCHL".freeze
 
@@ -46,6 +46,8 @@ module Disclosure
     # Cookies permission banner
     config.x.cookies_consent_name = "dc_cookies_consent".freeze
     config.x.cookies_consent_expiration = 1.year
+
+    config.add_autoload_paths_to_load_path = false
 
     config.sentry_dsn = "https://d82ca719a5b246bf80342c2266fe7550@o345774.ingest.sentry.io/5373163"
   end

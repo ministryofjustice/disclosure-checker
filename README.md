@@ -27,103 +27,88 @@ We have also added visual graphics to better aid understanding:
 
 - [docs/results](docs/results)
 
-We have also gather together all the documents and information we have gone through in one ticket:
-
-- https://trello.com/c/kT50EDZ7
-
-If for some reason the ticket is not available, please refer to the following:
+Please refer to the following for more information:
 
 - https://www.gov.uk/guidance/rehabilitation-periods
-- https://hub.unlock.org.uk/knowledgebase/detailedguideroa/
+- https://hub.unlock.org.uk/advice/detailedguideroa/
 - https://docs.google.com/spreadsheets/d/1ZSCk-wgMfIc22GQahKH_ys4u-E9GWIn6dQ7mm5t1RFI/edit#gid=2019860123
 
 It is important to understand how convictions work, as this is the main reason for the existence of this service.
 
-## Docker
+## Development
 
-The application can be run inside a docker container. This will take care of the ruby environment, postgres database,
-and any other dependency for you, without having to configure anything in your machine.
+### Working on the Code
 
-* `docker-compose up`
+Work should be based off of, and PRed to, the main branch. We use the GitHub
+PR approval process so once your PR is ready you'll need to have one person
+approve it, and the CI tests passing, before it can be merged.
 
-The application will be run in "production" mode, so will be as accurate as possible to a real production environment.
 
-Please note, in production environments this is done in a slightly different way as we don't use docker-compose in those
-environments (kubernetes cluster). But the general idea is the same.
+### Basic Setup
 
-## Getting Started
+#### Cloning This Repository
 
-You will need to install [Homebrew](https://brew.sh), to enable the `brew` command.
+Clone this repository then `cd` into the new directory
 
-* Copy `.env.example` to `.env` and replace with suitable values.
+```
+$ git clone git@github.com:ministryofjustice/disclosure-checker.git
+$ cd disclosure-checker
+```
 
-* `bundle install`
-* `bundle exec rails db:setup`
-* `bundle exec rails db:migrate`
-* `bundle exec rails server`
+### Installing the app for development
 
-### GOV.UK Frontend (styles, javascript and other assets)
+#### Latest Version of Ruby
 
-* `brew install yarn` # if you don't have it already
-* `yarn` # this will install the dependencies
+If you don't have `rbenv` already installed, install it as follows:
+```
+$ brew install rbenv ruby-build
+$ rbenv init
+```
 
-### For running the tests:
+Follow the instructions printed out from the `rbenv init` command and update your `~/.bash_profile` or equivalent file accordingly, then start a new terminal and navigate to the repo directory.
 
-* Copy `.env.test.example` to `.env.test` and replace with suitable values if you expect to run the tests
-* `RAILS_ENV=test bundle exec rails db:setup`
-* `RAILS_ENV=test bundle exec rails db:migrate`
+Use `rbenv` to install the latest version of ruby as defined in `.ruby-version` (make sure you are in the repo path):
 
-You can then run all the code linters and tests with:
+```
+$ rbenv install
+```
 
-* `RAILS_ENV=test bundle exec rake`
-or
-* `RAILS_ENV=test bundle exec rake test:all_the_things`
+#### Dependencies
 
-Or you can run specific tests as follows (refer to *lib/tasks/all_tests.rake* for the complete list):
+Node.js:
 
-* `RAILS_ENV=test bundle exec rake spec`
-* `RAILS_ENV=test bundle exec rake brakeman`
+```
+$ brew install node
+```
 
-## Cucumber features
+Yarn
 
-ChromeDriver is needed for the integration tests. It can be installed on Mac using Homebrew: `brew cask install chromedriver`
+```
+$ brew install yarn
+```
 
-The features can be run manually (these are not part of the default rake task) in any of these forms:
+Postgresql
 
-* `bundle exec cucumber features`
-* `bundle exec cucumber features/caution.feature`
-* `bundle exec cucumber features/caution.feature -t @happy_path`
+```
+$ brew install postgresql
+```
 
-Any of the files in the [features](features) directory can be run individually.
+#### Setup
 
-By default cucumber will start a local server on a random port, run features against that server, and kill the server once the features have finished.
+Use the following commands to install gems and javascript packages then create the database
 
-If you want to show the browser (useful to debug issues) prefix the commands like this:
+```
+$ bin/setup
+$ bin/yarn install
+```
 
-* `SHOW_BROWSER=1 bundle exec cucumber features/caution.feature`
+#### Running locally:
 
-## K8s cluster staging environment
+```
+$ bin/rails server
+```
 
-There is a staging environment running on [this url][k8s-staging]
+The site will be accessible at http://localhost:3000.
 
-The staging env uses http basic auth to restrict access. The username and
-password should be available from the MoJ Rattic server, in the Family Justice group.
-
-This environment should be used for any test or demo purposes, user research, etc.
-Do not use production for tests as this will have an impact on metrics and will trigger real emails
-
-There is a [deploy repo][deploy-repo] for this staging environment.
-It contains the k8s configuration files and also the required ENV variables.
-
-## Continuous integration and deployment
-
-GitHub actions are used for CI and CD and you can find the configuration in `.github/workflows/test-build-deploy.yml`
-
-After a successful merge to `main`, a docker image will be created and pushed to an ECR repository.
-It will also trigger an automatic deploy to [staging][k8s-staging].
-
-For more details, refer to the [deploy repo][deploy-repo].
-
-[c100-application]: https://github.com/ministryofjustice/c100-application
-[deploy-repo]: https://github.com/ministryofjustice/disclosure-checker-deploy
-[k8s-staging]: https://disclosure-checker-staging.apps.live.cloud-platform.service.justice.gov.uk
+## Exceptions
+Any exceptions raised in any deployed environment will be sent to [Sentry](https://ministryofjustice.sentry.io/projects/disclosure-checker).
