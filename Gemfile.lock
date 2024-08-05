@@ -157,6 +157,8 @@ GEM
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
     ffi (1.17.0)
+    ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
     govuk-components (5.4.0)
@@ -233,6 +235,10 @@ GEM
     nio4r (2.7.1)
     nokogiri (1.16.6)
       mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    nokogiri (1.16.6-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.6-x86_64-linux)
       racc (~> 1.4)
     pagy (8.4.5)
     parallel (1.25.1)
@@ -434,7 +440,9 @@ GEM
     zeitwerk (2.6.16)
 
 PLATFORMS
+  arm64-darwin-23
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   better_errors
