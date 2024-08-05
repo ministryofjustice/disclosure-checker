@@ -33,7 +33,7 @@ module Disclosure
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.x.session.expires_in_minutes = ENV.fetch("SESSION_EXPIRES_IN_MINUTES", 60).to_i
+    config.x.session.expires_in_minutes = 60
 
     config.x.surveys.feedback = "https://www.research.net/r/QW7JCHL".freeze
 
