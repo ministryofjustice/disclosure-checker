@@ -110,5 +110,26 @@ $ bin/rails server
 
 The site will be accessible at http://localhost:3000.
 
+#### Running tests
+
+unit tests only:
+
+```
+$ bundle exec rspec
+```
+
+feature tests only:
+
+```
+$ bundle exec cucumber
+```
+
+all tests and linters:
+
+```
+$ bin/rake
+```
+
+
 ## Exceptions
 Any exceptions raised in any deployed environment will be sent to [Sentry](https://ministryofjustice.sentry.io/projects/disclosure-checker).
