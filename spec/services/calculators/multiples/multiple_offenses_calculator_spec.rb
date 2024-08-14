@@ -594,7 +594,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       let(:spent_dates) { [ResultsVariant::NEVER_SPENT, Date.yesterday] }
 
       it "returns false" do
-        expect(calculator.all_spent?).to eq(false)
+        expect(calculator.all_spent?).to be(false)
       end
     end
 
@@ -602,7 +602,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       let(:spent_dates) { [Date.yesterday, ResultsVariant::SPENT_SIMPLE] }
 
       it "considers the spent_simple as spent" do
-        expect(calculator.all_spent?).to eq(true)
+        expect(calculator.all_spent?).to be(true)
       end
     end
 
@@ -610,7 +610,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       let(:spent_dates) { [ResultsVariant::INDEFINITE, Date.tomorrow] }
 
       it "excludes the `indefinite` offence, and check the other dates" do
-        expect(calculator.all_spent?).to eq(false)
+        expect(calculator.all_spent?).to be(false)
       end
     end
 
@@ -618,7 +618,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       let(:spent_dates) { [Date.yesterday, Date.tomorrow] }
 
       it "checks if all the dates are in the past" do
-        expect(calculator.all_spent?).to eq(false)
+        expect(calculator.all_spent?).to be(false)
       end
     end
 
@@ -626,7 +626,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
       let(:spent_dates) { [Date.yesterday, Date.yesterday - 3.days] }
 
       it "checks if all the dates are in the past" do
-        expect(calculator.all_spent?).to eq(true)
+        expect(calculator.all_spent?).to be(true)
       end
     end
   end

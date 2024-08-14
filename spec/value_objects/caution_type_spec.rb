@@ -44,25 +44,25 @@ RSpec.describe CautionType do
     context "when youth_conditional_caution" do
       let(:value) { :youth_conditional_caution }
 
-      it { expect(conditional).to eq(true) }
+      it { expect(conditional).to be(true) }
     end
 
     context "when adult_conditional_caution" do
       let(:value) { :adult_conditional_caution }
 
-      it { expect(conditional).to eq(true) }
+      it { expect(conditional).to be(true) }
     end
 
     context "when youth_simple_caution" do
       let(:value) { :youth_simple_caution }
 
-      it { expect(conditional).to eq(false) }
+      it { expect(conditional).to be(false) }
     end
 
     context "when adult_simple_caution" do
       let(:value) { :adult_simple_caution }
 
-      it { expect(conditional).to eq(false) }
+      it { expect(conditional).to be(false) }
     end
   end
 
@@ -72,25 +72,25 @@ RSpec.describe CautionType do
     context "when youth_conditional_caution" do
       let(:value) { :youth_conditional_caution }
 
-      it { expect(youth).to eq(true) }
+      it { expect(youth).to be(true) }
     end
 
     context "when adult_conditional_caution" do
       let(:value) { :adult_conditional_caution }
 
-      it { expect(youth).to eq(false) }
+      it { expect(youth).to be(false) }
     end
 
     context "when youth_simple_caution" do
       let(:value) { :youth_simple_caution }
 
-      it { expect(youth).to eq(true) }
+      it { expect(youth).to be(true) }
     end
 
     context "when adult_simple_caution" do
       let(:value) { :adult_simple_caution }
 
-      it { expect(youth).to eq(false) }
+      it { expect(youth).to be(false) }
     end
   end
 
@@ -100,25 +100,25 @@ RSpec.describe CautionType do
     context "when adult_conditional_caution" do
       let(:value) { :adult_conditional_caution }
 
-      it { expect(adult).to eq(true) }
+      it { expect(adult).to be(true) }
     end
 
     context "when youth_conditional_caution" do
       let(:value) { :youth_conditional_caution }
 
-      it { expect(adult).to eq(false) }
+      it { expect(adult).to be(false) }
     end
 
     context "when adult_simple_caution" do
       let(:value) { :adult_simple_caution }
 
-      it { expect(adult).to eq(true) }
+      it { expect(adult).to be(true) }
     end
 
     context "when youth_simple_caution" do
       let(:value) { :youth_simple_caution }
 
-      it { expect(adult).to eq(false) }
+      it { expect(adult).to be(false) }
     end
   end
 

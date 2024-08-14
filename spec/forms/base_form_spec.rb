@@ -5,13 +5,13 @@ RSpec.describe BaseForm do
 
   describe "#persisted?" do
     it "always returns false" do
-      expect(form.persisted?).to eq(false)
+      expect(form.persisted?).to be(false)
     end
   end
 
   describe "#new_record?" do
     it "always returns true" do
-      expect(form.new_record?).to eq(true)
+      expect(form.new_record?).to be(true)
     end
   end
 

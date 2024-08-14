@@ -4,7 +4,7 @@ RSpec.describe Calculators::Multiples::Proceedings do
   subject(:calculator) { described_class.new(check_group) }
 
   let(:check_group) { instance_double(CheckGroup, disclosure_checks: disclosure_checks_scope) }
-  let(:disclosure_checks_scope) { instance_double("scope", completed: [disclosure_check1, disclosure_check2, disclosure_check3]) }
+  let(:disclosure_checks_scope) { instance_double(scope, completed: [disclosure_check1, disclosure_check2, disclosure_check3]) }
 
   let(:disclosure_check1) { instance_double(DisclosureCheck, kind:, conviction_date:, no_drag_through?: false) }
   let(:disclosure_check2) { instance_double(DisclosureCheck, kind:, no_drag_through?: false) }
@@ -43,13 +43,13 @@ RSpec.describe Calculators::Multiples::Proceedings do
     context "with a caution" do
       let(:kind) { "caution" }
 
-      it { expect(calculator.conviction?).to eq(false) }
+      it { expect(calculator.conviction?).to be(false) }
     end
 
     context "with a conviction" do
       let(:kind) { "conviction" }
 
-      it { expect(calculator.conviction?).to eq(true) }
+      it { expect(calculator.conviction?).to be(true) }
     end
   end
 
@@ -112,7 +112,7 @@ RSpec.describe Calculators::Multiples::Proceedings do
   end
 
   describe "#spent_date_without_relevant_orders" do
-    let(:disclosure_checks_scope) { instance_double("scope", completed: [disclosure_check1, disclosure_check2]) }
+    let(:disclosure_checks_scope) { instance_double(scope, completed: [disclosure_check1, disclosure_check2]) }
 
     context "when filters our relevant orders" do
       context "and only some are relevant orders" do
@@ -145,7 +145,7 @@ RSpec.describe Calculators::Multiples::Proceedings do
     end
 
     context "when there is at least one `never_spent` date" do
-      let(:disclosure_checks_scope) { instance_double("scope", completed: [disclosure_check1, disclosure_check2]) }
+      let(:disclosure_checks_scope) { instance_double(scope, completed: [disclosure_check1, disclosure_check2]) }
 
       before do
         allow(CheckResult).to receive(:new).with(disclosure_check: disclosure_check1).and_return(check_result1)
