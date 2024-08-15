@@ -1,14 +1,24 @@
-FROM ruby:3.2.3-alpine as builder
+FROM ruby:3.3.4-alpine as base
+
+WORKDIR /app
+
+# postgresql-client: to run postgres, tzdata: required to set timezone, nodejs: JS runtime
+RUN apk add --no-cache \
+    postgresql-client \
+    tzdata \
+    nodejs
+
+# Ensure latest rubygems is installed
+RUN gem update --system
+
+FROM base as builder
 
 # build dependencies:
 RUN apk add --no-cache \
     ruby-dev \
     build-base \
     postgresql-dev \
-    tzdata \
     yarn
-
-WORKDIR /app
 
 COPY Gemfile* .ruby-version package.json yarn.lock ./
 
@@ -20,28 +30,20 @@ RUN bundle config deployment true && \
 # Copy all files to /app
 COPY . .
 
-RUN RAILS_ENV=production SECRET_KEY_BASE_DUMMY=1 bundle exec rake assets:precompile
+RUN RAILS_ENV=production SECRET_KEY_BASE_DUMMY=1 \
+    bundle exec rails assets:precompile
 
 # Copy fonts and images (without digest) along with the digested ones,
 # as there are some hardcoded references in the `govuk-frontend` files
 # that will not be able to use the rails digest mechanism.
 RUN cp -r node_modules/govuk-frontend/dist/govuk/assets/. public/assets/
 
-# tidy up installation
-RUN rm -rf log/* tmp/* /tmp && \
+# Cleanup to save space in the production image
+RUN rm -rf node_modules log/* tmp/* /tmp && \
     rm -rf /usr/local/bundle/cache
 
 # Build runtime image
-FROM ruby:3.2.3-alpine
-
-# The application runs from /app
-WORKDIR /app
-
-# postgresql-client: to run postgres, tzdata: required to set timezone, nodejs: JS runtime
-RUN apk add --no-cache \
-    postgresql-client \
-    tzdata \
-    nodejs
+FROM base
 
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup && \
@@ -53,16 +55,14 @@ COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 
 # Create log and tmp
 RUN mkdir -p log tmp
-RUN chown -R appuser:appgroup db log tmp
+RUN chown -R appuser:appgroup ./*
+
+# Set user
+USER 1000
 
 ARG APP_BUILD_DATE
-ENV APP_BUILD_DATE ${APP_BUILD_DATE}
-
 ARG APP_BUILD_TAG
-ENV APP_BUILD_TAG ${APP_BUILD_TAG}
-
 ARG APP_GIT_COMMIT
+ENV APP_BUILD_DATE ${APP_BUILD_DATE}
+ENV APP_BUILD_TAG ${APP_BUILD_TAG}
 ENV APP_GIT_COMMIT ${APP_GIT_COMMIT}
-
-ENV APPUID 1000
-USER $APPUID

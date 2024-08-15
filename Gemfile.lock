@@ -240,7 +240,7 @@ GEM
       racc (~> 1.4)
     pagy (8.6.3)
     parallel (1.25.1)
-    parser (3.3.3.0)
+    parser (3.3.4.2)
       ast (~> 2.4.1)
       racc
     pg (1.5.7)
@@ -476,7 +476,7 @@ DEPENDENCIES
   virtus
 
 RUBY VERSION
-   ruby 3.2.3p157
+   ruby 3.3.4p94
 
 BUNDLED WITH
-   2.4.19
+   2.5.17
