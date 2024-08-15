@@ -1,5 +1,4 @@
 #!/bin/sh
-cd /app
 
-bundle exec bin/rails db:prepare
-bundle exec pumactl -F config/puma.rb start
+bundle exec rails db:prepare
+bundle exec puma -C config/puma.rb -e production
