@@ -42,7 +42,7 @@ RSpec.describe ResultsPresenter do
         expect(summary[0]).to be_an_instance_of(CheckGroupPresenter)
         expect(summary[0].number).to be(1)
         expect(summary[0].check_group).to eql(disclosure_check.check_group)
-        expect(summary[0].spent_date).to eq(nil)
+        expect(summary[0].spent_date).to be_nil
       end
     end
   end

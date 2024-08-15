@@ -91,13 +91,13 @@ RSpec.describe CheckGroupPresenter do
     context "when a caution" do
       let(:disclosure_check) { create(:disclosure_check, :caution, :completed) }
 
-      it { expect(presenter.add_another_sentence_button?).to eq(false) }
+      it { expect(presenter.add_another_sentence_button?).to be(false) }
     end
 
     context "when a conviction" do
       let(:disclosure_check) { create(:disclosure_check, :conviction, :completed) }
 
-      it { expect(presenter.add_another_sentence_button?).to eq(true) }
+      it { expect(presenter.add_another_sentence_button?).to be(true) }
     end
   end
 end

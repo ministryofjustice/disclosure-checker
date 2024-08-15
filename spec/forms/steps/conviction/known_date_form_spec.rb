@@ -42,7 +42,7 @@ RSpec.describe Steps::Conviction::KnownDateForm do
 
       it "has a validation error on the field" do
         expect(form).not_to be_valid
-        expect(form.errors.added?(:known_date, :after_conviction_date)).to eq(true)
+        expect(form.errors.added?(:known_date, :after_conviction_date)).to be(true)
       end
     end
 
@@ -52,7 +52,7 @@ RSpec.describe Steps::Conviction::KnownDateForm do
 
       it "has no validation errors on the field" do
         expect(form).to be_valid
-        expect(form.errors.added?(:known_date, :after_conviction_date)).to eq(false)
+        expect(form.errors.added?(:known_date, :after_conviction_date)).to be(false)
       end
     end
 
@@ -62,7 +62,7 @@ RSpec.describe Steps::Conviction::KnownDateForm do
 
       it "has no validation errors on the field" do
         expect(form).to be_valid
-        expect(form.errors.added?(:known_date, :after_conviction_date)).to eq(false)
+        expect(form.errors.added?(:known_date, :after_conviction_date)).to be(false)
       end
     end
 
@@ -72,8 +72,8 @@ RSpec.describe Steps::Conviction::KnownDateForm do
 
       it "has a presence error" do
         expect(form).not_to be_valid
-        expect(form.errors.added?(:known_date, :after_conviction_date)).to eq(false)
-        expect(form.errors.added?(:known_date, :blank)).to eq(true)
+        expect(form.errors.added?(:known_date, :after_conviction_date)).to be(false)
+        expect(form.errors.added?(:known_date, :blank)).to be(true)
       end
     end
   end

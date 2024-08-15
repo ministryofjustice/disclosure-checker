@@ -55,8 +55,8 @@ RSpec.describe ValueObject do
     end
 
     it "the value can be inquired" do
-      expect(foo_one.inquiry.one?).to eq(true)
-      expect(foo_one.inquiry.two?).to eq(false)
+      expect(foo_one.inquiry.one?).to be(true)
+      expect(foo_one.inquiry.two?).to be(false)
     end
   end
 

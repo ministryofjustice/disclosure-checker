@@ -155,7 +155,7 @@ RSpec.shared_examples "a date question form" do |options|
 
           it "has a validation error on the field" do
             expect(subject).not_to be_valid
-            expect(subject.errors.added?(question_attribute, :blank)).to eq(true)
+            expect(subject.errors.added?(question_attribute, :blank)).to be(true)
           end
         end
       end
@@ -169,7 +169,7 @@ RSpec.shared_examples "a date question form" do |options|
 
         it "has a validation error on the field" do
           expect(subject).not_to be_valid
-          expect(subject.errors.added?(question_attribute, :blank)).to eq(true)
+          expect(subject.errors.added?(question_attribute, :blank)).to be(true)
         end
       end
 
@@ -182,7 +182,7 @@ RSpec.shared_examples "a date question form" do |options|
 
         it "has a validation error on the field" do
           expect(subject).not_to be_valid
-          expect(subject.errors.added?(question_attribute, :invalid)).to eq(true)
+          expect(subject.errors.added?(question_attribute, :invalid)).to be(true)
         end
       end
 
@@ -196,7 +196,7 @@ RSpec.shared_examples "a date question form" do |options|
 
           it "has a validation error on the field" do
             expect(subject).not_to be_valid
-            expect(subject.errors.added?(question_attribute, :future)).to eq(true)
+            expect(subject.errors.added?(question_attribute, :future)).to be(true)
           end
         end
       else
@@ -204,7 +204,7 @@ RSpec.shared_examples "a date question form" do |options|
           let(:date_value) { Date.tomorrow }
 
           it "is valid" do
-            expect(subject.valid?).to eq(true)
+            expect(subject.valid?).to be(true)
           end
         end
       end

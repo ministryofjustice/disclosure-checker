@@ -47,31 +47,31 @@ RSpec.describe ResultsVariant do
     context "with a SPENT variant" do
       let(:value) { "spent" }
 
-      it { expect(results_variant.spent?).to eq(true) }
+      it { expect(results_variant.spent?).to be(true) }
     end
 
     context "with a SPENT_SIMPLE variant" do
       let(:value) { "spent_simple" }
 
-      it { expect(results_variant.spent?).to eq(true) }
+      it { expect(results_variant.spent?).to be(true) }
     end
 
     context "with a NOT_SPENT variant" do
       let(:value) { "not_spent" }
 
-      it { expect(results_variant.spent?).to eq(false) }
+      it { expect(results_variant.spent?).to be(false) }
     end
 
     context "with a NEVER_SPENT variant" do
       let(:value) { "never_spent" }
 
-      it { expect(results_variant.spent?).to eq(false) }
+      it { expect(results_variant.spent?).to be(false) }
     end
 
     context "with a INDEFINITE variant" do
       let(:value) { "indefinite" }
 
-      it { expect(results_variant.spent?).to eq(false) }
+      it { expect(results_variant.spent?).to be(false) }
     end
   end
 end

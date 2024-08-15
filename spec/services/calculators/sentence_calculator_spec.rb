@@ -65,7 +65,7 @@ RSpec.describe Calculators::SentenceCalculator do
       context "when there is no upper limit" do
         let(:conviction_length) { 240 }
 
-        it { expect(calculator.valid?).to eq(true) }
+        it { expect(calculator.valid?).to be(true) }
         it { expect { calculator.expiry_date }.not_to raise_exception(BaseCalculator::InvalidCalculation) }
       end
     end
@@ -125,7 +125,7 @@ RSpec.describe Calculators::SentenceCalculator do
       context "when there is an upper limit" do
         let(:conviction_length) { 25 } # the upper limit in this conviction is 24 months
 
-        it { expect(calculator.valid?).to eq(false) }
+        it { expect(calculator.valid?).to be(false) }
         it { expect { calculator.expiry_date }.to raise_exception(BaseCalculator::InvalidCalculation) }
       end
     end
@@ -181,7 +181,7 @@ RSpec.describe Calculators::SentenceCalculator do
       context "when there is no upper limit" do
         let(:conviction_length) { 120 }
 
-        it { expect(calculator.valid?).to eq(true) }
+        it { expect(calculator.valid?).to be(true) }
         it { expect { calculator.expiry_date }.not_to raise_exception(BaseCalculator::InvalidCalculation) }
       end
     end
@@ -241,7 +241,7 @@ RSpec.describe Calculators::SentenceCalculator do
       context "when there is an upper limit" do
         let(:conviction_length) { 25 } # the upper limit in this conviction is 24 months
 
-        it { expect(calculator.valid?).to eq(false) }
+        it { expect(calculator.valid?).to be(false) }
         it { expect { calculator.expiry_date }.to raise_exception(BaseCalculator::InvalidCalculation) }
       end
     end

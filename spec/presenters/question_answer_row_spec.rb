@@ -28,13 +28,13 @@ RSpec.describe QuestionAnswerRow do
 
   describe "#show?" do
     context "when there is an answer" do
-      it { expect(calculator.show?).to eq(true) }
+      it { expect(calculator.show?).to be(true) }
     end
 
     context "when answer is not present" do
       let(:answer) { "" }
 
-      it { expect(calculator.show?).to eq(false) }
+      it { expect(calculator.show?).to be(false) }
     end
   end
 end

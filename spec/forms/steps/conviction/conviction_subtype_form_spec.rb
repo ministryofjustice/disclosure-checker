@@ -27,12 +27,7 @@ RSpec.describe Steps::Conviction::ConvictionSubtypeForm do
   # in the value-object spec `spec/value_objects/conviction_type_spec.rb`
   describe "#values" do
     it "returns the relevant values (children of the conviction type)" do
-      expect(form.values).to match_array([
-        ConvictionType.new(:referral_order),
-        ConvictionType.new(:supervision_order),
-        ConvictionType.new(:youth_rehabilitation_order),
-        ConvictionType.new(:youth_other_requirement_order),
-      ])
+      expect(form.values).to contain_exactly(ConvictionType.new(:referral_order), ConvictionType.new(:supervision_order), ConvictionType.new(:youth_rehabilitation_order), ConvictionType.new(:youth_other_requirement_order))
     end
   end
 

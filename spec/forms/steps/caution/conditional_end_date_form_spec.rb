@@ -29,7 +29,7 @@ RSpec.describe Steps::Caution::ConditionalEndDateForm do
 
       it "has a validation error on the field" do
         expect(form).not_to be_valid
-        expect(form.errors.added?(:conditional_end_date, :after_caution_date)).to eq(true)
+        expect(form.errors.added?(:conditional_end_date, :after_caution_date)).to be(true)
       end
     end
 
@@ -39,7 +39,7 @@ RSpec.describe Steps::Caution::ConditionalEndDateForm do
 
       it "has no validation errors on the field" do
         expect(form).to be_valid
-        expect(form.errors.added?(:conditional_end_date, :after_caution_date)).to eq(false)
+        expect(form.errors.added?(:conditional_end_date, :after_caution_date)).to be(false)
       end
     end
   end

@@ -24,13 +24,13 @@ RSpec.describe AnalyticsHelper, type: :helper do
     context "when cookies has been accepted" do
       let(:value) { CookieSettingsForm::CONSENT_ACCEPT }
 
-      it { expect(helper.analytics_consent_accepted?).to eq(true) }
+      it { expect(helper.analytics_consent_accepted?).to be(true) }
     end
 
     context "when cookies has been rejected" do
       let(:value) { CookieSettingsForm::CONSENT_REJECT }
 
-      it { expect(helper.analytics_consent_accepted?).to eq(false) }
+      it { expect(helper.analytics_consent_accepted?).to be(false) }
     end
   end
 
@@ -44,20 +44,19 @@ RSpec.describe AnalyticsHelper, type: :helper do
     context "and consent has been granted by the user" do
       let(:consent_accepted) { true }
 
-      it { expect(helper.analytics_allowed?).to eq(true) }
+      it { expect(helper.analytics_allowed?).to be(true) }
     end
 
     context "and consent has not been granted by the user" do
       let(:consent_accepted) { false }
 
-      it { expect(helper.analytics_allowed?).to eq(false) }
+      it { expect(helper.analytics_allowed?).to be(false) }
     end
   end
 
   describe "#track_transaction" do
     before do
-      allow(record).to receive(:id).and_return("12345")
-      allow(record).to receive(:kind).and_return("caution")
+      allow(record).to receive_messages(id: "12345", kind: "caution")
     end
 
     it "sets the transaction attributes to track" do

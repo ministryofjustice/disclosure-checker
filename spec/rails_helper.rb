@@ -20,7 +20,7 @@ RSpec.configure do |config|
 
   config.before(:each, type: :helper) { initialize_view_helpers(helper) }
 
-  config.before(:each, js: true) do
+  config.before(:each, :js) do
     page.driver.browser.url_whitelist = %w[127.0.0.1 localhost]
   end
 
