@@ -7,8 +7,11 @@ default: &default
   adapter: postgresql
 
 development:
+  database: disclosure_checker_development
   <<: *default
 test:
+  database: disclosure_checker_test
   <<: *default
 production:
+  database: disclosure_checker_production
   <<: *default

@@ -3,8 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(".ruby-version").strip
 
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">= 1.1.0", require: false
 gem "govuk-components", "~> 5.4"
 gem "govuk_design_system_formbuilder"
 gem "jquery-rails"
@@ -40,7 +38,7 @@ end
 group :test do
   gem "brakeman"
   gem "capybara"
-  gem "cucumber", "< 9.0.0"
+  gem "cucumber", "< 10.0.0"
   gem "cucumber-rails", require: false
   gem "rails-controller-testing"
   gem "rubocop-govuk", require: false
