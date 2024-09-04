@@ -46,7 +46,7 @@ class ConvictionType < ValueObject
 
     REFERRAL_ORDER                     = new(:referral_order,                   parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, no_drag_through: false, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     SUPERVISION_ORDER                  = new(:supervision_order,                parent: REFERRAL_SUPERVISION_YRO, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
-    YOUTH_REHABILITATION_ORDER         = new(:youth_rehabilitation_order,       parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    YOUTH_REHABILITATION_ORDER         = new(:youth_rehabilitation_order,       parent: REFERRAL_SUPERVISION_YRO, no_drag_through: false, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     YOUTH_OTHER_REQUIREMENT_ORDER      = new(:youth_other_requirement_order,    parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, no_drag_through: false, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
 
     DETENTION_TRAINING_ORDER           = new(:detention_training_order,         parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::DetentionTraining),
@@ -57,8 +57,8 @@ class ConvictionType < ValueObject
     ABSOLUTE_DISCHARGE                 = new(:absolute_discharge,               parent: DISCHARGE, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
     CONDITIONAL_DISCHARGE              = new(:conditional_discharge,            parent: DISCHARGE, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
 
-    FINE                               = new(:fine,                             parent: FINANCIAL, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusSixMonths),
-    COMPENSATION_TO_A_VICTIM           = new(:compensation_to_a_victim,         parent: FINANCIAL, relevant_order: true, calculator_class: Calculators::CompensationCalculator),
+    FINE                               = new(:fine,                             parent: FINANCIAL, no_drag_through: false, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusSixMonths),
+    COMPENSATION_TO_A_VICTIM           = new(:compensation_to_a_victim,         parent: FINANCIAL, no_drag_through: false, relevant_order: true, calculator_class: Calculators::CompensationCalculator),
 
     DISMISSAL                          = new(:dismissal,                        parent: MILITARY, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusSixMonths),
     OVERSEAS_COMMUNITY_ORDER           = new(:overseas_community_order,         parent: MILITARY, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
@@ -102,8 +102,8 @@ class ConvictionType < ValueObject
     ADULT_REPRIMAND                     = new(:adult_reprimand,                    parent: ADULT_MILITARY, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusTwelveMonths),
 
     ADULT_DISQUALIFICATION              = new(:adult_disqualification,             parent: ADULT_MOTORING, relevant_order: true, no_drag_through: true, calculator_class: Calculators::DisqualificationCalculator::Adults),
-    ADULT_MOTORING_FINE                 = new(:adult_motoring_fine,                parent: ADULT_MOTORING, skip_length: true, calculator_class: Calculators::Motoring::Adult::Fine),
-    ADULT_PENALTY_NOTICE                = new(:adult_penalty_notice,               parent: ADULT_MOTORING, skip_length: true, calculator_class: Calculators::Motoring::Adult::PenaltyNotice),
+    ADULT_MOTORING_FINE                 = new(:adult_motoring_fine,                parent: ADULT_MOTORING, no_drag_through: false, skip_length: true, calculator_class: Calculators::Motoring::Adult::Fine),
+    ADULT_PENALTY_NOTICE                = new(:adult_penalty_notice,               parent: ADULT_MOTORING, no_drag_through: true, skip_length: true, calculator_class: Calculators::Motoring::Adult::PenaltyNotice),
     ADULT_PENALTY_POINTS                = new(:adult_penalty_points,               parent: ADULT_MOTORING, skip_length: true, calculator_class: Calculators::Motoring::Adult::PenaltyPoints),
 
     ADULT_HOSPITAL_ORDER                = new(:adult_hospital_order,               parent: ADULT_CUSTODIAL_SENTENCE, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
