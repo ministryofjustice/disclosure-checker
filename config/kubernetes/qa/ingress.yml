@@ -15,8 +15,12 @@ metadata:
       location ~* \.(php|cgi|xml)$ {
         deny all; access_log off;
       }
+    nginx.ingress.kubernetes.io/enable-modsecurity: "true"
+    nginx.ingress.kubernetes.io/modsecurity-snippet: |
+      SecRuleEngine On
+      SecDefaultAction "phase:2,pass,log,tag:github_team=central-digital-product-team,tag:namespace=disclosure-checker-qa"
 spec:
-  ingressClassName: default
+  ingressClassName: modsec
   tls:
   - hosts:
     - disclosure-checker-qa.apps.live.cloud-platform.service.justice.gov.uk
