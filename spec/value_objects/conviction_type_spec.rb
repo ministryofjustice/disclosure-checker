@@ -476,6 +476,15 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
+    context "when ADULT_MILITARY" do
+      let(:subtype) { "adult_reprimand" }
+
+      it { expect(conviction_type.skip_length?).to eq(true) }
+      it { expect(conviction_type.relevant_order?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusTwelveMonths) }
+    end
+
     context "when ADULT_SERVICE_COMMUNITY_ORDER" do
       let(:subtype) { "adult_service_community_order" }
 
