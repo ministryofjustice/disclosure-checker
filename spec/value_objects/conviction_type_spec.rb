@@ -45,6 +45,7 @@ RSpec.describe ConvictionType do
       it "returns subtypes of this conviction type" do
         expect(values).to eq(%w[
           dismissal
+          cashiering_discharge_dismissal
           overseas_community_order
           service_community_order
           service_detention
@@ -147,6 +148,7 @@ RSpec.describe ConvictionType do
       it "returns subtypes of this conviction type" do
         expect(values).to eq(%w[
           adult_dismissal
+          adult_cashiering_discharge_dismissal
           adult_overseas_community_order
           adult_service_community_order
           adult_service_detention
