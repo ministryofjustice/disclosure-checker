@@ -44,7 +44,7 @@ class ConvictionType < ValueObject
     # Youth convictions #
     #####################
 
-    REFERRAL_ORDER                     = new(:referral_order,                   parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    REFERRAL_ORDER                     = new(:referral_order,                   parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, no_drag_through: false, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     SUPERVISION_ORDER                  = new(:supervision_order,                parent: REFERRAL_SUPERVISION_YRO, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     YOUTH_REHABILITATION_ORDER         = new(:youth_rehabilitation_order,       parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     YOUTH_OTHER_REQUIREMENT_ORDER      = new(:youth_other_requirement_order,    parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
