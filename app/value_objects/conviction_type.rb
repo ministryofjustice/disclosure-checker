@@ -102,8 +102,8 @@ class ConvictionType < ValueObject
     ADULT_REPRIMAND                     = new(:adult_reprimand,                    parent: ADULT_MILITARY, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusTwelveMonths),
 
     ADULT_DISQUALIFICATION              = new(:adult_disqualification,             parent: ADULT_MOTORING, relevant_order: true, no_drag_through: true, calculator_class: Calculators::DisqualificationCalculator::Adults),
-    ADULT_MOTORING_FINE                 = new(:adult_motoring_fine,                parent: ADULT_MOTORING, skip_length: true, calculator_class: Calculators::Motoring::Adult::Fine),
-    ADULT_PENALTY_NOTICE                = new(:adult_penalty_notice,               parent: ADULT_MOTORING, skip_length: true, calculator_class: Calculators::Motoring::Adult::PenaltyNotice),
+    ADULT_MOTORING_FINE                 = new(:adult_motoring_fine,                parent: ADULT_MOTORING, skip_length: true,  no_drag_through: false, calculator_class: Calculators::Motoring::Adult::Fine),
+    ADULT_PENALTY_NOTICE                = new(:adult_penalty_notice,               parent: ADULT_MOTORING, skip_length: true,  no_drag_through: true, calculator_class: Calculators::Motoring::Adult::PenaltyNotice),
     ADULT_PENALTY_POINTS                = new(:adult_penalty_points,               parent: ADULT_MOTORING, skip_length: true, calculator_class: Calculators::Motoring::Adult::PenaltyPoints),
 
     ADULT_HOSPITAL_ORDER                = new(:adult_hospital_order,               parent: ADULT_CUSTODIAL_SENTENCE, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
