@@ -57,8 +57,8 @@ class ConvictionType < ValueObject
     ABSOLUTE_DISCHARGE                 = new(:absolute_discharge,               parent: DISCHARGE, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
     CONDITIONAL_DISCHARGE              = new(:conditional_discharge,            parent: DISCHARGE, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
 
-    FINE                               = new(:fine,                             parent: FINANCIAL, no_drag_through: false, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusSixMonths),
-    COMPENSATION_TO_A_VICTIM           = new(:compensation_to_a_victim,         parent: FINANCIAL, no_drag_through: false, relevant_order: true, calculator_class: Calculators::CompensationCalculator),
+    FINE                               = new(:fine,                             parent: FINANCIAL, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusSixMonths),
+    COMPENSATION_TO_A_VICTIM           = new(:compensation_to_a_victim,         parent: FINANCIAL, relevant_order: true, calculator_class: Calculators::CompensationCalculator),
 
     DISMISSAL                          = new(:dismissal,                        parent: MILITARY, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusSixMonths),
     OVERSEAS_COMMUNITY_ORDER           = new(:overseas_community_order,         parent: MILITARY, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
