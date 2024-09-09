@@ -45,7 +45,7 @@ RSpec.describe ConvictionType do
       it "returns subtypes of this conviction type" do
         expect(values).to eq(%w[
           dismissal
-          cashiering_discharge_dismissal_disgrace
+          cashiering_discharge_dismissal
           overseas_community_order
           service_community_order
           service_detention
@@ -148,7 +148,7 @@ RSpec.describe ConvictionType do
       it "returns subtypes of this conviction type" do
         expect(values).to eq(%w[
           adult_dismissal
-          adult_cashiering_discharge_dismissal_disgrace
+          adult_cashiering_discharge_dismissal
           adult_overseas_community_order
           adult_service_community_order
           adult_service_detention
@@ -203,8 +203,8 @@ RSpec.describe ConvictionType do
   describe "Conviction subtype attributes" do
     let(:conviction_type) { described_class.find_constant(subtype) }
 
-    context "when CASHIERING_DISCHARGE_DISMISSAL_DISGRACE" do
-      let(:subtype) { "cashiering_discharge_dismissal_disgrace" }
+    context "when CASHIERING_DISCHARGE_DISMISSAL" do
+      let(:subtype) { "cashiering_discharge_dismissal" }
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
@@ -478,8 +478,8 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusTwelveMonths) }
     end
 
-    context "when ADULT_CASHIERING_DISCHARGE_DISMISSAL_DISGRACE" do
-      let(:subtype) { "adult_cashiering_discharge_dismissal_disgrace" }
+    context "when ADULT_CASHIERING_DISCHARGE_DISMISSAL" do
+      let(:subtype) { "adult_cashiering_discharge_dismissal" }
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
