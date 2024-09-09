@@ -329,6 +329,7 @@ en:
         # default key
         default: When were you given the order?
         # alternative keys defined with `i18_attribute`
+        cashiering_discharge_dismissal: When were you given the Cashiering, discharge or dismissal?
         referral_order: What was the date of your first panel meeting?
         dismissal: When were you given the dismissal?
         reprimand: When were you given the severe reprimand or reprimand?
@@ -338,6 +339,7 @@ en:
         absolute_discharge: When were you given the discharge?
         conditional_discharge: When were you given the discharge?
         adult_absolute_discharge: When were you given the discharge?
+        adult_cashiering_discharge_dismissal: When were you given the Cashiering, discharge or dismissal?
         adult_conditional_discharge: When were you given the discharge?
         adult_suspended_prison_sentence: When did the sentence start?
         adult_prison_sentence: When did the sentence start?
