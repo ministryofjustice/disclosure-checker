@@ -26,7 +26,7 @@ en:
       fine: Fine
       compensation_to_a_victim: Compensation to a victim
       # military
-      cashiering_discharge_dismissal: Cashiering, discharge with ignominy or dismissal with disgrace
+      cashiering_discharge_dismissal_disgrace: Cashiering, discharge with ignominy or dismissal with disgrace
       dismissal: Dismissal
       service_detention: Service detention
       service_community_order: Service community order
@@ -49,7 +49,7 @@ en:
       adult_fine: Fine
       adult_compensation_to_a_victim: Compensation to a victim
       # adult_military
-      adult_cashiering_discharge_dismissal: Cashiering, discharge with ignominy or dismissal with disgrace
+      adult_cashiering_discharge_dismissal_disgrace: Cashiering, discharge with ignominy or dismissal with disgrace
       adult_dismissal: Dismissal
       adult_overseas_community_order: Overseas community order
       adult_service_community_order: Service community order
