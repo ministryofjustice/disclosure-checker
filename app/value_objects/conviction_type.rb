@@ -50,7 +50,7 @@ class ConvictionType < ValueObject
     YOUTH_OTHER_REQUIREMENT_ORDER      = new(:youth_other_requirement_order,    parent: REFERRAL_SUPERVISION_YRO, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
 
     DETENTION_TRAINING_ORDER           = new(:detention_training_order,         parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::DetentionTraining),
-    DETENTION                          = new(:detention,                        parent: CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::Detention),
+    DETENTION                          = new(:detention,                        parent: CUSTODIAL_SENTENCE, no_drag_through: false, calculator_class: Calculators::SentenceCalculator::Detention),
     HOSPITAL_ORDER                     = new(:hospital_order,                   parent: CUSTODIAL_SENTENCE, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
 
     BIND_OVER                          = new(:bind_over,                        parent: DISCHARGE, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
@@ -64,7 +64,7 @@ class ConvictionType < ValueObject
     OVERSEAS_COMMUNITY_ORDER           = new(:overseas_community_order,         parent: MILITARY, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     SERVICE_COMMUNITY_ORDER            = new(:service_community_order,          parent: MILITARY, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     SERVICE_DETENTION                  = new(:service_detention,                parent: MILITARY, calculator_class: Calculators::AdditionCalculator::PlusSixMonths),
-    REPRIMAND                          = new(:reprimand,                        parent: MILITARY, skip_length: true, no_drag_through: false, calculator_class: Calculators::AdditionCalculator::StartPlusSixMonths),
+    REPRIMAND                          = new(:reprimand,                        parent: MILITARY, skip_length: false, no_drag_through: false, calculator_class: Calculators::AdditionCalculator::PlusSixMonths),
 
     REPARATION_ORDER                   = new(:reparation_order,                 parent: PREVENTION_REPARATION, relevant_order: true, no_drag_through: true, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
     RESTRAINING_ORDER                  = new(:restraining_order,                parent: PREVENTION_REPARATION, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
