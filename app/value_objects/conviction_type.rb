@@ -64,7 +64,7 @@ class ConvictionType < ValueObject
     OVERSEAS_COMMUNITY_ORDER           = new(:overseas_community_order,         parent: MILITARY, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     SERVICE_COMMUNITY_ORDER            = new(:service_community_order,          parent: MILITARY, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     SERVICE_DETENTION                  = new(:service_detention,                parent: MILITARY, calculator_class: Calculators::AdditionCalculator::PlusSixMonths),
-    REPRIMAND                          = new(:reprimand,                        parent: MILITARY, skip_length: false, no_drag_through: false, calculator_class: Calculators::AdditionCalculator::PlusSixMonths),
+    REPRIMAND                          = new(:reprimand,                        parent: MILITARY, skip_length: false, no_drag_through: false, calculator_class: Calculators::AdditionCalculator::StartPlusTwelveMonths),
 
     REPARATION_ORDER                   = new(:reparation_order,                 parent: PREVENTION_REPARATION, relevant_order: true, no_drag_through: true, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
     RESTRAINING_ORDER                  = new(:restraining_order,                parent: PREVENTION_REPARATION, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
