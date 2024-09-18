@@ -198,14 +198,5 @@ FactoryBot.define do
     trait :in_progress do
       status { :in_progress }
     end
-
-    trait :with_service_reprimand do
-      adult
-      conviction_with_known_date
-      conviction_type { ConvictionType::ADULT_MILITARY }
-      conviction_subtype { ConvictionType::ADULT_REPRIMAND }
-      conviction_length { 12 }
-      conviction_length_type { ConvictionLengthType::MONTHS }
-    end
   end
 end
