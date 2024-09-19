@@ -506,7 +506,7 @@ RSpec.describe ConvictionType do
     end
 
     context "when ADULT_MILITARY" do
-      let(:subtype) { "adult_reprimand" }
+      let(:subtype) { "adult_military" }
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
