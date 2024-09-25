@@ -24,8 +24,8 @@ module Calculators
 
     def expiry_date
       return ResultsVariant::INDEFINITE if indefinite_length?
+
       conviction_start_date.advance(conviction_length)
     end
-
   end
 end
