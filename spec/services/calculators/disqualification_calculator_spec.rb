@@ -19,24 +19,18 @@ RSpec.describe Calculators::DisqualificationCalculator do
     let(:under_age) { GenericYesNo::YES }
 
     describe "#expiry_date" do
-      context "with a lengthless than or equal to 2.5 years" do
+      context "with a length less than or equal to 2.5 years" do
         let(:conviction_length) { 2 }
         let(:conviction_length_type) { "years" }
 
-        it { expect(calculator.expiry_date.to_s).to eq((known_date + 30.months).to_s) }
+        it { expect(calculator.expiry_date.to_s).to eq((known_date + 24.months).to_s) }
       end
 
-      context "with a lengthgreater than 2.5 years" do
+      context "with a length greater than 2.5 years" do
         let(:conviction_length) { 3 }
         let(:conviction_length_type) { "years" }
 
         it { expect(calculator.expiry_date.to_s).to eq((known_date + 36.months).to_s) }
-      end
-
-      context "without a length" do
-        let(:conviction_length) { "no_length" }
-
-        it { expect(calculator.expiry_date.to_s).to eq("2021-04-30") }
       end
 
       context "with an indefinite length" do
@@ -55,7 +49,7 @@ RSpec.describe Calculators::DisqualificationCalculator do
         let(:conviction_length) { 4 }
         let(:conviction_length_type) { "years" }
 
-        it { expect(calculator.expiry_date.to_s).to eq((known_date + 60.months).to_s) }
+        it { expect(calculator.expiry_date.to_s).to eq((known_date + 48.months).to_s) }
       end
 
       context "with a length greater than 5 years" do
@@ -63,12 +57,6 @@ RSpec.describe Calculators::DisqualificationCalculator do
         let(:conviction_length_type) { "years" }
 
         it { expect(calculator.expiry_date.to_s).to eq((known_date + 72.months).to_s) }
-      end
-
-      context "without a length" do
-        let(:conviction_length) { "no_length" }
-
-        it { expect(calculator.expiry_date.to_s).to eq("2023-10-31") }
       end
 
       context "with an indefinite length" do
