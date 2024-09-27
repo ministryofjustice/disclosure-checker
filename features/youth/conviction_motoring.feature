@@ -42,8 +42,10 @@ Feature: Youth Conviction
 
     Examples:
       | subtype          | known_date_header       | length_type_header                                                      | length_option       | spent_date                                                                         |
-      | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | No length was given | This conviction was spent on 1 January 2020                                       |
-      | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | Until further order | This conviction is not spent and will stay in place until another order is made to change or end it |
+      | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | No length was given | This conviction was spent on 1 January 2020 |
+| Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | Until further order | This conviction is not spent and will stay in place until another order is made to change or end it |
+
+      |
 
   @happy_path @date_travel
   Scenario Outline: Motoring fine
