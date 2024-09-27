@@ -24,7 +24,7 @@ Feature: Youth Conviction
     Examples:
       | subtype          | known_date_header       | length_type_header                                                      | length_header                                | length_months | spent_date                                   |
       | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | What was the length of the disqualification? | 6             | This conviction was spent on 1 July 2020 |
-      | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | What was the length of the disqualification? | 40            | This conviction was spent on 1 April 2024  |
+      | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | What was the length of the disqualification? | 40            | This conviction was spent on 1 May 2023 |
 
   @happy_path @date_travel
   Scenario Outline: Motoring disqualification without length or indefinite
@@ -42,7 +42,7 @@ Feature: Youth Conviction
 
     Examples:
       | subtype          | known_date_header       | length_type_header                                                      | length_option       | spent_date                                                                         |
-      | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | No length was given | This conviction will be spent on 1 January 2020                                       |
+      | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | No length was given | This conviction was spent on 1 January 2020                                       |
       | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | Until further order | This conviction is not spent and will stay in place until another order is made to change or end it |
 
   @happy_path @date_travel
