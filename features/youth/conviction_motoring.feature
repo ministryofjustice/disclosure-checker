@@ -45,8 +45,6 @@ Feature: Youth Conviction
       | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | No length was given | This conviction was spent on 1 January 2020 |
 | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | Until further order | This conviction is not spent and will stay in place until another order is made to change or end it |
 
-      |
-
   @happy_path @date_travel
   Scenario Outline: Motoring fine
     Given The current date is 03-07-2020
