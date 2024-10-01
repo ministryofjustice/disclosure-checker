@@ -11,6 +11,7 @@ RSpec.describe ResultsVariant do
         never_spent
         spent_simple
         indefinite
+        no_length
       ])
     end
   end
@@ -70,6 +71,12 @@ RSpec.describe ResultsVariant do
 
     context "with a INDEFINITE variant" do
       let(:value) { "indefinite" }
+
+      it { expect(results_variant.spent?).to eq(false) }
+    end
+
+    context "with a NO_LENGTH variant" do
+      let(:value) { "no_length" }
 
       it { expect(results_variant.spent?).to eq(false) }
     end
