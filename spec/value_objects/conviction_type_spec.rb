@@ -556,7 +556,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.no_drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::Motoring::Youth::PenaltyPoints) }
     end
 
@@ -594,7 +594,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.no_drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::Motoring::Adult::PenaltyPoints) }
     end
 
