@@ -230,6 +230,15 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusSixMonths) }
     end
 
+    context "when REPRIMAND" do
+      let(:subtype) { "reprimand" }
+
+      it { expect(conviction_type.skip_length?).to eq(true) }
+      it { expect(conviction_type.relevant_order?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusSixMonths) }
+    end
+
     context "when SERVICE_COMMUNITY_ORDER" do
       let(:subtype) { "service_community_order" }
 
@@ -253,7 +262,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
-      it { expect(conviction_type.no_drag_through?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -454,6 +463,7 @@ RSpec.describe ConvictionType do
       let(:subtype) { "adult_fine" }
 
       it { expect(conviction_type.skip_length?).to eq(true) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusTwelveMonths) }
     end
 
@@ -495,6 +505,15 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
+    context "when ADULT_REPRIMAND" do
+      let(:subtype) { "adult_reprimand" }
+
+      it { expect(conviction_type.skip_length?).to eq(true) }
+      it { expect(conviction_type.relevant_order?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusTwelveMonths) }
+    end
+
     context "when ADULT_SERVICE_COMMUNITY_ORDER" do
       let(:subtype) { "adult_service_community_order" }
 
@@ -511,15 +530,6 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.relevant_order?).to eq(false) }
       it { expect(conviction_type.no_drag_through?).to eq(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusTwelveMonths) }
-    end
-
-    context "when ADULT_REPRIMAND" do
-      let(:subtype) { "adult_reprimand" }
-
-      it { expect(conviction_type.skip_length?).to eq(true) }
-      it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.no_drag_through?).to eq(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusTwelveMonths) }
     end
 
     # YOUTH_MOTORING
@@ -585,7 +595,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to eq(true) }
       it { expect(conviction_type.relevant_order?).to eq(false) }
-      it { expect(conviction_type.no_drag_through?).to eq(false) }
+      it { expect(conviction_type.no_drag_through?).to eq(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::Motoring::Adult::PenaltyNotice) }
     end
 
