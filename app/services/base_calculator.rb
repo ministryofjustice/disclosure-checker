@@ -17,6 +17,10 @@ private
     ConvictionLengthType.new(disclosure_check.conviction_length_type.to_s).inquiry.indefinite?
   end
 
+  def no_length?
+    ConvictionLengthType.new(disclosure_check.conviction_length_type.to_s).inquiry.no_length?
+  end
+
   def conviction_length
     { disclosure_check.conviction_length_type.to_sym => disclosure_check.conviction_length }
   end

@@ -5,6 +5,7 @@ class ResultsVariant < ValueObject
     NEVER_SPENT  = new(:never_spent),
     SPENT_SIMPLE = new(:spent_simple),
     INDEFINITE   = new(:indefinite),
+    NO_LENGTH    = new(:no_length),
   ].freeze
 
   # Needed so we are able to do ranges and compare dates with special variants
@@ -12,7 +13,7 @@ class ResultsVariant < ValueObject
     case self
     when NEVER_SPENT
       Date::Infinity.new
-    when INDEFINITE
+    when INDEFINITE || NO_LENGTH
       # absurdly in the future, but sooner than "infinity"
       Date.new(2049, 1, 1)
     end
