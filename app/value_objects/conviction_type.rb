@@ -85,7 +85,7 @@ class ConvictionType < ValueObject
     ADULT_CRIMINAL_BEHAVIOUR             = new(:adult_criminal_behaviour,             parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ADULT_REPARATION_ORDER               = new(:adult_reparation_order,               parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, no_drag_through: true, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
     ADULT_RESTRAINING_ORDER              = new(:adult_restraining_order,              parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
-    ADULT_SERIOUS_CRIME_PREVENTION       = new(:adult_serious_crime_prevention,       parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    ADULT_SERIOUS_CRIME_PREVENTION       = new(:adult_serious_crime_prevention,       parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ADULT_SEXUAL_HARM_PREVENTION_ORDER   = new(:adult_sexual_harm_prevention_order,   parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ADULT_OTHER_REQUIREMENT_ORDER        = new(:adult_other_requirement_order,        parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
 
