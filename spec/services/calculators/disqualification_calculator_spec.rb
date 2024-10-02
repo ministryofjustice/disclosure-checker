@@ -19,16 +19,24 @@ RSpec.describe Calculators::DisqualificationCalculator do
     let(:under_age) { GenericYesNo::YES }
 
     describe "#expiry_date" do
+      context "with a length less than or equal to 2.5 years" do
+        let(:conviction_length) { 2 }
+        let(:conviction_length_type) { "years" }
+
+        it { expect(calculator.expiry_date.to_s).to eq((known_date + 24.months).to_s) }
+      end
+
+      context "with a length greater than 2.5 years" do
+        let(:conviction_length) { 3 }
+        let(:conviction_length_type) { "years" }
+
+        it { expect(calculator.expiry_date.to_s).to eq((known_date + 36.months).to_s) }
+      end
+
       context "with an indefinite length" do
         let(:conviction_length_type) { "indefinite" }
 
         it { expect(calculator.expiry_date).to eq(ResultsVariant::INDEFINITE) }
-      end
-
-      context "without a length" do
-        let(:conviction_length_type) { "no_length" }
-
-        it { expect(calculator.expiry_date).to eq(ResultsVariant::NO_LENGTH) }
       end
     end
   end
@@ -37,17 +45,24 @@ RSpec.describe Calculators::DisqualificationCalculator do
     let(:under_age) { GenericYesNo::NO }
 
     describe "#expiry_date" do
+      context "with a length less than or equal to 5 years" do
+        let(:conviction_length) { 4 }
+        let(:conviction_length_type) { "years" }
+
+        it { expect(calculator.expiry_date.to_s).to eq((known_date + 48.months).to_s) }
+      end
+
+      context "with a length greater than 5 years" do
+        let(:conviction_length) { 6 }
+        let(:conviction_length_type) { "years" }
+
+        it { expect(calculator.expiry_date.to_s).to eq((known_date + 72.months).to_s) }
+      end
 
       context "with an indefinite length" do
         let(:conviction_length_type) { "indefinite" }
 
         it { expect(calculator.expiry_date).to eq(ResultsVariant::INDEFINITE) }
-      end
-
-      context "without a length" do
-        let(:conviction_length_type) { "no_length" }
-
-        it { expect(calculator.expiry_date).to eq(ResultsVariant::NO_LENGTH) }
       end
     end
   end
