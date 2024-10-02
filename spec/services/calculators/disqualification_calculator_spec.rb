@@ -37,6 +37,7 @@ RSpec.describe Calculators::DisqualificationCalculator do
     let(:under_age) { GenericYesNo::NO }
 
     describe "#expiry_date" do
+
       context "with an indefinite length" do
         let(:conviction_length_type) { "indefinite" }
 
