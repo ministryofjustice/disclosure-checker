@@ -3,12 +3,24 @@ module Calculators
     ADDED_TIME_IF_NO_LENGTH = { months: 24 }.freeze
     #
     # If length is given: conviction end date
-    # If not disqualification and no length is given: conviction start date + 24 months
-    # If disqualification and no length is given: conviction start date
     #
     class PlusZeroMonths < AdditionCalculator
       def added_time
         {}
+      end
+    end
+
+    #
+    # If disqualification and no length is given: conviction start date
+    #
+
+    class PlusZeroMonthsDisqualification < AdditionCalculator
+      def added_time
+        { months: 0 }
+      end
+
+      def expiry_date
+        conviction_start_date.advance(added_time)
       end
     end
 
