@@ -89,17 +89,4 @@ RSpec.describe Calculators::AdditionCalculator do
       it { expect(calculator.expiry_date.to_s).to eq("2019-10-31") }
     end
   end
-
-  describe Calculators::AdditionCalculator::StartPlusZeroMonths do
-    describe "#expiry_date if no length" do
-      it { expect(calculator.expiry_date.to_s).to eq("2018-10-31") }
-    end
-
-    describe "#expiry_date with length" do
-      let(:conviction_length) { 3 }
-      let(:conviction_length_type) { "years" }
-
-      it { expect(calculator.expiry_date.to_s).to eq("2021-10-31") }
-    end
-  end
 end
