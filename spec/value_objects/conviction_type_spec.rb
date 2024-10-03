@@ -530,7 +530,7 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
       it { expect(conviction_type.no_drag_through?).to eq(true) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonthsDisqualification) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusZeroMonths) }
     end
 
     context "when YOUTH_MOTORING_FINE" do
@@ -568,7 +568,7 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.skip_length?).to eq(false) }
       it { expect(conviction_type.relevant_order?).to eq(true) }
       it { expect(conviction_type.no_drag_through?).to eq(true) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonthsDisqualification) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusZeroMonths) }
     end
 
     context "when ADULT_MOTORING_FINE" do
