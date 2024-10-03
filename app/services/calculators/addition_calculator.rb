@@ -20,7 +20,7 @@ module Calculators
       end
 
       def conviction_length
-        { (disclosure_check.conviction_length_type || 'no_length').to_sym => disclosure_check.conviction_length }
+        { (disclosure_check.conviction_length_type || "no_length").to_sym => disclosure_check.conviction_length }
       end
 
       def expiry_date
