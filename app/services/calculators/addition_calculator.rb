@@ -13,7 +13,6 @@ module Calculators
     #
     # If disqualification and no length is given: conviction start date is spent date
     #
-
     class StartPlusZeroMonths < AdditionCalculator
       def added_time
         { months: 0 }
