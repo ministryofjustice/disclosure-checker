@@ -19,4 +19,5 @@ module Calculators
         conviction_end_date.advance(added_time)
       end
     end
+    end
 end

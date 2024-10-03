@@ -5,7 +5,6 @@ RSpec.describe Calculators::DisqualificationCalculator do
 
   let(:disclosure_check) do
     build(:disclosure_check,
-          under_age:,
           known_date:,
           conviction_length:,
           conviction_length_type:)
@@ -15,7 +14,7 @@ RSpec.describe Calculators::DisqualificationCalculator do
   let(:conviction_length) { nil }
   let(:conviction_length_type) { nil }
 
-  describe Calculators::AdditionCalculator::StartPlusZeroMonths do
+  describe Calculators::DisqualificationCalculator::StartPlusZeroMonths do
     describe "#expiry_date" do
       context "with a length equal to 2 years" do
         let(:conviction_length) { 2 }
