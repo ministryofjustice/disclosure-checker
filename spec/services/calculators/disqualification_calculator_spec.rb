@@ -14,18 +14,22 @@ RSpec.describe Calculators::DisqualificationCalculator do
   let(:conviction_length) { nil }
   let(:conviction_length_type) { nil }
 
-  describe Calculators::DisqualificationCalculator::StartPlusZeroMonths do
-    describe "#expiry_date" do
-      context "without a length" do
-        it { expect(calculator.expiry_date.to_s).to eq("2018-10-31") }
-      end
+  describe "#expiry_date" do
+    context "without a length" do
+      it { expect(calculator.expiry_date.to_s).to eq("2018-10-31") }
     end
-  end
 
-  context "with a length" do
-    let(:conviction_length) { 6 }
-    let(:conviction_length_type) { "months" }
+    context "with a length" do
+      let(:conviction_length) { 6 }
+      let(:conviction_length_type) { "months" }
 
-    it { expect(calculator.expiry_date.to_s).to eq("2019-04-30") }
+      it { expect(calculator.expiry_date.to_s).to eq("2019-04-30") }
+    end
+
+    context "with indefinite length" do
+      let(:conviction_length_type) { "indefinite" }
+
+      it { expect(calculator.expiry_date).to eq(ResultsVariant::INDEFINITE) }
+    end
   end
 end

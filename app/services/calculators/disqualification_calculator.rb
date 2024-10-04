@@ -1,17 +1,15 @@
 module Calculators
   class DisqualificationCalculator < BaseCalculator
-    class StartPlusZeroMonths < DisqualificationCalculator
-      def added_time
-        { months: 0 }
-      end
-
-      def expiry_date
-        conviction_start_date.advance(added_time)
-      end
-    end
+    ADDED_TIME = { months: 0 }.freeze
 
     def expiry_date
-      conviction_start_date.advance(conviction_length)
+      return ResultsVariant::INDEFINITE if indefinite_length?
+
+      if disclosure_check.conviction_length?
+        conviction_end_date
+      else
+        conviction_start_date.advance(ADDED_TIME)
+      end
     end
   end
 end
