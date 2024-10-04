@@ -28,5 +28,4 @@ RSpec.describe Calculators::DisqualificationCalculator do
 
     it { expect(calculator.expiry_date.to_s).to eq("2019-04-30") }
   end
-
 end
