@@ -74,7 +74,7 @@ class ConvictionType < ValueObject
     YOUTH_DISQUALIFICATION             = new(:youth_disqualification,         parent: YOUTH_MOTORING, relevant_order: true, no_drag_through: true, calculator_class: Calculators::DisqualificationCalculator::Youths),
     YOUTH_MOTORING_FINE                = new(:youth_motoring_fine,            parent: YOUTH_MOTORING, skip_length: true, calculator_class: Calculators::Motoring::Youth::Fine),
     YOUTH_PENALTY_NOTICE               = new(:youth_penalty_notice,           parent: YOUTH_MOTORING, skip_length: true, calculator_class: Calculators::Motoring::Youth::PenaltyNotice),
-    YOUTH_PENALTY_POINTS               = new(:youth_penalty_points,           parent: YOUTH_MOTORING, skip_length: true, calculator_class: Calculators::Motoring::Youth::PenaltyPoints),
+    YOUTH_PENALTY_POINTS               = new(:youth_penalty_points,           parent: YOUTH_MOTORING, skip_length: true, no_drag_through: true, calculator_class: Calculators::Motoring::Youth::PenaltyPoints),
 
     ######################
     # Adults convictions #
@@ -85,7 +85,7 @@ class ConvictionType < ValueObject
     ADULT_CRIMINAL_BEHAVIOUR             = new(:adult_criminal_behaviour,             parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ADULT_REPARATION_ORDER               = new(:adult_reparation_order,               parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, no_drag_through: true, skip_length: true, calculator_class: Calculators::ImmediatelyCalculator),
     ADULT_RESTRAINING_ORDER              = new(:adult_restraining_order,              parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
-    ADULT_SERIOUS_CRIME_PREVENTION       = new(:adult_serious_crime_prevention,       parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    ADULT_SERIOUS_CRIME_PREVENTION       = new(:adult_serious_crime_prevention,       parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ADULT_SEXUAL_HARM_PREVENTION_ORDER   = new(:adult_sexual_harm_prevention_order,   parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ADULT_OTHER_REQUIREMENT_ORDER        = new(:adult_other_requirement_order,        parent: ADULT_COMMUNITY_REPARATION, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
 
@@ -106,7 +106,7 @@ class ConvictionType < ValueObject
     ADULT_DISQUALIFICATION               = new(:adult_disqualification,               parent: ADULT_MOTORING, relevant_order: true, no_drag_through: true, calculator_class: Calculators::DisqualificationCalculator::Adults),
     ADULT_MOTORING_FINE                  = new(:adult_motoring_fine,                  parent: ADULT_MOTORING, skip_length: true, no_drag_through: false, calculator_class: Calculators::Motoring::Adult::Fine),
     ADULT_PENALTY_NOTICE                 = new(:adult_penalty_notice,                 parent: ADULT_MOTORING, skip_length: true, no_drag_through: true, calculator_class: Calculators::Motoring::Adult::PenaltyNotice),
-    ADULT_PENALTY_POINTS                 = new(:adult_penalty_points,                 parent: ADULT_MOTORING, skip_length: true, calculator_class: Calculators::Motoring::Adult::PenaltyPoints),
+    ADULT_PENALTY_POINTS                 = new(:adult_penalty_points,                 parent: ADULT_MOTORING, skip_length: true, no_drag_through: true, calculator_class: Calculators::Motoring::Adult::PenaltyPoints),
 
     ADULT_HOSPITAL_ORDER                 = new(:adult_hospital_order,                 parent: ADULT_CUSTODIAL_SENTENCE, relevant_order: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ADULT_PRISON_SENTENCE                = new(:adult_prison_sentence,                parent: ADULT_CUSTODIAL_SENTENCE, calculator_class: Calculators::SentenceCalculator::Prison),

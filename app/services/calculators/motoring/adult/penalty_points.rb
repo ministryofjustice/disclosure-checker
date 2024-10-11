@@ -3,10 +3,10 @@ module Calculators
     module Adult
       #
       # We always assume an endorsement was received
-      # start_date + 5 years
+      # start_date + 3 years
       #
       class PenaltyPoints < BaseCalculator
-        REHABILITATION = { months: 60 }.freeze
+        REHABILITATION = { months: 36 }.freeze
 
         def expiry_date
           conviction_start_date.advance(REHABILITATION)
