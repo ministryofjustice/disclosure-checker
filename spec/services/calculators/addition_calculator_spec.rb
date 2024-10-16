@@ -11,7 +11,6 @@ RSpec.describe Calculators::AdditionCalculator do
   end
 
   let(:known_date) { Date.new(2018, 10, 31) }
-
   let(:conviction_length) { nil }
   let(:conviction_length_type) { nil }
 
