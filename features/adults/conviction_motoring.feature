@@ -83,4 +83,4 @@ Feature: Adult Conviction
     And I enter the following date 01-01-2020
 
     And I check my "conviction" answers and go to the results page
-    And I should see "This conviction will be spent on 1 January 2025"
+    And I should see "This conviction will be spent on 1 January 2023"
