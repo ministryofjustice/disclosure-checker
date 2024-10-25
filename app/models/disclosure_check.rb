@@ -4,7 +4,7 @@ class DisclosureCheck < ApplicationRecord
 
   delegate :no_drag_through?, to: :conviction, allow_nil: true
 
-  enum status: {
+  enum :status, {
     in_progress: 0,
     completed: 10,
   }

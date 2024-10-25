@@ -6,6 +6,7 @@ ruby File.read(".ruby-version").strip
 gem "govuk-components", "~> 5.4"
 gem "govuk_design_system_formbuilder"
 gem "jquery-rails"
+gem "ostruct"
 gem "pg"
 gem "puma"
 gem "rails", "~> 7.0"
