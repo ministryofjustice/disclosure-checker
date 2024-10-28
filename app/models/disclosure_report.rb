@@ -2,7 +2,7 @@ class DisclosureReport < ApplicationRecord
   has_many :check_groups, dependent: :destroy
   has_many :disclosure_checks, through: :check_groups
 
-  enum status: {
+  enum :status, {
     in_progress: 0,
     completed: 10,
   }
