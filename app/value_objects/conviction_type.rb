@@ -62,8 +62,8 @@ class ConvictionType < ValueObject
 
     DISMISSAL                          = new(:dismissal,                      parent: MILITARY, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusSixMonths),
     CASHIERING_DISCHARGE_DISMISSAL     = new(:cashiering_discharge_dismissal, parent: MILITARY, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusSixMonths),
-    OVERSEAS_COMMUNITY_ORDER           = new(:overseas_community_order,       parent: MILITARY, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
-    SERVICE_COMMUNITY_ORDER            = new(:service_community_order,        parent: MILITARY, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    OVERSEAS_COMMUNITY_ORDER           = new(:overseas_community_order,       parent: MILITARY, relevant_order: true, no_drag_through: false, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    SERVICE_COMMUNITY_ORDER            = new(:service_community_order,        parent: MILITARY, relevant_order: true, no_drag_through: false, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     SERVICE_DETENTION                  = new(:service_detention,              parent: MILITARY, calculator_class: Calculators::AdditionCalculator::PlusSixMonths),
     REPRIMAND                          = new(:reprimand,                      parent: MILITARY, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusSixMonths),
 
@@ -98,8 +98,8 @@ class ConvictionType < ValueObject
 
     ADULT_DISMISSAL                      = new(:adult_dismissal,                      parent: ADULT_MILITARY, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusTwelveMonths),
     ADULT_CASHIERING_DISCHARGE_DISMISSAL = new(:adult_cashiering_discharge_dismissal, parent: ADULT_MILITARY, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusTwelveMonths),
-    ADULT_OVERSEAS_COMMUNITY_ORDER       = new(:adult_overseas_community_order,       parent: ADULT_MILITARY, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
-    ADULT_SERVICE_COMMUNITY_ORDER        = new(:adult_service_community_order,        parent: ADULT_MILITARY, relevant_order: true, no_drag_through: true, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    ADULT_OVERSEAS_COMMUNITY_ORDER       = new(:adult_overseas_community_order,       parent: ADULT_MILITARY, relevant_order: true, no_drag_through: false, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
+    ADULT_SERVICE_COMMUNITY_ORDER        = new(:adult_service_community_order,        parent: ADULT_MILITARY, relevant_order: true, no_drag_through: false, calculator_class: Calculators::AdditionCalculator::PlusZeroMonths),
     ADULT_SERVICE_DETENTION              = new(:adult_service_detention,              parent: ADULT_MILITARY, calculator_class: Calculators::AdditionCalculator::PlusTwelveMonths),
     ADULT_REPRIMAND                      = new(:adult_reprimand,                      parent: ADULT_MILITARY, skip_length: true, calculator_class: Calculators::AdditionCalculator::StartPlusTwelveMonths),
 
