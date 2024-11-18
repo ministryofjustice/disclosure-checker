@@ -114,7 +114,7 @@ jobs:
           webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel
-        uses: slackapi/slack-github-action@v1.27.0
+        uses: slackapi/slack-github-action@v2.0.0
         with:
           payload: |
             {
@@ -201,7 +201,7 @@ jobs:
           webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel
-        uses: slackapi/slack-github-action@v1.27.0
+        uses: slackapi/slack-github-action@v2.0.0
         with:
           payload: |
             {
@@ -289,7 +289,7 @@ jobs:
           webapp="${{ vars.ECR_URL }}:$SHA"
 
       - name: Send deploy notification to product Slack channel
-        uses: slackapi/slack-github-action@v1.27.0
+        uses: slackapi/slack-github-action@v2.0.0
         with:
           payload: |
             {
@@ -319,7 +319,7 @@ jobs:
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
 
       - name: Send deploy notification to product Slack channel
-        uses: slackapi/slack-github-action@v1.27.0
+        uses: slackapi/slack-github-action@v2.0.0
         with:
           payload: |
             {
