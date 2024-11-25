@@ -177,14 +177,6 @@ en:
       steps_check_under_age_form:
         caution_html: Select your age when you got the caution, not when you committed the offence
         conviction_html: Select your age when you got convicted, not when you committed the offence
-      steps_caution_conditional_end_date_form:
-        conditional_end_date_html: *date_hint_text
-      steps_conviction_conviction_date_form:
-        conviction_date_html: *date_hint_text
-      steps_conviction_known_date_form:
-        known_date_html: *date_hint_text
-      steps_conviction_compensation_payment_date_form:
-        compensation_payment_date_html: *date_hint_text
       steps_conviction_motoring_endorsement_form:
         motoring_endorsement: An endorsement means that your conviction is recorded on your driving licence. Endorsements are usually given by courts.
       steps_conviction_conviction_subtype_form:
