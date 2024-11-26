@@ -85,6 +85,36 @@ RSpec.describe CustomFormHelpers, type: :helper do
     end
   end
 
+  describe "#i18n_date_hint" do
+    let(:found_key) { "hint text about dates" }
+
+    before do
+      allow(I18n).to receive(:t).with(
+        "helpers/dictionary.date_hint_text",
+      ).and_return(found_key)
+    end
+
+    describe "with lead_text argument" do
+      it "seeks the expected key" do
+        expect(found_key).to receive(:html_safe)
+
+        builder.i18n_date_hint("lead text")
+      end
+
+      it "wraps lead text in p tags" do
+        expect(builder.i18n_date_hint("lead text")).to include "<p>lead text</p>"
+      end
+    end
+
+    describe "without lead_text argument" do
+      it "gets lead text from i18n_lead_text" do
+        allow(builder).to receive(:i18n_lead_text).and_return "i18n_lead_text"
+
+        expect(builder.i18n_date_hint).to include "<p>i18n_lead_text</p>"
+      end
+    end
+  end
+
   describe "#i18n_hint" do
     let(:found_locale) { instance_double("locale") }
 

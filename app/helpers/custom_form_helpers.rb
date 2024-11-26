@@ -21,6 +21,13 @@ module CustomFormHelpers
     )
   end
 
+  def i18n_date_hint(lead_text = i18n_lead_text)
+    safe_join([
+      content_tag(:p, lead_text),
+      I18n.t("helpers/dictionary.date_hint_text").html_safe,
+    ])
+  end
+
   # Used to customise hints when reusing the same view
   # Hints support markup so ensure locale keys ends with `_html`
   def i18n_hint
