@@ -1,12 +1,5 @@
 <% title 'When your cautions or convictions are spent' %>
 
-<% track_transaction name: 'Multiple check completed', category: 'Completed checks', sku: 'multiples',
-                     id: current_disclosure_report.id,
-                     dimensions: {
-                       proceedings: @presenter.proceedings_size,
-                       orders: @presenter.orders_size
-                     } if flash.key?(:ga_track_completion) %>
-
 <% content_for(:notification_banner) do %>
   <%= render partial: 'layouts/notification_banner' %>
 <% end %>
