@@ -25,8 +25,7 @@ en:
         accept: You’ve accepted analytics cookies.
         reject: You’ve rejected analytics cookies.
       content_html: |
-        You can <a href="%{cookies_link}" class="govuk-link ga-pageLink" data-ga-category="cookie banner"
-        data-ga-label="change cookies">change your cookie settings</a> at any time.
+        You can <a href="%{cookies_link}" class="govuk-link">change your cookie settings</a> at any time.
       hide_button: Hide this message
     notification_banner:
       title: Important
