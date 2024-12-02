@@ -9,12 +9,6 @@
   <%= render partial: 'layouts/gtm_noscript' if analytics_allowed? %>
 <% end %>
 
-<% content_for(:service_name) do %>
-  <%= link_to service_name, root_path,
-              class: 'govuk-header__link govuk-header__service-name ga-pageLink',
-              data: { ga_category: 'header', ga_label: 'service name' }, id: 'header-service-name' %>
-<% end %>
-
 <% content_for(:cookie_banner) do %>
   <% unless analytics_consent_cookie.present? %>
     <%= render partial: 'layouts/cookie_banner' %>
