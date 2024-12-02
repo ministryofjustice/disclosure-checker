@@ -8,9 +8,9 @@
     <%= step_form @form_object do |f| %>
       <%= f.govuk_date_field :compensation_payment_date, maxlength_enabled: true,
           form_group: { class: 'app-util--compact-form-group' },
-          caption: { text: f.i18n_caption } do
-        tag.p t('.lead_text'), class: 'govuk-body-m'
-      end %>
+          caption: { text: f.i18n_caption },
+          hint: { text: f.i18n_date_hint(t('.lead_text')) }
+      %>
 
       <%= render partial: 'steps/shared/approx_date_checkbox', locals: {
         form: f, attribute: :approximate_compensation_payment_date
