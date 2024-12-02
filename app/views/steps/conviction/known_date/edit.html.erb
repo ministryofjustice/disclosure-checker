@@ -8,9 +8,9 @@
     <%= step_form @form_object do |f| %>
       <%= f.govuk_date_field :known_date, maxlength_enabled: true,
             form_group: { class: 'app-util--compact-form-group' },
+            hint: { text: f.i18n_date_hint },
             legend: { text: f.i18n_legend },
             caption: { text: f.i18n_caption } do
-        tag.p f.i18n_lead_text, class: 'govuk-body-m'
       end %>
 
       <%= render partial: 'steps/shared/approx_date_checkbox', locals: {
