@@ -6,9 +6,7 @@
       <%= translated_name %>
     </dt>
     <dd class="govuk-summary-list__actions">
-      <%= link_to edit_steps_check_path(check_row.disclosure_check),
-                  class: 'app-link--remove ga-pageLink',
-                  data: { ga_category: 'check your answers', ga_label: "remove #{check_row.kind}" } do %>
+      <%= link_to edit_steps_check_path(check_row.disclosure_check), class: 'app-link--remove' do %>
         <%= t('remove_link_html', scope: :check_your_answers, a11y_proceeding: translated_name.downcase) %>
       <% end %>
     </dd>

@@ -46,11 +46,6 @@ RSpec.describe ReportsController, type: :controller do
           perform_call
         end
 
-        it "sets the flash to track transactions" do
-          perform_call
-          expect(controller.request.flash[:ga_track_completion]).to eq(true)
-        end
-
         it "calls the `completed!` method" do
           expect(current_disclosure_report).to receive(:completed!)
           perform_call
@@ -65,11 +60,6 @@ RSpec.describe ReportsController, type: :controller do
         it "does not call the `purge_incomplete_checks` method" do
           expect(controller).not_to receive(:purge_incomplete_checks)
           perform_call
-        end
-
-        it "does not set the flash" do
-          perform_call
-          expect(controller.request.flash[:ga_track_completion]).to be_nil
         end
 
         it "does not call the `completed!` method" do
