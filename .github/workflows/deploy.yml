@@ -158,7 +158,7 @@ jobs:
           webapp="${{ vars.ECR_URL }}:$SHA"
 
   notify-qa:
-    needs: [build, deploy-staging]
+    needs: [build, deploy-qa]
     uses: ./.github/workflows/notification.yml
     secrets:
       webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
