@@ -158,10 +158,10 @@ GEM
     ffi (1.17.0-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    govuk-components (5.4.1)
+    govuk-components (5.7.1)
       html-attributes-utils (~> 1.0.0, >= 1.0.0)
-      pagy (>= 6, < 9)
-      view_component (>= 3.9, < 3.13)
+      pagy (>= 6, < 10)
+      view_component (>= 3.18, < 3.21)
     govuk_design_system_formbuilder (5.7.1)
       actionview (>= 6.1)
       activemodel (>= 6.1)
@@ -227,15 +227,15 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
-    nokogiri (1.16.7)
+    nokogiri (1.16.8)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.16.7-arm64-darwin)
+    nokogiri (1.16.8-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.7-x86_64-linux)
-      racc (~> 1.4)
-    ostruct (0.6.0)
-    pagy (8.6.3)
+    nokogiri (1.16.8-x86_64-linux)
+      racc (~> 1.4)          
+    ostruct (0.6.1)
+    pagy (9.3.2)
     parallel (1.26.3)
     parser (3.3.6.0)
       ast (~> 2.4.1)
@@ -277,9 +277,9 @@ GEM
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.6.0)
+    rails-html-sanitizer (1.6.1)
       loofah (~> 2.21)
-      nokogiri (~> 1.14)
+      nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
     rails-i18n (7.0.9)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
@@ -408,8 +408,8 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
     useragent (0.16.10)
-    view_component (3.12.1)
-      activesupport (>= 5.2.0, < 8.0)
+    view_component (3.20.0)
+      activesupport (>= 5.2.0, < 8.1)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
     virtus (2.0.0)
@@ -439,7 +439,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   factory_bot_rails
-  govuk-components (~> 5.4)
+  govuk-components (~> 5.7)
   govuk_design_system_formbuilder
   i18n-debug
   i18n-tasks
