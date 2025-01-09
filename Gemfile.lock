@@ -158,10 +158,10 @@ GEM
     ffi (1.17.0-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    govuk-components (5.4.1)
+    govuk-components (5.7.1)
       html-attributes-utils (~> 1.0.0, >= 1.0.0)
-      pagy (>= 6, < 9)
-      view_component (>= 3.9, < 3.13)
+      pagy (>= 6, < 10)
+      view_component (>= 3.18, < 3.21)
     govuk_design_system_formbuilder (5.7.1)
       actionview (>= 6.1)
       activemodel (>= 6.1)
@@ -235,7 +235,7 @@ GEM
     nokogiri (1.16.8-x86_64-linux)
       racc (~> 1.4)
     ostruct (0.6.1)
-    pagy (8.6.3)
+    pagy (9.3.2)
     parallel (1.25.1)
     parser (3.3.5.0)
       ast (~> 2.4.1)
@@ -415,8 +415,8 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
     useragent (0.16.10)
-    view_component (3.12.1)
-      activesupport (>= 5.2.0, < 8.0)
+    view_component (3.20.0)
+      activesupport (>= 5.2.0, < 8.1)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
     virtus (2.0.0)
@@ -446,7 +446,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   factory_bot_rails
-  govuk-components (~> 5.4)
+  govuk-components (~> 5.7)
   govuk_design_system_formbuilder
   i18n-debug
   i18n-tasks
