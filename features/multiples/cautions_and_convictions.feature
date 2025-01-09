@@ -53,7 +53,7 @@ Feature: A person with cautions and convictions
       And I should see "Check your answers"
 
      # Check in progress warning quick smoke test
-     When I click the "header-service-name" link
+     When I click the "Check when to disclose cautions or convictions" link
      Then I should see "It looks like you already have a check in progress"
       And I should see a "Resume check" link to "/steps/check/check_your_answers"
       And I should see a "Start a new check" link to "/?new=y"
