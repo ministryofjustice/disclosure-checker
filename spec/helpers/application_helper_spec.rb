@@ -44,7 +44,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   end
 
   describe "#step_header" do
-    let(:form_object) { instance_double("Form object") }
+    let(:form_object) { instance_double("Form object") } # rubocop:disable RSpec/VerifiedDoubleReference
 
     it "renders the expected content" do
       allow(helper).to receive(:render).with(partial: "layouts/step_header", locals: { path: "/foo/bar" }).and_return("foobar")
@@ -127,8 +127,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe "#fallback_title" do
     before do
       allow(Rails).to receive_message_chain(:application, :config, :consider_all_requests_local).and_return(false) # rubocop:disable RSpec/MessageChain
-      allow(helper).to receive(:controller_name).and_return("my_controller")
-      allow(helper).to receive(:action_name).and_return("an_action")
+      allow(helper).to receive_messages(controller_name: "my_controller", action_name: "an_action")
     end
 
     it "notifies in Sentry about the missing translation" do
@@ -154,7 +153,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
   describe "#any_completed_checks?" do
     let(:disclosure_report) { instance_double(DisclosureReport) }
-    let(:disclosure_checks) { instance_double("result_set", completed: checks) }
+    let(:disclosure_checks) { instance_double("result_set", completed: checks) } # rubocop:disable RSpec/VerifiedDoubleReference
 
     before do
       allow(disclosure_report).to receive(:disclosure_checks).and_return(disclosure_checks)
@@ -164,13 +163,13 @@ RSpec.describe ApplicationHelper, type: :helper do
     context "when no checks completed" do
       let(:checks) { [] }
 
-      it { expect(helper.any_completed_checks?).to eq(false) }
+      it { expect(helper.any_completed_checks?).to be(false) }
     end
 
     context "when at least one check completed" do
       let(:checks) { [1] }
 
-      it { expect(helper.any_completed_checks?).to eq(true) }
+      it { expect(helper.any_completed_checks?).to be(true) }
     end
   end
 
@@ -208,21 +207,21 @@ RSpec.describe ApplicationHelper, type: :helper do
       let(:development_env) { true }
       let(:dev_tools_enabled) { nil }
 
-      it { expect(helper.dev_tools_enabled?).to eq(true) }
+      it { expect(helper.dev_tools_enabled?).to be(true) }
     end
 
     context "with envs that declare the `DEV_TOOLS_ENABLED` env variable" do
       let(:development_env) { false }
       let(:dev_tools_enabled) { true }
 
-      it { expect(helper.dev_tools_enabled?).to eq(true) }
+      it { expect(helper.dev_tools_enabled?).to be(true) }
     end
 
     context "with envs without `DEV_TOOLS_ENABLED` env variable" do
       let(:development_env) { false }
       let(:dev_tools_enabled) { false }
 
-      it { expect(helper.dev_tools_enabled?).to eq(false) }
+      it { expect(helper.dev_tools_enabled?).to be(false) }
     end
   end
 end

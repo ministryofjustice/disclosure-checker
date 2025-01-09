@@ -13,7 +13,7 @@ RSpec.describe ConvictionDecisionTree do
     )
   end
 
-  let(:step_params)            { instance_double("Step") }
+  let(:step_params)            { instance_double("Step") } # rubocop:disable RSpec/VerifiedDoubleReference
   let(:next_step)              { nil }
   let(:as)                     { nil }
   let(:conviction_type)        { nil }
@@ -96,7 +96,7 @@ RSpec.describe ConvictionDecisionTree do
     end
   end
 
-  context "when the step is `known_date` " do
+  context "when the step is `known_date`" do
     let(:step_params) { { known_date: "anything" } }
 
     context "when subtype has length" do
@@ -112,7 +112,7 @@ RSpec.describe ConvictionDecisionTree do
     end
   end
 
-  context "when the step is `conviction_length_type` " do
+  context "when the step is `conviction_length_type`" do
     let(:step_params) { { conviction_length_type: } }
 
     context "and the answer is `no_length`" do

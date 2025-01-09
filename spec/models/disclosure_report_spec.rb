@@ -47,7 +47,7 @@ RSpec.describe DisclosureReport, type: :model do
   end
 
   describe "#disclosure_checks_count" do
-    let(:collection_scope) { instance_double("collection") }
+    let(:collection_scope) { instance_double("collection") } # rubocop:disable RSpec/VerifiedDoubleReference
 
     before do
       allow(report).to receive(:disclosure_checks).and_return(collection_scope) # rubocop:disable RSpec/SubjectStub
@@ -60,7 +60,7 @@ RSpec.describe DisclosureReport, type: :model do
   end
 
   context "when convenience query methods" do
-    let(:collection_scope) { instance_double("collection") }
+    let(:collection_scope) { instance_double("collection") } # rubocop:disable RSpec/VerifiedDoubleReference
 
     before do
       allow(report).to receive(:disclosure_checks).and_return(collection_scope) # rubocop:disable RSpec/SubjectStub
