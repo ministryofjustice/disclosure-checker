@@ -7,37 +7,37 @@ RSpec.describe ConvictionLengthType do
     context "when days" do
       let(:value) { :days }
 
-      it { expect(without_length).to eq(false) }
+      it { expect(without_length).to be(false) }
     end
 
     context "when weeks" do
       let(:value) { :weeks }
 
-      it { expect(without_length).to eq(false) }
+      it { expect(without_length).to be(false) }
     end
 
     context "when months" do
       let(:value) { :months }
 
-      it { expect(without_length).to eq(false) }
+      it { expect(without_length).to be(false) }
     end
 
     context "when years" do
       let(:value) { :years }
 
-      it { expect(without_length).to eq(false) }
+      it { expect(without_length).to be(false) }
     end
 
     context "when no_length" do
       let(:value) { :no_length }
 
-      it { expect(without_length).to eq(true) }
+      it { expect(without_length).to be(true) }
     end
 
     context "when indefinite" do
       let(:value) { :indefinite }
 
-      it { expect(without_length).to eq(true) }
+      it { expect(without_length).to be(true) }
     end
   end
 

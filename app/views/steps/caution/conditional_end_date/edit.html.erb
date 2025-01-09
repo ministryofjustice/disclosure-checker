@@ -6,9 +6,10 @@
     <%= govuk_error_summary %>
 
     <%= step_form @form_object do |f| %>
-      <%= f.govuk_date_field :conditional_end_date, maxlength_enabled: true, form_group: { class: 'app-util--compact-form-group' } do
-        tag.p t('.lead_text'), class: 'govuk-body-m'
-      end %>
+      <%= f.govuk_date_field :conditional_end_date, maxlength_enabled: true,
+        form_group: { class: 'app-util--compact-form-group' },
+        hint: { text: f.i18n_date_hint(t('.lead_text')) }
+      %>
 
       <%= render partial: 'steps/shared/approx_date_checkbox', locals: {
         form: f, attribute: :approximate_conditional_end_date
@@ -16,7 +17,7 @@
 
       <details class="govuk-details" data-module="govuk-details">
         <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text" data-ga-category="explanations" data-ga-label="conditions not ended">
+          <span class="govuk-details__summary-text">
             <%=t '.details.title' %>
           </span>
         </summary>

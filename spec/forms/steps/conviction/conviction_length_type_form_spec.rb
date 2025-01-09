@@ -112,7 +112,7 @@ RSpec.describe Steps::Conviction::ConvictionLengthTypeForm do
 
         it "has a validation error on the field" do
           expect(form).not_to be_valid
-          expect(form.errors.include?(:conviction_length_type)).to eq(true)
+          expect(form.errors.include?(:conviction_length_type)).to be(true)
         end
       end
     end

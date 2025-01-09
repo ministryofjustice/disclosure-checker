@@ -13,7 +13,7 @@ RSpec.describe CautionDecisionTree do
 
   let(:caution_type) { nil }
   let(:under_age)    { nil }
-  let(:step_params)  { instance_double("Step") }
+  let(:step_params)  { instance_double("Step") } # rubocop:disable RSpec/VerifiedDoubleReference
   let(:next_step)    { nil }
   let(:as)           { nil }
 

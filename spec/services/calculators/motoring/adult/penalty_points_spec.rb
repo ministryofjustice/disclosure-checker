@@ -13,7 +13,7 @@ RSpec.describe Calculators::Motoring::Adult::PenaltyPoints do
   let(:known_date) { Date.new(2018, 10, 31) }
 
   describe "#expiry_date" do
-    context "with a motoring endorsement " do
+    context "with a motoring endorsement" do
       it { expect(calculator.expiry_date.to_s).to eq("2021-10-31") }
     end
   end

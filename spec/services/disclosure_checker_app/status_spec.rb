@@ -41,7 +41,7 @@ RSpec.describe DisclosureCheckerApp::Status do
   describe "#success?" do
     context "when service status is 'ok" do
       it "returns true" do
-        expect(check.success?).to eq(true)
+        expect(check.success?).to be(true)
       end
     end
   end
