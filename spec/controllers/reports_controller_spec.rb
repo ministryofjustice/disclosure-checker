@@ -24,8 +24,7 @@ RSpec.describe ReportsController, type: :controller do
 
     describe "marking as completed" do
       before do
-        allow(controller).to receive(:current_disclosure_check).and_return(current_disclosure_check)
-        allow(controller).to receive(:current_disclosure_report).and_return(current_disclosure_report)
+        allow(controller).to receive_messages(current_disclosure_check: current_disclosure_check, current_disclosure_report: current_disclosure_report)
       end
 
       context "when the report is not already marked as `completed`" do
