@@ -10,11 +10,19 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">Check your answers</h1>
 
-    <%= render "add_more" %>
+    <p class="govuk-body-l">You can add more cautions or convictions now if you need to check more than one.</p>
 
     <%= render @presenter.summary %>
 
-    <%= render "next_steps" %>
+    <h2 class="govuk-heading-l govuk-!-margin-top-8">Next steps</h2>
+
+    <p class="govuk-body">
+      You must enter all cautions and convictions to get accurate results.
+    </p>
+
+    <%= button_to checks_path,
+                  class: 'govuk-button govuk-button--secondary',
+                  data: { module: 'govuk-button', 'prevent-double-click': true } do; 'Add a caution or conviction'; end  %>
 
     <p class="govuk-body">
       If you have finished adding cautions and convictions, get your results.
