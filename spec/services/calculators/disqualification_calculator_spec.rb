@@ -16,7 +16,7 @@ RSpec.describe Calculators::DisqualificationCalculator do
 
   describe "#expiry_date" do
     context "without a length" do
-      it { expect(calculator.expiry_date.to_s).to eq((known_date + 0.months).to_s) }
+      it { expect(calculator.expiry_date.to_s).to eq((known_date + 2.years).to_s) }
     end
 
     context "with a length" do
