@@ -6,7 +6,7 @@ module Calculators
   # This is the default length in this case
   #
   class DisqualificationCalculator < BaseCalculator
-    REHABILITATION = { months: 6 }.freeze
+    REHABILITATION = { years: 2 }.freeze
 
     def expiry_date
       return ResultsVariant::INDEFINITE if indefinite_length?
