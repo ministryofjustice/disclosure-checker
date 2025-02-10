@@ -28,11 +28,11 @@ Feature: Adult Conviction
 
   @happy_path @date_travel
   Scenario Outline: Motoring disqualification without length or indefinite
-    Given The current date is 01-02-2025
+    Given The current date is 03-07-2020
     When I choose "<subtype>"
 
     Then I should see "<known_date_header>"
-    And I enter the following date 01-01-2023
+    And I enter the following date 01-01-2018
 
     Then I should see "<length_type_header>"
     And  I choose "<length_option>"
@@ -41,8 +41,8 @@ Feature: Adult Conviction
     And I should see "<spent_date>"
 
     Examples:
-      | subtype          | known_date_header       | length_type_header                                                      | length_option       | spent_date                                                                                          |
-      | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | No length was given | This conviction was spent on 1 January 2025 |
+      | subtype          | known_date_header       | length_type_header                                                            | length_option       | spent_date |
+      | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | No length was given | This conviction was spent on 1 January 2020 |
       | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | Until further order | This conviction is not spent and will stay in place until another order is made to change or end it |
 
   @happy_path  @date_travel
