@@ -32,7 +32,7 @@ Feature: Youth Conviction
     When I choose "<subtype>"
 
     Then I should see "<known_date_header>"
-    And I enter the following date 01-01-2020
+    And I enter the following date 01-01-2018
 
     Then I should see "<length_type_header>"
     And  I choose "<length_option>"
@@ -41,9 +41,9 @@ Feature: Youth Conviction
     And I should see "<spent_date>"
 
     Examples:
-      | subtype          | known_date_header       | length_type_header                                                      | length_option       | spent_date                                                                         |
+      | subtype          | known_date_header       | length_type_header                                                            | length_option       | spent_date |
       | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | No length was given | This conviction was spent on 1 January 2020 |
-| Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | Until further order | This conviction is not spent and will stay in place until another order is made to change or end it |
+      | Disqualification | When did the ban start? | Was the length of the disqualification given in days, weeks, months or years? | Until further order | This conviction is not spent and will stay in place until another order is made to change or end it |
 
   @happy_path @date_travel
   Scenario Outline: Motoring fine
