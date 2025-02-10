@@ -1,9 +1,7 @@
 module Calculators
   #
   # If no disqualification end date is given
-  # start_date + 6 months
-  #
-  # This is the default length in this case
+  # start_date + 2 years
   #
   class DisqualificationCalculator < BaseCalculator
     REHABILITATION = { years: 2 }.freeze
