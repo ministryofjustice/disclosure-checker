@@ -42,7 +42,7 @@ module Calculators
       if disclosure_check.schedule18_over_4_years?
         ResultsVariant::NEVER_SPENT
       else
-        conviction_end_date.advance(rehabilitation_period)
+        conviction_end_date
       end
     end
 
@@ -55,9 +55,9 @@ module Calculators
 
   private
 
-    # The day before the end date, thus we subtract 1 day.
+    #   # The day before the end date, thus we subtract 1 day.
     def conviction_end_date
-      super.advance(days: -1)
+      super.advance(rehabilitation_period)
     end
   end
 end
