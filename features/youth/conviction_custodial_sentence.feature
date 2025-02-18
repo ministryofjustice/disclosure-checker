@@ -23,8 +23,8 @@ Feature: Conviction
 
     Examples:
       | subtype                            | known_date_header             | length_type_header                                                     | length_header                         | result                                             |
-      | Detention and training order (DTO) | When did the DTO start?       | Was the length of the DTO given in days, weeks, months or years?       | What was the length of the DTO?       | This conviction will be spent on 11 September 2023 |
-      | Detention                          | When did the detention start? | Was the length of the detention given in days, weeks, months or years? | What was the length of the detention? | This conviction will be spent on 11 September 2023 |
+      | Detention and training order (DTO) | When did the DTO start?       | Was the length of the DTO given in days, weeks, months or years?       | What was the length of the DTO?       | This conviction will be spent on 12 September 2023 |
+      | Detention                          | When did the detention start? | Was the length of the detention given in days, weeks, months or years? | What was the length of the detention? | This conviction will be spent on 12 September 2023 |
 
   @happy_path
   Scenario Outline: Hospital orders
