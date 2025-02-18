@@ -144,7 +144,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2011, 12, 9))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2011, 12, 10))
     end
 
     it "returns indefinite for the second proceeding" do
@@ -195,11 +195,11 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2017, 4, 30))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2017, 5, 1))
     end
 
     it "returns indefinite for the second proceeding" do
-      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2017, 4, 30))
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2017, 5, 1))
     end
   end
 
@@ -247,7 +247,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the first proceeeding" do
-      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2016, 8, 19))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2016, 8, 20))
     end
 
     it "returns indefinite for the second proceeding" do
@@ -453,7 +453,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
 
       # This becomes spent on 7 August 2013 as long as he is not convicted of a further offence during this time.
       it "returns the date for the forth proceeding" do
-        expect(calculator.spent_date_for(forth_proceedings)).to eq(Date.new(2013, 8, 6))
+        expect(calculator.spent_date_for(forth_proceedings)).to eq(Date.new(2013, 8, 7))
       end
     end
   end
@@ -520,9 +520,9 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "dates" do
-      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2009, 2, 28))
-      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2009, 2, 28))
-      expect(calculator.spent_date_for(third_proceedings)).to eq(Date.new(2009, 2, 28))
+      expect(calculator.spent_date_for(first_proceedings)).to eq(Date.new(2009, 3, 1))
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2009, 3, 1))
+      expect(calculator.spent_date_for(third_proceedings)).to eq(Date.new(2009, 3, 1))
     end
   end
 
@@ -592,7 +592,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     end
 
     it "returns the date for the second proceeding" do
-      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2019, 12, 31))
+      expect(calculator.spent_date_for(second_proceedings)).to eq(Date.new(2020, 1, 1))
     end
   end
 
@@ -607,7 +607,7 @@ RSpec.describe Calculators::Multiples::MultipleOffensesCalculator do
     let(:third_conviction_date) { Date.new(2014, 7, 1) }
     let(:fourth_conviction_date) { Date.new(2016, 6, 30) }
 
-    let(:spent_date) { Date.new(2018, 6, 29) }
+    let(:spent_date) { Date.new(2018, 6, 30) }
 
     let(:third_proceeding_group) { disclosure_report.check_groups.build }
     let(:fourth_proceeding_group) { disclosure_report.check_groups.build }
