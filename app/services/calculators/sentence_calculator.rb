@@ -52,12 +52,5 @@ module Calculators
     def valid?
       conviction_length_in_months <= self.class::UPPER_LIMIT_MONTHS
     end
-
-  private
-
-    # The day before the end date, thus we subtract 1 day.
-    def conviction_end_date
-      super.advance(days: -1)
-    end
   end
 end

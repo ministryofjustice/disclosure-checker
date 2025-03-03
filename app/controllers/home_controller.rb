@@ -1,12 +1,8 @@
 class HomeController < ApplicationController
-  before_action :existing_disclosure_check_warning
+  before_action :existing_disclosure_check_warning, :reset_disclosure_check_session
 
   def index
-    if params[:new] == "y"
-      redirect_to steps_check_kind_path
-    else
-      @continue_link ||= edit_steps_check_kind_path # rubocop:disable Naming/MemoizedInstanceVariableName
-    end
+    redirect_to steps_check_kind_path
   end
 
 private
@@ -17,10 +13,8 @@ private
   end
 
   def existing_disclosure_check_warning
-    if in_progress_enough? && !params.key?(:new)
-      @continue_link = warning_reset_session_path
-    else
-      reset_disclosure_check_session
-    end
+    return unless in_progress_enough? && !params.key?(:new)
+
+    redirect_to warning_reset_session_path
   end
 end
