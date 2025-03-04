@@ -1,4 +1,3 @@
-@ignore
 Feature: Notification banner functionality
   Scenario: The banner shows with a link on the homepage
     When I visit "/"
