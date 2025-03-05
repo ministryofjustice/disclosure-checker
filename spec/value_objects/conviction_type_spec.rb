@@ -45,6 +45,7 @@ RSpec.describe ConvictionType do
       it "returns subtypes of this conviction type" do
         expect(values).to eq(%w[
           dismissal
+          cashiering_discharge_dismissal
           overseas_community_order
           service_community_order
           service_detention
@@ -147,6 +148,7 @@ RSpec.describe ConvictionType do
       it "returns subtypes of this conviction type" do
         expect(values).to eq(%w[
           adult_dismissal
+          adult_cashiering_discharge_dismissal
           adult_overseas_community_order
           adult_service_community_order
           adult_service_detention
@@ -201,6 +203,15 @@ RSpec.describe ConvictionType do
   describe "Conviction subtype attributes" do
     let(:conviction_type) { described_class.find_constant(subtype) }
 
+    context "when CASHIERING_DISCHARGE_DISMISSAL" do
+      let(:subtype) { "cashiering_discharge_dismissal" }
+
+      it { expect(conviction_type.skip_length?).to be(true) }
+      it { expect(conviction_type.relevant_order?).to be(false) }
+      it { expect(conviction_type.no_drag_through?).to be(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusSixMonths) }
+    end
+
     context "when DISMISSAL" do
       let(:subtype) { "dismissal" }
 
@@ -219,12 +230,21 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusSixMonths) }
     end
 
+    context "when REPRIMAND" do
+      let(:subtype) { "reprimand" }
+
+      it { expect(conviction_type.skip_length?).to be(true) }
+      it { expect(conviction_type.relevant_order?).to be(false) }
+      it { expect(conviction_type.no_drag_through?).to be(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusSixMonths) }
+    end
+
     context "when SERVICE_COMMUNITY_ORDER" do
       let(:subtype) { "service_community_order" }
 
       it { expect(conviction_type.skip_length?).to be(false) }
       it { expect(conviction_type.relevant_order?).to be(true) }
-      it { expect(conviction_type.no_drag_through?).to be(true) }
+      it { expect(conviction_type.no_drag_through?).to be(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -233,7 +253,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to be(false) }
       it { expect(conviction_type.relevant_order?).to be(true) }
-      it { expect(conviction_type.no_drag_through?).to be(true) }
+      it { expect(conviction_type.no_drag_through?).to be(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -242,7 +262,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to be(false) }
       it { expect(conviction_type.relevant_order?).to be(true) }
-      it { expect(conviction_type.no_drag_through?).to be(true) }
+      it { expect(conviction_type.no_drag_through?).to be(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -415,7 +435,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to be(false) }
       it { expect(conviction_type.relevant_order?).to be(true) }
-      it { expect(conviction_type.no_drag_through?).to be(false) }
+      it { expect(conviction_type.no_drag_through?).to be(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -443,6 +463,7 @@ RSpec.describe ConvictionType do
       let(:subtype) { "adult_fine" }
 
       it { expect(conviction_type.skip_length?).to be(true) }
+      it { expect(conviction_type.no_drag_through?).to be(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusTwelveMonths) }
     end
 
@@ -457,6 +478,15 @@ RSpec.describe ConvictionType do
 
     # ADULT_MILITARY
     #
+    context "when ADULT_CASHIERING_DISCHARGE_DISMISSAL" do
+      let(:subtype) { "adult_cashiering_discharge_dismissal" }
+
+      it { expect(conviction_type.skip_length?).to be(true) }
+      it { expect(conviction_type.relevant_order?).to be(false) }
+      it { expect(conviction_type.no_drag_through?).to be(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusTwelveMonths) }
+    end
+
     context "when ADULT_DISMISSAL" do
       let(:subtype) { "adult_dismissal" }
 
@@ -471,8 +501,17 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to be(false) }
       it { expect(conviction_type.relevant_order?).to be(true) }
-      it { expect(conviction_type.no_drag_through?).to be(true) }
+      it { expect(conviction_type.no_drag_through?).to be(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
+    end
+
+    context "when ADULT_REPRIMAND" do
+      let(:subtype) { "adult_reprimand" }
+
+      it { expect(conviction_type.skip_length?).to be(true) }
+      it { expect(conviction_type.relevant_order?).to be(false) }
+      it { expect(conviction_type.no_drag_through?).to be(false) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusTwelveMonths) }
     end
 
     context "when ADULT_SERVICE_COMMUNITY_ORDER" do
@@ -480,7 +519,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to be(false) }
       it { expect(conviction_type.relevant_order?).to be(true) }
-      it { expect(conviction_type.no_drag_through?).to be(true) }
+      it { expect(conviction_type.no_drag_through?).to be(false) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
@@ -493,15 +532,6 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusTwelveMonths) }
     end
 
-    context "when ADULT_REPRIMAND" do
-      let(:subtype) { "adult_reprimand" }
-
-      it { expect(conviction_type.skip_length?).to be(true) }
-      it { expect(conviction_type.relevant_order?).to be(false) }
-      it { expect(conviction_type.no_drag_through?).to be(false) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::StartPlusTwelveMonths) }
-    end
-
     # YOUTH_MOTORING
     #
     context "when YOUTH_DISQUALIFICATION" do
@@ -510,7 +540,7 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.skip_length?).to be(false) }
       it { expect(conviction_type.relevant_order?).to be(true) }
       it { expect(conviction_type.no_drag_through?).to be(true) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::DisqualificationCalculator::Youths) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     context "when YOUTH_MOTORING_FINE" do
@@ -536,7 +566,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to be(true) }
       it { expect(conviction_type.relevant_order?).to be(false) }
-      it { expect(conviction_type.no_drag_through?).to be(false) }
+      it { expect(conviction_type.no_drag_through?).to be(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::Motoring::Youth::PenaltyPoints) }
     end
 
@@ -548,7 +578,7 @@ RSpec.describe ConvictionType do
       it { expect(conviction_type.skip_length?).to be(false) }
       it { expect(conviction_type.relevant_order?).to be(true) }
       it { expect(conviction_type.no_drag_through?).to be(true) }
-      it { expect(conviction_type.calculator_class).to eq(Calculators::DisqualificationCalculator::Adults) }
+      it { expect(conviction_type.calculator_class).to eq(Calculators::AdditionCalculator::PlusZeroMonths) }
     end
 
     context "when ADULT_MOTORING_FINE" do
@@ -565,7 +595,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to be(true) }
       it { expect(conviction_type.relevant_order?).to be(false) }
-      it { expect(conviction_type.no_drag_through?).to be(false) }
+      it { expect(conviction_type.no_drag_through?).to be(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::Motoring::Adult::PenaltyNotice) }
     end
 
@@ -574,7 +604,7 @@ RSpec.describe ConvictionType do
 
       it { expect(conviction_type.skip_length?).to be(true) }
       it { expect(conviction_type.relevant_order?).to be(false) }
-      it { expect(conviction_type.no_drag_through?).to be(false) }
+      it { expect(conviction_type.no_drag_through?).to be(true) }
       it { expect(conviction_type.calculator_class).to eq(Calculators::Motoring::Adult::PenaltyPoints) }
     end
 

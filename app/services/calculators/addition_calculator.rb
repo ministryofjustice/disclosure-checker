@@ -1,10 +1,9 @@
 module Calculators
   class AdditionCalculator < BaseCalculator
     ADDED_TIME_IF_NO_LENGTH = { months: 24 }.freeze
-
+    #
     # If length is given: conviction end date
     # If no length is given: conviction start date + 24 months
-    #
     class PlusZeroMonths < AdditionCalculator
       def added_time
         {}

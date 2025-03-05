@@ -14,10 +14,6 @@ Then(/^I should see the button "([^"]*)"$/) do |text|
   expect(page).to have_button(text, match: :first)
 end
 
-Then(/^I should not see the button "([^"]*)"$/) do |text|
-  expect(page).not_to have_button(text, match: :first)
-end
-
 Then(/^I should not see "([^"]*)"$/) do |text|
   expect(page).not_to have_text(text)
 end
@@ -105,7 +101,6 @@ end
 
 When(/^I have started a check$/) do
   step %(I visit "/")
-  step %(I click the "Continue" link)
 end
 
 When(/^I am in the conviction known date step$/) do
@@ -120,7 +115,7 @@ And(/^I check my "([^"]*)" answers and go to the results page$/) do |kind|
     step %(I should see the button "Add another sentence")
   end
 
-  step %(I should not see the button "Add a caution or conviction")
+  step %(I should see the button "Add a caution or conviction")
   step %(I click the "Continue to your results" button)
   step %(I should be on "/steps/check/results")
 end
