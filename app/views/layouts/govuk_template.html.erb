@@ -19,6 +19,8 @@
 
   <meta property="og:image" content="<%= asset_path '/assets/govuk-frontend/govuk/assets/images/govuk-opengraph-image.png' %>">
 
+  <%= capybara_lockstep if defined?(Capybara::Lockstep) %>
+
   <%= yield :head %>
 </head>
 

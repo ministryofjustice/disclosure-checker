@@ -39,6 +39,7 @@ end
 group :test do
   gem "brakeman"
   gem "capybara"
+  gem "capybara-lockstep"
   gem "cucumber", "< 10.0.0"
   gem "cucumber-rails", require: false
   gem "rails-controller-testing"
