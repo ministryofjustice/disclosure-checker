@@ -12,7 +12,7 @@ Capybara.register_driver(:chrome_headless) do |app|
   args = %w[disable-gpu no-sandbox]
   args << "headless" unless ENV["SHOW_BROWSER"]
 
-  options = Selenium::WebDriver::Chrome::Options.new(args:)
+  options = Selenium::WebDriver::Chrome::Options.new(unhandled_prompt_behavior: "ignore", args:)
 
   Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
 end
