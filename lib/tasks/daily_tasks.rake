@@ -26,8 +26,6 @@ namespace :purge do
   end
 end
 
-private
-
 def log(message)
   puts "[#{Time.zone.now}] #{message}"
 end
