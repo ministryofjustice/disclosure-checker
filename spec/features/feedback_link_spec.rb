@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.feature "feedback_link", type: :feature do
   scenario "User clicks the feedback link and sees the feedback page" do
