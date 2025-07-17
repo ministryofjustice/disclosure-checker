@@ -10,7 +10,7 @@ en:
       accessibility: Accessibility
     phase_banner:
       feedback:
-        banner_html: This is a new service, <a href="%{link}" class="govuk-link govuk-link--no-visited-state">your feedback</a> will help us improve.
+        banner_html: Help us make this service better. Give us your <a href="https://www.smartsurvey.co.uk/s/FNZI5U/" class="govuk-link govuk-link--no-visited-state">feedback</a>.
     cookie_banner:
       title: Cookies on %{service_name}
       content_html: |
