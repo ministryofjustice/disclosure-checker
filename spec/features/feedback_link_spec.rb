@@ -5,6 +5,7 @@ RSpec.feature "feedback_link", type: :feature do
     visit root_path
 
     link = find_link(text: "feedback")
+    puts "--- LINK: #{link[:href]}"
     expect(link[:href]).to include("https://www.smartsurvey.co.uk/s/FNZI5U/")
   end
 end
