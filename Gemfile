@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(".ruby-version").strip
 
-gem "govuk-components", "~> 5.8"
+gem "govuk-components", "~> 5.11.1"
 gem "govuk_design_system_formbuilder"
 gem "jquery-rails"
 gem "ostruct"
@@ -40,7 +40,7 @@ group :test do
   gem "brakeman"
   gem "capybara"
   gem "capybara-lockstep"
-  gem "cucumber", "< 10.0.0"
+  gem "cucumber", "< 11.0.0"
   gem "cucumber-rails", require: false
   gem "rails-controller-testing"
   gem "rubocop-govuk", require: false
