@@ -41,7 +41,7 @@ module ApplicationHelper
   end
 
   def title(page_title)
-    content_for :page_title, [page_title.presence, service_name].compact.join(" - ")
+    content_for :page_title, [page_title.presence, service_name, "GOV.UK"].compact.join(" - ")
   end
 
   def fallback_title
