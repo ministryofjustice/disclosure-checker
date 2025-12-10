@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
   get "home/index"
 
-  get "about/contact"
   get "about/privacy"
   get "about/terms_and_conditions"
   get "about/accessibility"
