@@ -36,7 +36,9 @@
   <%= content_for?(:skip_link_message) ? yield(:skip_link_message) : 'Skip to main content' %>
 </a>
 
-<%= govuk_header(homepage_url: "https://www.gov.uk", service_name:, service_url: "/") %>
+<%= govuk_header(homepage_url: "https://www.gov.uk") %>
+
+<%= govuk_service_navigation(service_name: t("service.name"), service_url: "/") %>
 
 <div class="govuk-width-container app-width-container--wide">
   <%= yield(:phase_banner) %>
