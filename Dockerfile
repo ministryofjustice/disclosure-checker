@@ -4,6 +4,7 @@ WORKDIR /app
 
 # postgresql-client: to run postgres, tzdata: required to set timezone, nodejs: JS runtime
 RUN apk add --no-cache \
+    libc6-compat \
     postgresql-client \
     tzdata \
     nodejs
