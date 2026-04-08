@@ -6,3 +6,8 @@ govuk-frontend@^5.14.0:
   version "5.14.0"
   resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-5.14.0.tgz#d93f1ffa88b0696114509cab86e4ea474006f8e0"
   integrity sha512-MgfaXswIM6KpXS2T5gltEnzgVLgfM3UoE9+rYkhBiR0suaJ8Let31VZXQZqz9QhiPDbv28fW1nRjIyLujfZIBA==
+
+safe-chain-test@^0.0.1-security:
+  version "0.0.1-security"
+  resolved "https://registry.yarnpkg.com/safe-chain-test/-/safe-chain-test-0.0.1-security.tgz#760e6d0854ece06a1e3c80a1d6505ea17e86b2c1"
+  integrity sha512-nJoRuRb52IWYNLNX/Bpwot6w+1U1cykpp08eTUdqZOoJ3AcJkiOi4hrHJx4OtT/c4wbK7MoDlKi763DP8BgD2Q==

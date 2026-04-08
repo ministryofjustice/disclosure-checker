@@ -3,6 +3,7 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "govuk-frontend": "^5.14.0"
+    "govuk-frontend": "^5.14.0",
+    "safe-chain-test": "^0.0.1-security"
   }
 }

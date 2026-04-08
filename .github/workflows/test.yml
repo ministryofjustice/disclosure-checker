@@ -34,8 +34,12 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v6
+
+      - name: SLSA Supply Chain Security
+        uses: ministryofjustice/devsecops-actions/sca/slsa@76122f269486156f5ff5277f4096ce79f7363336
 
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
