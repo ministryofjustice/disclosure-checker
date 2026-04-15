@@ -40,7 +40,7 @@ jobs:
           aws-region: ${{ vars.ECR_REGION }}
 
       - name: Login to container repository
-        uses: aws-actions/amazon-ecr-login@v2
+        uses: aws-actions/amazon-ecr-login@f2e9fc6c2b355c1890b65e6f6f0e2ac3e6e22f78 # v2.1.2
         id: login-ecr
 
       - name: Store current date
@@ -91,7 +91,7 @@ jobs:
           aws-region: ${{ vars.ECR_REGION }}
 
       - name: Login to container repository
-        uses: aws-actions/amazon-ecr-login@v2
+        uses: aws-actions/amazon-ecr-login@f2e9fc6c2b355c1890b65e6f6f0e2ac3e6e22f78 # v2.1.2
         id: login-ecr
 
       - name: Tag build and push to ECR
@@ -149,7 +149,7 @@ jobs:
           aws-region: ${{ vars.ECR_REGION }}
 
       - name: Login to container repository
-        uses: aws-actions/amazon-ecr-login@v2
+        uses: aws-actions/amazon-ecr-login@f2e9fc6c2b355c1890b65e6f6f0e2ac3e6e22f78 # v2.1.2
         id: login-ecr
 
       - name: Tag build and push to ECR
@@ -208,7 +208,7 @@ jobs:
           aws-region: ${{ vars.ECR_REGION }}
 
       - name: Login to container repository
-        uses: aws-actions/amazon-ecr-login@v2
+        uses: aws-actions/amazon-ecr-login@f2e9fc6c2b355c1890b65e6f6f0e2ac3e6e22f78 # v2.1.2
         id: login-ecr
 
       - name: Tag build and push to ECR
