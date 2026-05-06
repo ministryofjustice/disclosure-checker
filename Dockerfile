@@ -1,4 +1,4 @@
-FROM ruby:3.3.5-alpine as base
+FROM ruby:3.3.11-alpine as base
 
 WORKDIR /app
 
@@ -7,7 +7,8 @@ RUN apk add --no-cache \
     libc6-compat \
     postgresql-client \
     tzdata \
-    nodejs
+    nodejs \
+    yaml-dev
 
 # Ensure latest rubygems is installed
 RUN gem update --system
@@ -19,7 +20,8 @@ RUN apk add --no-cache \
     ruby-dev \
     build-base \
     postgresql-dev \
-    yarn
+    yarn \
+    yaml-dev
 
 COPY Gemfile* .ruby-version package.json yarn.lock ./
 
