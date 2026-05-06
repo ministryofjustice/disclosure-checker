@@ -504,7 +504,7 @@ DEPENDENCIES
   virtus
 
 RUBY VERSION
-   ruby 3.3.5p100
+   ruby 3.3.11p205
 
 BUNDLED WITH
    2.5.17
