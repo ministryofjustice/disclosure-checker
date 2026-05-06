@@ -1,4 +1,4 @@
-FROM ruby:3.3.5-alpine as base
+FROM ruby:3.3.11-alpine as base
 
 WORKDIR /app
 
@@ -19,7 +19,9 @@ RUN apk add --no-cache \
     ruby-dev \
     build-base \
     postgresql-dev \
-    yarn
+    yarn \
+    yaml-dev \
+    libffi-dev
 
 COPY Gemfile* .ruby-version package.json yarn.lock ./
 
