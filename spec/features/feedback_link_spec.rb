@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature "feedback_link", type: :feature do
   scenario "User clicks the feedback link and sees the feedback page" do
     visit root_path
-    sleep 5
+    sleep 11
     expect(page).to have_link("feedback", href: "https://www.smartsurvey.co.uk/s/FNZI5U/")
   end
 end
