@@ -12,10 +12,11 @@ RSpec.describe ApplicationController do
   end
 
   before do
-    # rubocop:disable RSpec/MessageChain
-    allow(Rails.application).to receive_message_chain(:config, :consider_all_requests_local).and_return(false)
-    allow(Rails.configuration).to receive_message_chain(:x, :session, :expires_in_minutes).and_return(1)
-    # rubocop:enable RSpec/MessageChain
+    # Stub the value on the REAL config object instead of replacing the config object with a double
+    allow(Rails.application.config).to receive(:consider_all_requests_local).and_return(false)
+
+    # Similarly, avoid message_chain here by stubbing on the real nested object
+    allow(Rails.configuration.x.session).to receive(:expires_in_minutes).and_return(1)
   end
 
   describe "Exceptions handling" do
