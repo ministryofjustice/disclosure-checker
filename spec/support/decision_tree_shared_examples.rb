@@ -4,7 +4,7 @@ RSpec.shared_examples "a decision tree" do
 
     it "raises an error" do
       expect { subject.destination }.to raise_error(
-        BaseDecisionTree::InvalidStep, "Invalid step '{:ungueltig=>{:waschmaschine=>\"nein\"}}'"
+        BaseDecisionTree::InvalidStep, "Invalid step '{ungueltig: {waschmaschine: \"nein\"}}'"
       )
     end
   end
@@ -32,7 +32,7 @@ RSpec.shared_examples "a decision tree" do
 
     context "when `as` has not been provided will take the step_name from the step_params" do
       it "raises an error" do
-        expect { subject.destination }.to raise_error(BaseDecisionTree::InvalidStep, "Invalid step '{:my_test_step=>\"anything\"}'")
+        expect { subject.destination }.to raise_error(BaseDecisionTree::InvalidStep, "Invalid step '{my_test_step: \"anything\"}'")
       end
     end
   end
