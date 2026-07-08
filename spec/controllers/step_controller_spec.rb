@@ -10,18 +10,16 @@ class DummyStepController < StepController
   end
 end
 
-RSpec.describe StepController, type: :controller do
+RSpec.describe DummyStepController, type: :controller do # rubocop:disable RSpec/SpecFilePathFormat
   before do
-    @controller = DummyStepController.new
+    @controller = described_class.new
 
-    Rails.application.routes.draw do
-      get "/dummy_step" => "dummy_step#show"
-      root to: "dummy_root#index"
+    self.routes = ActionDispatch::Routing::RouteSet.new.tap do |r|
+      r.draw do
+        get "/dummy_step" => "dummy_step#show"
+        root to: "dummy_root#index"
+      end
     end
-  end
-
-  after do
-    Rails.application.reload_routes!
   end
 
   describe "navigation stack" do
