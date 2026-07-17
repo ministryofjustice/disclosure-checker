@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for(:body_end) do %>
-  <script>
+  <script nonce="<%= content_security_policy_nonce %>">
     Sentry.init({
       dsn: "https://d82ca719a5b246bf80342c2266fe7550@o345774.ingest.sentry.io/5373163"
       beforeSend(event, hint) {
