@@ -40,8 +40,6 @@ group :test do
   gem "brakeman"
   gem "capybara"
   gem "capybara-lockstep"
-  gem "cucumber", "< 11.0.0"
-  gem "cucumber-rails", require: false
   gem "rails-controller-testing"
   gem "rubocop-govuk", require: false
   gem "selenium-webdriver"
