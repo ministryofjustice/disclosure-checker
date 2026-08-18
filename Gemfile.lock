@@ -451,7 +451,7 @@ DEPENDENCIES
   rubocop-govuk
   sass-rails
   selenium-webdriver (>= 4.45.0)
-  sentry-rails
+  sentry-rails (>= 6.6.0)
   sentry-ruby
   simplecov
   simplecov-json
