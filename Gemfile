@@ -39,7 +39,7 @@ end
 group :test do
   gem "brakeman"
   gem "capybara"
-  gem "capybara-lockstep"
+  gem "capybara-lockstep", ">= 2.3.2"
   gem "rails-controller-testing"
   gem "rubocop-govuk", require: false
   gem "selenium-webdriver"
