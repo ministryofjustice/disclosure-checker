@@ -42,7 +42,7 @@ group :test do
   gem "capybara-lockstep", ">= 2.3.2"
   gem "rails-controller-testing"
   gem "rubocop-govuk", require: false
-  gem "selenium-webdriver"
+  gem "selenium-webdriver", ">= 4.45.0"
   gem "simplecov", require: false
   gem "simplecov-json", require: false
 end
