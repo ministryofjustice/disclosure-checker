@@ -3,8 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(".ruby-version").strip
 
-gem "govuk-components", "~> 5.13.1"
-gem "govuk_design_system_formbuilder"
+gem "govuk-components", "~> 6.0.0"
+gem "govuk_design_system_formbuilder", ">= 6.2.0"
 gem "jquery-rails"
 gem "ostruct"
 gem "pg"
@@ -12,13 +12,13 @@ gem "puma"
 gem "rails", "~> 8.1.3.1"
 gem "responders"
 gem "sass-rails"
-gem "sentry-rails"
+gem "sentry-rails", ">= 6.6.0"
 gem "sentry-ruby"
 gem "terser"
 gem "virtus"
 
 group :production do
-  gem "lograge"
+  gem "lograge", ">= 0.15.0"
   gem "logstash-event"
 end
 
