@@ -1,7 +1,7 @@
 module Steps
   module Conviction
     class ConvictionLengthForm < BaseForm
-      attribute :conviction_length, String
+      attribute :conviction_length, :string
       delegate :conviction_length_type, to: :disclosure_check
 
       HUNDRED_YEARS_IN_DAYS = 36_524

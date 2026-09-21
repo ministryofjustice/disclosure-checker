@@ -1,7 +1,7 @@
 module Steps
   module Check
     class KindForm < BaseForm
-      attribute :kind, String
+      attribute :kind, :string
 
       def self.choices
         CheckKind.string_values
