@@ -1,8 +1,8 @@
 module Steps
   module Conviction
     class ConvictionDateForm < BaseForm
-      attribute :conviction_date, MultiParamDate
-      attribute :approximate_conviction_date, Boolean
+      attribute :conviction_date, :multi_param_date
+      attribute :approximate_conviction_date, :boolean
 
       validates_presence_of :conviction_date
       validates :conviction_date, sensible_date: true

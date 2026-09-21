@@ -1,7 +1,7 @@
 module Steps
   module Conviction
     class ConvictionTypeForm < BaseForm
-      attribute :conviction_type, String
+      attribute :conviction_type, :string
 
       validates_inclusion_of :conviction_type, in: :choices, if: :disclosure_check
 

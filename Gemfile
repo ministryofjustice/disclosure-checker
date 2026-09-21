@@ -15,7 +15,6 @@ gem "sass-rails"
 gem "sentry-rails"
 gem "sentry-ruby"
 gem "terser"
-gem "virtus"
 
 group :production do
   gem "lograge"

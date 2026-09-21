@@ -7,7 +7,7 @@ module SingleQuestionForm
   private
 
     def yes_no_attribute(name, reset_when_yes: [], reset_when_no: [])
-      attribute name, YesNo
+      attribute name, :yes_no
       validates_inclusion_of name, in: :choices
 
       self.reset_attributes = {
