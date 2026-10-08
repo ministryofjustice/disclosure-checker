@@ -3,7 +3,7 @@ module Steps
     class <%= step_name.camelize %>Form < BaseForm
       include GovUkDateFields::ActsAsGovUkDate
 
-      attribute :<%= step_name.underscore %>, Date
+      attribute :<%= step_name.underscore %>, :date
 
       acts_as_gov_uk_date :<%= step_name.underscore %>
 

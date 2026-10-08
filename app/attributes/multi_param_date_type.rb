@@ -1,10 +1,10 @@
-class MultiParamDate < Virtus::Attribute
+class MultiParamDateType < ActiveModel::Type::Value
   #
   # Used to coerce a Rails multi parameter date into a standard date.
   # Works together with method `#normalise_date_attributes!`
   # in `controllers/step_controller.rb`
   #
-  def coerce(value)
+  def cast(value)
     return value unless value.is_a?(Array)
 
     set_values = value.values_at(1, 2, 3) # index 0 not in use

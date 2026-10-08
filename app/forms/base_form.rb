@@ -1,8 +1,8 @@
 class BaseForm
   class DisclosureCheckNotFound < RuntimeError; end
 
-  include Virtus.model
-  include ActiveModel::Validations
+  include ActiveModel::API
+  include ActiveModel::Attributes
   include FormAttributeMethods
 
   extend ActiveModel::Callbacks

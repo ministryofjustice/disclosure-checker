@@ -1,8 +1,8 @@
 module Steps
   module Conviction
     class CompensationPaymentDateForm < BaseForm
-      attribute :compensation_payment_date, MultiParamDate
-      attribute :approximate_compensation_payment_date, Boolean
+      attribute :compensation_payment_date, :multi_param_date
+      attribute :approximate_compensation_payment_date, :boolean
 
       validates_presence_of :compensation_payment_date
       validates :compensation_payment_date, sensible_date: true

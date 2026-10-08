@@ -2,7 +2,7 @@ module Steps
   module <%= task_name.camelize %>
     class <%= step_name.camelize %>Form < BaseForm
       # TODO: Add more attributes or change type if necessary
-      attribute :<%= step_name.underscore %>, String
+      attribute :<%= step_name.underscore %>, :string
 
       # TODO: Delete this method and add different validation if you don't have a value object
       def self.choices

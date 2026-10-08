@@ -58,11 +58,8 @@ private
   end
 
   def form_attribute_names(form_class)
-    form_class.attribute_set.map { |attr|
-      attr_name = attr.name
-      primitive = attr.primitive
-
-      primitive.eql?(Date) ? %W[#{attr_name}_dd #{attr_name}_mm #{attr_name}_yyyy] : attr_name
+    form_class.attribute_types.map { |attr_name, type|
+      type.is_a?(ActiveModel::Type::Date) ? %W[#{attr_name}_dd #{attr_name}_mm #{attr_name}_yyyy] : attr_name
     }.flatten
   end
 

@@ -1,7 +1,7 @@
 module Steps
   module Caution
     class CautionTypeForm < BaseForm
-      attribute :caution_type, String
+      attribute :caution_type, :string
 
       validates_inclusion_of :caution_type, in: :choices, if: :disclosure_check
 

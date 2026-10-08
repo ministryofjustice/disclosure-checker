@@ -1,8 +1,8 @@
 module Steps
   module Conviction
     class KnownDateForm < BaseForm
-      attribute :known_date, MultiParamDate
-      attribute :approximate_known_date, Boolean
+      attribute :known_date, :multi_param_date
+      attribute :approximate_known_date, :boolean
 
       validates_presence_of :known_date
       validates :known_date, sensible_date: true

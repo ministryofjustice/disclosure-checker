@@ -42,6 +42,16 @@ RSpec.describe BaseForm do
       form[:disclosure_check] = disclosure_check
       expect(form.disclosure_check).to eq(disclosure_check)
     end
+
+    context "when the attribute is a declared ActiveModel attribute" do
+      subject(:form) { Steps::Check::KindForm.new }
+
+      it "assigns the attribute directly without using the method" do
+        expect(form).not_to receive(:kind=) # rubocop:disable RSpec/SubjectStub
+        form[:kind] = "example"
+        expect(form.kind).to eq("example")
+      end
+    end
   end
 
   describe "conviction_type and conviction_subtype value objects" do

@@ -1,4 +1,9 @@
-FROM ruby:3.4.9-alpine as base
+# Default kept in sync with `.ruby-version` so a plain `docker build .` works.
+# Building via `bin/docker-build` overrides this with the current `.ruby-version`
+# value directly, so it can't drift out of sync there; CI always uses that script.
+ARG RUBY_VERSION=4.0.3
+
+FROM ruby:${RUBY_VERSION}-alpine AS base
 
 WORKDIR /app
 
@@ -12,7 +17,7 @@ RUN apk add --no-cache \
 # Ensure latest rubygems is installed
 RUN gem update --system
 
-FROM base as builder
+FROM base AS builder
 
 # build dependencies:
 RUN apk add --no-cache \

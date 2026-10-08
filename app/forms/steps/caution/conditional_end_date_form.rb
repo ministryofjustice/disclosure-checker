@@ -1,8 +1,8 @@
 module Steps
   module Caution
     class ConditionalEndDateForm < BaseForm
-      attribute :conditional_end_date, MultiParamDate
-      attribute :approximate_conditional_end_date, Boolean
+      attribute :conditional_end_date, :multi_param_date
+      attribute :approximate_conditional_end_date, :boolean
 
       validates_presence_of :conditional_end_date
       validates :conditional_end_date, sensible_date: { allow_future: true }
