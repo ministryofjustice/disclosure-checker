@@ -72,6 +72,11 @@ spec:
               secretKeyRef:
                 name: disclosure-checker-secrets-qa
                 key: sentry_dsn
+          - name: DEPLOY_DASHBOARD_SHARED_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: disclosure-checker-secrets-qa
+                key: deploy_dashboard_shared_secret
           #
           # secrets created by `terraform`
           #
