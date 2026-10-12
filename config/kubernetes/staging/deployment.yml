@@ -72,6 +72,11 @@ spec:
               secretKeyRef:
                 name: disclosure-checker-secrets-staging
                 key: sentry_dsn
+          - name: DEPLOY_DASHBOARD_SHARED_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: disclosure-checker-secrets-staging
+                key: deploy_dashboard_shared_secret
           #
           # secrets created by `terraform`
           #

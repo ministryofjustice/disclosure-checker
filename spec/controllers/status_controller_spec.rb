@@ -55,11 +55,43 @@ RSpec.describe StatusController, type: :controller do
       expect(response.status).to eq(200)
     end
 
-    it "returns the expected payload" do
+    it "returns a minimal status with no build detail" do
       get :ping, format: :json
-      expect(
-        JSON.parse(response.body).keys,
-      ).to eq(%w[build_date build_tag commit_id])
+      expect(JSON.parse(response.body)).to eq("status" => "ok")
+    end
+  end
+
+  describe "#deploy_info" do
+    before do
+      allow(ENV).to receive(:fetch).and_call_original
+      allow(ENV).to receive(:fetch).with("DEPLOY_DASHBOARD_SHARED_SECRET", nil).and_return("test-secret")
+    end
+
+    context "with a valid shared secret" do
+      before { request.headers["X-Deploy-Dashboard-Secret"] = "test-secret" }
+
+      it "returns the expected payload" do
+        get :deploy_info, format: :json
+        expect(
+          JSON.parse(response.body).keys,
+        ).to eq(%w[build_date build_tag commit_id])
+      end
+    end
+
+    context "with an invalid shared secret" do
+      before { request.headers["X-Deploy-Dashboard-Secret"] = "wrong-secret" }
+
+      it "returns unauthorized" do
+        get :deploy_info, format: :json
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+
+    context "without a shared secret header" do
+      it "returns unauthorized" do
+        get :deploy_info, format: :json
+        expect(response).to have_http_status(:unauthorized)
+      end
     end
   end
 end

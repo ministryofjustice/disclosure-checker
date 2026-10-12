@@ -90,6 +90,7 @@ Rails.application.routes.draw do
     get :status, to: "status#index"
     get :health, to: "status#index"
     get :ping,   to: "status#ping"
+    get :deploy_info, to: "status#deploy_info"
   end
 
   # catch-all route
