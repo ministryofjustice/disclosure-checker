@@ -32,7 +32,7 @@ group :development, :test do
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "i18n-tasks"
-  gem "rspec-rails"
+  gem "rspec-rails", ">= 8.0.5"
 end
 
 group :test do
