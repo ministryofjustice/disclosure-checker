@@ -9,15 +9,15 @@ gem "jquery-rails"
 gem "ostruct"
 gem "pg"
 gem "puma"
-gem "rails", "~> 8.1.4.0"
+gem "rails", "~> 8.1.4.1"
 gem "responders", ">= 3.2.1"
 gem "sass-rails"
-gem "sentry-rails"
+gem "sentry-rails", ">= 6.6.0"
 gem "sentry-ruby"
 gem "terser"
 
 group :production do
-  gem "lograge"
+  gem "lograge", ">= 0.15.0"
   gem "logstash-event"
 end
 
@@ -31,7 +31,7 @@ group :development, :test do
   gem "debug"
   gem "dotenv-rails"
   gem "factory_bot_rails"
-  gem "i18n-tasks"
+  gem "i18n-tasks", ">= 1.2.0"
   gem "rspec-rails", ">= 8.0.5"
 end
 
