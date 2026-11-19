@@ -1,7 +1,7 @@
 # Default kept in sync with `.ruby-version` so a plain `docker build .` works.
 # Building via `bin/docker-build` overrides this with the current `.ruby-version`
 # value directly, so it can't drift out of sync there; CI always uses that script.
-ARG RUBY_VERSION=4.0.3
+ARG RUBY_VERSION=4.0.10
 
 FROM ruby:${RUBY_VERSION}-alpine AS base
 
