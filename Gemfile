@@ -12,7 +12,7 @@ gem "puma"
 gem "rails", "~> 8.1.4.1"
 gem "responders", ">= 3.2.1"
 gem "sass-rails"
-gem "sentry-rails", ">= 6.6.0"
+gem "sentry-rails", ">= 7.3.0"
 gem "sentry-ruby"
 gem "terser"
 
