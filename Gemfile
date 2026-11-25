@@ -12,7 +12,7 @@ gem "puma"
 gem "rails", "~> 8.1.4.1"
 gem "responders", ">= 3.2.1"
 gem "sass-rails"
-gem "sentry-rails", ">= 6.6.0"
+gem "sentry-rails", ">= 7.3.0"
 gem "sentry-ruby"
 gem "terser"
 
@@ -38,9 +38,9 @@ end
 group :test do
   gem "brakeman"
   gem "capybara"
-  gem "capybara-lockstep", ">= 2.4.0"
+  gem "capybara-lockstep", ">= 2.4.1"
   gem "rails-controller-testing"
-  gem "rubocop-govuk", require: false
+  gem "rubocop-govuk", ">= 6.0.0", require: false
   gem "selenium-webdriver", ">= 4.45.0"
   gem "simplecov", require: false
   gem "simplecov-json", require: false
